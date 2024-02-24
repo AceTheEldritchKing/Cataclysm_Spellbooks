@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks;
 
 import com.mojang.logging.LogUtils;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -33,6 +34,10 @@ public class CataclysmSpellbooks
     public CataclysmSpellbooks()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // Items
+        ItemRegistries.register(modEventBus);
+        // Spells
 
         modEventBus.addListener(this::commonSetup);
 
