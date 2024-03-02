@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.items;
+package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

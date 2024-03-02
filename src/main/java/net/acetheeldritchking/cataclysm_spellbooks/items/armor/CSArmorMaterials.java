@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.items;
+package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 public enum CSArmorMaterials implements ArmorMaterial {
     // Ignis Wizard Armor
-    IGNITIUM_WIZARD_ARMOR("ignis_armor", 45, new int[]{4, 7, 9, 4}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+    IGNITIUM_WIZARD_ARMOR("ignis_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
             () -> Ingredient.of(ModItems.IGNITIUM_INGOT.get()), Map.of(
                     AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
                     AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier("Fire power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),

@@ -1,4 +1,6 @@
 {
     "parent": "item/generated",
-    "textures": "cataclysm_spellbooks:item/ignis_boots"
+    "textures": {
+        "layer0": "cataclysm_spellbooks:item/ignis_boots"
+    }
 }
