@@ -4,7 +4,10 @@ import com.mojang.logging.LogUtils;
 import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -44,7 +47,12 @@ public class CataclysmSpellbooks
 
         // Items
         ItemRegistries.register(modEventBus);
+        // Schools
+        CSSchoolRegistry.register(modEventBus);
+        // Attributes
+        CSAttributeRegistry.register(modEventBus);
         // Spells
+        SpellRegistries.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
