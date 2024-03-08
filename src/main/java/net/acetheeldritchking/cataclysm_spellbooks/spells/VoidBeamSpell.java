@@ -79,7 +79,7 @@ public class VoidBeamSpell extends AbstractSpell {
     }
 
     @Override
-    public void onCast(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
+    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         if (playerMagicData.getAdditionalCastData() instanceof CastTargetingData targetingData)
         {
             var targetEntity = targetingData.getTarget((ServerLevel) level);
