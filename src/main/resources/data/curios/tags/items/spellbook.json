@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "values": [
+        "cataclysm_spellbooks:abyss_spell_book",
+        "cataclysm_spellbooks:desert_spell_book",
+        "cataclysm_spellbooks:ignis_spell_book"
+    ]
+}

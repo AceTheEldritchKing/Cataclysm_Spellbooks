@@ -1,6 +1,12 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "cataclysm_spellbooks:item/ignis_spell_book"
+    "parent": "minecraft:item/handheld",
+    "loader": "forge:separate_transforms",
+    "base": {
+        "parent": "cataclysm_spellbooks:item/ignis_spell_book_model"
+    },
+    "perspectives": {
+        "gui": {
+            "parent": "cataclysm_spellbooks:item/ignis_spell_book_gui"
+        }
     }
 }
