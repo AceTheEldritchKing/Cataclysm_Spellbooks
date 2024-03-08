@@ -27,7 +27,7 @@ public class ItemRegistries {
     // Abyss Spellbook
     public static final RegistryObject<Item> ABYSS_SPELL_BOOK = ITEMS.register
             ("abyss_spell_book", () -> new SimpleAttributeSpellBook
-                    (10, SpellRarity.LEGENDARY, AttributeRegistry.COOLDOWN_REDUCTION.get(), 0.30));
+                    (10, SpellRarity.LEGENDARY, CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), 0.30));
 
     // Desert Spellbook
     public static final RegistryObject<Item> DESERT_SPELL_BOOK = ITEMS.register

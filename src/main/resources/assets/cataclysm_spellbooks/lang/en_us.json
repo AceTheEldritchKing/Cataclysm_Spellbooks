@@ -6,5 +6,10 @@
     "item.cataclysm_spellbooks.ignis_helmet": "Ignitium Mage Helmet",
     "item.cataclysm_spellbooks.ignis_chestplate": "Ignitium Mage Robes",
     "item.cataclysm_spellbooks.ignis_leggings": "Ignitium Mage Leggings",
-    "item.cataclysm_spellbooks.ignis_boots": "Ignitium Mage Greaves"
+    "item.cataclysm_spellbooks.ignis_boots": "Ignitium Mage Greaves",
+
+    "spell.cataclysm_spellbooks.void_beam": "Void Beam",
+    "spell.cataclysm_spellbooks.void_beam.guide": "Cast an abyssal void beam at your chosen target",
+
+    "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal void beam similar to the warlocks"
 }
