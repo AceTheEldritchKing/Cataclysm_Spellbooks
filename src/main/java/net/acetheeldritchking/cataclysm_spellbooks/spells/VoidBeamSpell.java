@@ -7,6 +7,7 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.CastTargetingData;
+import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
@@ -16,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,15 +37,15 @@ public class VoidBeamSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
-            .setMaxLevel(1)
+            .setMaxLevel(3)
             .setCooldownSeconds(20)
             .build();
 
     public VoidBeamSpell()
     {
         this.manaCostPerLevel = 10;
-        this.baseSpellPower = 1;
-        this.spellPowerPerLevel = 0;
+        this.baseSpellPower = 10;
+        this.spellPowerPerLevel = 5;
         this.castTime = 0;
         this.baseManaCost = 100;
     }
@@ -74,6 +76,11 @@ public class VoidBeamSpell extends AbstractSpell {
     }
 
     @Override
+    public int getRecastCount(int spellLevel, @Nullable LivingEntity entity) {
+        return 1 + spellLevel;
+    }
+
+    @Override
     public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
         return Utils.preCastTargetHelper(level, entity, playerMagicData, this, 32, .15f);
     }
@@ -82,6 +89,14 @@ public class VoidBeamSpell extends AbstractSpell {
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         if (playerMagicData.getAdditionalCastData() instanceof CastTargetingData targetingData)
         {
+            // Recasts
+            if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId()))
+            {
+                playerMagicData.getPlayerRecasts().addRecast
+                        (new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity),
+                                100, castSource, null), playerMagicData);
+            }
+
             var targetEntity = targetingData.getTarget((ServerLevel) level);
             if (targetEntity != null)
             {
@@ -93,7 +108,7 @@ public class VoidBeamSpell extends AbstractSpell {
                 entity.level.addFreshEntity(mark);
             }
         }
-        super.onCast(level, spellLevel, entity, playerMagicData);
+        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
     @Override

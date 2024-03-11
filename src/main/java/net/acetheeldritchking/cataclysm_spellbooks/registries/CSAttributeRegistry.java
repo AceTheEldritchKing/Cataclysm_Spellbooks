@@ -1,8 +1,8 @@
 package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
+import io.redspace.ironsspellbooks.api.attribute.MagicRangedAttribute;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,14 +32,14 @@ public class CSAttributeRegistry {
     private static RegistryObject<Attribute> registerResistanceAttribute(String id)
     {
         return ATTRIBUTES.register(id + "_magic_resist", () ->
-                (new RangedAttribute("attribute.cataclysm_spellbooks" + id + "_magic_resist",
+                (new MagicRangedAttribute("attribute.cataclysm_spellbooks." + id + "_magic_resist",
                         1.0D, 0, 10).setSyncable(true)));
     }
 
     private static RegistryObject<Attribute> registerPowerAttribute(String id)
     {
         return ATTRIBUTES.register(id + "_spell_power", () ->
-                (new RangedAttribute("attribute.cataclysm_spellbooks" + id + "_spell_power",
+                (new MagicRangedAttribute("attribute.cataclysm_spellbooks." + id + "_spell_power",
                         1.0D, 0, 10).setSyncable(true)));
     }
 

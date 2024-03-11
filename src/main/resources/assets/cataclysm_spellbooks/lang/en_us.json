@@ -1,4 +1,10 @@
 {
+    "attribute.cataclysm_spellbooks.abyssal_magic_resist": "Abyssal Magic Resist",
+    "attribute.cataclysm_spellbooks.abyssal_spell_power": "Abyssal Spell Power",
+
+    "school.cataclysm_spellbooks.abyssal": "Abyssal",
+
+
     "item.cataclysm_spellbooks.abyss_spell_book": "Book o' R'lyeh",
     "item.cataclysm_spellbooks.desert_spell_book": "Desert Spellbook",
     "item.cataclysm_spellbooks.ignis_spell_book": "Ignitium spellbook",
@@ -8,8 +14,14 @@
     "item.cataclysm_spellbooks.ignis_leggings": "Ignitium Mage Leggings",
     "item.cataclysm_spellbooks.ignis_boots": "Ignitium Mage Greaves",
 
-    "spell.cataclysm_spellbooks.void_beam": "Void Beam",
-    "spell.cataclysm_spellbooks.void_beam.guide": "Cast an abyssal void beam at your chosen target",
 
-    "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal void beam similar to the warlocks"
+    "spell.cataclysm_spellbooks.void_beam": "Abyssal Beam",
+    "spell.cataclysm_spellbooks.void_beam.guide": "Cast an abyssal beam at your chosen target",
+
+    "spell.cataclysm_spellbooks.void_rune": "Void Rune",
+    "spell.cataclysm_spellbooks.void_rune.guide": "Cast void rune at your chosen target",
+
+
+    "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
+    "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location"
 }
