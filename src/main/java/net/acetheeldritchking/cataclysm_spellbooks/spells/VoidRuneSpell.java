@@ -68,7 +68,7 @@ public class VoidRuneSpell extends AbstractSpell {
 
     @Override
     public CastType getCastType() {
-        return CastType.LONG;
+        return CastType.INSTANT;
     }
 
     @Override
@@ -112,15 +112,6 @@ public class VoidRuneSpell extends AbstractSpell {
                                entity.getZ() + Mth.sin(f1) * 1.5D, d0, d1, f1, 0, entity);
                     }
                 }
-                */
-
-                double targetX = targetEntity.getX();
-                double targetY = targetEntity.getY();
-                double targetZ = targetEntity.getZ();
-
-                double d0 = Math.min(targetY, entity.getY());
-                double d1 = Math.min(targetY, entity.getY() + 1.0D);
-                float f = (float) Mth.atan2(targetZ - entity.getZ(), targetX - entity.getX());
 
                 Vec3 forward = entity.getForward().multiply(1, 0, 1).normalize();
                 Vec3 start = entity.getEyePosition().add(forward.scale(1.5));
@@ -128,6 +119,12 @@ public class VoidRuneSpell extends AbstractSpell {
                 for (int i = 0; i < getCount(spellLevel, entity); i++)
                 {
                     Vec3 spawn = start.add(forward.scale(i));
+                    spawn = new Vec3(spawn.x, spawn.y, spawn.z);
+
+                    double d0 = targetY;
+                    double d1 = targetY + 1.0D;
+                    float f = (float) Mth.atan2(targetZ, targetX);
+
                     if (!level.getBlockState(new BlockPos(spawn).below()).isAir())
                     {
                         float f1 = (float) (f + (i * Math.PI * 0.4f));
@@ -136,13 +133,31 @@ public class VoidRuneSpell extends AbstractSpell {
                                 targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity);
                     }
                 }
+                */
+
+                double targetX = targetEntity.getX();
+                double targetY = targetEntity.getY();
+                double targetZ = targetEntity.getZ();
+
+                for (int i = 0; i < getCount(spellLevel, entity); i++)
+                {
+                    double d0 = targetY;
+                    double d1 = targetY + 1.0D;
+                    float f = (float) Mth.atan2(targetZ, targetX);
+
+                    float f1 = (float) (f + (i * Math.PI * 0.4f));
+                    int delay = i / 3;
+
+                    this.summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
+                            targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity, targetEntity);
+                }
             }
         }
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
     // Literally looking at Evoker & Ender Guardian because they are almost the same
-    private void summonVoidRune(double x, double minY, double maxY, double z, float rotation, int delay, LivingEntity caster)
+    private void summonVoidRune(double x, double minY, double maxY, double z, float rotation, int delay, LivingEntity caster, LivingEntity target)
     {
         BlockPos pos = new BlockPos(x, maxY, z);
         boolean flag = false;
@@ -172,7 +187,9 @@ public class VoidRuneSpell extends AbstractSpell {
 
         if (flag)
         {
-            caster.level.addFreshEntity(new Void_Rune_Entity(caster.level, x, pos.getY() + d0, z, rotation, delay, caster));
+            Void_Rune_Entity voidRune = new Void_Rune_Entity(caster.level, x, pos.getY() + d0, z, rotation, delay, caster);
+            voidRune.moveTo(target.getX(), target.getY(), target.getZ());
+            caster.level.addFreshEntity(voidRune);
         }
     }
 
@@ -183,6 +200,6 @@ public class VoidRuneSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.ANIMATION_LONG_CAST;
+        return SpellAnimations.ANIMATION_INSTANT_CAST;
     }
 }
