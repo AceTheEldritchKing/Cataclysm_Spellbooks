@@ -103,7 +103,7 @@ public class VoidRuneSpell extends AbstractSpell {
                 {
                     double d0 = targetY;
                     double d1 = targetY + 1.0D;
-                    float f = (float) Mth.atan2(targetZ, targetX);
+                    float f = (float) Mth.atan2(targetZ += i, targetX += i);
 
                     float f1 = (float) (f + (i * Math.PI * 0.4f));
                     int delay = i / 3;
@@ -162,9 +162,9 @@ public class VoidRuneSpell extends AbstractSpell {
 
     private void spawnRuneAndEffects(Level level, Void_Rune_Entity rune, LivingEntity target, LivingEntity caster, int spellLevel)
     {
-        level.addFreshEntity(rune);
         target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
                 getEffectDuration(spellLevel, caster), 1, true, true, true));
+        level.addFreshEntity(rune);
     }
 
     private int getCount(int spellLevel, LivingEntity caster)
