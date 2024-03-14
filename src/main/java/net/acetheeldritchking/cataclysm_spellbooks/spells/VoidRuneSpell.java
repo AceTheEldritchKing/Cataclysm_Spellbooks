@@ -19,6 +19,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -93,48 +95,6 @@ public class VoidRuneSpell extends AbstractSpell {
             var targetEntity = targetingData.getTarget((ServerLevel) level);
             if (targetEntity != null)
             {
-                /*
-                BlockPos pos = new BlockPos(targetX, targetY, targetZ);
-
-                Vec3 targetCenter = targetEntity.position().add(0, pos.getY(), 0);
-                Void_Rune_Entity voidRune = new Void_Rune_Entity
-                        (entity.level, 0, pos.getY(), 0, 1.0f, 1, entity);
-
-                voidRune.moveTo(targetCenter);
-                entity.level.addFreshEntity(voidRune);
-
-                if (entity.distanceToSqr(targetEntity) < 9.0D)
-                {
-                    for (int i = 0; i < getCount(spellLevel, entity); i++)
-                    {
-
-                       this.summonVoidRune(entity.getX() + Mth.cos(f1) * 1.5D,
-                               entity.getZ() + Mth.sin(f1) * 1.5D, d0, d1, f1, 0, entity);
-                    }
-                }
-
-                Vec3 forward = entity.getForward().multiply(1, 0, 1).normalize();
-                Vec3 start = entity.getEyePosition().add(forward.scale(1.5));
-
-                for (int i = 0; i < getCount(spellLevel, entity); i++)
-                {
-                    Vec3 spawn = start.add(forward.scale(i));
-                    spawn = new Vec3(spawn.x, spawn.y, spawn.z);
-
-                    double d0 = targetY;
-                    double d1 = targetY + 1.0D;
-                    float f = (float) Mth.atan2(targetZ, targetX);
-
-                    if (!level.getBlockState(new BlockPos(spawn).below()).isAir())
-                    {
-                        float f1 = (float) (f + (i * Math.PI * 0.4f));
-                        int delay = i / 3;
-                        this.summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
-                                targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity);
-                    }
-                }
-                */
-
                 double targetX = targetEntity.getX();
                 double targetY = targetEntity.getY();
                 double targetZ = targetEntity.getZ();
@@ -149,7 +109,7 @@ public class VoidRuneSpell extends AbstractSpell {
                     int delay = i / 3;
 
                     this.summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
-                            targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity, targetEntity);
+                            targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity, targetEntity, spellLevel);
                 }
             }
         }
@@ -157,21 +117,27 @@ public class VoidRuneSpell extends AbstractSpell {
     }
 
     // Literally looking at Evoker & Ender Guardian because they are almost the same
-    private void summonVoidRune(double x, double minY, double maxY, double z, float rotation, int delay, LivingEntity caster, LivingEntity target)
+    private void summonVoidRune(double x, double minY, double maxY, double z, float rotation, int delay, LivingEntity caster, LivingEntity target, int spellLevel)
     {
         BlockPos pos = new BlockPos(x, maxY, z);
         boolean flag = false;
         double d0 = 0.0D;
 
+        double targetX = target.getX();
+        double targetY = target.getY();
+        double targetZ = target.getZ();
+
+        Level level = caster.level;
+
         do {
             BlockPos pos1 = pos.below();
-            BlockState blockState = caster.level.getBlockState(pos1);
-            if (blockState.isFaceSturdy(caster.level, pos1, Direction.UP))
+            BlockState blockState = level.getBlockState(pos1);
+            if (blockState.isFaceSturdy(level, pos1, Direction.UP))
             {
-                if (!caster.level.isEmptyBlock(pos))
+                if (!level.isEmptyBlock(pos))
                 {
-                    BlockState blockState1 = caster.level.getBlockState(pos);
-                    VoxelShape voxelShape = blockState1.getCollisionShape(caster.level, pos);
+                    BlockState blockState1 = level.getBlockState(pos);
+                    VoxelShape voxelShape = blockState1.getCollisionShape(level, pos);
                     if (!voxelShape.isEmpty())
                     {
                         d0 = voxelShape.max(Direction.Axis.Y);
@@ -187,15 +153,28 @@ public class VoidRuneSpell extends AbstractSpell {
 
         if (flag)
         {
-            Void_Rune_Entity voidRune = new Void_Rune_Entity(caster.level, x, pos.getY() + d0, z, rotation, delay, caster);
-            voidRune.moveTo(target.getX(), target.getY(), target.getZ());
-            caster.level.addFreshEntity(voidRune);
+            Void_Rune_Entity voidRune = new Void_Rune_Entity(level, x, pos.getY() + d0, z, rotation, delay, caster);
+            voidRune.moveTo(targetX, targetY, targetZ);
+
+            spawnRuneAndEffects(level, voidRune, target, caster, spellLevel);
         }
+    }
+
+    private void spawnRuneAndEffects(Level level, Void_Rune_Entity rune, LivingEntity target, LivingEntity caster, int spellLevel)
+    {
+        level.addFreshEntity(rune);
+        target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
+                getEffectDuration(spellLevel, caster), 1, true, true, true));
     }
 
     private int getCount(int spellLevel, LivingEntity caster)
     {
-        return 5 + getLevel(spellLevel, caster);
+        return getLevel(spellLevel, caster);
+    }
+
+    private int getEffectDuration(int spellPower, LivingEntity caster)
+    {
+        return (20 * (int) (getSpellPower(spellPower, caster) * 100))/2;
     }
 
     @Override
