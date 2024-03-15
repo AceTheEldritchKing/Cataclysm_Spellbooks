@@ -11,6 +11,7 @@ import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.CastTargetingData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -51,7 +52,7 @@ public class VoidRuneSpell extends AbstractSpell {
 
     public VoidRuneSpell()
     {
-        this.manaCostPerLevel = 10;
+        this.manaCostPerLevel = 5;
         this.baseSpellPower = 4;
         this.spellPowerPerLevel = 0;
         this.castTime = 0;
@@ -103,7 +104,7 @@ public class VoidRuneSpell extends AbstractSpell {
                 {
                     double d0 = targetY;
                     double d1 = targetY + 1.0D;
-                    float f = (float) Mth.atan2(targetZ += i, targetX += i);
+                    float f = (float) Mth.atan2(targetZ, targetX);
 
                     float f1 = (float) (f + (i * Math.PI * 0.4f));
                     int delay = i / 3;
@@ -162,9 +163,9 @@ public class VoidRuneSpell extends AbstractSpell {
 
     private void spawnRuneAndEffects(Level level, Void_Rune_Entity rune, LivingEntity target, LivingEntity caster, int spellLevel)
     {
-        target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
-                getEffectDuration(spellLevel, caster), 1, true, true, true));
         level.addFreshEntity(rune);
+        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SUMMON_VOID_RUNE.get(),
+                getEffectDuration(spellLevel, caster), 1, false, false, false));
     }
 
     private int getCount(int spellLevel, LivingEntity caster)

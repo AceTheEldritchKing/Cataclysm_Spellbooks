@@ -6,10 +6,7 @@ import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -42,6 +39,8 @@ public class CataclysmSpellbooks
         CSSchoolRegistry.register(modEventBus);
         // Attributes
         CSAttributeRegistry.register(modEventBus);
+        // Effects
+        CSPotionEffectRegistry.register(modEventBus);
         // Spells
         SpellRegistries.register(modEventBus);
 
