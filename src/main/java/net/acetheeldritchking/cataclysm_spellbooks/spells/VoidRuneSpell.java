@@ -1,7 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells;
 
 import com.github.L_Ender.cataclysm.entity.projectile.Void_Rune_Entity;
-import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
@@ -21,11 +20,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
@@ -100,13 +97,13 @@ public class VoidRuneSpell extends AbstractSpell {
                 double targetY = targetEntity.getY();
                 double targetZ = targetEntity.getZ();
 
-                for (int i = 0; i < getCount(spellLevel, entity); i++)
+                for (int i = 0; i < getDuration(spellLevel, entity); i++)
                 {
                     double d0 = targetY;
                     double d1 = targetY + 1.0D;
                     float f = (float) Mth.atan2(targetZ, targetX);
 
-                    float f1 = (float) (f + (i * Math.PI * 0.4f));
+                    float f1 = (float) (f + (Math.PI * 0.4f));
                     int delay = i / 3;
 
                     this.summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
@@ -168,14 +165,18 @@ public class VoidRuneSpell extends AbstractSpell {
                 getEffectDuration(spellLevel, caster), 1, false, false, false));
     }
 
-    private int getCount(int spellLevel, LivingEntity caster)
+    private int getDuration(int spellLevel, LivingEntity caster)
     {
         return getLevel(spellLevel, caster);
     }
 
     private int getEffectDuration(int spellPower, LivingEntity caster)
     {
-        return (20 * (int) (getSpellPower(spellPower, caster) * 100))/2;
+        int duration = ((int) (getSpellPower(spellPower, caster) * 100))/2;
+        int maxTicksForDuration = 10 * 20;
+        int maxDuration = Math.min(duration * 20, maxTicksForDuration);
+
+        return maxDuration;
     }
 
     @Override

@@ -17,21 +17,44 @@ public class SpellRegistries {
         return SPELLS.register(spell.getSpellName(), () -> spell);
     }
 
-    // Spells
+    //        //
+    // Spells //
+    //        //
 
+    // ABYSSAL //
     // Void Beam
     public static final RegistryObject<AbstractSpell> VOID_BEAM = registerSpell(new VoidBeamSpell());
 
-    // Sandstorm (Like Ancient Remnant) (Fire?)
+    // Abyssal Blast (Summon Leviathan death beam)
 
-    // Summon Koboleton (Evocation)
+    // Dimensional Rift (Summon a rift)
 
+
+    // ENDER //
     // Void Rune (Ender)
     public static final RegistryObject<AbstractSpell> VOID_RUNE = registerSpell(new VoidRuneSpell());
 
-    // Gravity Storm (Ender/Eldritch?)
+    // Void Bulwark (Summon void rune shield in a semi circle around caster)
+
+    // Gravity Storm (Ender)
+
+
+    // EVOCATION //
+    // Summon Koboleton (Evocation)
+
+
+    // FIRE //
+    // Sandstorm (Like Ancient Remnant) (Fire?)
 
     // Incineration (Fire) (Summon Fire runes in row)
+
+    // Infernal Strike (Summon mini Incinerator)
+
+    // Summon Ignited Revenant (Just as the name says
+
+
+    // LIGHTNING
+    // EMP (Cast an emp blast?)
 
     public static void register(IEventBus eventBus)
     {
