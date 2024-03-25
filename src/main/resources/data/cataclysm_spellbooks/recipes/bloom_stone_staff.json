@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "cac",
+        " l ",
+        " l "
+    ],
+    "key": {
+        "c": {
+            "item": "cataclysm:amethyst_crab_shell"
+        },
+        "l": {
+            "item": "cataclysm:lionfish_spike"
+        },
+        "a": {
+            "tag": "forge:gems/amethyst"
+        }
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:bloom_stone_staff",
+        "count": 1
+    }
+}

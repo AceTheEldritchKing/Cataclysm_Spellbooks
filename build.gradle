@@ -168,7 +168,7 @@ dependencies {
     implementation fg.deobf("curse.maven:archaeology-api-950822:4996103")
 
     // JEI
-    //runtimeOnly(fg.deobf("curse.maven:Jei-238222:4712866"))
+    runtimeOnly(fg.deobf("curse.maven:Jei-238222:4712866"))
 
     // Mixins
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"

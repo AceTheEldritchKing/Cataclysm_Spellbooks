@@ -1,0 +1,12 @@
+{
+    "ingredients": [
+        {
+            "item": "irons_spellbooks:ruined_book"
+        }
+    ],
+    "result": {
+        "item": "cataclysm_spellbooks:abyss_spell_book",
+        "count": 1
+    },
+    "time": 250
+}

@@ -34,17 +34,17 @@ public class ItemRegistries {
     // Abyss Spellbook
     public static final RegistryObject<Item> ABYSS_SPELL_BOOK = ITEMS.register
             ("abyss_spell_book", () -> new SimpleAttributeSpellBook
-                    (10, SpellRarity.LEGENDARY, CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), 0.30));
+                    (12, SpellRarity.LEGENDARY, CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), 0.30));
 
-    // Desert Spellbook
+    // Desert Spellbook - Dropped by ancient remnant
     public static final RegistryObject<Item> DESERT_SPELL_BOOK = ITEMS.register
             ("desert_spell_book", () -> new SimpleAttributeSpellBook
-                    (8, SpellRarity.EPIC, AttributeRegistry.COOLDOWN_REDUCTION.get(), 0.20));
+                    (9, SpellRarity.EPIC, AttributeRegistry.COOLDOWN_REDUCTION.get(), 0.20));
 
     // Ignis Spellbook
     public static final RegistryObject<Item> IGNIS_SPELL_BOOK = ITEMS.register
             ("ignis_spell_book", () -> new SimpleAttributeSpellBook
-                    (10, SpellRarity.LEGENDARY, AttributeRegistry.FIRE_SPELL_POWER.get(), 0.25));
+                    (12, SpellRarity.LEGENDARY, AttributeRegistry.FIRE_SPELL_POWER.get(), 0.25));
 
     //        //
     // STAFFS //
