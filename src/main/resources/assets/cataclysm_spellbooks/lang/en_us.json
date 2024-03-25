@@ -9,6 +9,11 @@
     "item.cataclysm_spellbooks.desert_spell_book": "Desert Spellbook",
     "item.cataclysm_spellbooks.ignis_spell_book": "Ignitium spellbook",
 
+    "item.cataclysm_spellbooks.bloom_stone_staff": "Bloom Stone Staff",
+    "item.cataclysm_spellbooks.coral_staff": "Coral Staff",
+    "item.cataclysm_spellbooks.fake_wudjets_staff": "Fake Wudjet's Staff",
+    "item.cataclysm_spellbooks.void_staff": "Void Staff",
+
     "item.cataclysm_spellbooks.ignis_helmet": "Ignitium Mage Helmet",
     "item.cataclysm_spellbooks.ignis_chestplate": "Ignitium Mage Robes",
     "item.cataclysm_spellbooks.ignis_leggings": "Ignitium Mage Leggings",
@@ -21,7 +26,11 @@
     "spell.cataclysm_spellbooks.void_rune": "Conjure: Void Rune",
     "spell.cataclysm_spellbooks.void_rune.guide": "Cast void rune at your chosen target",
 
+    "spell.cataclysm_spellbooks.dimensional_rift": "Dimensional Rift",
+    "spell.cataclysm_spellbooks.dimensional_rift.guide": "Cast a dimensional rift",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
-    "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location"
+    "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
+    "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Summon a dimensional rift that lasts for"
 }

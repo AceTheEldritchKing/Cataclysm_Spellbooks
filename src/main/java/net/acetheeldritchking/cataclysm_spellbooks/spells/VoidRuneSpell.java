@@ -50,7 +50,7 @@ public class VoidRuneSpell extends AbstractSpell {
     public VoidRuneSpell()
     {
         this.manaCostPerLevel = 5;
-        this.baseSpellPower = 4;
+        this.baseSpellPower = 1;
         this.spellPowerPerLevel = 0;
         this.castTime = 0;
         this.baseManaCost = 50;
