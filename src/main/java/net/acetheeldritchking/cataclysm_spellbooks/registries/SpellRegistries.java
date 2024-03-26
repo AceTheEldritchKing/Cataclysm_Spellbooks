@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.AbyssalBlastSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.DimensionalRiftSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.VoidBeamSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.VoidRuneSpell;
@@ -27,6 +28,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> VOID_BEAM = registerSpell(new VoidBeamSpell());
 
     // Abyssal Blast (Summon Leviathan death beam)
+    public static final RegistryObject<AbstractSpell> ABYSSAL_BLAST = registerSpell(new AbyssalBlastSpell());
 
     // Dimensional Rift (Summon a rift)
     public static final RegistryObject<AbstractSpell> DIMENSIONAL_RIFT = registerSpell(new DimensionalRiftSpell());

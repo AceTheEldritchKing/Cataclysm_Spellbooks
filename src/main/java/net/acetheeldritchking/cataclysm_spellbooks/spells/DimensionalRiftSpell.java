@@ -34,19 +34,19 @@ public class DimensionalRiftSpell extends AbstractSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.EPIC)
+            .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(6)
-            .setCooldownSeconds(20)
+            .setCooldownSeconds(120)
             .build();
 
     public DimensionalRiftSpell()
     {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 1;
-        this.spellPowerPerLevel = 0;
+        this.spellPowerPerLevel = 1;
         this.castTime = 10;
-        this.baseManaCost = 100;
+        this.baseManaCost = 200;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class DimensionalRiftSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastFinishAnimation() {
-        return SpellAnimations.FINISH_ANIMATION;
+        return SpellAnimations.SLASH_ANIMATION;
     }
 
     @Override

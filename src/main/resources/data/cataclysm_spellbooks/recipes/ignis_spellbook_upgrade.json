@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "addition": {
+        "item": "cataclysm:ignitium_ingot"
+    },
+    "base": {
+        "item": "irons_spellbooks:blaze_spell_book"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:ignis_spell_book"
+    }
+}
