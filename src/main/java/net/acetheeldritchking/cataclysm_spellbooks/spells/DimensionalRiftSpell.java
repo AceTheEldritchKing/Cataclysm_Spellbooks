@@ -6,6 +6,8 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
+import io.redspace.ironsspellbooks.api.util.CameraShakeData;
+import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
@@ -45,8 +47,8 @@ public class DimensionalRiftSpell extends AbstractSpell {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
-        this.castTime = 10;
-        this.baseManaCost = 200;
+        this.castTime = 40;
+        this.baseManaCost = 500;
     }
 
     @Override
@@ -88,10 +90,11 @@ public class DimensionalRiftSpell extends AbstractSpell {
         Dimensional_Rift_Entity dimensionalRift =
                 new Dimensional_Rift_Entity(casterLevel, casterX, casterEye, casterZ, entity);
 
-        dimensionalRift.setStage(1);
+        dimensionalRift.setStage(setRiftStage(spellLevel, dimensionalRift));
         dimensionalRift.setLifespan(getRiftLifespan(spellLevel, entity));
 
         dimensionalRift.moveTo(dimensionRiftLocation);
+        CameraShakeManager.addCameraShake(new CameraShakeData(25, entity.position(), 25));
         if (!casterLevel.isClientSide)
         {
             level.addFreshEntity(dimensionalRift);
@@ -100,9 +103,25 @@ public class DimensionalRiftSpell extends AbstractSpell {
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    public int getRiftLifespan(int spellLevel, LivingEntity caster)
+    // Ideally, the more spell power there is, the shorter the lifespan
+    public int getRiftLifespan(int spellLevel, LivingEntity caster) {
+        int lifespanPerLevel = (int) (getSpellPower(spellLevel, caster) * 100);
+        int baseLevel = 100;
+        //int reduceLifeSpan = (int) (lifespanPerLevel - (getSpellPower(spellLevel, caster) * 100));
+        int reduceLifeSpan = lifespanPerLevel - baseLevel;
+
+        return reduceLifeSpan;
+    }
+
+    // Ideally, the more spell level there is, the bigger the rift
+    public int setRiftStage(int spellLevel, Dimensional_Rift_Entity rift)
     {
-        return (int) (getSpellPower(spellLevel, caster) * 100);
+        if (rift.getStage() < 4)
+        {
+            rift.setStage(rift.getStage() + spellLevel);
+        }
+
+        return rift.getStage();
     }
 
     @Override

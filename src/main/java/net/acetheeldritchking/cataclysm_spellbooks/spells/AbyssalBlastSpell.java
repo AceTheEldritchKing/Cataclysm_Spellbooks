@@ -6,16 +6,15 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
-import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.api.util.CameraShakeData;
+import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
@@ -28,7 +27,7 @@ public class AbyssalBlastSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(20)
+            .setCooldownSeconds(200)
             .build();
 
     public AbyssalBlastSpell()
@@ -36,8 +35,8 @@ public class AbyssalBlastSpell extends AbstractSpell {
         this.manaCostPerLevel = 0;
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 1;
-        this.castTime = 10;
-        this.baseManaCost = 350;
+        this.castTime = 60;
+        this.baseManaCost = 650;
     }
 
     @Override
@@ -52,7 +51,7 @@ public class AbyssalBlastSpell extends AbstractSpell {
 
     @Override
     public CastType getCastType() {
-        return CastType.CONTINUOUS;
+        return CastType.LONG;
     }
 
     @Override
@@ -71,25 +70,37 @@ public class AbyssalBlastSpell extends AbstractSpell {
         double casterY = entity.getY();
         double casterZ = entity.getZ();
 
-        Vec3 casterEyePosition = entity.getEyePosition();
+        //Vec3 casterEyePosition = entity.getEyePosition();
 
         float dir = 90F;
-        float casterXRot = (float) (entity.getXRot() * Math.PI/180F);
-        float casterEyeYPosition = (float) (-(casterEyePosition.y + dir) * Math.PI/180.0D);
+        float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
+        float casterYHeadRot = (float) ((entity.yHeadRot + dir) * Math.PI/180D);
+        //float casterEyeYPosition = (float) (-(casterEyePosition.y + dir) * Math.PI/180.0D);
 
-        HitResult hitResult = Utils.raycastForEntity(level, entity, 32, true, 0.15F);
-        if (hitResult.getType() == HitResult.Type.ENTITY)
+        //HitResult hitResult = Utils.raycastForEntity(level, entity, 32, true, 0.15F);
+
+        CameraShakeManager.addCameraShake(new CameraShakeData(15, entity.position(), 25));
+        if (!level.isClientSide)
+        {
+            Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity((EntityType)ModEntities.ABYSS_BLAST.get(),
+                    level, entity, casterX, casterY, casterZ,
+                    casterYHeadRot, casterXRot, 80, dir);
+
+            level.addFreshEntity(abyss_blast);
+        }
+
+        /*if (hitResult.getType() == HitResult.Type.ENTITY)
         {
             Entity target = ((EntityHitResult)hitResult).getEntity();
             if (target instanceof LivingEntity)
             {
                 Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity(ModEntities.ABYSS_BLAST.get(),
-                        entity.level, entity,casterX, casterY, casterZ,
+                        entity.level, entity, casterX, casterY, casterZ,
                         casterEyeYPosition, casterXRot, 80, dir);
 
                 level.addFreshEntity(abyss_blast);
             }
-        }
+        }*/
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
