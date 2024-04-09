@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "addition": {
+        "item": "cataclysm:ignitium_ingot"
+    },
+    "base": {
+        "item": "irons_spellbooks:netherite_mage_leggings"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:ignis_leggings"
+    }
+}

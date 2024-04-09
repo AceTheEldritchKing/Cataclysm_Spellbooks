@@ -33,6 +33,8 @@ public class SpellRegistries {
     // Dimensional Rift (Summon a rift)
     public static final RegistryObject<AbstractSpell> DIMENSIONAL_RIFT = registerSpell(new DimensionalRiftSpell());
 
+    // Abyssal Mine
+
 
     // ENDER //
     // Void Rune (Ender)

@@ -10,8 +10,12 @@ import io.redspace.ironsspellbooks.api.util.CameraShakeData;
 import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.minecraft.client.Camera;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -74,7 +78,7 @@ public class AbyssalBlastSpell extends AbstractSpell {
 
         float dir = 90F;
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
-        float casterYHeadRot = (float) ((entity.yHeadRot + dir) * Math.PI/180D);
+        float casterYHeadRot = (float) ((entity.getEyeY() + dir) * Math.PI/180D);
         //float casterEyeYPosition = (float) (-(casterEyePosition.y + dir) * Math.PI/180.0D);
 
         //HitResult hitResult = Utils.raycastForEntity(level, entity, 32, true, 0.15F);
@@ -82,25 +86,17 @@ public class AbyssalBlastSpell extends AbstractSpell {
         CameraShakeManager.addCameraShake(new CameraShakeData(15, entity.position(), 25));
         if (!level.isClientSide)
         {
+            // Prevent player from moving
+            entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
+                    80, 2, true, true, true));
+
+            // Firing mah laser
             Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity((EntityType)ModEntities.ABYSS_BLAST.get(),
                     level, entity, casterX, casterY, casterZ,
                     casterYHeadRot, casterXRot, 80, dir);
 
             level.addFreshEntity(abyss_blast);
         }
-
-        /*if (hitResult.getType() == HitResult.Type.ENTITY)
-        {
-            Entity target = ((EntityHitResult)hitResult).getEntity();
-            if (target instanceof LivingEntity)
-            {
-                Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity(ModEntities.ABYSS_BLAST.get(),
-                        entity.level, entity, casterX, casterY, casterZ,
-                        casterEyeYPosition, casterXRot, 80, dir);
-
-                level.addFreshEntity(abyss_blast);
-            }
-        }*/
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
