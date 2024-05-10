@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 
 import com.github.L_Ender.cataclysm.entity.projectile.Void_Rune_Entity;
 import com.github.L_Ender.cataclysm.init.ModSounds;

@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 
 import com.github.L_Ender.cataclysm.entity.BossMonsters.The_Leviathan.Dimensional_Rift_Entity;
 import com.github.L_Ender.cataclysm.init.ModSounds;

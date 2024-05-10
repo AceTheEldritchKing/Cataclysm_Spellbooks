@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 
 import com.github.L_Ender.cataclysm.entity.BossMonsters.The_Leviathan.Abyss_Blast_Entity;
 import com.github.L_Ender.cataclysm.init.ModEntities;
@@ -40,7 +40,7 @@ public class AbyssalBlastSpell extends AbstractSpell {
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 1;
         this.castTime = 60;
-        this.baseManaCost = 650;
+        this.baseManaCost = 700;
     }
 
     @Override
@@ -74,14 +74,9 @@ public class AbyssalBlastSpell extends AbstractSpell {
         double casterY = entity.getY();
         double casterZ = entity.getZ();
 
-        //Vec3 casterEyePosition = entity.getEyePosition();
-
         float dir = 90F;
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
         float casterYHeadRot = (float) ((entity.getEyeY() + dir) * Math.PI/180D);
-        //float casterEyeYPosition = (float) (-(casterEyePosition.y + dir) * Math.PI/180.0D);
-
-        //HitResult hitResult = Utils.raycastForEntity(level, entity, 32, true, 0.15F);
 
         CameraShakeManager.addCameraShake(new CameraShakeData(15, entity.position(), 25));
         if (!level.isClientSide)

@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 
 import com.github.L_Ender.cataclysm.entity.effect.Abyss_Mark_Entity;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
