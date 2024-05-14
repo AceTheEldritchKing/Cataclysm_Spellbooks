@@ -1,6 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
-
-import com.github.L_Ender.cataclysm.entity.BossMonsters.The_Leviathan.Abyss_Blast_Entity;
+;
+import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.The_Leviathan.Abyss_Blast_Entity;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
@@ -10,16 +10,13 @@ import io.redspace.ironsspellbooks.api.util.CameraShakeData;
 import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
-import net.minecraft.client.Camera;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
 
@@ -76,7 +73,7 @@ public class AbyssalBlastSpell extends AbstractSpell {
 
         float dir = 90F;
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
-        float casterYHeadRot = (float) ((entity.getEyeY() + dir) * Math.PI/180D);
+        float casterYHeadRot = (float) ((entity.getEyeHeight() + dir) * Math.PI/180D);
 
         CameraShakeManager.addCameraShake(new CameraShakeData(15, entity.position(), 25));
         if (!level.isClientSide)

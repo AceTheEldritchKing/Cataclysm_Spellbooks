@@ -29,6 +29,8 @@
     "spell.cataclysm_spellbooks.dimensional_rift": "Dimensional Rift",
     "spell.cataclysm_spellbooks.dimensional_rift.guide": "Cast a dimensional rift",
 
+    "spell.cataclysm_spellbooks.abyssal_slash": "Trench Tear",
+    "spell.cataclysm_spellbooks.abyssal_slash.guide": "Slash your at your target dealing melee damage",
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

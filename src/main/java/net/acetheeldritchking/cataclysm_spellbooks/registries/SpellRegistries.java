@@ -3,10 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.AbyssalBlastSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.DimensionalRiftSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.VoidBeamSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.VoidRuneSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -37,7 +34,10 @@ public class SpellRegistries {
 
     // Abyssal Predator (Buffs while underwater)
 
-    // Abyssal Slash (Melee attack which ends in a shockwave?)
+    // Abyssal Slash (Melee attack which ends in a shockwave?) - Trench Tear
+    public static final RegistryObject<AbstractSpell> ABYSSAL_SLASH = registerSpell(new AbyssalSlashSpell());
+
+    // Tidal Claw (Summons Tidal Claw that grabs target)
 
 
     // ENDER //

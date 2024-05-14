@@ -167,7 +167,7 @@ public class VoidRuneSpell extends AbstractSpell {
 
     private int getDuration(int spellLevel, LivingEntity caster)
     {
-        return getLevel(spellLevel, caster);
+        return getLevelFor(spellLevel, caster);
     }
 
     private int getEffectDuration(int spellPower, LivingEntity caster)

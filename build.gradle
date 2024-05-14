@@ -158,11 +158,11 @@ dependencies {
     // JSON
     implementation "com.google.code.gson:gson:${gson_version}"
 
-    // Citadel
-    implementation fg.deobf("curse.maven:citadel-331936:4556677")
+    // Lionfish
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:5314835")
 
     // Cataclysm
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:5070401")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:5320260")
 
     // Archeology API
     implementation fg.deobf("curse.maven:archaeology-api-950822:4996103")
