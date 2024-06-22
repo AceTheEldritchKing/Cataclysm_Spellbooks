@@ -32,6 +32,9 @@
     "spell.cataclysm_spellbooks.abyssal_slash": "Trench Tear",
     "spell.cataclysm_spellbooks.abyssal_slash.guide": "Slash your at your target dealing melee damage",
 
+    "spell.cataclysm_spellbooks.abyssal_blast": "Abyssal Blast",
+    "spell.cataclysm_spellbooks.abyssal_blast.guide": "Unleash a devastating blast that damages blocks and inflicts abyssal burn",
+
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
     "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Summon a dimensional rift that lasts for"

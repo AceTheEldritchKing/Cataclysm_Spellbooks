@@ -5,6 +5,8 @@ import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
+import net.acetheeldritchking.cataclysm_spellbooks.events.ClientEvents;
+import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
 import net.minecraft.resources.ResourceLocation;
@@ -33,6 +35,9 @@ public class CataclysmSpellbooks
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        // Event Handlers
+        MinecraftForge.EVENT_BUS.register(new ServerEvents());
+        MinecraftForge.EVENT_BUS.register(new ClientEvents());
         // Items
         ItemRegistries.register(modEventBus);
         // Schools

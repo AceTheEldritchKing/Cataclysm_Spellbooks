@@ -97,7 +97,7 @@ public class AbyssalSlashSpell extends AbstractSpell {
         float radius = 4.10f;
         float distance = 2.0f;
         Vec3 slashLocation = entity.position().add(entity.getForward().multiply(distance, 0.3f, distance));
-        level.addParticle(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+        entity.level.addParticle(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY() + 0.5, entity.getZ(), 0, 0, 0);
         var entities = level.getEntities(entity,
                 AABB.ofSize(slashLocation, radius * 2, radius, radius *2));
         for (Entity targetEntity : entities)
