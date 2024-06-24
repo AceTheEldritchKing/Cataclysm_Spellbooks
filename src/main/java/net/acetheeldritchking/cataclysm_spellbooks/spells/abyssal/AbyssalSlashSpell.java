@@ -16,6 +16,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -97,7 +98,8 @@ public class AbyssalSlashSpell extends AbstractSpell {
         float radius = 4.10f;
         float distance = 2.0f;
         Vec3 slashLocation = entity.position().add(entity.getForward().multiply(distance, 0.3f, distance));
-        entity.level.addParticle(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY() + 0.5, entity.getZ(), 0, 0, 0);
+        spawnParticles(entity);
+
         var entities = level.getEntities(entity,
                 AABB.ofSize(slashLocation, radius * 2, radius, radius *2));
         for (Entity targetEntity : entities)
@@ -146,6 +148,12 @@ public class AbyssalSlashSpell extends AbstractSpell {
             return damage + plus;
         }
         return "" + getSpellPower(spellLevel, caster);
+    }
+
+    private void spawnParticles(LivingEntity entity)
+    {
+        ServerLevel level = (ServerLevel) entity.level;
+        level.sendParticles(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY() + 0.5, entity.getZ(), 1, 0.5, 0.5, 0.5, 0.0);
     }
 
     @Override
