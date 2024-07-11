@@ -33,6 +33,7 @@ public class SpellRegistries {
     // Abyssal Mine (Summon mines)
 
     // Abyssal Predator (Buffs while underwater)
+    public static final RegistryObject<AbstractSpell> ABYSSAL_PREDATOR = registerSpell(new AbyssalPredatorSpell());
 
     // Abyssal Slash (Melee attack which ends in a shockwave?) - Trench Tear
     public static final RegistryObject<AbstractSpell> ABYSSAL_SLASH = registerSpell(new AbyssalSlashSpell());

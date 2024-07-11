@@ -43,7 +43,7 @@ public class AbyssalSlashSpell extends AbstractSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.RARE)
+            .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(8)
             .setCooldownSeconds(40)
@@ -112,7 +112,12 @@ public class AbyssalSlashSpell extends AbstractSpell {
                 {
                     if (targetEntity instanceof LivingEntity livingTarget)
                     {
-                        if (livingTarget.hasEffect(ModEffect.EFFECTABYSSAL_BURN.get()))
+                        // Do extra damage if target has any of the effects on them, hehehe
+                        Boolean hasBurn = livingTarget.hasEffect(ModEffect.EFFECTABYSSAL_BURN.get());
+                        Boolean hasFear = livingTarget.hasEffect(ModEffect.EFFECTABYSSAL_FEAR.get());
+                        Boolean hasCurse = livingTarget.hasEffect(ModEffect.EFFECTABYSSAL_CURSE.get());
+
+                        if (hasCurse || hasBurn || hasFear)
                         {
                             float bonus = 0.2f;
                             float bonusDamage = getDamage(spellLevel, entity) * bonus;
