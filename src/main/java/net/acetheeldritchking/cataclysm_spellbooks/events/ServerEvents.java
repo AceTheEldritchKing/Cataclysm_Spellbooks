@@ -20,6 +20,7 @@ public class ServerEvents {
 
         if (entity instanceof LivingEntity attacker)
         {
+            // ABYSSAL PREDATOR
             if (attacker.hasEffect(CSPotionEffectRegistry.ABYSSAL_PREDATOR_EFFECT.get()))
             {
                 int effectLevel = attacker.getEffect(CSPotionEffectRegistry.ABYSSAL_PREDATOR_EFFECT.get()).getAmplifier() + 1;
@@ -32,7 +33,7 @@ public class ServerEvents {
                 // Now do the bonus when underwater
                 if (attacker.isInWaterOrRain())
                 {
-                    System.out.println("I'm doing damage guys: " + totalDamage);
+                    //System.out.println("I'm doing damage guys: " + totalDamage);
                     event.setAmount(totalDamage);
                 }
             }
@@ -48,6 +49,9 @@ public class ServerEvents {
         {
             if (entity instanceof LivingEntity livingEntity)
             {
+                //System.out.println("I'm doing speed guys: " + livingEntity.getSpeed());
+
+                // ABYSSAL PREDATOR
                 if (livingEntity.hasEffect(CSPotionEffectRegistry.ABYSSAL_PREDATOR_EFFECT.get()))
                 {
                     int effectLevel = livingEntity.getEffect(CSPotionEffectRegistry.ABYSSAL_PREDATOR_EFFECT.get()).getAmplifier() + 1;
@@ -58,9 +62,13 @@ public class ServerEvents {
 
                     if (livingEntity.isInWaterOrRain())
                     {
-                        System.out.println("I'm doing speed guys: " + totalSpeed);
-                        System.out.println("I'm doing base speed guys: " + baseMovementSpeed);
+                        //System.out.println("I'm doing speed guys: " + totalSpeed);
+                        //System.out.println("I'm doing base speed guys: " + baseMovementSpeed);
                         livingEntity.setSpeed(totalSpeed);
+                    }
+                    else
+                    {
+                        livingEntity.setSpeed(baseMovementSpeed);
                     }
                 }
             }

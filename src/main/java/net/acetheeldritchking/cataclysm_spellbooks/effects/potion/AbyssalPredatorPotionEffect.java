@@ -16,7 +16,7 @@ public class AbyssalPredatorPotionEffect extends MagicMobEffect {
         this.addAttributeModifier(ForgeMod.SWIM_SPEED.get(), "e31ad3ab-4985-4a00-9656-bc42bd52e494", AbyssalPredatorPotionEffect.SWIM_SPEED_PER_LEVEL, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
-    public static final float SWIM_SPEED_PER_LEVEL = 0.10f;
+    public static final float SWIM_SPEED_PER_LEVEL = 0.30f;
     // Base buffs, deal more damage when in water
     public static final float ATTACK_SPEED_PER_LEVEL = 0.20f;
     public static final float ATTACK_DAMAGE_PER_LEVEL = 0.10f;
