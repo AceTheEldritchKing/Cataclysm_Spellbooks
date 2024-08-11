@@ -73,7 +73,7 @@ public class AbyssalBlastSpell extends AbstractSpell {
 
         float dir = 90F;
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
-        float casterYHeadRot = (float) ((entity.getEyeHeight() + dir) * Math.PI/180D);
+        float casterYHeadRot = (float) ((entity.getYHeadRot() + dir) * Math.PI/180D);
 
         CameraShakeManager.addCameraShake(new CameraShakeData(15, entity.position(), 25));
         if (!level.isClientSide)
