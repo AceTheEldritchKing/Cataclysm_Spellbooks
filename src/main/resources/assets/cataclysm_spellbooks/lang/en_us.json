@@ -2,6 +2,13 @@
     "attribute.cataclysm_spellbooks.abyssal_magic_resist": "Abyssal Magic Resist",
     "attribute.cataclysm_spellbooks.abyssal_spell_power": "Abyssal Spell Power",
 
+
+    "effect.cataclysm_spellbooks.abyssal_predator_effect": "Abyssal Predator",
+    "effect.cataclysm_spellbooks.abyssal_predator_effect.description": "Grants increased speed, swim speed and damage in water or in rain.",
+    "effect.cataclysm_spellbooks.incapacitated_effect": "Incapacitated",
+    "effect.cataclysm_spellbooks.incapacitated_effect.description": "The player is unable to move their head, as well as having slowed movement.",
+
+
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
 
 

@@ -9,11 +9,11 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.CameraShakeData;
 import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -28,13 +28,13 @@ public class AbyssalBlastSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(200)
+            .setCooldownSeconds(600)
             .build();
 
     public AbyssalBlastSpell()
     {
-        this.manaCostPerLevel = 0;
-        this.baseSpellPower = 10;
+        this.manaCostPerLevel = 50;
+        this.baseSpellPower = 15;
         this.spellPowerPerLevel = 1;
         this.castTime = 60;
         this.baseManaCost = 700;
@@ -75,12 +75,12 @@ public class AbyssalBlastSpell extends AbstractSpell {
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
         float casterYHeadRot = (float) ((entity.getYHeadRot() + dir) * Math.PI/180D);
 
-        CameraShakeManager.addCameraShake(new CameraShakeData(15, entity.position(), 25));
+        CameraShakeManager.addCameraShake(new CameraShakeData(20, entity.position(), 10));
         if (!level.isClientSide)
         {
             // Prevent player from moving
-            entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
-                    80, 2, true, true, true));
+            entity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.INCAPACITATED_EFFECT.get(),
+                    85, 2, true, true, true));
 
             // Firing mah laser
             Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity((EntityType)ModEntities.ABYSS_BLAST.get(),

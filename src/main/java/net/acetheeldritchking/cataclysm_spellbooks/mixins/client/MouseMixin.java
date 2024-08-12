@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.mixins.client;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.AbyssalBlastSpell;
 import net.minecraft.client.MouseHandler;
 import net.minecraft.client.player.LocalPlayer;
@@ -27,7 +28,8 @@ public class MouseMixin {
             original.call(player, 0.0, 0.0);
         }*/
         if (Objects.equals(ClientMagicData.getSyncedSpellData(player).getCastingSpellId(), blast.getSpellId())
-                && ClientMagicData.getSyncedSpellData(player).isCasting())
+                && ClientMagicData.getSyncedSpellData(player).isCasting()
+                || player.hasEffect(CSPotionEffectRegistry.INCAPACITATED_EFFECT.get()))
         {
             original.call(player, 0.0, 0.0);
         }

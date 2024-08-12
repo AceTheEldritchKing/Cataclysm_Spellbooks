@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
+import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.IncapacitatedPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.VoidRunePotionEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,9 @@ public class CSPotionEffectRegistry {
 
     public static final RegistryObject<MobEffect> ABYSSAL_PREDATOR_EFFECT =
             MOB_EFFECTS.register("abyssal_predator_effect", AbyssalPredatorPotionEffect::new);
+
+    public static final RegistryObject<MobEffect> INCAPACITATED_EFFECT =
+            MOB_EFFECTS.register("incapacitated_effect", IncapacitatedPotionEffect::new);
 
     public static void register(IEventBus eventBus)
     {
