@@ -5,27 +5,19 @@ import com.google.common.collect.Multimap;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.item.GeoArmorItem;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import net.minecraft.world.item.ArmorItem;
 
 import java.util.Map;
 import java.util.UUID;
 
-public class CSArmorItem extends GeoArmorItem implements IAnimatable, GeoItem {
+public class CSArmorItem extends ArmorItem implements GeoItem {
     private static final UUID[] ARMOR_ATTRIBUTE_UUID_PER_SLOT = new UUID[]
             {UUID.fromString("F7BFFA65-547A-49D2-8804-3D533070E432"),
                     UUID.fromString("B05AF2C0-5862-4CE6-860A-522C11E1571A"),
@@ -33,11 +25,6 @@ public class CSArmorItem extends GeoArmorItem implements IAnimatable, GeoItem {
                     UUID.fromString("82A575D1-366A-4BBD-91F8-25DB6B804F06")};
     private final Multimap<Attribute, AttributeModifier> ARMOR_ATTRIBUTES;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        // Idk
-    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -81,19 +68,13 @@ public class CSArmorItem extends GeoArmorItem implements IAnimatable, GeoItem {
         }
     }
 
+    // Azurelib
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<CSArmorItem>(this, "controller", 20, this::predicate));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return null;
-    }
-
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event)
-    {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        return PlayState.CONTINUE;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        // Idk
+        controllerRegistrar.add(new AnimationController<>(this, "controler", 0, event ->
+        {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
+        }));
     }
 }

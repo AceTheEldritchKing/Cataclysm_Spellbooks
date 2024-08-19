@@ -67,7 +67,7 @@ public class CataclysmSpellbooks
         @SubscribeEvent
         public static void registerRenderers(final EntityRenderersEvent.AddLayers event)
         {
-            GeoArmorRenderer.registerArmorRenderer(IgnisWizardArmorItem.class, () -> new GenericCustomArmorRenderer(new IgnisWizardArmorModel()));
+            //GeoArmorRenderer.registerArmorRenderer(IgnisWizardArmorItem.class, () -> new GenericCustomArmorRenderer(new IgnisWizardArmorModel()));
         }
 
         @SubscribeEvent
