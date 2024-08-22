@@ -34,17 +34,17 @@ public class ItemRegistries {
     // Abyss Spellbook
     public static final RegistryObject<Item> ABYSS_SPELL_BOOK = ITEMS.register
             ("abyss_spell_book", () -> new SimpleAttributeSpellBook
-                    (12, SpellRarity.LEGENDARY, CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), 0.30));
+                    (12, SpellRarity.LEGENDARY, CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), 0.30, 300));
 
     // Desert Spellbook - Dropped by ancient remnant
     public static final RegistryObject<Item> DESERT_SPELL_BOOK = ITEMS.register
             ("desert_spell_book", () -> new SimpleAttributeSpellBook
-                    (9, SpellRarity.EPIC, AttributeRegistry.COOLDOWN_REDUCTION.get(), 0.20));
+                    (9, SpellRarity.EPIC, AttributeRegistry.COOLDOWN_REDUCTION.get(), 0.20, 150));
 
     // Ignis Spellbook
     public static final RegistryObject<Item> IGNIS_SPELL_BOOK = ITEMS.register
             ("ignis_spell_book", () -> new SimpleAttributeSpellBook
-                    (12, SpellRarity.LEGENDARY, AttributeRegistry.FIRE_SPELL_POWER.get(), 0.25));
+                    (12, SpellRarity.LEGENDARY, AttributeRegistry.FIRE_SPELL_POWER.get(), 0.30, 300));
 
     //        //
     // STAFFS //
@@ -54,7 +54,7 @@ public class ItemRegistries {
             ("bloom_stone_staff", () -> new StaffItem
                     (ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 3, -3,
                             Map.of(
-                                    CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .15, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .15, AttributeModifier.Operation.MULTIPLY_BASE),
                                     AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE)
                             )));
 
@@ -87,7 +87,8 @@ public class ItemRegistries {
     //       //
 
     // Ignis Wizard Armor
-    public static final RegistryObject<Item> IGNITIUM_WIZARD_HELMET = ITEMS.register("ignis_helmet",
+    // TEMPORARILY DISABLED SINCE THE RENDERING IS BROKEN
+    /*public static final RegistryObject<Item> IGNITIUM_WIZARD_HELMET = ITEMS.register("ignis_helmet",
             () -> new IgnisWizardArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> IGNITIUM_WIZARD_CHESTPLATE = ITEMS.register("ignis_chestplate",
             () -> new IgnisWizardArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
@@ -95,7 +96,7 @@ public class ItemRegistries {
             () -> new IgnisWizardArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> IGNITIUM_WIZARD_BOOTS = ITEMS.register("ignis_boots",
             () -> new IgnisWizardArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
-
+    */
 
     public static Collection<RegistryObject<Item>> getCSItems()
     {

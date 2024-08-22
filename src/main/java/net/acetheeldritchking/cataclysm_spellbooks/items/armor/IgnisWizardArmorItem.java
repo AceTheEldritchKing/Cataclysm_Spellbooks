@@ -20,8 +20,8 @@ public class IgnisWizardArmorItem extends ImbuableCataclysmArmor{
         consumer.accept(new IClientItemExtensions() {
             private IgnisWizardArmorRenderer renderer;
 
-            public @NotNull
-            HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+            @Override
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 if (renderer == null)
                     return new IgnisWizardArmorRenderer();
                 renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
