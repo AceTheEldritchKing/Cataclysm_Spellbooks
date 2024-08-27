@@ -62,7 +62,6 @@ public class DepthChargeSpell extends AbstractSpell {
         double casterZ = entity.getZ();
 
         double radiusX = casterX + spellLevel;
-        double radiusY = casterY + spellLevel;
         double radiusZ = casterZ + spellLevel;
 
         float f = (float) Mth.atan2(radiusZ - casterZ, radiusX - casterX);
@@ -106,6 +105,6 @@ public class DepthChargeSpell extends AbstractSpell {
     private int amountForMines(int spellLevel, LivingEntity entity)
     {
         getSpellPower(spellLevel, entity);
-        return Math.min(spellLevel, 10);
+        return (int) Mth.clamp(getSpellPower(spellLevel, entity), 0, 10);
     }
 }
