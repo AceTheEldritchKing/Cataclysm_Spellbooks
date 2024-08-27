@@ -33,11 +33,11 @@ public class AbyssalBlastSpell extends AbstractSpell {
 
     public AbyssalBlastSpell()
     {
-        this.manaCostPerLevel = 50;
+        this.manaCostPerLevel = 100;
         this.baseSpellPower = 15;
-        this.spellPowerPerLevel = 1;
+        this.spellPowerPerLevel = 15;
         this.castTime = 60;
-        this.baseManaCost = 700;
+        this.baseManaCost = 800;
     }
 
     @Override

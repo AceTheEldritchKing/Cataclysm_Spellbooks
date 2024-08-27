@@ -31,7 +31,8 @@ public class SpellRegistries {
     // Dimensional Rift (Summon a rift)
     public static final RegistryObject<AbstractSpell> DIMENSIONAL_RIFT = registerSpell(new DimensionalRiftSpell());
 
-    // Abyssal Mine (Summon mines)
+    // Depth Charge (Summon mines)
+    public static final RegistryObject<AbstractSpell> DEPTH_CHARGE = registerSpell(new DepthChargeSpell());
 
     // Abyssal Predator (Buffs while underwater)
     public static final RegistryObject<AbstractSpell> ABYSSAL_PREDATOR = registerSpell(new AbyssalPredatorSpell());
