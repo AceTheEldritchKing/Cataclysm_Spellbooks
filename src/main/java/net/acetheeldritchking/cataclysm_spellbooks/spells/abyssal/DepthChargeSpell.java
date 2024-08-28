@@ -68,7 +68,7 @@ public class DepthChargeSpell extends AbstractSpell {
         for (int l = 0; l < 35; ++l)
         {
             int j = (int) (2.0F * l);
-            for (int i = 0; i < amountForMines(spellLevel, entity); i++)
+            for (int i = 0; i < amountForMines(spellLevel); i++)
             {
                 double nearbyRandomX = casterX + entity.getRandom().nextGaussian() * randomNearby1(spellLevel);
                 double nearbyRandomY = casterY + entity.getRandom().nextGaussian() * randomNearby2(spellLevel);
@@ -83,17 +83,22 @@ public class DepthChargeSpell extends AbstractSpell {
 
     private void spawnMines(double x, double y, double z, float rotation, int delay, LivingEntity caster)
     {
-        Abyss_Mine_Entity abyssMine = new Abyss_Mine_Entity(caster.level, x, y, z, rotation, delay, caster);
+        Level level = caster.level;
 
-        if (abyssMine.level.noCollision(abyssMine))
+        Abyss_Mine_Entity abyssMine = new Abyss_Mine_Entity(level, x, y, z, rotation, delay, caster);
+
+        if (caster != null)
         {
-            caster.level.addFreshEntity(abyssMine);
+            if (abyssMine.level.noCollision(abyssMine))
+            {
+                caster.level.addFreshEntity(abyssMine);
+            }
         }
     }
 
     private double randomNearby1(int spellLevel)
     {
-        return 6.0D * spellLevel;
+        return 5.0D * spellLevel;
     }
 
     private double randomNearby2(int spellLevel)
@@ -102,9 +107,8 @@ public class DepthChargeSpell extends AbstractSpell {
     }
 
     // We need a hard cap on mines...
-    private int amountForMines(int spellLevel, LivingEntity entity)
+    private int amountForMines(int spellLevel)
     {
-        getSpellPower(spellLevel, entity);
-        return (int) Mth.clamp(getSpellPower(spellLevel, entity), 0, 10);
+        return (int) Mth.clamp(spellLevel, 0, 10);
     }
 }

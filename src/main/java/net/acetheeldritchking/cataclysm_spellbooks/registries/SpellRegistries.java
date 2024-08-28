@@ -55,19 +55,40 @@ public class SpellRegistries {
     // EVOCATION //
     // Summon Koboleton (Evocation)
 
+    // Disarm (Disarm the target's current weapon - Koboldiator attack)
+
 
     // FIRE //
-    // Sandstorm (Like Ancient Remnant) (Fire?)
-
     // Incineration (Fire) (Summon Fire runes in row)
 
     // Infernal Strike (Summon mini Incinerator)
 
-    // Summon Ignited Revenant (Just as the name says
+    // Summon Ignited Revenant (Just as the name says)
+
+    // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement)
 
 
-    // LIGHTNING
+    // LIGHTNING //
     // EMP (Cast an emp blast?)
+
+
+    // ICE //
+    // Malevolent Battlefield (Summon Maledictus' halberd field)
+
+    // Forgone Rage (Apply Wrath effect to the user. As the user attacks, it fills a rage meter. Each level is an additional 10% extra damage)
+
+    // Conjure Thrall (Summons the ice undead warriors)
+
+    // Arrow Spray (Release a barrage of icy arrows. Damage increases if the user is holding a bow/crossbow)
+
+
+    // NATURE //
+    // Sandstorm (Summon desert tornados around the user)
+
+    // Desert Winds (Strike the ground, causing a damaging quake around the user. Stronger than earthquake)
+
+    // Grave Tremor (Strike the ground, causing a damaging quake around the user. Stronger than earthquake)
+
 
     public static void register(IEventBus eventBus)
     {
