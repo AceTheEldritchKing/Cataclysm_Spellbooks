@@ -1,0 +1,129 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.cataclysm_spellbooks:abyssal_gnawers.idle": {
+			"loop": true,
+			"animation_length": 2.375,
+			"bones": {
+				"main": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"jaw": {
+					"rotation": {
+						"vector": ["math.sin(query.anim_time*150)*1", 0, 0]
+					}
+				},
+				"body": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*150)*5", 0]
+					}
+				},
+				"fin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*150)*2", 0]
+					}
+				},
+				"leftFin": {
+					"rotation": {
+						"vector": [0, 0, "math.sin(query.anim_time*150)*2"]
+					}
+				},
+				"rightFin": {
+					"rotation": {
+						"vector": [0, 0, "math.sin(query.anim_time*150)*-2"]
+					}
+				}
+			}
+		},
+		"animation.cataclysm_spellbooks:abyssal_gnawers.swim": {
+			"loop": true,
+			"animation_length": 2.4167,
+			"bones": {
+				"main": {
+					"rotation": {
+						"vector": ["math.sin(query.anim_time*150)*1", "math.sin(query.anim_time*150)*5", 0]
+					}
+				},
+				"jaw": {
+					"rotation": {
+						"vector": ["math.sin(query.anim_time*150)*2", 0, 0]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*150)*8", 0]
+					}
+				},
+				"fin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*150)*11", 0]
+					}
+				},
+				"leftFin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*150)*-10", "math.sin(query.anim_time*150)*10"]
+					}
+				},
+				"rightFin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*150)*10", "math.sin(query.anim_time*150)*-10"]
+					}
+				}
+			}
+		},
+		"animation.cataclysm_spellbooks:abyssal_gnawers.attack": {
+			"loop": true,
+			"animation_length": 1.2083,
+			"bones": {
+				"main": {
+					"rotation": {
+						"vector": ["math.sin(query.anim_time*300)*20", "math.sin(query.anim_time*300)*-20", "math.sin(query.anim_time*300)*-5"]
+					}
+				},
+				"jaw": {
+					"rotation": {
+						"0.0": {
+							"vector": ["math.sin(query.anim_time*300)*80", "math.sin(query.anim_time*250)*-10", 0]
+						},
+						"0.7083": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*300)*16", 0]
+					}
+				},
+				"fin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*300)*20", 0]
+					}
+				},
+				"leftFin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*250)*-20", "math.sin(query.anim_time*200)*15"]
+					}
+				},
+				"rightFin": {
+					"rotation": {
+						"vector": [0, "math.sin(query.anim_time*250)*20", "math.sin(query.anim_time*200)*-15"]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
