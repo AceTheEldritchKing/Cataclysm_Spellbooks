@@ -1,6 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.IgnisWizardArmorRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.IgnisWizardArmorRenderer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

@@ -1,0 +1,81 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.cataclysm_spellbooks:abyssal_gnawers",
+				"texture_width": 96,
+				"texture_height": 96,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "main",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "head",
+					"parent": "main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3, 5, -11], "size": [6, 4, 5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "jaw",
+					"parent": "head",
+					"pivot": [0, 1.375, -5.875],
+					"cubes": [
+						{"origin": [-3, 0, -11], "size": [6, 1.5, 5], "uv": [0, 9]},
+						{"origin": [3, 1.5, -11], "size": [0, 3.5, 5], "uv": [0, 10]},
+						{"origin": [-3, 1.5, -11], "size": [6, 3.5, 0], "uv": [10, 15]},
+						{"origin": [-3, 1.5, -11], "size": [0, 3.5, 5], "uv": [22, 10]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3, 0, -6], "size": [6, 9, 9], "uv": [0, 20]},
+						{"origin": [0, 9, -6], "size": [0, 9, 10], "uv": [30, 19]}
+					]
+				},
+				{
+					"name": "rightFin",
+					"parent": "body",
+					"pivot": [3, 4, -1.5],
+					"cubes": [
+						{"origin": [-13, 4, -6], "size": [10, 0, 9], "pivot": [-3, 4, -1.5], "rotation": [0, 0, -25], "uv": [-9, 38], "mirror": true}
+					]
+				},
+				{
+					"name": "leftFin",
+					"parent": "body",
+					"pivot": [3, 4, -1.5],
+					"cubes": [
+						{"origin": [3, 4, -6], "size": [10, 0, 9], "pivot": [3, 4, -1.5], "rotation": [0, 0, 25], "uv": [-9, 47]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "main",
+					"pivot": [0, 4.5, 3],
+					"cubes": [
+						{"origin": [-2, 0, 3], "size": [4, 9, 7], "uv": [0, 58]}
+					]
+				},
+				{
+					"name": "fin",
+					"parent": "tail",
+					"pivot": [0, 5.5, 10],
+					"cubes": [
+						{"origin": [0, -3, 10], "size": [0, 17, 13], "uv": [22, 48]}
+					]
+				}
+			]
+		}
+	]
+}

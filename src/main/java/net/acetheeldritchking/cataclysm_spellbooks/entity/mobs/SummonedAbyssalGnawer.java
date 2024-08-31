@@ -1,13 +1,21 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
+import com.github.L_Ender.cataclysm.init.ModEffect;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -23,16 +31,18 @@ import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnimatable {
-    AnimationFactory factory = new AnimationFactory(this);
+    AnimationFactory factory = GeckoLibUtil.createFactory(this);
     protected LivingEntity cachedSummoner;
     protected UUID summonerUUID;
 
@@ -41,11 +51,11 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         xpReward = 0;
     }
 
-    /*public SummonedAbyssalGnawer(Level level, LivingEntity owner)
+    public SummonedAbyssalGnawer(Level level, LivingEntity owner)
     {
-        super();
+        this(CSEntityRegistry.ABYSSAL_GNAWERS.get(), level);
         setSummoner(owner);
-    }*/
+    }
 
     public static AttributeSupplier setAttributes()
     {
@@ -88,6 +98,17 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     }
 
     @Override
+    public void tick() {
+        if (isInWater())
+        {
+            // Should be faster in water
+            float baseSpeed = getSpeed();
+            setSpeed(getSpeed() * 2);
+        }
+        super.tick();
+    }
+
+    @Override
     public void die(DamageSource pDamageSource) {
         this.onDeathHelper();
         super.die(pDamageSource);
@@ -123,6 +144,54 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     }
 
     @Override
+    public boolean doHurtTarget(Entity pEntity) {
+        if (!super.doHurtTarget(pEntity))
+        {
+            return false;
+        }
+        else
+        {
+            if (pEntity instanceof LivingEntity entity)
+            {
+                entity.addEffect(new MobEffectInstance(ModEffect.EFFECTABYSSAL_FEAR.get(),
+                        100, 0));
+            }
+            return Utils.doMeleeAttack(this, pEntity, SpellRegistries.CONJURE_ABYSSAL_GNAWERS.get().getDamageSource(this, getSummoner()));
+        }
+    }
+
+    @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        if (shouldIgnoreDamage(pSource))
+        {
+            return false;
+        }
+        return super.hurt(pSource, pAmount);
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SoundEvents.PUFFER_FISH_HURT;
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.SALMON_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.PUFFER_FISH_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getSwimSound() {
+        return SoundEvents.FISH_SWIM;
+    }
+
+    // GECKOLIB STUFF
+    @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller",
                 0, this::predicate));
@@ -133,11 +202,11 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.swim", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.swim", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.idle", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.idle", ILoopType.EDefaultLoopTypes.LOOP));
         return PlayState.CONTINUE;
     }
 
@@ -146,8 +215,10 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         if (this.swinging && animationEvent.getController().getAnimationState().equals(AnimationState.Stopped))
         {
             animationEvent.getController().markNeedsReload();
-            animationEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", false));
+            animationEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             this.swinging = false;
+
+            playSound(SoundEvents.EVOKER_FANGS_ATTACK, 0.5f, 1.5f);
         }
         return PlayState.CONTINUE;
     }

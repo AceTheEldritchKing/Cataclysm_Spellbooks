@@ -5,10 +5,12 @@ import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ClientEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -46,6 +48,8 @@ public class CataclysmSpellbooks
         CSAttributeRegistry.register(modEventBus);
         // Effects
         CSPotionEffectRegistry.register(modEventBus);
+        // Entities
+        CSEntityRegistry.register(modEventBus);
         // Spells
         SpellRegistries.register(modEventBus);
 
@@ -77,6 +81,9 @@ public class CataclysmSpellbooks
             event.enqueueWork(() -> {
                 ItemRegistries.getCSItems().stream().filter(item -> item.get() instanceof SpellBook).forEach((item) -> CuriosRendererRegistry.register(item.get(), SpellBookCurioRenderer::new));
             });
+
+            // Entity Rendering
+            EntityRenderers.register(CSEntityRegistry.ABYSSAL_GNAWERS.get(), SummonedAbyssalGnawersRenderer::new);
         }
     }
 

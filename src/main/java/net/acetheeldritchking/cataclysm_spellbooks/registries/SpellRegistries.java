@@ -37,10 +37,13 @@ public class SpellRegistries {
     // Abyssal Predator (Buffs while underwater)
     public static final RegistryObject<AbstractSpell> ABYSSAL_PREDATOR = registerSpell(new AbyssalPredatorSpell());
 
-    // Abyssal Slash (Melee attack which ends in a shockwave?) - Trench Tear
+    // Tidal Tear (Melee attack which ends in a shockwave)
     public static final RegistryObject<AbstractSpell> ABYSSAL_SLASH = registerSpell(new AbyssalSlashSpell());
 
     // Tidal Claw (Summons Tidal Claw that grabs target)
+
+    // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish
+    public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
 
 
     // ENDER //

@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.entity.render;
+package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
 import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.renderer.GeoArmorRenderer;
