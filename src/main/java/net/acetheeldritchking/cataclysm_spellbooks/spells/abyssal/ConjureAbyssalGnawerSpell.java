@@ -31,7 +31,7 @@ public class ConjureAbyssalGnawerSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(6)
-            .setCooldownSeconds(150)
+            .setCooldownSeconds(80)
             .build();
 
     @Override
@@ -79,13 +79,13 @@ public class ConjureAbyssalGnawerSpell extends AbstractSpell {
 
         for (int i = 0; i < spellLevel; i++)
         {
-            Vec3 vec = entity.position();
+            Vec3 vec = entity.getEyePosition();
 
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
-            double randomNearbyY = vec.y + entity.getRandom().nextGaussian() * 2;
-            double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 2;
+            //double randomNearbyY = vec.y + entity.getRandom().nextGaussian() * 2;
+            double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnGnawersNearby(randomNearbyX, randomNearbyY, randomNearbyZ, entity, level, summonTimer);
+            spawnGnawersNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
         }
 
         int effectAmplifier = spellLevel - 1;

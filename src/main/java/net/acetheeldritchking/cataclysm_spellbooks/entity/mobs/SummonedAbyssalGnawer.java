@@ -60,9 +60,9 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     public static AttributeSupplier setAttributes()
     {
         return Monster.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 10.0D)
+                .add(Attributes.MAX_HEALTH, 16.0D)
                 .add(Attributes.ATTACK_DAMAGE, 2.0f)
-                .add(Attributes.ATTACK_SPEED, 2.0f)
+                .add(Attributes.ATTACK_SPEED, 0.8f)
                 .add(Attributes.MOVEMENT_SPEED, 0.5f)
                 .add(Attributes.FLYING_SPEED, 0.2D)
                 .build();
@@ -103,7 +103,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         {
             // Should be faster in water
             float baseSpeed = getSpeed();
-            setSpeed(getSpeed() * 2);
+            setSpeed(baseSpeed * 2);
         }
         super.tick();
     }
@@ -154,7 +154,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
             if (pEntity instanceof LivingEntity entity)
             {
                 entity.addEffect(new MobEffectInstance(ModEffect.EFFECTABYSSAL_FEAR.get(),
-                        100, 0));
+                        60, 0));
             }
             return Utils.doMeleeAttack(this, pEntity, SpellRegistries.CONJURE_ABYSSAL_GNAWERS.get().getDamageSource(this, getSummoner()));
         }
@@ -193,24 +193,39 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     // GECKOLIB STUFF
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller",
+        AnimationController<SummonedAbyssalGnawer> controller = new AnimationController<>(this, "controller", 0, this::predicate);
+        AnimationController<SummonedAbyssalGnawer> attackController = new AnimationController<>(this, "attackController", 0, this::attackPredicate);
+
+        data.addAnimationController(controller);
+        data.addAnimationController(attackController);
+
+        /*data.addAnimationController(new AnimationController(this, "controller",
                 0, this::predicate));
-        data.addAnimationController(new AnimationController(this, "attack_controller",
-                0, this::attackPredicate));
+        data.addAnimationController(new AnimationController(this, "attackController",
+                0, this::attackPredicate));*/
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
         if (event.isMoving()) {
+            event.getController().markNeedsReload();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.swim", ILoopType.EDefaultLoopTypes.LOOP));
             return PlayState.CONTINUE;
+        }
+        if (this.swinging && event.getController().getAnimationState().equals(AnimationState.Stopped))
+        {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+            this.swinging = false;
+
+            playSound(SoundEvents.EVOKER_FANGS_ATTACK, 0.5f, 1.5f);
         }
 
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.idle", ILoopType.EDefaultLoopTypes.LOOP));
         return PlayState.CONTINUE;
     }
 
-    private PlayState attackPredicate(AnimationEvent animationEvent)
+    private <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> animationEvent)
     {
         if (this.swinging && animationEvent.getController().getAnimationState().equals(AnimationState.Stopped))
         {
@@ -220,6 +235,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
 
             playSound(SoundEvents.EVOKER_FANGS_ATTACK, 0.5f, 1.5f);
         }
+
         return PlayState.CONTINUE;
     }
 

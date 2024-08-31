@@ -7,6 +7,8 @@
     "effect.cataclysm_spellbooks.abyssal_predator_effect.description": "Grants increased speed, swim speed and damage in water or in rain.",
     "effect.cataclysm_spellbooks.incapacitated_effect": "Incapacitated",
     "effect.cataclysm_spellbooks.incapacitated_effect.description": "The player is unable to move their head, as well as having slowed movement.",
+    "effect.cataclysm_spellbooks.abyssal_gnawer_timer": "Conjured Abyssal Gnawer",
+    "effect.cataclysm_spellbooks.abyssal_gnawer_timer.description": "The amount of time an Abyssal Gnawer remains in the world.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -49,8 +51,14 @@
     "spell.cataclysm_spellbooks.depth_charge.guide": "Summon various depth charge mines in a radius around you",
 
 
-
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
-    "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Summon a dimensional rift that lasts for"
+    "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Summon a dimensional rift that lasts for",
+    "ui.cataclysm_spellbooks.gnawer_count": "%d Summons",
+
+
+    "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
+
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$s was lacerated by %2$s's gnawers"
 }
