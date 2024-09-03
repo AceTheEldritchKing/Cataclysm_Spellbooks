@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.AI.CreatureWaterPathNavigation;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
@@ -15,19 +16,17 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib3.core.AnimationState;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -73,6 +72,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5f, true));
+        this.goalSelector.addGoal(4, new AbyssalGnawerSwimGoal(this));
         this.goalSelector.addGoal(5, new GenericFollowOwnerGoal(this, this::getSummoner, .3f, 10, 2, true, 50));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 4.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 9.0F));
@@ -97,6 +97,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         }
     }
 
+    // Movement
     @Override
     public void tick() {
         if (isInWater())
@@ -108,6 +109,49 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         super.tick();
     }
 
+    /*@Override
+    protected @NotNull PathNavigation createNavigation(@NotNull Level level)
+    {
+        CreatureWaterPathNavigation creatureWaterPathNavigation = new CreatureWaterPathNavigation(this, level)
+        {
+            public void tick()
+            {
+                super.tick();
+            }
+        };
+        creatureWaterPathNavigation.setCanFloat(true);
+        return creatureWaterPathNavigation;
+    }*/
+
+    @Override
+    public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
+        return false;
+    }
+
+    @Override
+    public void travel(Vec3 pTravelVector) {
+        if (this.isEffectiveAi() && this.isInWater())
+        {
+            this.moveRelative(0.01F, pTravelVector);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
+            if (this.getTarget() == null)
+            {
+                this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
+            }
+        } else {
+            super.travel(pTravelVector);
+        }
+    }
+
+    static class AbyssalGnawerSwimGoal extends RandomSwimmingGoal
+    {
+        AbyssalGnawerSwimGoal(SummonedAbyssalGnawer abyssalGnawer) {
+            super(abyssalGnawer, 1.0D, 40);
+        }
+    }
+
+    // Attacks and Death
     @Override
     public void die(DamageSource pDamageSource) {
         this.onDeathHelper();
@@ -118,18 +162,6 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     public void onRemovedFromWorld() {
         this.onRemovedHelper(this, CSPotionEffectRegistry.ABYSSAL_GNAWER_TIMER.get());
         super.onRemovedFromWorld();
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
     }
 
     @Override
@@ -153,6 +185,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         {
             if (pEntity instanceof LivingEntity entity)
             {
+                playSound(SoundEvents.EVOKER_FANGS_ATTACK, 0.5f, 1.5f);
                 entity.addEffect(new MobEffectInstance(ModEffect.EFFECTABYSSAL_FEAR.get(),
                         60, 0));
             }
@@ -194,53 +227,40 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     @Override
     public void registerControllers(AnimationData data) {
         AnimationController<SummonedAbyssalGnawer> controller = new AnimationController<>(this, "controller", 0, this::predicate);
-        AnimationController<SummonedAbyssalGnawer> attackController = new AnimationController<>(this, "attackController", 0, this::attackPredicate);
-
         data.addAnimationController(controller);
-        data.addAnimationController(attackController);
-
-        /*data.addAnimationController(new AnimationController(this, "controller",
-                0, this::predicate));
-        data.addAnimationController(new AnimationController(this, "attackController",
-                0, this::attackPredicate));*/
     }
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
-    {
-        if (event.isMoving()) {
-            event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.swim", ILoopType.EDefaultLoopTypes.LOOP));
-            return PlayState.CONTINUE;
-        }
-        if (this.swinging && event.getController().getAnimationState().equals(AnimationState.Stopped))
-        {
-            event.getController().markNeedsReload();
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-            this.swinging = false;
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        AnimationBuilder builder = new AnimationBuilder();
 
-            playSound(SoundEvents.EVOKER_FANGS_ATTACK, 0.5f, 1.5f);
+        if (this.swinging) {
+            builder.addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE);
+        }
+        else if (event.isMoving()) {
+            builder.addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.swim", ILoopType.EDefaultLoopTypes.LOOP);
+        } else {
+            builder.addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.idle", ILoopType.EDefaultLoopTypes.LOOP);
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.idle", ILoopType.EDefaultLoopTypes.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    private <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> animationEvent)
-    {
-        if (this.swinging && animationEvent.getController().getAnimationState().equals(AnimationState.Stopped))
-        {
-            animationEvent.getController().markNeedsReload();
-            animationEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-            this.swinging = false;
-
-            playSound(SoundEvents.EVOKER_FANGS_ATTACK, 0.5f, 1.5f);
-        }
-
+        event.getController().setAnimation(builder);
         return PlayState.CONTINUE;
     }
 
     @Override
     public AnimationFactory getFactory() {
         return factory;
+    }
+
+    // NBT
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        OwnerHelper.serializeOwner(pCompound, summonerUUID);
     }
 }
