@@ -2,13 +2,14 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.AI;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.SwimNodeEvaluator;
 import net.minecraft.world.phys.Vec3;
 
-public class CreatureWaterPathNavigation extends PathNavigation {
+public class CreatureWaterPathNavigation extends FlyingPathNavigation {
     // Making this because WaterBoundPathNavigation crashes my poor fish babies
     public CreatureWaterPathNavigation(Mob pMob, Level pLevel) {
         super(pMob, pLevel);

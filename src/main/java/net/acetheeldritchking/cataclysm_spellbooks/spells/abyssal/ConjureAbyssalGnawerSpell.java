@@ -34,6 +34,22 @@ public class ConjureAbyssalGnawerSpell extends AbstractSpell {
             .setCooldownSeconds(80)
             .build();
 
+    // THIS SPELL IS WIP AND DISABLED IN SURVIVAL
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean allowLooting() {
+        return false;
+    }
+
+    @Override
+    public boolean allowCrafting() {
+        return false;
+    }
+
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(Component.translatable("ui.cataclysm_spellbooks.gnawer_count", spellLevel));

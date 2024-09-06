@@ -50,6 +50,9 @@
     "spell.cataclysm_spellbooks.depth_charge": "Depth Charge",
     "spell.cataclysm_spellbooks.depth_charge.guide": "Summon various depth charge mines in a radius around you",
 
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer": "Conjure: Abyssal Gnawer",
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer.guide": "Summon a school of Abyssal Gnawers from another dimension to your aid",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

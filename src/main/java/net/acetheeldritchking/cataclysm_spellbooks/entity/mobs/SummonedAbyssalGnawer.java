@@ -23,10 +23,13 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -109,19 +112,27 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         super.tick();
     }
 
-    /*@Override
+    @Override
+    public boolean isNoGravity() {
+        return true;
+    }
+
+    @Override
     protected @NotNull PathNavigation createNavigation(@NotNull Level level)
     {
-        CreatureWaterPathNavigation creatureWaterPathNavigation = new CreatureWaterPathNavigation(this, level)
+        //CreatureWaterPathNavigation creatureWaterPathNavigation = new CreatureWaterPathNavigation(this, level)
+        FlyingPathNavigation flyingPathNavigation = new FlyingPathNavigation(this, level)
         {
             public void tick()
             {
                 super.tick();
             }
         };
-        creatureWaterPathNavigation.setCanFloat(true);
-        return creatureWaterPathNavigation;
-    }*/
+        flyingPathNavigation.setCanFloat(true);
+        flyingPathNavigation.setCanPassDoors(false);
+        flyingPathNavigation.setCanOpenDoors(false);
+        return flyingPathNavigation;
+    }
 
     @Override
     public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
