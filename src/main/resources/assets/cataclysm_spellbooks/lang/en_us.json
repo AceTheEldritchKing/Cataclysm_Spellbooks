@@ -28,6 +28,11 @@
     "item.cataclysm_spellbooks.ignis_leggings": "Ignis Mage Leggings",
     "item.cataclysm_spellbooks.ignis_boots": "Ignis Mage Greaves",
 
+    "item.cataclysm_spellbooks.leviathans_blessing": "Leviathan's Blessing",
+    "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
+
+    "item.cataclysm_spellbooks.abyssal_upgrade_orb": "Abyssal Upgrade Orb",
+
 
     "spell.cataclysm_spellbooks.void_beam": "Abyssal Beam",
     "spell.cataclysm_spellbooks.void_beam.guide": "Cast an abyssal beam at your chosen target",
@@ -52,6 +57,9 @@
 
     "spell.cataclysm_spellbooks.conjure_abyssal_gnawer": "Conjure: Abyssal Gnawer",
     "spell.cataclysm_spellbooks.conjure_abyssal_gnawer.guide": "Summon a school of Abyssal Gnawers from another dimension to your aid",
+
+    "spell.cataclysm_spellbooks.tidal_grab": "Tentacle Laceration",
+    "spell.cataclysm_spellbooks.tidal_grab.guide": "Cast a tentacle from your grasp to damage targets",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

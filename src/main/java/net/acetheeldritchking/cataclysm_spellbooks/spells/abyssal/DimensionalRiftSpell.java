@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class DimensionalRiftSpell extends AbstractSpell {
+public class DimensionalRiftSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "dimensional_rift");
 
     @Override

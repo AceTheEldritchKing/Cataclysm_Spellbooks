@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class ConjureAbyssalGnawerSpell extends AbstractSpell {
+public class ConjureAbyssalGnawerSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "conjure_abyssal_gnawer");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()

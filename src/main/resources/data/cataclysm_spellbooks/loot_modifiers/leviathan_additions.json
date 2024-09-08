@@ -1,0 +1,14 @@
+{
+    "conditions": [
+        {
+            "condition": "forge:loot_table_id",
+            "loot_table_id": "cataclysm:entities/the_leviathan"
+        },
+        {
+            "condition": "minecraft:random_chance",
+            "chance": 0.3
+        }
+    ],
+    "type": "cataclysm_spellbooks:add_to_table",
+    "loot_table": "cataclysm_spellbooks:entities/leviathans_blessing"
+}

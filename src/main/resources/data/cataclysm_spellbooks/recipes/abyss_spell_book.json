@@ -1,0 +1,10 @@
+{
+    "type": "cataclysm:amethyst_bless",
+    "ingredients": {
+        "item": "irons_spellbooks:ruined_book"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:abyss_spell_book"
+    },
+    "time": 250
+}

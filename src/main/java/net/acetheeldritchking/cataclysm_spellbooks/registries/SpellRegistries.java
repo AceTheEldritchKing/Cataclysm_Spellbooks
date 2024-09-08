@@ -40,7 +40,8 @@ public class SpellRegistries {
     // Tidal Tear (Melee attack which ends in a shockwave)
     public static final RegistryObject<AbstractSpell> ABYSSAL_SLASH = registerSpell(new AbyssalSlashSpell());
 
-    // Tidal Claw (Summons Tidal Claw that grabs target)
+    // Tidal Claw (Summons Tidal Claw that grabs target) - Requires Tidal Claw
+    public static final RegistryObject<AbstractSpell> TIDAL_GRAB = registerSpell(new TidalGrabSpell());
 
     // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish
     public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
@@ -62,13 +63,13 @@ public class SpellRegistries {
 
 
     // FIRE //
-    // Incineration (Fire) (Summon Fire runes in row)
+    // Incineration (Fire) (Summon Fire runes in row) - Requires Burning Ashes
 
-    // Infernal Strike (Summon mini Incinerator)
+    // Infernal Strike (Summon mini Incinerator, inflicts blazing brand) - Requires Burning Ashes
 
-    // Summon Ignited Revenant (Just as the name says)
+    // Summon Ignited Revenant (Just as the name says) - Requires Burning Ashes
 
-    // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement)
+    // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement) - Requires Burning Ashes
 
 
     // LIGHTNING //
@@ -88,9 +89,11 @@ public class SpellRegistries {
     // NATURE //
     // Sandstorm (Summon desert tornados around the user)
 
-    // Desert Winds (Strike the ground, causing a damaging quake around the user. Stronger than earthquake)
+    // Desert Winds (Throw a desert tornado in a path in front of the user. This damages blocks)
 
     // Grave Tremor (Strike the ground, causing a damaging quake around the user. Stronger than earthquake)
+
+    // Amethyst Puncture (Shoots out an amethyst spike)
 
 
     public static void register(IEventBus eventBus)

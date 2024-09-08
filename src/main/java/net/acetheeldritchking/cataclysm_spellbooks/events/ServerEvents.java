@@ -1,14 +1,26 @@
 package net.acetheeldritchking.cataclysm_spellbooks.events;
 
+import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
+import com.github.L_Ender.cataclysm.init.ModTag;
+import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -39,6 +51,39 @@ public class ServerEvents {
                 {
                     //System.out.println("I'm doing damage guys: " + totalDamage);
                     event.setAmount(totalDamage);
+                }
+            }
+        }
+
+        // Ignis Wizard armor
+        LivingEntity livingEntity = event.getEntity();
+        ItemStack legEquipment = livingEntity.getItemBySlot(EquipmentSlot.LEGS);
+        if (!legEquipment.isEmpty() && event.getEntity() != null &&
+                event.getSource().getEntity() != null &&
+                legEquipment.getItem() == ItemRegistries.IGNITIUM_WIZARD_LEGGINGS.get())
+        {
+            Entity attacker = event.getSource().getEntity();
+            if (attacker instanceof LivingEntity livingAttacker && attacker != event.getEntity() && event.getEntity().getRandom().nextFloat() < 0.5F)
+            {
+                MobEffectInstance mobEffectInstance = livingAttacker.getEffect(ModEffect.EFFECTBLAZING_BRAND.get());
+
+                int i = 1;
+                if (mobEffectInstance != null)
+                {
+                    i = i + mobEffectInstance.getAmplifier();
+                    livingAttacker.removeEffectNoUpdate(ModEffect.EFFECTBLAZING_BRAND.get());
+                }
+                else
+                {
+                    i = i + 1;
+                }
+
+                i = Mth.clamp(i, 0, 2);
+                MobEffectInstance effectInstance = new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, i, false, false, true);
+                (livingAttacker).addEffect(effectInstance);
+                if (!attacker.isOnFire())
+                {
+                    attacker.setSecondsOnFire(5);
                 }
             }
         }
@@ -115,6 +160,36 @@ public class ServerEvents {
             // Netherite Monstrosity takes extra ice damage, and less fire damage
             setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 0.5);
             setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
+        }
+    }
+
+    @SubscribeEvent
+    public void standOnFluidEvent(StandOnFluidEvent event)
+    {
+        LivingEntity entity = event.getEntity();
+        ItemStack bootEquipment = entity.getItemBySlot(EquipmentSlot.FEET);
+
+        if (!bootEquipment.isEmpty() && bootEquipment.getItem() == ItemRegistries.IGNITIUM_WIZARD_BOOTS.get() &&
+                !entity.isShiftKeyDown() &&
+                (event.getFluidState().is(Fluids.LAVA) || event.getFluidState().is(Fluids.FLOWING_LAVA)))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingSetTargetEvent(LivingChangeTargetEvent event)
+    {
+        if (event.getNewTarget() != null)
+        {
+            LivingEntity livingEntity = event.getEntity();
+            if (livingEntity instanceof Mob mob)
+            {
+                if (mob.getType().is(ModTag.LAVA_MONSTER) && livingEntity.getLastHurtByMob() != event.getNewTarget() && event.getNewTarget().getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistries.IGNITIUM_WIZARD_HELMET.get()))
+                {
+                    event.setCanceled(true);
+                }
+            }
         }
     }
 

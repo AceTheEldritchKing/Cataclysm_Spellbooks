@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "entries": [
+        "cataclysm_spellbooks:ancient_remnant_additions",
+        "cataclysm_spellbooks:leviathan_additions",
+        "cataclysm_spellbooks:wadjet_additions"
+    ]
+}

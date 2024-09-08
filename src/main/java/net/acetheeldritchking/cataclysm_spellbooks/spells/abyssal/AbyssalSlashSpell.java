@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class AbyssalSlashSpell extends AbstractSpell {
+public class AbyssalSlashSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_slash");
 
     @Override
@@ -157,7 +157,7 @@ public class AbyssalSlashSpell extends AbstractSpell {
     private void spawnParticles(LivingEntity entity)
     {
         ServerLevel level = (ServerLevel) entity.level;
-        level.sendParticles(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY() + 0.5, entity.getZ(), 1, 0.5, 0.5, 0.5, 0.0);
+        level.sendParticles(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 
     @Override

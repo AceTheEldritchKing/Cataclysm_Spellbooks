@@ -18,7 +18,7 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 
 @AutoSpellConfig
-public class AbyssalPredatorSpell extends AbstractSpell {
+public class AbyssalPredatorSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_predator");
 
     @Override

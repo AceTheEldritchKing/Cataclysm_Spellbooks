@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:empty",
+    "pools": [
+        {
+            "name": "cataclysm_spellbooks_leviathan_extended",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 1
+                            }
+                        }
+                    ],
+                    "name": "cataclysm_spellbooks:leviathans_blessing"
+                }
+            ]
+        }
+    ]
+}

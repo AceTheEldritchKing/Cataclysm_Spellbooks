@@ -9,6 +9,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAb
 import net.acetheeldritchking.cataclysm_spellbooks.events.ClientEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
@@ -42,6 +43,8 @@ public class CataclysmSpellbooks
         MinecraftForge.EVENT_BUS.register(new ClientEvents());
         // Items
         ItemRegistries.register(modEventBus);
+        // Loot Tables
+        CSLootModifiers.register(modEventBus);
         // Schools
         CSSchoolRegistry.register(modEventBus);
         // Attributes

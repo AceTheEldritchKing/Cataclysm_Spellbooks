@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 ;
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.The_Leviathan.Abyss_Blast_Entity;
+import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
@@ -21,7 +22,7 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class AbyssalBlastSpell extends AbstractSpell {
+public class AbyssalBlastSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_blast");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
@@ -68,14 +69,15 @@ public class AbyssalBlastSpell extends AbstractSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         double casterX = entity.getX();
-        double casterY = entity.getY();
+        double casterY = entity.getY() + entity.getEyeHeight() - 0.2;
         double casterZ = entity.getZ();
 
         float dir = 90F;
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
         float casterYHeadRot = (float) ((entity.getYHeadRot() + dir) * Math.PI/180D);
 
-        CameraShakeManager.addCameraShake(new CameraShakeData(20, entity.position(), 10));
+        //CameraShakeManager.addCameraShake(new CameraShakeData(20, entity.position(), 15));
+        ScreenShake_Entity.ScreenShake(level, entity.position(), 15, 0.2F, 20, 40);
         if (!level.isClientSide)
         {
             // Prevent player from moving

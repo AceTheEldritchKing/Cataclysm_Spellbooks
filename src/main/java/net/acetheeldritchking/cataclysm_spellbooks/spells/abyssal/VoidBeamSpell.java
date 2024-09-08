@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class VoidBeamSpell extends AbstractSpell {
+public class VoidBeamSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "void_beam");
 
     @Override

@@ -1,13 +1,13 @@
 {
-    "required": true,
-    "package": "net.acetheeldritchking.cataclysm_spellbooks.mixins",
-    "minVersion": "0.8",
-    "compatibilityLevel": "JAVA_17",
-    "mixins": [
-      "client.MouseMixin"
-    ],
-    "injectors": {
-      "defaultRequire": 1
-    },
-    "refmap": "cataclysm_spellbooks.refmap.json"
+  "required": true,
+  "package": "net.acetheeldritchking.cataclysm_spellbooks.mixins",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "client.MouseMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "cataclysm_spellbooks.refmap.json"
 }

@@ -1,0 +1,14 @@
+{
+    "conditions": [
+        {
+            "condition": "forge:loot_table_id",
+            "loot_table_id": "cataclysm:entities/ancient_remnant"
+        },
+        {
+            "condition": "minecraft:random_chance",
+            "chance": 0.5
+        }
+    ],
+    "type": "cataclysm_spellbooks:add_to_table",
+    "loot_table": "cataclysm_spellbooks:entities/desert_spellbook"
+}

@@ -112,7 +112,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         super.tick();
     }
 
-    @Override
+    /*@Override
     public boolean isNoGravity() {
         return true;
     }
@@ -132,7 +132,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         flyingPathNavigation.setCanPassDoors(false);
         flyingPathNavigation.setCanOpenDoors(false);
         return flyingPathNavigation;
-    }
+    }*/
 
     @Override
     public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {

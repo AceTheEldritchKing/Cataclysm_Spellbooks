@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class DepthChargeSpell extends AbstractSpell {
+public class DepthChargeSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "depth_charge");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
@@ -68,7 +68,7 @@ public class DepthChargeSpell extends AbstractSpell {
         for (int l = 0; l < 35; ++l)
         {
             int j = (int) (2.0F * l);
-            for (int i = 0; i < amountForMines(spellLevel); i++)
+            for (int i = 0; i < amountForMines(spellLevel, entity); i++)
             {
                 double nearbyRandomX = casterX + entity.getRandom().nextGaussian() * randomNearby1(spellLevel);
                 double nearbyRandomY = casterY + entity.getRandom().nextGaussian() * randomNearby2(spellLevel);
@@ -98,17 +98,17 @@ public class DepthChargeSpell extends AbstractSpell {
 
     private double randomNearby1(int spellLevel)
     {
-        return 5.0D * spellLevel;
+        return 4.0D * spellLevel;
     }
 
     private double randomNearby2(int spellLevel)
     {
-        return 4.0D * spellLevel;
+        return 3.0D * spellLevel;
     }
 
     // We need a hard cap on mines...
-    private int amountForMines(int spellLevel)
+    private int amountForMines(int spellLevel, LivingEntity caster)
     {
-        return (int) Mth.clamp(spellLevel, 0, 10);
+        return (int) Mth.clamp(getSpellPower(spellLevel, caster), 0, 5);
     }
 }

@@ -33,6 +33,7 @@ public class ClientEvents {
     @SubscribeEvent
     public void renderBlockScreenEvent(RenderBlockScreenEffectEvent event)
     {
+        // Removes fire on screen when in lava
         ItemStack itemStack = Minecraft.getInstance().player.getInventory().getArmor(3);
         if (itemStack.is(ItemRegistries.IGNITIUM_WIZARD_HELMET.get()) && Minecraft.getInstance().player.isInLava())
         {
