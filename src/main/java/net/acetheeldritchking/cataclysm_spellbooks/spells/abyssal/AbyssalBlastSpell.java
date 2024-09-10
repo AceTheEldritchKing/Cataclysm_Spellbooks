@@ -29,7 +29,7 @@ public class AbyssalBlastSpell extends AbstractAbyssalSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(600)
+            .setCooldownSeconds(450)
             .build();
 
     public AbyssalBlastSpell()

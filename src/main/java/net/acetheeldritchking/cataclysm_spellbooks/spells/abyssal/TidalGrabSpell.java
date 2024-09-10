@@ -11,9 +11,11 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -74,63 +76,75 @@ public class TidalGrabSpell extends AbstractAbyssalSpell {
     }
 
     @Override
+    public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
+        return Utils.preCastTargetHelper(level, entity, playerMagicData, this, (int)getRange(spellLevel, entity), 0.15f);
+    }
+
+    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         //Vec3 casterEyePosition = entity.getEyePosition(1.0F);
-        Entity validTarget = null;
-        var hitResult = Utils.raycastForEntity(level, entity, getRange(spellLevel, entity), true, 0.25F);
-        if (hitResult.getType() == HitResult.Type.ENTITY)
+        if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetEntityCastData)
         {
-            Entity target = ((EntityHitResult)hitResult).getEntity();
-            if (!target.equals(entity) && !entity.isAlliedTo(target) &&
-                    !target.isAlliedTo(entity) && target instanceof Mob &&
-                    entity.hasLineOfSight(target))
+            var targetEntity = targetEntityCastData.getTarget((ServerLevel) level);
+            if (targetEntity != null)
             {
-                //System.out.println("Hit Result");
-                validTarget = target;
-            }
-            else
-            {
-                Iterator<LivingEntity> iterator = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(16.0D)).iterator();
-
-                //System.out.println("Beginning of loop");
-                while (true)
+                Entity validTarget = null;
+                var hitResult = Utils.raycastForEntity(level, entity, getRange(spellLevel, entity), true, 0.25F);
+                if (hitResult.getType() == HitResult.Type.ENTITY)
                 {
-                    Entity e;
-                    // This should create the tentacles
-                    do {
-                        //System.out.println("Inside the loop, while target is in line of sight");
-                        do {
-                            //System.out.println("Line of sight");
-                            do {
-                                //System.out.println("Instance of Mob");
-                                do {
-                                    //System.out.println("Target allied to caster");
-                                    do {
-                                        //System.out.println("caster allied to target");
-                                        do {
-                                            //System.out.println("If target is the target");
-                                            if (!iterator.hasNext())
-                                            {
-                                                //System.out.println("Launch tentacle");
-                                                this.launchTentacle(entity, (LivingEntity) validTarget, level);
-                                                return;
-                                            }
-
-                                            e = iterator.next();
-                                        } while (e.equals(entity));
-                                    } while (entity.isAlliedTo(e));
-                                } while (e.isAlliedTo(entity));
-                            } while (!(e instanceof Mob));
-                        } while (!entity.hasLineOfSight(e));
+                    Entity target = ((EntityHitResult)hitResult).getEntity();
+                    if (!target.equals(entity) && !entity.isAlliedTo(target) &&
+                            !target.isAlliedTo(entity) && target instanceof Mob &&
+                            entity.hasLineOfSight(target))
+                    {
+                        //System.out.println("Hit Result");
+                        validTarget = target;
                     }
-                    while (validTarget != null && !(entity.distanceTo(e) < entity.distanceTo(validTarget)));
+                    else
+                    {
+                        Iterator<LivingEntity> iterator = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(16.0D)).iterator();
 
-                    validTarget = e;
+                        //System.out.println("Beginning of loop");
+                        while (true)
+                        {
+                            Entity e;
+                            // This should create the tentacles
+                            do {
+                                //System.out.println("Inside the loop, while target is in line of sight");
+                                do {
+                                    //System.out.println("Line of sight");
+                                    do {
+                                        //System.out.println("Instance of Mob");
+                                        do {
+                                            //System.out.println("Target allied to caster");
+                                            do {
+                                                //System.out.println("caster allied to target");
+                                                do {
+                                                    //System.out.println("If target is the target");
+                                                    if (!iterator.hasNext())
+                                                    {
+                                                        //System.out.println("Launch tentacle");
+                                                        this.launchTentacle(entity, (LivingEntity) validTarget, level);
+                                                        return;
+                                                    }
+
+                                                    e = iterator.next();
+                                                } while (e.equals(entity));
+                                            } while (entity.isAlliedTo(e));
+                                        } while (e.isAlliedTo(entity));
+                                    } while (!(e instanceof Mob));
+                                } while (!entity.hasLineOfSight(e));
+                            }
+                            while (validTarget != null && !(entity.distanceTo(e) < entity.distanceTo(validTarget)));
+
+                            validTarget = e;
+                        }
+                    }
+
+                    //System.out.println("Launch tentacle");
+                    this.launchTentacle(entity, (LivingEntity) validTarget, level);
                 }
             }
-
-            //System.out.println("Launch tentacle");
-            this.launchTentacle(entity, (LivingEntity) validTarget, level);
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

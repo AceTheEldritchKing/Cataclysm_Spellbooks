@@ -7,6 +7,8 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
+import io.redspace.ironsspellbooks.api.util.CameraShakeData;
+import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
@@ -17,6 +19,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
@@ -93,6 +96,13 @@ public class AbyssalSlashSpell extends AbstractAbyssalSpell {
     }
 
     @Override
+    public void onClientPreCast(Level level, int spellLevel, LivingEntity entity, InteractionHand hand, @Nullable MagicData playerMagicData) {
+        super.onClientPreCast(level, spellLevel, entity, hand, playerMagicData);
+
+        spawnParticles(entity);
+    }
+
+    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         float radius = 4.10f;
         float distance = 2.0f;
@@ -129,6 +139,7 @@ public class AbyssalSlashSpell extends AbstractAbyssalSpell {
                 }
             }
         }
+        CameraShakeManager.addCameraShake(new CameraShakeData(10, entity.position(), 10));
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
