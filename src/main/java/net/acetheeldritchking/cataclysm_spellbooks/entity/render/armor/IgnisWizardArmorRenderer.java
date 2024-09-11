@@ -16,10 +16,10 @@ public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorI
 
     String armorLeggingTorsoLayer = "armorLeggingTorsoLayer";
 
-    // New bone
+    // New bone, don't use new Bone, use this.model.getBone().orElse(null) for this.
     private GeoBone armorLeggingTorsoBone()
     {
-        return new GeoBone(this.getBodyBone(), armorLeggingTorsoLayer, true, null, true, true);
+        return this.model.getBone(armorLeggingTorsoLayer).orElse(null);;
     }
 
     @Override
@@ -32,6 +32,7 @@ public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorI
         this.setBoneVisible(getLeftLegBone(),false);
         this.setBoneVisible(getRightBootBone(),false);
         this.setBoneVisible(getLeftBootBone(),false);
+        // First, set the bone so it is not visible. 
         this.setBoneVisible(armorLeggingTorsoBone(),false);
 
         switch (currentSlot) {
@@ -42,6 +43,8 @@ public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorI
                 this.setBoneVisible(getLeftArmBone(), true);
             }
             case LEGS -> {
+                // Now set the bone to be visable now that the legs slot is filled.
+                this.setBoneVisible(armorLeggingTorsoBone(),true);
                 this.setBoneVisible(getRightLegBone(), true);
                 this.setBoneVisible(getLeftLegBone(), true);
                 this.setBoneVisible(armorLeggingTorsoBone(), true);
