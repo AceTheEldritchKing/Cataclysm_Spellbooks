@@ -3,15 +3,15 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.renderer.GeoArmorRenderer;
 import mod.azure.azurelib.renderer.layer.AutoGlowingGeoLayer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.AbyssalWarlockArmorModel;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockArmorItem;
 import net.minecraft.world.entity.EquipmentSlot;
 
-public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorItem> {
-    public IgnisWizardArmorRenderer()
+public class AbyssalWarlockArmorRenderer extends GeoArmorRenderer<AbyssalWarlockArmorItem> {
+    public AbyssalWarlockArmorRenderer()
     {
-        super(new IgnisWizardArmorModel());
-        addRenderLayer(new AutoGlowingGeoLayer<>(IgnisWizardArmorRenderer.this));
+        super(new AbyssalWarlockArmorModel());
+        addRenderLayer(new AutoGlowingGeoLayer<>(AbyssalWarlockArmorRenderer.this));
     }
 
     String armorLeggingTorsoLayer = "armorLeggingTorsoLayer";
@@ -32,7 +32,7 @@ public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorI
         this.setBoneVisible(getLeftLegBone(),false);
         this.setBoneVisible(getRightBootBone(),false);
         this.setBoneVisible(getLeftBootBone(),false);
-        // First, set the bone so it is not visible. 
+        // First, set the bone so it is not visible.
         this.setBoneVisible(armorLeggingTorsoBone(),false);
 
         switch (currentSlot) {

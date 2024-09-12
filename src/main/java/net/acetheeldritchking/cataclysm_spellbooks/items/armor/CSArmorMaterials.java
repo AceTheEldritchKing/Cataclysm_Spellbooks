@@ -2,6 +2,8 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.registries.ItemRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
@@ -21,6 +23,13 @@ public enum CSArmorMaterials implements ArmorMaterial {
                     AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
                     AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier("Fire power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
                     AttributeRegistry.FIRE_MAGIC_RESIST.get(), new AttributeModifier("Fire resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
+                    )),
+
+    ABYSSAL_WARLOCK_ARMOR("abyssal_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.0F,
+            () -> Ingredient.of(ItemRegistry.MAGIC_CLOTH.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), new AttributeModifier("Abyssal power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), new AttributeModifier("Abyssal resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
                     ));
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
