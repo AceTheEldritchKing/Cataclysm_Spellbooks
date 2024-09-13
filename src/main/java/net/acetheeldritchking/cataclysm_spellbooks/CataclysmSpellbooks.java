@@ -40,7 +40,6 @@ public class CataclysmSpellbooks
 
         // Event Handlers
         MinecraftForge.EVENT_BUS.register(new ServerEvents());
-        MinecraftForge.EVENT_BUS.register(new ClientEvents());
         // Items
         ItemRegistries.register(modEventBus);
         // Loot Tables

@@ -10,6 +10,7 @@ import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockMaskItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.CSUpgradeTypes;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
@@ -33,7 +34,6 @@ public class ItemRegistries {
     /***
      * Spellbooks
      */
-
     // Abyss Spellbook
     public static final RegistryObject<Item> ABYSS_SPELL_BOOK = ITEMS.register
             ("abyss_spell_book", () -> new SimpleAttributeSpellBook
@@ -52,7 +52,6 @@ public class ItemRegistries {
     /***
      * Staffs
      */
-
     // Bloom Stone Staff
     public static final RegistryObject<Item> BLOOM_STONE_STAFF = ITEMS.register
             ("bloom_stone_staff", () -> new StaffItem
@@ -95,6 +94,12 @@ public class ItemRegistries {
     // Leviathan's Blessing Ring
     public static final RegistryObject<CurioBaseItem> LEVIATHANS_BLESSING = ITEMS.register("leviathans_blessing", LeviathansBlessingRing::new);
 
+    /**
+     * Items
+     */
+    // Abyssal Rune
+    public static final RegistryObject<Item> ABYSSAL_RUNE = ITEMS.register("abyssal_rune", () -> new Item(ItemPropertiesHelper.material()));
+
     /***
      * Upgrade Orbs
      */
@@ -105,7 +110,6 @@ public class ItemRegistries {
     /***
      * Armor
      */
-
     // Ignis Wizard Armor
     public static final RegistryObject<Item> IGNITIUM_WIZARD_HELMET = ITEMS.register("ignis_helmet",
             () -> new IgnisWizardArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
@@ -119,6 +123,8 @@ public class ItemRegistries {
     // Abyssal Warlock Armor
     public static final RegistryObject<Item> ABYSSAL_WARLOCK_HELMET = ITEMS.register("abyssal_warlock_helmet",
             () -> new AbyssalWarlockArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> ABYSSAL_WARLOCK_MASK = ITEMS.register("abyssal_warlock_mask",
+            () -> new AbyssalWarlockMaskItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> ABYSSAL_WARLOCK_CHESTPLATE = ITEMS.register("abyssal_warlock_chestplate",
             () -> new AbyssalWarlockArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> ABYSSAL_WARLOCK_LEGGINGS = ITEMS.register("abyssal_warlock_leggings",
