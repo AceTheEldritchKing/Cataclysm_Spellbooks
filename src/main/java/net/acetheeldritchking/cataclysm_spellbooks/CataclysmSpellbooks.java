@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.InfernalBladeRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ClientEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
@@ -85,7 +86,10 @@ public class CataclysmSpellbooks
             });
 
             // Entity Rendering
+            // Abyssal Gnawers
             EntityRenderers.register(CSEntityRegistry.ABYSSAL_GNAWERS.get(), SummonedAbyssalGnawersRenderer::new);
+            // Infernal Blade
+            EntityRenderers.register(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), InfernalBladeRenderer::new);
         }
     }
 

@@ -69,6 +69,9 @@
     "spell.cataclysm_spellbooks.tidal_grab": "Tentacle Laceration",
     "spell.cataclysm_spellbooks.tidal_grab.guide": "Cast a tentacle from your grasp to damage targets",
 
+    "spell.cataclysm_spellbooks.infernal_strike": "Infernal Strike",
+    "spell.cataclysm_spellbooks.infernal_strike.guide": "Shoot out a minature Incinerator to damage your targets and inflict Blazing Brand on them",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

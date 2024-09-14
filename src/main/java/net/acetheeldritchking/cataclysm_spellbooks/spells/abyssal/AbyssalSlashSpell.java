@@ -87,7 +87,7 @@ public class AbyssalSlashSpell extends AbstractAbyssalSpell {
 
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
-        return Optional.of(ModSounds.LEVIATHAN_BITE.get());
+        return Optional.of(ModSounds.ABYSS_BLAST_ONLY_SHOOT.get());
     }
 
     @Override

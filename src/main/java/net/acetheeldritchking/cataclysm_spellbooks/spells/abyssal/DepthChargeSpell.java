@@ -52,7 +52,7 @@ public class DepthChargeSpell extends AbstractAbyssalSpell {
 
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
-        return Optional.of(ModSounds.LEVIATHAN_ROAR.get());
+        return Optional.of(ModSounds.LEVIATHAN_STUN_ROAR.get());
     }
 
     @Override
