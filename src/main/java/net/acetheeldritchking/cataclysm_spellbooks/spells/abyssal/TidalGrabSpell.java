@@ -14,6 +14,8 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -27,11 +29,19 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
 public class TidalGrabSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "tidal_grab");
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.cataclysm_spellbooks.range",
+                        Utils.stringTruncation(getRange(spellLevel, caster)/10, 2)));
+    }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
@@ -77,7 +87,7 @@ public class TidalGrabSpell extends AbstractAbyssalSpell {
 
     @Override
     public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
-        return Utils.preCastTargetHelper(level, entity, playerMagicData, this, (int)getRange(spellLevel, entity), 0.15f);
+        return Utils.preCastTargetHelper(level, entity, playerMagicData, this, (int)getRange(spellLevel, entity)/10, 0.15f);
     }
 
     @Override
@@ -89,7 +99,7 @@ public class TidalGrabSpell extends AbstractAbyssalSpell {
             if (targetEntity != null)
             {
                 Entity validTarget = null;
-                var hitResult = Utils.raycastForEntity(level, entity, getRange(spellLevel, entity), true, 0.25F);
+                var hitResult = Utils.raycastForEntity(level, entity, getRange(spellLevel, entity)/10, true, 0.25F);
                 if (hitResult.getType() == HitResult.Type.ENTITY)
                 {
                     Entity target = ((EntityHitResult)hitResult).getEntity();

@@ -1,8 +1,26 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.model.idle": {
-			"loop": true
+		"animation.infernal_blade_small.idle": {
+			"loop": true,
+			"animation_length": 1.5417,
+			"bones": {
+				"main": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, "math.sin(query.anim_time*50)*900"]
+						},
+						"0.875": {
+							"vector": [0, 0, "math.sin(query.anim_time*50)*900"],
+							"easing": "easeInElastic"
+						},
+						"1.5417": {
+							"vector": [0, 0, "math.sin(query.anim_time*50)*900"],
+							"easing": "easeOutElastic"
+						}
+					}
+				}
+			}
 		}
 	},
 	"geckolib_format_version": 2

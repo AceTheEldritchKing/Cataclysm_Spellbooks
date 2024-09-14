@@ -12,16 +12,19 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
@@ -51,7 +54,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     @Override
     public void impactParticles(double x, double y, double z) {
         MagicManager.spawnParticles
-                (level, ModParticle.TRAP_FLAME.get(), x, y, z, 1, 0, 0, 0, 2, true);
+                (level, ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
     }
 
     @Override
@@ -90,7 +93,18 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     // Geckolib
     @Override
     public void registerControllers(AnimationData data) {
-        // Idk no animation here
+        AnimationController<InfernalBladeProjectile> controller = new AnimationController<>(this, "controller", 0, this::predicate);
+
+        data.addAnimationController(controller);
+    }
+
+    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event)
+    {
+        AnimationBuilder builder = new AnimationBuilder();
+        builder.addAnimation("animation.infernal_blade_small.idle", ILoopType.EDefaultLoopTypes.LOOP);
+        event.getController().setAnimation(builder);
+
+        return PlayState.CONTINUE;
     }
 
     @Override

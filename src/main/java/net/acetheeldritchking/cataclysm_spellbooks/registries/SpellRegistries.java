@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.IncinerationSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.InfernalStrikeSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -65,6 +66,7 @@ public class SpellRegistries {
 
     // FIRE //
     // Incineration (Fire) (Summon Fire runes in row) - Requires Burning Ashes
+    public static final RegistryObject<AbstractSpell> INCINERATION = registerSpell(new IncinerationSpell());
 
     // Infernal Strike (Summon mini Incinerator, inflicts blazing brand) - Requires Burning Ashes
     public static final RegistryObject<AbstractSpell> INFERNAL_STRIKE = registerSpell(new InfernalStrikeSpell());

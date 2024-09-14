@@ -56,7 +56,7 @@ public class AbyssalSlashSpell extends AbstractAbyssalSpell {
         this.manaCostPerLevel = 20;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 3;
-        this.castTime = 20;
+        this.castTime = 15;
         this.baseManaCost = 35;
     }
 
