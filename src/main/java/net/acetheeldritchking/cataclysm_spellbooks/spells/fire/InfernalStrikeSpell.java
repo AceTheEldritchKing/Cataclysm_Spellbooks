@@ -9,7 +9,7 @@ import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.api.util.Utils;
-import io.redspace.ironsspellbooks.damage.ISpellDamageSource;
+import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
@@ -17,7 +17,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -101,8 +100,8 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
     }
 
     @Override
-    public DamageSource getDamageSource(@Nullable Entity projectile, @Nullable Entity attacker) {
-        return ((ISpellDamageSource) super.getDamageSource(projectile, attacker)).get();
+    public SpellDamageSource getDamageSource(@Nullable Entity projectile, @Nullable Entity attacker) {
+        return (SpellDamageSource) super.getDamageSource(projectile, attacker).get();
     }
 
     private float getDamage(int spellLevel, LivingEntity caster)

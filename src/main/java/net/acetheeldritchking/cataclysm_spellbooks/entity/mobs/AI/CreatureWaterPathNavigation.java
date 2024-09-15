@@ -38,7 +38,7 @@ public class CreatureWaterPathNavigation extends FlyingPathNavigation {
 
     @Override
     protected boolean canMoveDirectly(Vec3 pPosVec31, Vec3 pPosVec32) {
-        return isClearForMovementBetween(this.mob, pPosVec31, pPosVec32);
+        return isClearForMovementBetween(this.mob, pPosVec31, pPosVec32, true);
     }
 
     @Override

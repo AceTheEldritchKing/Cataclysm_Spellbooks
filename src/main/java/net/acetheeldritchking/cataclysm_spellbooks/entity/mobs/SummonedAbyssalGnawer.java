@@ -6,7 +6,6 @@ import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.AI.CreatureWaterPathNavigation;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
@@ -23,28 +22,23 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnimatable {
-    AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class SummonedAbyssalGnawer extends Monster implements MagicSummon, GeoAnimatable {
+    AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     protected LivingEntity cachedSummoner;
     protected UUID summonerUUID;
 
@@ -88,7 +82,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -155,6 +149,11 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         }
     }
 
+    @Override
+    public double getTick(Object o) {
+        return 0;
+    }
+
     static class AbyssalGnawerSwimGoal extends RandomSwimmingGoal
     {
         AbyssalGnawerSwimGoal(SummonedAbyssalGnawer abyssalGnawer) {
@@ -177,9 +176,9 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ParticleTypes.POOF,
+            MagicManager.spawnParticles(level(), ParticleTypes.POOF,
                     getX(), getY(), getZ(),
                     25, 0.4, 0.8, 0.4, 0.03, false);
             discard();
@@ -234,23 +233,22 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
         return SoundEvents.FISH_SWIM;
     }
 
-    // GECKOLIB STUFF
     @Override
-    public void registerControllers(AnimationData data) {
+    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         AnimationController<SummonedAbyssalGnawer> controller = new AnimationController<>(this, "controller", 0, this::predicate);
-        data.addAnimationController(controller);
+        data.add(controller);
     }
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        AnimationBuilder builder = new AnimationBuilder();
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+        RawAnimation builder = RawAnimation.begin();
 
         if (this.swinging) {
-            builder.addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.attack", ILoopType.EDefaultLoopTypes.PLAY_ONCE);
+            builder.thenPlay("animation.cataclysm_spellbooks:abyssal_gnawers.attack");
         }
         else if (event.isMoving()) {
-            builder.addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.swim", ILoopType.EDefaultLoopTypes.LOOP);
+            builder.thenLoop("animation.cataclysm_spellbooks:abyssal_gnawers.swim");
         } else {
-            builder.addAnimation("animation.cataclysm_spellbooks:abyssal_gnawers.idle", ILoopType.EDefaultLoopTypes.LOOP);
+            builder.thenLoop("animation.cataclysm_spellbooks:abyssal_gnawers.idle");
         }
 
         event.getController().setAnimation(builder);
@@ -258,7 +256,7 @@ public class SummonedAbyssalGnawer extends Monster implements MagicSummon, IAnim
     }
 
     @Override
-    public AnimationFactory getFactory() {
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
         return factory;
     }
 

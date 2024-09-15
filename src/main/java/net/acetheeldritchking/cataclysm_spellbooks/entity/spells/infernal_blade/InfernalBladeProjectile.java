@@ -20,20 +20,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class InfernalBladeProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class InfernalBladeProjectile extends AbstractMagicProjectile implements GeoAnimatable {
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     public InfernalBladeProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -75,13 +74,13 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     @Override
     public void trailParticles() {
         Vec3 vec3 = this.position().subtract(getDeltaMovement());
-        level.addParticle(ParticleHelper.EMBERS, vec3.x, vec3.y, vec3.z, 0, 0, 0);
+        level().addParticle(ParticleHelper.EMBERS, vec3.x, vec3.y, vec3.z, 0, 0, 0);
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
         MagicManager.spawnParticles
-                (level, ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
+                (level(), ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
     }
 
     @Override
@@ -96,7 +95,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
 
     @Override
     protected void doImpactSound(SoundEvent sound) {
-        level.playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 0.5f);
+        level().playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 0.5f);
     }
 
     @Override
@@ -119,23 +118,26 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
 
     // Geckolib
     @Override
-    public void registerControllers(AnimationData data) {
+    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         AnimationController<InfernalBladeProjectile> controller = new AnimationController<>(this, "controller", 0, this::predicate);
-
-        data.addAnimationController(controller);
+        data.add(controller);
     }
 
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event)
-    {
-        AnimationBuilder builder = new AnimationBuilder();
-        builder.addAnimation("animation.infernal_blade_small.idle", ILoopType.EDefaultLoopTypes.LOOP);
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event) {
+        RawAnimation builder = RawAnimation.begin();
+        builder.thenLoop("animation.infernal_blade_small.idle");
         event.getController().setAnimation(builder);
 
         return PlayState.CONTINUE;
     }
 
     @Override
-    public AnimationFactory getFactory() {
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
         return factory;
+    }
+
+    @Override
+    public double getTick(Object o) {
+        return 0;
     }
 }

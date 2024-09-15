@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SummonedAbyssalGnawerModel extends AnimatedGeoModel<SummonedAbyssalGnawer> {
+public class SummonedAbyssalGnawerModel extends GeoModel<SummonedAbyssalGnawer> {
     @Override
     public ResourceLocation getModelResource(SummonedAbyssalGnawer object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/abyssal_gnawers.geo.json");

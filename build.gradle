@@ -1,12 +1,12 @@
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'net.minecraftforge.gradle' version '6.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = '1.2.0-1.19.2'
+version = '1.2.0-1.20.1'
 group = 'net.acetheeldritchking.cataclysm_spellbooks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'cataclysm_spellbooks'
 
@@ -28,7 +28,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'parchment', version: '2022.08.14-1.19.2'
+    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -142,42 +142,38 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
 
     // ISS
-    compileOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
-    runtimeOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
+    compileOnly fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:5616394")
+    runtimeOnly fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:5616394")
 
     // Geckolib
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.39')
+    implementation fg.deobf("curse.maven:geckolib-388172:6027567")
 
     // Caelus
-    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
+    runtimeOnly fg.deobf("curse.maven:caelus-308989:5281700")
 
     // Player Animator
-    runtimeOnly fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${player_animator_version}")
+    runtimeOnly fg.deobf("curse.maven:playeranimator-658587:4587214")
 
     // Curios
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    implementation fg.deobf("curse.maven:curios-309927:5680164")
 
     // JSON
     implementation "com.google.code.gson:gson:${gson_version}"
 
     // Lionfish
-    implementation fg.deobf("curse.maven:lionfish-api-1001614:5314835")
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
 
     // Cataclysm
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:6106826")
-
-    // Archeology API
-    implementation fg.deobf("curse.maven:archaeology-api-950822:4996103")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6196169")
 
     // AzureLib
-    implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.19.2:1.0.47")
+//    implementation fg.deobf("curse.maven:azurelib-817423:6004977")
 
     // JEI
-    runtimeOnly(fg.deobf("curse.maven:Jei-238222:4712866"))
+    runtimeOnly fg.deobf("curse.maven:jei-238222:6075247")
 
     // Mixins
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"

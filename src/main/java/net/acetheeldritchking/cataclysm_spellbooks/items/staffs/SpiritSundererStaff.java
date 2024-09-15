@@ -18,6 +18,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class SpiritSundererStaff extends StaffItem implements GeoItem {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -57,5 +58,17 @@ public class SpiritSundererStaff extends StaffItem implements GeoItem {
                 return this.renderer;
             }
         });
+    }
+
+    // TODO: Review
+
+    @Override
+    public void createRenderer(Consumer<Object> consumer) {
+
+    }
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return null;
     }
 }

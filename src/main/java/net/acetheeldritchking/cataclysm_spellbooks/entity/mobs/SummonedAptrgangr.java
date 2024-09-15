@@ -58,7 +58,7 @@ public class SummonedAptrgangr extends Aptrgangr_Entity implements MagicSummon {
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -85,14 +85,14 @@ public class SummonedAptrgangr extends Aptrgangr_Entity implements MagicSummon {
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ModParticle.CURSED_FLAME.get(),
+            MagicManager.spawnParticles(level(), ModParticle.CURSED_FLAME.get(),
                     getX(), getY(), getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
+                    level().random.nextGaussian() * 0.007D,
+                    level().random.nextGaussian() * 0.009D,
+                    level().random.nextGaussian() * 0.007D,
                     0.1, false);
             discard();
         }

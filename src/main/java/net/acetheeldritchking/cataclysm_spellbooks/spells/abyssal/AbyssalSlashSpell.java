@@ -167,7 +167,7 @@ public class AbyssalSlashSpell extends AbstractAbyssalSpell {
 
     private void spawnParticles(LivingEntity entity)
     {
-        ServerLevel level = (ServerLevel) entity.level;
+        ServerLevel level = (ServerLevel) entity.level();
         level.sendParticles(ModParticle.SHOCK_WAVE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 

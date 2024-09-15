@@ -10,6 +10,7 @@ import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -95,13 +96,13 @@ public enum CSArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot pSlot) {
-        return HEALTH_PER_SLOT[pSlot.getIndex()] * this.durabilityMultiplier;
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return HEALTH_PER_SLOT[type.getSlot().getIndex()] * this.durabilityMultiplier;
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot pSlot) {
-        return this.slotProtections[pSlot.getIndex()];
+    public int getDefenseForType(ArmorItem.Type type) {
+        return this.slotProtections[type.getSlot().getIndex()];
     }
 
     @Override

@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -29,7 +30,7 @@ import java.util.function.Consumer;
 public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    public CursiumMageElytraArmorItem(EquipmentSlot slot, Properties settings) {
+    public CursiumMageElytraArmorItem(ArmorItem.Type slot, Properties settings) {
         super(CSArmorMaterials.CURSIUM_WARLOCK_ARMOR, slot, settings);
     }
 
@@ -64,7 +65,7 @@ public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (this.slot == EquipmentSlot.CHEST) {
+        if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc2").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc3").withStyle(ChatFormatting.DARK_GREEN));
@@ -95,13 +96,13 @@ public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
         Player player = Minecraft.getInstance().player;
 
         // Flight
-        if (player != null && (player.getAbilities().flying || player.isFallFlying() && !player.isOnGround()))
+        if (player != null && (player.getAbilities().flying || player.isFallFlying() && !player.onGround()))
         {
             //System.out.println("Flight");
             animationState.getController().setAnimation(RawAnimation.begin().then("flying", Animation.LoopType.LOOP));
         }
         // Idle
-        else if (player != null && !(player.getAbilities().flying || player.isFallFlying() && player.isOnGround()))
+        else if (player != null && !(player.getAbilities().flying || player.isFallFlying() && player.onGround()))
         {
             //System.out.println("Idle");
             animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));

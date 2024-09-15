@@ -85,7 +85,7 @@ public class DimensionalRiftSpell extends AbstractAbyssalSpell {
         HitResult result = Utils.raycastForEntity(level, entity, 32, true);
         Vec3 dimensionRiftLocation = result.getLocation();
 
-        Level casterLevel = entity.level;
+        Level casterLevel = entity.level();
 
         Dimensional_Rift_Entity dimensionalRift =
                 new Dimensional_Rift_Entity(casterLevel, casterX, casterEye, casterZ, entity);

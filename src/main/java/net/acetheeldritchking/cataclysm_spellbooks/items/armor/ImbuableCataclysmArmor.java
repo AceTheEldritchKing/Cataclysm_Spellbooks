@@ -3,10 +3,11 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 import io.redspace.ironsspellbooks.api.spells.IPresetSpellContainer;
 import io.redspace.ironsspellbooks.api.spells.ISpellContainer;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 
 public class ImbuableCataclysmArmor extends CSArmorItem implements IPresetSpellContainer {
-    public ImbuableCataclysmArmor(CSArmorMaterials materialIn, EquipmentSlot slot, Properties settings) {
+    public ImbuableCataclysmArmor(CSArmorMaterials materialIn, ArmorItem.Type slot, Properties settings) {
         super(materialIn, slot, settings);
     }
 
@@ -18,7 +19,7 @@ public class ImbuableCataclysmArmor extends CSArmorItem implements IPresetSpellC
 
         if (itemStack.getItem() instanceof CSArmorItem armorItem)
         {
-            if (armorItem.getSlot() == EquipmentSlot.CHEST || armorItem.getSlot() == EquipmentSlot.HEAD)
+            if (armorItem.getType().getSlot() == EquipmentSlot.CHEST || armorItem.getType().getSlot() == EquipmentSlot.HEAD)
             {
                 if (!ISpellContainer.isSpellContainer(itemStack)) {
                     var spellContainer = ISpellContainer.create(1, true, true);

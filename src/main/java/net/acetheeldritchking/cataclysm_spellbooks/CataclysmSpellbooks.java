@@ -1,16 +1,12 @@
 package net.acetheeldritchking.cataclysm_spellbooks;
 
 import com.mojang.logging.LogUtils;
-import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.HellishBladeRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.InfernalBladeRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.events.ClientEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -27,7 +23,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file

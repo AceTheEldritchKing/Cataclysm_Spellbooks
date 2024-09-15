@@ -8,6 +8,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.util.CSTags;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,6 +36,7 @@ public class CSSchoolRegistry extends SchoolRegistry {
                     Component.translatable("school.cataclysm_spellbooks.abyssal").withStyle(Style.EMPTY.withColor(0x36156c)),
                     LazyOptional.of(CSAttributeRegistry.ABYSSAL_MAGIC_POWER::get),
                     LazyOptional.of(CSAttributeRegistry.ABYSSAL_MAGIC_RESIST::get),
-                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get)
+                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get),
+                    DamageTypes.MAGIC
             ));
 }

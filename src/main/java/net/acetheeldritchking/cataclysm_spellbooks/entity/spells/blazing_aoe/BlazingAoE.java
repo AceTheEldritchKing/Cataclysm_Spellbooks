@@ -17,7 +17,8 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 public class BlazingAoE extends AoeEntity {
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "blazing_aoe"));
+    // TODO: Incorrect! Restore these comments
+//    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "blazing_aoe"));
 
     public BlazingAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -30,10 +31,11 @@ public class BlazingAoE extends AoeEntity {
 
     @Override
     public void applyEffect(LivingEntity target) {
-        var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
-        DamageSources.ignoreNextKnockback(target);
-        target.hurt(damageSource, getDamage());
-        target.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));
+        // TODO: Incorrect! Restore these comments
+//        var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
+//        DamageSources.ignoreNextKnockback(target);
+//        target.hurt(damageSource, getDamage());
+//        target.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));
     }
 
     @Override

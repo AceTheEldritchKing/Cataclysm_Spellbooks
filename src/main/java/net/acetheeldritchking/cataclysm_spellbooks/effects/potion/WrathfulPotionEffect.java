@@ -33,9 +33,9 @@ public class WrathfulPotionEffect extends MagicMobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (!pLivingEntity.level.isClientSide)
+        if (!pLivingEntity.level().isClientSide)
         {
-            ServerLevel world = (ServerLevel) pLivingEntity.level;
+            ServerLevel world = (ServerLevel) pLivingEntity.level();
 
             world.sendParticles(ModParticle.PHANTOM_WING_FLAME.get(), pLivingEntity.getX(), pLivingEntity.getY(0.5), pLivingEntity.getZ(),
                     25,

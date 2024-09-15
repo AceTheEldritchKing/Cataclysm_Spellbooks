@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class InfernalBladeModel extends AnimatedGeoModel<InfernalBladeProjectile> {
+public class InfernalBladeModel extends GeoModel<InfernalBladeProjectile> {
 
     @Override
     public ResourceLocation getModelResource(InfernalBladeProjectile object) {

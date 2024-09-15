@@ -99,7 +99,7 @@ public class VoidRuneSpell extends AbstractSpell {
                 double targetY = targetEntity.getY();
                 double targetZ = targetEntity.getZ();
 
-                BlockPos blockPos = new BlockPos(targetX, targetY, targetZ);
+                BlockPos blockPos = new BlockPos((int) targetX, (int) targetY, (int) targetZ);
 
                 for (int i = 0; i < getDuration(spellLevel, entity); i++)
                 {

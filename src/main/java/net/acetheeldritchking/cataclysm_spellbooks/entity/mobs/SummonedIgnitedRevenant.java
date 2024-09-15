@@ -61,7 +61,7 @@ public class SummonedIgnitedRevenant extends Ignited_Revenant_Entity implements 
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -88,14 +88,14 @@ public class SummonedIgnitedRevenant extends Ignited_Revenant_Entity implements 
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ModParticle.SMALL_CURSED_FLAME.get(),
+            MagicManager.spawnParticles(level(), ModParticle.SMALL_CURSED_FLAME.get(),
                     getX(), getY(), getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
+                    level().random.nextGaussian() * 0.007D,
+                    level().random.nextGaussian() * 0.009D,
+                    level().random.nextGaussian() * 0.007D,
                     0.08, false);
             discard();
         }

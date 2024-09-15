@@ -21,15 +21,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class HellishBladeProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class HellishBladeProjectile extends AbstractMagicProjectile implements GeoAnimatable {
+    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
     public HellishBladeProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -45,13 +44,13 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
     @Override
     public void trailParticles() {
         Vec3 vec3 = this.position().subtract(getDeltaMovement());
-        level.addParticle(ModParticle.TRAP_FLAME.get(), vec3.x, vec3.y, vec3.z, 0, 0, 0);
+        level().addParticle(ModParticle.TRAP_FLAME.get(), vec3.x, vec3.y, vec3.z, 0, 0, 0);
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
         MagicManager.spawnParticles
-                (level, ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
+                (level(), ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
     }
 
     @Override
@@ -66,7 +65,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
 
     @Override
     protected void doImpactSound(SoundEvent sound) {
-        level.playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 1.0f);
+        level().playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 1.0f);
     }
 
     @Override
@@ -85,7 +84,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
                 playerTarget.disableShield(true);
             }
 
-            ScreenShake_Entity.ScreenShake(level, livingTarget.position(), 20, 0.1F, 20, 40);
+            ScreenShake_Entity.ScreenShake(level(), livingTarget.position(), 20, 0.1F, 20, 40);
         }
         discard();
     }
@@ -100,26 +99,31 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
 
     public void createAoEField(Vec3 location)
     {
-        if (!level.isClientSide)
+        if (!level().isClientSide)
         {
-            BlazingAoE aoE = new BlazingAoE(level);
+            BlazingAoE aoE = new BlazingAoE(level());
             aoE.setOwner(getOwner());
             aoE.setDuration(100);
             aoE.setDamage(0.5F);
             aoE.setRadius(3.0F);
             aoE.setCircular();
             aoE.moveTo(location);
-            level.addFreshEntity(aoE);
+            level().addFreshEntity(aoE);
         }
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
+    public void registerControllers(software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar controllerRegistrar)  {
         // No animations
     }
 
     @Override
-    public AnimationFactory getFactory() {
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
         return factory;
+    }
+
+    @Override
+    public double getTick(Object o) {
+        return 0;
     }
 }

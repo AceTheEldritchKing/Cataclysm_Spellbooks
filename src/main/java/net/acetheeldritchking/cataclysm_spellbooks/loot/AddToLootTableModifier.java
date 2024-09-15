@@ -37,7 +37,8 @@ public class AddToLootTableModifier extends LootModifier {
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context)
     {
-        LootTable table = context.getLootTable(this.lootTable);
+        //TODO is this line correct?
+        LootTable table = LootTable.lootTable().setRandomSequence(lootTable).build();
 
         table.getRandomItems(context, generatedLoot::add);
 

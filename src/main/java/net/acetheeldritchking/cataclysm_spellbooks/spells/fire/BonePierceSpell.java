@@ -89,7 +89,7 @@ public class BonePierceSpell extends AbstractIgnisSpell {
     public void onRecastFinished(ServerPlayer serverPlayer, RecastInstance recastInstance, RecastResult recastResult, ICastDataSerializable castDataSerializable) {
         if (recastResult == RecastResult.USED_ALL_RECASTS)
         {
-            var level = serverPlayer.level;
+            var level = serverPlayer.level();
 
             // Bone spread!
             spreadBoneShoot(serverPlayer, level);

@@ -83,15 +83,15 @@ public class DepthChargeSpell extends AbstractAbyssalSpell {
 
     private void spawnMines(double x, double y, double z, float rotation, int delay, LivingEntity caster)
     {
-        Level level = caster.level;
+        Level level = caster.level();
 
         Abyss_Mine_Entity abyssMine = new Abyss_Mine_Entity(level, x, y, z, rotation, delay, caster);
 
         if (caster != null)
         {
-            if (abyssMine.level.noCollision(abyssMine))
+            if (abyssMine.level().noCollision(abyssMine))
             {
-                caster.level.addFreshEntity(abyssMine);
+                caster.level().addFreshEntity(abyssMine);
             }
         }
     }

@@ -2,9 +2,10 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class HellishBladeModel extends AnimatedGeoModel<HellishBladeProjectile> {
+@SuppressWarnings("ALL")
+public class HellishBladeModel extends GeoModel<HellishBladeProjectile> {
     @Override
     public ResourceLocation getModelResource(HellishBladeProjectile object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/hellish_blade.geo.json");

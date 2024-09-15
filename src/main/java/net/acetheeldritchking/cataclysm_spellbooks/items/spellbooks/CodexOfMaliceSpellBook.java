@@ -15,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class CodexOfMaliceSpellBook extends SimpleAttributeSpellBook implements GeoItem {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -49,5 +50,17 @@ public class CodexOfMaliceSpellBook extends SimpleAttributeSpellBook implements 
                 return this.renderer;
             }
         });
+    }
+
+    // TODO: Review
+
+    @Override
+    public void createRenderer(Consumer<Object> consumer) {
+
+    }
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return null;
     }
 }

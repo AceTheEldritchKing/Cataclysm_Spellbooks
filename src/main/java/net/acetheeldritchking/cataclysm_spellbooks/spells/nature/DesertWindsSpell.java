@@ -69,7 +69,7 @@ public class DesertWindsSpell extends AbstractSpell {
 
     private void summonSandstormProjectile(int spellLevel, LivingEntity caster)
     {
-        Level level = caster.level;
+        Level level = caster.level();
 
         double casterX = caster.getX();
         double casterEyeHeight = CSUtils.getEyeHeight(caster);

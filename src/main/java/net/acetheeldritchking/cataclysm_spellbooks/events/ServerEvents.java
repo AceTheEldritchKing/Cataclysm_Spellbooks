@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModSounds;
+import com.github.L_Ender.cataclysm.init.ModTag;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
@@ -33,6 +34,10 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -115,7 +120,7 @@ public class ServerEvents {
                         //System.out.println("Damage: " + totalDamage);
                     });
 
-                    player.level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
@@ -125,7 +130,7 @@ public class ServerEvents {
     public static void onLivingTickEvent(LivingEvent.LivingTickEvent event)
     {
         Entity entity = event.getEntity();
-        Level level = entity.level;
+        Level level = entity.level();
         if (!level.isClientSide)
         {
             if (entity instanceof LivingEntity livingEntity)
@@ -153,7 +158,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public static void handleResistanceAttributeSpawn(LivingSpawnEvent.SpecialSpawn event)
+    public static void handleResistanceAttributeSpawn(MobSpawnEvent.FinalizeSpawn event)
     {
         var mob = event.getEntity();
 
@@ -293,10 +298,10 @@ public class ServerEvents {
             // Cursed Frenzy
             if (effect instanceof CursedFrenzyEffect)
             {
-                if (!entity.level.isClientSide())
+                if (!entity.level().isClientSide())
                 {
                     //System.out.println("Potion Effect!");
-                    CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level, 5, 1);
+                    CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level(), 5, 1);
                 }
             }
         }
@@ -318,55 +323,56 @@ public class ServerEvents {
         }
     }
 
-    @SubscribeEvent
-    public void onLivingDeathEvent(LivingDeathEvent event)
-    {
-        DamageSource damageSource = event.getSource();
-        Entity entity = event.getEntity();
-
-        // Cursium Chestplate
-        if (entity instanceof LivingEntity livingEntity)
-        {
-            if (!livingEntity.level.isClientSide())
-            {
-                if (!damageSource.isBypassInvul())
-                {
-                    if (CSUtils.tryCurisumChestplateRebirth(livingEntity))
-                    {
-                        event.setCanceled(true);
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onLivingAttackEvent(LivingAttackEvent event)
-    {
-        Entity entity = event.getEntity();
-
-        // Cursium Legs
-        if (entity instanceof LivingEntity livingEntity)
-        {
-            if (!livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&
-                    livingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemRegistries.CURSIUM_MAGE_LEGGINGS.get())
-            {
-                if (event.getSource().isBypassInvul())
-                {
-                    if (livingEntity.getRandom().nextFloat() < 0.15F)
-                    {
-                        event.setCanceled(true);
-                    }
-                } else if (!event.getSource().isBypassInvul())
-                {
-                    if (livingEntity.getRandom().nextFloat() < 0.08F)
-                    {
-                        event.setCanceled(true);
-                    }
-                }
-            }
-        }
-    }
+    // TODO: Restore these
+//    @SubscribeEvent
+//    public void onLivingDeathEvent(LivingDeathEvent event)
+//    {
+//        DamageSource damageSource = event.getSource();
+//        Entity entity = event.getEntity();
+//
+//        // Cursium Chestplate
+//        if (entity instanceof LivingEntity livingEntity)
+//        {
+//            if (!livingEntity.level().isClientSide())
+//            {
+//                if (!damageSource.isBypassInvul())
+//                {
+//                    if (CSUtils.tryCurisumChestplateRebirth(livingEntity))
+//                    {
+//                        event.setCanceled(true);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    @SubscribeEvent
+//    public void onLivingAttackEvent(LivingAttackEvent event)
+//    {
+//        Entity entity = event.getEntity();
+//
+//        // Cursium Legs
+//        if (entity instanceof LivingEntity livingEntity)
+//        {
+//            if (!livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&
+//                    livingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemRegistries.CURSIUM_MAGE_LEGGINGS.get())
+//            {
+//                if (event.getSource().isBypassInvul())
+//                {
+//                    if (livingEntity.getRandom().nextFloat() < 0.15F)
+//                    {
+//                        event.setCanceled(true);
+//                    }
+//                } else if (!event.getSource().isBypassInvul())
+//                {
+//                    if (livingEntity.getRandom().nextFloat() < 0.08F)
+//                    {
+//                        event.setCanceled(true);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     // Capabilities
     @SubscribeEvent

@@ -71,7 +71,7 @@ public class CSUtils {
 
     public static void spawnHalberds(double x, double z, double minY, double maxY, float rotation, int delay, float damage, LivingEntity caster, Level level, int spellLevel)
     {
-        BlockPos pos = new BlockPos(x, maxY, z);
+        BlockPos pos = new BlockPos((int) x, (int) maxY, (int) z);
         boolean flag = false;
         double d0 = 0.0D;
 
@@ -132,7 +132,7 @@ public class CSUtils {
             double z = livingEntity.getZ();
             float size = 3.0F;
 
-            for (ServerPlayer serverPlayer : ((ServerLevel) livingEntity.level).players())
+            for (ServerPlayer serverPlayer : ((ServerLevel) livingEntity.level()).players())
             {
                 if (serverPlayer.distanceToSqr(Vec3.atCenterOf(livingEntity.blockPosition())) < 1024)
                 {

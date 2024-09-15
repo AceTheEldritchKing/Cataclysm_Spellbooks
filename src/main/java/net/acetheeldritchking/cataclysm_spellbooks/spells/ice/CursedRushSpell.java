@@ -107,7 +107,7 @@ public class CursedRushSpell extends AbstractMaledictusSpell {
 
         Vec3 vec3 = forwards.multiply(3, 1, 3).normalize().add(0, 0.25, 0).scale(multiplier);
 
-        if (entity.isOnGround())
+        if (entity.onGround())
         {
             entity.setPos(entity.position().add(0, 1.5, 0));
             vec3.add(0, 0.25, 0);

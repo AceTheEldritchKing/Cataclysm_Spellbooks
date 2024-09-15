@@ -16,6 +16,8 @@ import net.minecraft.world.item.ArmorItem;
 
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class CSArmorItem extends ArmorItem implements GeoItem {
     private static final UUID[] ARMOR_ATTRIBUTE_UUID_PER_SLOT = new UUID[]
@@ -31,13 +33,13 @@ public class CSArmorItem extends ArmorItem implements GeoItem {
         return cache;
     }
 
-    public CSArmorItem(CSArmorMaterials materialIn, EquipmentSlot slot, Properties settings) {
+    public CSArmorItem(CSArmorMaterials materialIn, Type slot, Properties settings) {
         super(materialIn, slot, settings);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        float defense = materialIn.getDefenseForSlot(slot);
+        float defense = materialIn.getDefenseForType(slot);
         float toughness = materialIn.getToughness();
         float knockbackResistance = materialIn.getKnockbackResistance();
-        UUID uuid = ARMOR_ATTRIBUTE_UUID_PER_SLOT[slot.getIndex()];
+        UUID uuid = ARMOR_ATTRIBUTE_UUID_PER_SLOT[slot.getSlot().getIndex()];
         builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier",
                 defense, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
@@ -58,7 +60,7 @@ public class CSArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        if (pEquipmentSlot == this.slot)
+        if (pEquipmentSlot == this.getEquipmentSlot())
         {
             return ARMOR_ATTRIBUTES;
         }
@@ -76,5 +78,15 @@ public class CSArmorItem extends ArmorItem implements GeoItem {
         {
             return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
         }));
+    }
+
+    // TODO: Review
+
+    @Override
+    public void createRenderer(Consumer<Object> consumer) {}
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return null;
     }
 }

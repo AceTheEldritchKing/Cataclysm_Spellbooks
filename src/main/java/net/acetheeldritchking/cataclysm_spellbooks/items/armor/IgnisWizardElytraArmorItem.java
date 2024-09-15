@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -29,7 +30,7 @@ import java.util.function.Consumer;
 public class IgnisWizardElytraArmorItem extends ImbuableCataclysmArmor {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    public IgnisWizardElytraArmorItem(EquipmentSlot slot, Properties settings) {
+    public IgnisWizardElytraArmorItem(ArmorItem.Type slot, Properties settings) {
         super(CSArmorMaterials.IGNITIUM_WIZARD_ARMOR, slot, settings);
     }
 
@@ -65,15 +66,15 @@ public class IgnisWizardElytraArmorItem extends ImbuableCataclysmArmor {
     // Using the same stuff as Cataclysm for tooltips
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
-        if (this.slot == EquipmentSlot.HEAD) {
+        if (this.getEquipmentSlot() == EquipmentSlot.HEAD) {
             pTooltipComponents.add(Component.translatable("item.cataclysm.ignitium_helmet.desc").withStyle(ChatFormatting.DARK_GREEN));
         }
 
-        if (this.slot == EquipmentSlot.LEGS) {
+        if (this.getEquipmentSlot() == EquipmentSlot.LEGS) {
             pTooltipComponents.add(Component.translatable("item.cataclysm.ignitium_leggings.desc").withStyle(ChatFormatting.DARK_GREEN));
         }
 
-        if (this.slot == EquipmentSlot.FEET) {
+        if (this.getEquipmentSlot() == EquipmentSlot.FEET) {
             pTooltipComponents.add(Component.translatable("item.cataclysm.ignitium_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
         }
     }
@@ -102,13 +103,13 @@ public class IgnisWizardElytraArmorItem extends ImbuableCataclysmArmor {
         Player player = Minecraft.getInstance().player;
 
         // Flight
-        if (player != null && (player.getAbilities().flying || player.isFallFlying() && !player.isOnGround()))
+        if (player != null && (player.getAbilities().flying || player.isFallFlying() && !player.onGround()))
         {
             //System.out.println("Flight");
             animationState.getController().setAnimation(RawAnimation.begin().then("flying", Animation.LoopType.LOOP));
         }
         // Idle
-        else if (player != null && !(player.getAbilities().flying || player.isFallFlying() && player.isOnGround()))
+        else if (player != null && !(player.getAbilities().flying || player.isFallFlying() && player.onGround()))
         {
             //System.out.println("Idle");
             animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
