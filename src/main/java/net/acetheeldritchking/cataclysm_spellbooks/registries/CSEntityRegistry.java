@@ -33,6 +33,8 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "infernal_blade").toString()
                     ));
 
+    // Summoned Ignited Berserker
+
     public static void register(IEventBus eventBus)
     {
         ENTITIES.register(eventBus);

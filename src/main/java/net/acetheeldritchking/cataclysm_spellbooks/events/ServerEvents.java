@@ -1,25 +1,27 @@
 package net.acetheeldritchking.cataclysm_spellbooks.events;
 
+import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignited_Revenant_Entity;
+import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Ignited_Berserker_Entity;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModTag;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -183,9 +185,21 @@ public class ServerEvents {
         if (event.getNewTarget() != null)
         {
             LivingEntity livingEntity = event.getEntity();
+
+            // Ignis Wizard Leggings
             if (livingEntity instanceof Mob mob)
             {
                 if (mob.getType().is(ModTag.LAVA_MONSTER) && livingEntity.getLastHurtByMob() != event.getNewTarget() && event.getNewTarget().getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistries.IGNITIUM_WIZARD_HELMET.get()))
+                {
+                    event.setCanceled(true);
+                }
+            }
+
+            // Ignited Reinforcement Spell
+            if (livingEntity instanceof Ignited_Revenant_Entity ignitedRevenant ||
+                    livingEntity instanceof Ignited_Berserker_Entity ignitedBerserker)
+            {
+                if (event.getNewTarget().hasEffect(CSPotionEffectRegistry.IGNITED_TIMER.get()))
                 {
                     event.setCanceled(true);
                 }

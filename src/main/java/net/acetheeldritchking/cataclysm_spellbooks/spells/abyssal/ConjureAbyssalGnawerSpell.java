@@ -3,7 +3,6 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
-import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAbyssalGnawer;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -98,7 +97,6 @@ public class ConjureAbyssalGnawerSpell extends AbstractAbyssalSpell {
             Vec3 vec = entity.getEyePosition();
 
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
-            //double randomNearbyY = vec.y + entity.getRandom().nextGaussian() * 2;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
             spawnGnawersNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);

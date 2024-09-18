@@ -11,6 +11,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -43,6 +44,32 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     {
         this(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), level);
         setOwner(shooter);
+    }
+
+    @Override
+    public void travel() {
+        this.setPos(this.position().add(this.getDeltaMovement()));
+        if (!this.isNoGravity())
+        {
+            Vec3 vec3 = this.getDeltaMovement();
+            this.setDeltaMovement(vec3.x, vec3.y - 0.05000000074505806, vec3.z);
+        }
+    }
+
+    @Override
+    public void tick() {
+        Vec3 deltaMovement = getDeltaMovement();
+        double distance = deltaMovement.horizontalDistance();
+
+        double x = deltaMovement.x;
+        double y = deltaMovement.y;
+        double z = deltaMovement.z;
+
+        setYRot((float) (Mth.atan2(x, z) * (180 / Math.PI)));
+        setXRot((float) (Mth.atan2(y, distance) * (180 / Math.PI)));
+        setXRot(lerpRotation(xRotO, getXRot()));
+        setYRot(lerpRotation(yRotO, getYRot()));
+        super.tick();
     }
 
     @Override

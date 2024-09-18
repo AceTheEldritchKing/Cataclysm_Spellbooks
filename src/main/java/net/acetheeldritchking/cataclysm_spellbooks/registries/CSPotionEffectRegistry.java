@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 import io.redspace.ironsspellbooks.effect.SummonTimer;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
+import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.IgnitedAllyPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.IncapacitatedPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.VoidRunePotionEffect;
 import net.minecraft.world.effect.MobEffect;
@@ -27,6 +28,9 @@ public class CSPotionEffectRegistry {
 
     public static final RegistryObject<SummonTimer> ABYSSAL_GNAWER_TIMER =
             MOB_EFFECTS.register("abyssal_gnawer_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xbea925));
+
+    public static final RegistryObject<MobEffect> IGNITED_TIMER =
+            MOB_EFFECTS.register("ignited_timer", IgnitedAllyPotionEffect::new);
 
     public static void register(IEventBus eventBus)
     {

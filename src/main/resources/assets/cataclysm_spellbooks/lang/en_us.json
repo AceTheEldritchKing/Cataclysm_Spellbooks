@@ -83,6 +83,7 @@
     "ui.cataclysm_spellbooks.range": "%d blocks of range",
     "ui.cataclsym_spellboks.incinerator_damage": "Deals %d if Incinerator is held in the main hand",
     "ui.cataclsym_spellboks.incineration_duration": "Lasts for %d seconds",
+    "ui.cataclysm_spellbooks.ignited_count": "%d Summons",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.ConjureIgnitedReinforcement;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.IncinerationSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.InfernalStrikeSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -59,7 +60,7 @@ public class SpellRegistries {
 
 
     // EVOCATION //
-    // Summon Koboleton (Evocation)
+    // Summon Koboleton (Evocation) (NOT READY YET)
 
     // Disarm (Disarm the target's current weapon - Koboldiator attack)
 
@@ -72,6 +73,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> INFERNAL_STRIKE = registerSpell(new InfernalStrikeSpell());
 
     // Summon Ignited Revenant (Just as the name says) - Requires Burning Ashes
+    //public static final RegistryObject<AbstractSpell> CONJURE_IGNITED_REINFORCEMENT = registerSpell(new ConjureIgnitedReinforcement());
 
     // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement) - Requires Burning Ashes
 
@@ -88,6 +90,8 @@ public class SpellRegistries {
     // Conjure Thrall (Summons the ice undead warriors)
 
     // Arrow Spray (Release a barrage of icy arrows. Damage increases if the user is holding a bow/crossbow)
+
+    // Rush (Mini boss rush attack?)
 
 
     // NATURE //
