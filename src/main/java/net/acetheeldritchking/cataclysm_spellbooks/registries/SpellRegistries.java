@@ -72,10 +72,14 @@ public class SpellRegistries {
     // Infernal Strike (Summon mini Incinerator, inflicts blazing brand) - Requires Burning Ashes
     public static final RegistryObject<AbstractSpell> INFERNAL_STRIKE = registerSpell(new InfernalStrikeSpell());
 
-    // Summon Ignited Revenant (Just as the name says) - Requires Burning Ashes
+    // Summon Ignited Revenant (Just as the name says) - Requires Burning Ashes (I AM NOT READY AT ALL TO DO THIS SPELL)
     //public static final RegistryObject<AbstractSpell> CONJURE_IGNITED_REINFORCEMENT = registerSpell(new ConjureIgnitedReinforcement());
 
     // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement) - Requires Burning Ashes
+
+    // Blazing Bone Spray (Sprays out blazing bones in all directions like the Revernant)
+
+    // Blazing Bone Spit (Shoots out a single blazing bone)
 
 
     // LIGHTNING //
