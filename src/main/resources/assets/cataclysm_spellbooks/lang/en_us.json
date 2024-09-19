@@ -75,6 +75,15 @@
     "spell.cataclysm_spellbooks.incineration": "Incineration",
     "spell.cataclysm_spellbooks.incineration.guide": "Summon flame strikes in a straight line in front of the caster",
 
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement": "Ignited Reinforcements",
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement.guide": "Conjure Ignited Revenants and Berserkers to your aid",
+
+    "spell.cataclysm_spellbooks.ashen_breath": "Ashen Breath",
+    "spell.cataclysm_spellbooks.ashen_breath.guide": "Spew ashen breath on your opponents",
+
+    "spell.cataclysm_spellbooks.bone_storm": "Bone Storm",
+    "spell.cataclysm_spellbooks.bone_storm.guide": "Launch a swirling bone storm from yourself",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

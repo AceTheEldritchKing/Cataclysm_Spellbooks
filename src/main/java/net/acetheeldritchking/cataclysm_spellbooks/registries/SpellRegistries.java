@@ -5,9 +5,7 @@ import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.ConjureIgnitedReinforcement;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.IncinerationSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.InfernalStrikeSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -77,9 +75,13 @@ public class SpellRegistries {
 
     // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement) - Requires Burning Ashes
 
-    // Blazing Bone Spray (Sprays out blazing bones in all directions like the Revernant)
+    // Bone Storm (Sprays out blazing bones in all directions like the Revernant)
+    public static final RegistryObject<AbstractSpell> BONE_STORM = registerSpell(new BoneStormSpell());
 
     // Blazing Bone Spit (Shoots out a single blazing bone)
+
+    // Ashen Breath (Spews out ash breath in front of the caster)
+    public static final RegistryObject<AbstractSpell> ASHEN_BREATH = registerSpell(new AshenBreathSpell());
 
 
     // LIGHTNING //
