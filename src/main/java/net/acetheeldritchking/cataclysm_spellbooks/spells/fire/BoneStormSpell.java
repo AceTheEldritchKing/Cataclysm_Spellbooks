@@ -23,7 +23,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
             .setMaxLevel(8)
-            .setCooldownSeconds(15)
+            .setCooldownSeconds(10)
             .build();
 
     public BoneStormSpell()

@@ -1,26 +1,12 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "jsj",
-        " v ",
-        " g "
-    ],
-    "key": {
-        "j": {
-            "item": "cataclysm:void_jaw"
-        },
-        "s": {
-            "item": "cataclysm:void_shard"
-        },
-        "v": {
-            "item": "cataclysm:void_stone"
-        },
-        "g": {
-            "item": "minecraft:gold_ingot"
-        }
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "irons_spellbooks:artificer_cane"
+    },
+    "addition": {
+        "item": "cataclysm:void_core"
     },
     "result": {
-        "item": "cataclysm_spellbooks:void_staff",
-        "count": 1
+        "item": "cataclysm_spellbooks:void_staff"
     }
 }
