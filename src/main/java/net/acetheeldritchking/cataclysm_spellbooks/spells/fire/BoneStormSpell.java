@@ -8,16 +8,32 @@ import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 @AutoSpellConfig
 public class BoneStormSpell extends AbstractIgnisSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "bone_storm");
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.cataclysm_spellbooks.bone_speed_1",
+                        Utils.stringTruncation(getBoneSpeed(0.2f, spellLevel), 2)),
+                Component.translatable("ui.cataclysm_spellbooks.bone_speed_2",
+                        Utils.stringTruncation(getBoneSpeed(0.3f, spellLevel), 2)),
+                Component.translatable("ui.cataclysm_spellbooks.bone_speed_3",
+                        Utils.stringTruncation(getBoneSpeed(0.1f, spellLevel), 2)));
+    }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
@@ -31,8 +47,8 @@ public class BoneStormSpell extends AbstractIgnisSpell {
         this.manaCostPerLevel = 5;
         this.baseSpellPower = 0;
         this.spellPowerPerLevel = 1;
-        this.castTime = 20;
-        this.baseManaCost = 50;
+        this.castTime = 100;
+        this.baseManaCost = 10;
     }
 
     @Override
@@ -47,7 +63,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
 
     @Override
     public CastType getCastType() {
-        return CastType.LONG;
+        return CastType.CONTINUOUS;
     }
 
     @Override
@@ -63,7 +79,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
     {
         caster.playSound(SoundEvents.TRIDENT_THROW, 1.0F, 0.75F);
 
-        for (int i = 0; i < spellLevel + 3; ++i)
+        for (int i = 0; i < 8; ++i)
         {
             float throwAngle = (float) (i * Math.PI/4.0F);
 
@@ -72,13 +88,15 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             double casterZ = caster.getZ() + Mth.sin(throwAngle);
 
             double angleX = Mth.cos(throwAngle);
-            double angleY = 0.0D;
+            double angleY = 0.2D;
             double angleZ = Mth.sin(throwAngle);
 
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 45.0F, caster.getXRot());
-            float speed = 0.5F;
-            blazingBone.shoot(angleX, angleY, angleZ, speed, 1.0F);
+            float speed = 0.1F;
+            float speedSpellLevel = getBoneSpeed(speed, spellLevel);
+            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
+            blazingBone.setNoGravity(true);
 
             level.addFreshEntity(blazingBone);
         }
@@ -88,7 +106,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
     {
         caster.playSound(SoundEvents.TRIDENT_THROW, 1.0F, 0.75F);
 
-        for (int i = 0; i < spellLevel + 2; ++i)
+        for (int i = 0; i < 6; ++i)
         {
             float throwAngle = (float) (i * Math.PI/3.0F);
 
@@ -97,13 +115,15 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             double casterZ = caster.getZ() + Mth.sin(throwAngle);
 
             double angleX = Mth.cos(throwAngle);
-            double angleY = 0.0D;
+            double angleY = 0.1D;
             double angleZ = Mth.sin(throwAngle);
 
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 60.0F, caster.getXRot());
-            float speed = 0.6F;
-            blazingBone.shoot(angleX, angleY, angleZ, speed, 1.0F);
+            float speed = 0.3F;
+            float speedSpellLevel = getBoneSpeed(speed, spellLevel);
+            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
+            blazingBone.setNoGravity(true);
 
             level.addFreshEntity(blazingBone);
         }
@@ -113,7 +133,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
     {
         caster.playSound(SoundEvents.TRIDENT_THROW, 1.0F, 0.75F);
 
-        for (int i = 0; i < spellLevel + 5; ++i)
+        for (int i = 0; i < 10; ++i)
         {
             float throwAngle = (float) (i * Math.PI/5.0F);
 
@@ -122,15 +142,22 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             double casterZ = caster.getZ() + Mth.sin(throwAngle);
 
             double angleX = Mth.cos(throwAngle);
-            double angleY = 0.0D;
+            double angleY = 0.1D;
             double angleZ = Mth.sin(throwAngle);
 
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 36.0F, caster.getXRot());
-            float speed = 0.4F;
-            blazingBone.shoot(angleX, angleY, angleZ, speed, 1.0F);
+            float speed = 0.1F;
+            float speedSpellLevel = getBoneSpeed(speed, spellLevel);
+            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
+            blazingBone.setNoGravity(true);
 
             level.addFreshEntity(blazingBone);
         }
+    }
+
+    private float getBoneSpeed(float speed, int spellLevel)
+    {
+        return speed * spellLevel;
     }
 }

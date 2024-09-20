@@ -79,6 +79,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> BONE_STORM = registerSpell(new BoneStormSpell());
 
     // Blazing Bone Spit (Shoots out a single blazing bone)
+    public static final RegistryObject<AbstractSpell> BONE_PIERCE = registerSpell(new BonePierceSpell());
 
     // Ashen Breath (Spews out ash breath in front of the caster)
     public static final RegistryObject<AbstractSpell> ASHEN_BREATH = registerSpell(new AshenBreathSpell());

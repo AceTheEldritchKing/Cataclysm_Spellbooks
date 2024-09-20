@@ -84,6 +84,9 @@
     "spell.cataclysm_spellbooks.bone_storm": "Bone Storm",
     "spell.cataclysm_spellbooks.bone_storm.guide": "Launch a swirling bone storm from yourself",
 
+    "spell.cataclysm_spellbooks.piercing_bone": "Piercing Bone",
+    "spell.cataclysm_spellbooks.piercing_bone.guide": "Launch a blazing bone and afterwards a short burst of bones",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -93,6 +96,10 @@
     "ui.cataclsym_spellboks.incinerator_damage": "Deals %d if Incinerator is held in the main hand",
     "ui.cataclsym_spellboks.incineration_duration": "Lasts for %d seconds",
     "ui.cataclysm_spellbooks.ignited_count": "%d Summons",
+    "ui.cataclysm_spellbooks.bone_speed_1": "%d Projectile speed",
+    "ui.cataclysm_spellbooks.bone_speed_2": "%d Projectile speed",
+    "ui.cataclysm_spellbooks.bone_speed_3": "%d Projectile speed",
+    "ui.cataclysm_spellbooks.blazing_bone_speed": "%d Projectile speed",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
