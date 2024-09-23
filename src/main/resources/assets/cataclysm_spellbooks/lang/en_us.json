@@ -82,10 +82,13 @@
     "spell.cataclysm_spellbooks.ashen_breath.guide": "Spew ashen breath on your opponents",
 
     "spell.cataclysm_spellbooks.bone_storm": "Bone Storm",
-    "spell.cataclysm_spellbooks.bone_storm.guide": "Launch a swirling bone storm from yourself",
+    "spell.cataclysm_spellbooks.bone_storm.guide": "Launch a swirling bone storm from yourself. The higher the speed, the farther the spread",
 
     "spell.cataclysm_spellbooks.piercing_bone": "Piercing Bone",
-    "spell.cataclysm_spellbooks.piercing_bone.guide": "Launch a blazing bone and afterwards a short burst of bones",
+    "spell.cataclysm_spellbooks.piercing_bone.guide": "Launch a blazing bone at your opponent, and afterwards a small burts of 3 bones spread from you",
+
+    "spell.cataclysm_spellbooks.hellish_blade": "Hellish Blade",
+    "spell.cataclysm_spellbooks.hellish_blade.guide": "Summon a replicate of the Incinerator above your opponent, striking them and applying stun and Blazing Brand on hit",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
@@ -103,6 +106,8 @@
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
+    "entity.cataclysm_spellbooks.infernal_blade": "Infernal Blade",
+    "entity.cataclysm_spellbooks.hellish_blade": "Hellish Blade",
 
 
     "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$s was lacerated by %2$s's gnawers"

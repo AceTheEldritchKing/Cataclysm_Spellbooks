@@ -74,6 +74,7 @@ public class SpellRegistries {
     //public static final RegistryObject<AbstractSpell> CONJURE_IGNITED_REINFORCEMENT = registerSpell(new ConjureIgnitedReinforcement());
 
     // Hellish Blade (Summon a large Incinerator from the ground to strike and lock in a target for a short amount of time, preventing movement) - Requires Burning Ashes
+    public static final RegistryObject<AbstractSpell> HELLISH_BLADE = registerSpell(new HellishBladeSpell());
 
     // Bone Storm (Sprays out blazing bones in all directions like the Revernant)
     public static final RegistryObject<AbstractSpell> BONE_STORM = registerSpell(new BoneStormSpell());

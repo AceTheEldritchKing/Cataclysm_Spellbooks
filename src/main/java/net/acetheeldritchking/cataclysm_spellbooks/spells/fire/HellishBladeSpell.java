@@ -9,51 +9,51 @@ import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import io.redspace.ironsspellbooks.damage.ISpellDamageSource;
-import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 
 @AutoSpellConfig
-public class InfernalStrikeSpell extends AbstractIgnisSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "infernal_strike");
+public class HellishBladeSpell extends AbstractIgnisSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "hellish_blade");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.irons_spellbooks.damage",
-                Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
+                        Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
                 Component.translatable("ui.cataclsym_spellboks.incinerator_damage",
                         Utils.stringTruncation(getBonusDamage(spellLevel, caster), 2)));
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.RARE)
+            .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
-            .setMaxLevel(8)
-            .setCooldownSeconds(1)
+            .setMaxLevel(5)
+            .setCooldownSeconds(35)
             .build();
 
-    public InfernalStrikeSpell()
+    public HellishBladeSpell()
     {
-        this.manaCostPerLevel = 5;
-        this.baseSpellPower = 5;
+        this.manaCostPerLevel = 10;
+        this.baseSpellPower = 15;
         this.spellPowerPerLevel = 2;
-        this.castTime = 0;
-        this.baseManaCost = 30;
+        this.castTime = 10;
+        this.baseManaCost = 50;
     }
 
     @Override
@@ -68,34 +68,49 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
 
     @Override
     public CastType getCastType() {
-        return CastType.INSTANT;
+        return CastType.LONG;
     }
 
     @Override
-    public Optional<SoundEvent> getCastFinishSound() {
-        return Optional.of(SoundRegistry.FLAMING_STRIKE_SWING.get());
+    public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
+        return Utils.preCastTargetHelper(level, entity, playerMagicData, this, 32, .15f);
     }
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        InfernalBladeProjectile infernalBlade = new InfernalBladeProjectile(level, entity);
-        infernalBlade.setPos(entity.position().add(0, entity.getEyeHeight() - infernalBlade.getBoundingBox().getYsize() * .5f, 0));
-        infernalBlade.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 1, 1);
-        // Damage if Incinerator is in main hand
-        Item incinerator = ModItems.THE_INCINERATOR.get();
+        if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetEntityCastData)
+        {
+            var targetEntity = targetEntityCastData.getTarget((ServerLevel) level);
+            if (targetEntity != null)
+            {
+                double targetEye = targetEntity.getEyeHeight();
 
-        float damage = getDamage(spellLevel, entity);
-        float bonusDamage = getBonusDamage(spellLevel, entity);
-        if (entity.getMainHandItem().is(incinerator))
-        {
-            infernalBlade.setDamage(bonusDamage);
+                float damage = getDamage(spellLevel, entity);
+                float bonusDamage = getBonusDamage(spellLevel, entity);
+
+                // Damage if Incinerator is in main hand
+                Item incinerator = ModItems.THE_INCINERATOR.get();
+
+                Vec3 center = targetEntity.position().add(0, targetEye / 2, 0);
+                Vec3 spawn = center.add(0, 8, 0);
+                Vec3 motion = center.subtract(spawn).normalize();
+
+                HellishBladeProjectile hellishBlade = new HellishBladeProjectile(level, entity);
+
+                hellishBlade.moveTo(spawn);
+                hellishBlade.shoot(motion);
+                if (entity.getMainHandItem().is(incinerator))
+                {
+                    hellishBlade.setDamage(bonusDamage);
+                }
+                else
+                {
+                    hellishBlade.setDamage(damage);
+                }
+
+                level.addFreshEntity(hellishBlade);
+            }
         }
-        else
-        {
-            infernalBlade.setDamage(damage);
-        }
-        level.addFreshEntity(infernalBlade);
-        //System.out.println("Damage: " + infernalBlade.getDamage());
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
@@ -107,13 +122,13 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 0.4f;
+        return getSpellPower(spellLevel, caster) * 0.65f;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)
     {
         float baseDamage = getDamage(spellLevel, caster);
-        int bonusAmount = (int) (1.5 + spellLevel);
+        int bonusAmount = (int) (2.5 + spellLevel);
 
         return baseDamage + bonusAmount;
     }

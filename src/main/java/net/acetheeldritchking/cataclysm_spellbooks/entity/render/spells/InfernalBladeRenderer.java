@@ -34,7 +34,7 @@ public class InfernalBladeRenderer extends GeoProjectilesRenderer<InfernalBladeP
         this.dispatchedMat = poseStack.last().pose().copy();
         setCurrentModelRenderCycle(EModelRenderCycle.INITIAL);
         AnimationEvent<InfernalBladeProjectile> predicate = new AnimationEvent<>(projectile, 0, 0, partialTick, false, Collections.singletonList(new EntityModelData()));
-        modelProvider.setLivingAnimations(projectile, getInstanceId(projectile), predicate); // TODO change to setCustomAnimations in 1.20+
+        modelProvider.setCustomAnimations(projectile, getInstanceId(projectile), predicate);
         RenderSystem.setShaderTexture(0, getTextureLocation(projectile));
         Color renderColor = getRenderColor(projectile, partialTick, poseStack, bufferSource, null, packedLight);
         RenderType renderType = getRenderType(projectile, partialTick, poseStack, bufferSource, null, packedLight, getTextureLocation(projectile));

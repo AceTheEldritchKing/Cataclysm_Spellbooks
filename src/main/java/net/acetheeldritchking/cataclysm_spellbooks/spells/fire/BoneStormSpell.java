@@ -38,7 +38,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
-            .setMaxLevel(8)
+            .setMaxLevel(5)
             .setCooldownSeconds(10)
             .build();
 
@@ -93,10 +93,10 @@ public class BoneStormSpell extends AbstractIgnisSpell {
 
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 45.0F, caster.getXRot());
-            float speed = 0.1F;
+            float speed = 0.3F;
             float speedSpellLevel = getBoneSpeed(speed, spellLevel);
-            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
             blazingBone.setNoGravity(true);
+            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
 
             level.addFreshEntity(blazingBone);
         }
@@ -120,10 +120,10 @@ public class BoneStormSpell extends AbstractIgnisSpell {
 
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 60.0F, caster.getXRot());
-            float speed = 0.3F;
+            float speed = 0.4F;
             float speedSpellLevel = getBoneSpeed(speed, spellLevel);
-            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
             blazingBone.setNoGravity(true);
+            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
 
             level.addFreshEntity(blazingBone);
         }
@@ -147,10 +147,10 @@ public class BoneStormSpell extends AbstractIgnisSpell {
 
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 36.0F, caster.getXRot());
-            float speed = 0.1F;
+            float speed = 0.2F;
             float speedSpellLevel = getBoneSpeed(speed, spellLevel);
-            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
             blazingBone.setNoGravity(true);
+            blazingBone.shoot(angleX, angleY, angleZ, speedSpellLevel, 1.0F);
 
             level.addFreshEntity(blazingBone);
         }

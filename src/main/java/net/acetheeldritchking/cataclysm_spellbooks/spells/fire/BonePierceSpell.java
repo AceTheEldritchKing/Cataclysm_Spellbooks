@@ -36,7 +36,7 @@ public class BonePierceSpell extends AbstractIgnisSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
-            .setMaxLevel(10)
+            .setMaxLevel(8)
             .setCooldownSeconds(20)
             .build();
 
@@ -89,6 +89,7 @@ public class BonePierceSpell extends AbstractIgnisSpell {
         {
             var level = serverPlayer.level;
 
+            // Bone spread!
             spreadBoneShoot(serverPlayer, level);
         }
 
@@ -107,8 +108,8 @@ public class BonePierceSpell extends AbstractIgnisSpell {
         blazingBone.moveTo(casterX, casterY, casterZ, 0, caster.getXRot());
         float speed = 0.05F;
         float speedSpellPower = getBoneSpeed(speed, getSpellPower(spellLevel, caster));
-        blazingBone.shootFromRotation(caster, caster.getXRot(), caster.getYHeadRot(), 0, speedSpellPower, 1.0F);
         blazingBone.setNoGravity(true);
+        blazingBone.shootFromRotation(caster, caster.getXRot(), caster.getYHeadRot(), 0, speedSpellPower, 1.0F);
 
         level.addFreshEntity(blazingBone);
     }
@@ -132,8 +133,8 @@ public class BonePierceSpell extends AbstractIgnisSpell {
             Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 45.0F, caster.getXRot());
             float speed = 0.5F;
-            blazingBone.shoot(angleX, angleY, angleZ, speed, 1.0F);
             blazingBone.setNoGravity(true);
+            blazingBone.shoot(angleX, angleY, angleZ, speed, 1.0F);
 
             level.addFreshEntity(blazingBone);
         }

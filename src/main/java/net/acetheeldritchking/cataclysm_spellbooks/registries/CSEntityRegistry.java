@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAbyssalGnawer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -33,7 +34,14 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "infernal_blade").toString()
                     ));
 
-    // Summoned Ignited Berserker
+    // Hellish Blade Projectile
+    public static final RegistryObject<EntityType<HellishBladeProjectile>> HELLISH_BLADE_PROJECTILE =
+            ENTITIES.register("hellish_blade", () -> EntityType.Builder.<HellishBladeProjectile>of(HellishBladeProjectile::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "hellish_blade").toString()
+                    ));
 
     public static void register(IEventBus eventBus)
     {
