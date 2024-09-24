@@ -5,16 +5,15 @@ import com.github.L_Ender.cataclysm.entity.projectile.Ignis_Fireball_Entity;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
-import io.redspace.ironsspellbooks.api.spells.CastSource;
-import io.redspace.ironsspellbooks.api.spells.CastType;
-import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
+import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +28,7 @@ public class AbyssFireballSpell extends AbstractIgnisSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.fireball_details"),
-                Component.translatable("ui.cataclsym_spellboks.recast_count",
+                Component.translatable("ui.cataclysm_spellbooks.recast_count",
                         Utils.stringTruncation(recastCount(spellLevel), 2)));
     }
 
@@ -94,6 +93,18 @@ public class AbyssFireballSpell extends AbstractIgnisSpell {
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    @Override
+    public void onRecastFinished(ServerPlayer serverPlayer, RecastInstance recastInstance, RecastResult recastResult, ICastDataSerializable castDataSerializable) {
+        if (recastResult == RecastResult.USED_ALL_RECASTS)
+        {
+            var level = serverPlayer.level;
+
+            shootAbyssFireball(serverPlayer, level);
+        }
+
+        super.onRecastFinished(serverPlayer, recastInstance, recastResult, castDataSerializable);
     }
 
     private void shootAbyssFireball(LivingEntity caster, Level level)

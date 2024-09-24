@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
+import com.google.common.collect.ImmutableMultimap;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
@@ -14,7 +15,9 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockMas
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.CSUpgradeTypes;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -36,8 +39,14 @@ public class ItemRegistries {
      */
     // Abyss Spellbook
     public static final RegistryObject<Item> ABYSS_SPELL_BOOK = ITEMS.register
-            ("abyss_spell_book", () -> new SimpleAttributeSpellBook
-                    (12, SpellRarity.LEGENDARY, CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), 0.30, 300));
+            ("abyss_spell_book", () ->
+            {
+                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+                builder.put(CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
+                new Item.Properties().fireResistant();
+                return new SimpleAttributeSpellBook(12, SpellRarity.LEGENDARY, builder.build());
+            });
 
     // Desert Spellbook - Dropped by ancient remnant
     public static final RegistryObject<Item> DESERT_SPELL_BOOK = ITEMS.register
@@ -46,8 +55,14 @@ public class ItemRegistries {
 
     // Ignis Spellbook
     public static final RegistryObject<Item> IGNIS_SPELL_BOOK = ITEMS.register
-            ("ignis_spell_book", () -> new SimpleAttributeSpellBook
-                    (12, SpellRarity.LEGENDARY, AttributeRegistry.FIRE_SPELL_POWER.get(), 0.30, 300));
+            ("ignis_spell_book", () ->
+            {
+                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+                builder.put(AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
+                new Item.Properties().fireResistant();
+                return new SimpleAttributeSpellBook(12, SpellRarity.LEGENDARY, builder.build());
+            });
 
     /***
      * Staffs
