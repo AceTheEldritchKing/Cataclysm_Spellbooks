@@ -92,7 +92,7 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
                 Item incinerator = ModItems.THE_INCINERATOR.get();
 
                 Vec3 center = targetEntity.position().add(0, targetEye / 2, 0);
-                Vec3 spawn = center.add(0, 8, 0);
+                Vec3 spawn = center.add(0, 10, 0);
                 Vec3 motion = center.subtract(spawn).normalize();
 
                 HellishBladeProjectile hellishBlade = new HellishBladeProjectile(level, entity);
