@@ -90,6 +90,9 @@
     "spell.cataclysm_spellbooks.hellish_blade": "Hellish Blade",
     "spell.cataclysm_spellbooks.hellish_blade.guide": "Summon a replicate of the Incinerator above your opponent, striking them and applying stun and Blazing Brand on hit",
 
+    "spell.cataclysm_spellbooks.abyss_fireball": "Unfolding Coruscation",
+    "spell.cataclysm_spellbooks.abyss_fireball.guide": "Summon a torrent of bouncing fireballs that change depending on your health, dealing Blazing Brand on hit",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -103,6 +106,8 @@
     "ui.cataclysm_spellbooks.bone_speed_2": "%d Projectile speed",
     "ui.cataclysm_spellbooks.bone_speed_3": "%d Projectile speed",
     "ui.cataclysm_spellbooks.blazing_bone_speed": "%d Projectile speed",
+    "ui.cataclysm_spellbooks.fireball_details": "Below half health turns the firball into soul fire, at below 30% health into an abyss fireball",
+    "ui.cataclysm_spellbooks.recast_count": "Can cast this spell %d times in succession before cooldown",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

@@ -54,7 +54,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
 
     @Override
     public float getSpeed() {
-        return 1.0f;
+        return 0.8f;
     }
 
     @Override

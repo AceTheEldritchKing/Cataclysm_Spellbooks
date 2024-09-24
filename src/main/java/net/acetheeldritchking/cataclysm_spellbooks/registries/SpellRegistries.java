@@ -44,7 +44,7 @@ public class SpellRegistries {
     // Tidal Claw (Summons Tidal Claw that grabs target) - Requires Tidal Claw
     public static final RegistryObject<AbstractSpell> TIDAL_GRAB = registerSpell(new TidalGrabSpell());
 
-    // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish
+    // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish)
     public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
 
 
@@ -84,6 +84,9 @@ public class SpellRegistries {
 
     // Ashen Breath (Spews out ash breath in front of the caster)
     public static final RegistryObject<AbstractSpell> ASHEN_BREATH = registerSpell(new AshenBreathSpell());
+
+    // Abyss Fireball (Gurl even I don't know wtf it does)
+    public static final RegistryObject<AbstractSpell> ABYSS_FIREBALL = registerSpell(new AbyssFireballSpell());
 
 
     // LIGHTNING //
