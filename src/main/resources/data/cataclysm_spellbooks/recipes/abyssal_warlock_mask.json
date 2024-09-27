@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "cataclysm_spellbooks:abyssal_warlock_helmet"
+    },
+    {
+      "item": "irons_spellbooks:magic_cloth"
+    }
+  ],
+  "result": {
+    "item": "cataclysm_spellbooks:abyssal_warlock_mask"
+  }
+}

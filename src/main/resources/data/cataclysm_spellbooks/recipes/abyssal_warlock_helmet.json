@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "crc"
+  ],
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "cataclysm_spellbooks:abyssal_rune"
+    }
+  },
+  "result": {
+    "item": "cataclysm_spellbooks:abyssal_warlock_helmet",
+    "count": 1
+  }
+}

@@ -5,10 +5,8 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
-import io.redspace.ironsspellbooks.api.spells.CastSource;
-import io.redspace.ironsspellbooks.api.spells.CastType;
-import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.core.BlockPos;
@@ -52,7 +50,7 @@ public class IncinerationSpell extends AbstractIgnisSpell {
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
         this.castTime = 60;
-        this.baseManaCost = 60;
+        this.baseManaCost = 100;
     }
 
     @Override
@@ -78,6 +76,11 @@ public class IncinerationSpell extends AbstractIgnisSpell {
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
         return Optional.of(ModSounds.FLAME_BURST.get());
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return SpellAnimations.CHARGE_SPIT_ANIMATION;
     }
 
     @Override
