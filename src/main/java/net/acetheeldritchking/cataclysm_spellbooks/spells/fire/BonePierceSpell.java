@@ -46,7 +46,7 @@ public class BonePierceSpell extends AbstractIgnisSpell {
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
         this.castTime = 0;
-        this.baseManaCost = 10;
+        this.baseManaCost = 50;
     }
 
     @Override

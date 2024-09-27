@@ -41,11 +41,11 @@ public class AbyssFireballSpell extends AbstractIgnisSpell {
 
     public AbyssFireballSpell()
     {
-        this.manaCostPerLevel = 5;
+        this.manaCostPerLevel = 10;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
         this.castTime = 0;
-        this.baseManaCost = 10;
+        this.baseManaCost = 100;
     }
 
     @Override

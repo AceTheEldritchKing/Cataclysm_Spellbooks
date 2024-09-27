@@ -56,8 +56,8 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 15;
         this.spellPowerPerLevel = 2;
-        this.castTime = 15;
-        this.baseManaCost = 50;
+        this.castTime = 20;
+        this.baseManaCost = 100;
     }
 
     @Override

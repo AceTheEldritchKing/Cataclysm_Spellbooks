@@ -7,6 +7,7 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.sounds.SoundEvent;
@@ -16,8 +17,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
@@ -83,9 +84,26 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult pResult) {
-        super.onHitBlock(pResult);
+    protected void onHit(HitResult hitresult) {
+        super.onHit(hitresult);
+        createAoEField(hitresult.getLocation());
+
         discard();
+    }
+
+    public void createAoEField(Vec3 location)
+    {
+        if (!level.isClientSide)
+        {
+            BlazingAoE aoE = new BlazingAoE(level);
+            aoE.setOwner(getOwner());
+            aoE.setDuration(100);
+            aoE.setDamage(0.5F);
+            aoE.setRadius(3.0F);
+            aoE.setCircular();
+            aoE.moveTo(location);
+            level.addFreshEntity(aoE);
+        }
     }
 
     @Override

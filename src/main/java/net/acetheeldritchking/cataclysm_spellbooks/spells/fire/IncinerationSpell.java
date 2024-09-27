@@ -52,7 +52,7 @@ public class IncinerationSpell extends AbstractIgnisSpell {
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
         this.castTime = 60;
-        this.baseManaCost = 50;
+        this.baseManaCost = 60;
     }
 
     @Override

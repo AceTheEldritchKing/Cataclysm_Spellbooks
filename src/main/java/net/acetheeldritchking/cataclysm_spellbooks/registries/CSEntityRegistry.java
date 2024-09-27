@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAbyssalGnawer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.minecraft.resources.ResourceLocation;
@@ -41,6 +42,15 @@ public class CSEntityRegistry {
                     .clientTrackingRange(64)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "hellish_blade").toString()
+                    ));
+
+    // Blazing AoE Entity
+    public static final RegistryObject<EntityType<BlazingAoE>> BLAZING_AOE_ENTITY =
+            ENTITIES.register("blazing_aoe", () -> EntityType.Builder.<BlazingAoE>of(BlazingAoE::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "blazing_aoe").toString()
                     ));
 
     public static void register(IEventBus eventBus)

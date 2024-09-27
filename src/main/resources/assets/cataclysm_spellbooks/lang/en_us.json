@@ -113,7 +113,18 @@
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
     "entity.cataclysm_spellbooks.infernal_blade": "Infernal Blade",
     "entity.cataclysm_spellbooks.hellish_blade": "Hellish Blade",
+    "entity.cataclysm_spellbooks.blazing_aoe": "Blazing AoE",
 
 
-    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$s was lacerated by %2$s's gnawers"
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$s was lacerated by %2$s's gnawers",
+    "death.attack.cataclysm_spellbooks.blazing_aoe": "%1$s was immolated in %2$s's blazing field",
+    "death.attack.cataclysm_spellbooks.hellish_blade": "%1$s was gored by %2$s's hellish blade",
+    "death.attack.cataclysm_spellbooks.infernal_strike": "%1$s was pierced by %2$s's infernal blade",
+
+    "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$s was lacerated by %2$s's gnawers using %3$s",
+    "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s was gored by %2$s's hellish blade using %3$s",
+    "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s was pierced by %2$s's infernal blade using %3$s"
 }

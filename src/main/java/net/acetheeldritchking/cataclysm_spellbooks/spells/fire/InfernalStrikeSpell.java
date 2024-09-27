@@ -49,11 +49,11 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
 
     public InfernalStrikeSpell()
     {
-        this.manaCostPerLevel = 5;
+        this.manaCostPerLevel = 2;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 2;
         this.castTime = 0;
-        this.baseManaCost = 30;
+        this.baseManaCost = 15;
     }
 
     @Override
