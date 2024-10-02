@@ -15,6 +15,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockMas
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.CSUpgradeTypes;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
+import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.BloomStoneStaff;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -67,12 +68,7 @@ public class ItemRegistries {
      */
     // Bloom Stone Staff
     public static final RegistryObject<Item> BLOOM_STONE_STAFF = ITEMS.register
-            ("bloom_stone_staff", () -> new StaffItem
-                    (ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 3, -3,
-                            Map.of(
-                                    AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .15, AttributeModifier.Operation.MULTIPLY_BASE),
-                                    AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE)
-                            )));
+            ("bloom_stone_staff", BloomStoneStaff::new);
 
     // Coral Staff
     public static final RegistryObject<Item> CORAL_STAFF = ITEMS.register

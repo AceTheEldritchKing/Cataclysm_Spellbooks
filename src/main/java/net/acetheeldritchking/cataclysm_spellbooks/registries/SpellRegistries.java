@@ -6,6 +6,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -113,6 +114,7 @@ public class SpellRegistries {
     // Grave Tremor (Strike the ground, causing a damaging quake around the user. Stronger than earthquake)
 
     // Amethyst Puncture (Shoots out an amethyst spike)
+    public static final RegistryObject<AbstractSpell> AMETHYST_PUNCTURE = registerSpell(new AmethystPunctureSpell());
 
 
     public static void register(IEventBus eventBus)

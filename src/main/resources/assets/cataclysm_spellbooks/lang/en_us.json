@@ -93,6 +93,9 @@
     "spell.cataclysm_spellbooks.abyss_fireball": "Unfolding Coruscation",
     "spell.cataclysm_spellbooks.abyss_fireball.guide": "Summon a torrent of bouncing fireballs that change depending on your health, dealing Blazing Brand on hit",
 
+    "spell.cataclysm_spellbooks.amethyst_puncture": "Amethyst Puncture",
+    "spell.cataclysm_spellbooks.amethyst_puncture.guide": "Launch an amethyst cluster at your opponent",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
