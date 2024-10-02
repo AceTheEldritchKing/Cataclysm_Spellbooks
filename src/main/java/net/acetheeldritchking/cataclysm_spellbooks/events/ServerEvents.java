@@ -6,12 +6,16 @@ import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModTag;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
+import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
+import io.redspace.ironsspellbooks.player.ClientMagicData;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
@@ -28,6 +32,8 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class ServerEvents {
@@ -214,6 +220,22 @@ public class ServerEvents {
         if (instance != null)
         {
             instance.setBaseValue(value);
+        }
+    }
+
+    // Modify Spell Event
+    @SubscribeEvent
+    public void onSpellModifyEvent(ModifySpellLevelEvent event)
+    {
+        if (event.getEntity().getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
+        {
+            AmethystPunctureSpell amethystPuncture = new AmethystPunctureSpell();
+            if (event.getSpell().equals(amethystPuncture))
+            {
+                event.addLevels(1);
+                System.out.println("Added spell level");
+                System.out.println("spell level: " + event.getLevel());
+            }
         }
     }
 }

@@ -57,18 +57,18 @@ public class AmethystPunctureSpell extends AbstractSpell {
         assert entity != null;
         if (entity.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.BLOOM_STONE_PAULDRONS.get()) && entity.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
-            System.out.println("Bonus for chest & staff");
+            //System.out.println("Bonus for chest & staff: " + 1 + spellLevel);
             return  1 + spellLevel;
         }
         else if (entity.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.BLOOM_STONE_PAULDRONS.get()) || entity.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
-            System.out.println("Bonus for chest or staff");
+            //System.out.println("Bonus for chest or staff: " + spellLevel);
             return spellLevel;
         }
         else
         {
-            System.out.println("No bonus");
-            return 1;
+            //System.out.println("No bonus: " + spellLevel);
+            return 2;
         }
     }
 
@@ -104,5 +104,15 @@ public class AmethystPunctureSpell extends AbstractSpell {
     private float getAmethystClusterSpeed(float speed, float spellPower)
     {
         return speed * spellPower;
+    }
+
+    public float getSpellPower()
+    {
+        return spellPowerPerLevel;
+    }
+
+    public float setDamage(float damage, float spellPower)
+    {
+        return damage * spellPower;
     }
 }
