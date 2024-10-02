@@ -2,12 +2,14 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignited_Revenant_Entity;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Ignited_Berserker_Entity;
+import com.github.L_Ender.cataclysm.entity.projectile.Amethyst_Cluster_Projectile_Entity;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModTag;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
@@ -93,6 +95,19 @@ public class ServerEvents {
                 {
                     attacker.setSecondsOnFire(5);
                 }
+            }
+        }
+
+        // Amethyst Puncture
+        Entity projectile = event.getSource().getEntity();
+        Entity target = event.getEntity();
+        if (projectile instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
+        {
+            if (amethystClusterProjectile.getId() == 1)
+            {
+                //event.setCanceled(true);
+                event.setAmount(1);
+                System.out.println("Do the damage I guess");
             }
         }
     }
@@ -229,12 +244,11 @@ public class ServerEvents {
     {
         if (event.getEntity().getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
-            AmethystPunctureSpell amethystPuncture = new AmethystPunctureSpell();
-            if (event.getSpell().equals(amethystPuncture))
+            if (event.getSpell().equals(SpellRegistries.AMETHYST_PUNCTURE.get()))
             {
                 event.addLevels(1);
-                System.out.println("Added spell level");
-                System.out.println("spell level: " + event.getLevel());
+                //System.out.println("Added spell level");
+                //System.out.println("spell level: " + event.getLevel());
             }
         }
     }
