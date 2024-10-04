@@ -18,6 +18,8 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegi
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.util.IExtendedCataclysmProjectileInterface;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
@@ -99,15 +101,16 @@ public class ServerEvents {
         }
 
         // Amethyst Puncture
-        Entity projectile = event.getSource().getEntity();
-        Entity target = event.getEntity();
-        if (projectile instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
+        if (entity instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
         {
-            if (amethystClusterProjectile.getId() == 1)
+            System.out.println("Does it go into this statement?");
+            if (((IExtendedCataclysmProjectileInterface)amethystClusterProjectile).isFromSpell())
             {
-                //event.setCanceled(true);
-                event.setAmount(1);
-                System.out.println("Do the damage I guess");
+                System.out.println("Does it go into this statement?");
+                System.out.println("Is from spell?: " + ((IExtendedCataclysmProjectileInterface)amethystClusterProjectile).isFromSpell());
+                event.setCanceled(true);
+                //event.setAmount(1);
+                System.out.println("Cancel damage");
             }
         }
     }

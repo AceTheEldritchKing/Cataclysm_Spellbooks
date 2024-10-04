@@ -11,9 +11,11 @@ import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
+import net.acetheeldritchking.cataclysm_spellbooks.util.IExtendedCataclysmProjectileInterface;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -92,6 +94,9 @@ public class AmethystPunctureSpell extends AbstractSpell {
         double casterZ = caster.getZ();
 
         Amethyst_Cluster_Projectile_Entity amethyst = new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), level, caster);
+
+        ((IExtendedCataclysmProjectileInterface)amethyst).setFromSpell(true);
+
         amethyst.moveTo(casterX, casterY, casterZ, 0, caster.getXRot());
         float speed = 0.08F;
         float speedSpellPower = getAmethystClusterSpeed(speed, getSpellPower(spellLevel, caster));
@@ -106,13 +111,8 @@ public class AmethystPunctureSpell extends AbstractSpell {
         return speed * spellPower;
     }
 
-    public float getSpellPower()
+    public float setDamage(int level, float spellPower)
     {
-        return spellPowerPerLevel;
-    }
-
-    public float setDamage(float damage, float spellPower)
-    {
-        return damage * spellPower;
+        return level * spellPower;
     }
 }

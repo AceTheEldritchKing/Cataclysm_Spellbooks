@@ -1,8 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.mixins.entities;
 
 import com.github.L_Ender.cataclysm.entity.projectile.Amethyst_Cluster_Projectile_Entity;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.util.CataclysmProjectileInterface;
+import net.acetheeldritchking.cataclysm_spellbooks.util.IExtendedCataclysmProjectileInterface;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
@@ -12,8 +11,21 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Amethyst_Cluster_Projectile_Entity.class)
-public class AmethystClusterMixin implements CataclysmProjectileInterface {
-    @Inject(method = "onHitEntity", at = @At("RETURN"))
+public class AmethystClusterMixin implements IExtendedCataclysmProjectileInterface {
+    @Override
+    public boolean isFromSpell() {
+        return true;
+    }
+
+    @Override
+    public void setFromSpell(boolean bool) {
+        if (bool)
+        {
+            isFromSpell();
+        }
+    }
+
+    @Inject(method = "onHitEntity", at = @At("HEAD"))
     private void cataclysmSpellbooks$modifyOnEntityHit(EntityHitResult result, CallbackInfo ci)
     {
         Entity shooter = ((Amethyst_Cluster_Projectile_Entity)(Object)this).getOwner();
@@ -24,9 +36,9 @@ public class AmethystClusterMixin implements CataclysmProjectileInterface {
         {
             if (entity != shooter && !shooter.isAlliedTo(entity))
             {
-                if (isFromSpell(SpellRegistries.AMETHYST_PUNCTURE.get()))
+                if (isFromSpell())
                 {
-                    amethystClusterProjectile.setId(1);
+                    //System.out.println("Mixin!");
                 }
             }
         }
