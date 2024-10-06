@@ -168,7 +168,7 @@ dependencies {
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5314835")
 
     // Cataclysm
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:5320260")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:5786055")
 
     // Archeology API
     implementation fg.deobf("curse.maven:archaeology-api-950822:4996103")

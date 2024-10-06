@@ -101,7 +101,9 @@ public class ServerEvents {
         }
 
         // Amethyst Puncture
-        if (entity instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
+        Entity projectile = event.getSource().getDirectEntity();
+
+        if (projectile instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
         {
             System.out.println("Does it go into this statement?");
             if (((IExtendedCataclysmProjectileInterface)amethystClusterProjectile).isFromSpell())
