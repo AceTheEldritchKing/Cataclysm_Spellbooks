@@ -126,7 +126,7 @@ public class DimensionalRiftSpell extends AbstractAbyssalSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.ANIMATION_LONG_CAST;
+        return SpellAnimations.CHARGE_ANIMATION;
     }
 
     @Override

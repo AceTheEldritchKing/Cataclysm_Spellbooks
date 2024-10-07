@@ -7,21 +7,33 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.acetheeldritchking.cataclysm_spellbooks.util.IExtendedCataclysmProjectileInterface;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 @AutoSpellConfig
 public class AmethystPunctureSpell extends AbstractSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "amethyst_puncture");
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.cataclysm_spellbooks.amethyst_speed",
+                        Utils.stringTruncation(getAmethystClusterSpeed(spellLevel, getSpellPower(spellLevel, caster)), 1))
+        );
+    }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
@@ -109,10 +121,5 @@ public class AmethystPunctureSpell extends AbstractSpell {
     private float getAmethystClusterSpeed(float speed, float spellPower)
     {
         return speed * spellPower;
-    }
-
-    public float setDamage(int level, float spellPower)
-    {
-        return level * spellPower;
     }
 }

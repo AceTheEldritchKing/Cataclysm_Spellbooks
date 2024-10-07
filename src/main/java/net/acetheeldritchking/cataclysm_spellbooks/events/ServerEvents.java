@@ -105,14 +105,9 @@ public class ServerEvents {
 
         if (projectile instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
         {
-            System.out.println("Does it go into this statement?");
             if (((IExtendedCataclysmProjectileInterface)amethystClusterProjectile).isFromSpell())
             {
-                System.out.println("Does it go into this statement?");
-                System.out.println("Is from spell?: " + ((IExtendedCataclysmProjectileInterface)amethystClusterProjectile).isFromSpell());
-                event.setCanceled(true);
-                //event.setAmount(1);
-                System.out.println("Cancel damage");
+                event.setAmount(6);
             }
         }
     }

@@ -96,12 +96,15 @@
     "spell.cataclysm_spellbooks.amethyst_puncture": "Amethyst Puncture",
     "spell.cataclysm_spellbooks.amethyst_puncture.guide": "Launch an amethyst cluster at your opponent",
 
+    "spell.cataclysm_spellbooks.gravity_storm": "Gravity Storm",
+    "spell.cataclysm_spellbooks.gravity_storm.guide": "Conjure a void vortex where you are looking to devastate targets",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
     "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Summon a dimensional rift that lasts for %d seconds",
     "ui.cataclysm_spellbooks.gnawer_count": "%d Summons",
-    "ui.cataclysm_spellbooks.range": "%d blocks of range",
+    "ui.cataclysm_spellbooks.range": "%d range to cast the spell",
     "ui.cataclsym_spellboks.incinerator_damage": "Deals %d if Incinerator is held in the main hand",
     "ui.cataclsym_spellboks.incineration_duration": "Lasts for %d seconds",
     "ui.cataclysm_spellbooks.ignited_count": "%d Summons",
@@ -111,6 +114,8 @@
     "ui.cataclysm_spellbooks.blazing_bone_speed": "%d Projectile speed",
     "ui.cataclysm_spellbooks.fireball_details": "Below half health turns the firball into soul fire, at below 30% health into an abyss fireball",
     "ui.cataclysm_spellbooks.recast_count": "Can cast this spell %d times in succession before cooldown",
+    "ui.cataclysm_spellbooks.amethyst_speed": "Launches Amethyst Clusters at %d projectile speed",
+    "ui.cataclysm_spellbooks.gravity_storm.lifespan": "Summon a void vortex that lasts for %d seconds",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

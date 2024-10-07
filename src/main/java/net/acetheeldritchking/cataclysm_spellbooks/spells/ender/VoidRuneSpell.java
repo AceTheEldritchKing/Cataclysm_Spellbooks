@@ -41,7 +41,7 @@ public class VoidRuneSpell extends AbstractSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.EPIC)
+            .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.ENDER_RESOURCE)
             .setMaxLevel(10)
             .setCooldownSeconds(20)

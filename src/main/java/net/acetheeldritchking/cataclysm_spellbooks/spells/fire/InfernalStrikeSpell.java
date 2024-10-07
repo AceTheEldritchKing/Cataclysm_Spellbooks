@@ -107,7 +107,7 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 0.4f;
+        return getSpellPower(spellLevel, caster) * 2.0f;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)

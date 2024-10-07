@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
@@ -56,6 +57,7 @@ public class SpellRegistries {
     // Void Bulwark (Summon void rune shield in a semi circle around caster)
 
     // Gravity Storm (Ender)
+    public static final RegistryObject<AbstractSpell> GRAVITY_STORM = registerSpell(new GravityStormSpell());
 
 
     // EVOCATION //
