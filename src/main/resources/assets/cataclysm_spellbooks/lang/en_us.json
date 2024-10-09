@@ -99,6 +99,9 @@
     "spell.cataclysm_spellbooks.gravity_storm": "Gravity Storm",
     "spell.cataclysm_spellbooks.gravity_storm.guide": "Conjure a void vortex where you are looking to devastate targets",
 
+    "spell.cataclysm_spellbooks.void_bulwark": "Void Bulwark",
+    "spell.cataclysm_spellbooks.void_bulwark.guide": "Conjure void runes around yourself to injure attackers in your radius",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

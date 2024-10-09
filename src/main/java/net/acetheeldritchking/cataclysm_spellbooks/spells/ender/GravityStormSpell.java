@@ -39,7 +39,7 @@ public class GravityStormSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(SchoolRegistry.ENDER_RESOURCE)
             .setMaxLevel(3)
-            .setCooldownSeconds(50)
+            .setCooldownSeconds(40)
             .build();
 
     public GravityStormSpell()
