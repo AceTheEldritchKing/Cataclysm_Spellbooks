@@ -105,15 +105,12 @@ public class AmethystPunctureSpell extends AbstractSpell {
         double casterY = CSUtils.getEyeHeight(caster);
         double casterZ = caster.getZ();
 
-        float projectileSpeed = 0.08F;
+        Amethyst_Cluster_Projectile_Entity amethyst = new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), level, caster, 6);
 
-        Amethyst_Cluster_Projectile_Entity amethyst = new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), level, caster,
-                getDamageForProjectileSpeed(spellLevel, projectileSpeed, getSpellPower(spellLevel, caster)));
-
-        float speed = 0.08F;
+        //((IExtendedCataclysmProjectileInterface)amethyst).setFromSpell(true);
 
         amethyst.moveTo(casterX, casterY, casterZ, 0, caster.getXRot());
-
+        float speed = 0.08F;
         float speedSpellPower = getAmethystClusterSpeed(speed, getSpellPower(spellLevel, caster));
         amethyst.setNoGravity(true);
         amethyst.shootFromRotation(caster, caster.getXRot(), caster.getYHeadRot(), 0, speedSpellPower, 1.0F);

@@ -99,8 +99,11 @@ public class VoidRuneSpell extends AbstractSpell {
                 double targetY = targetEntity.getY();
                 double targetZ = targetEntity.getZ();
 
+                BlockPos blockPos = new BlockPos(targetX, targetY, targetZ);
+
                 for (int i = 0; i < getDuration(spellLevel, entity); i++)
                 {
+                    System.out.println("In main spell loop?");
                     double d0 = targetY;
                     double d1 = targetY + 1.0D;
                     float f = (float) Mth.atan2(targetZ, targetX);
@@ -108,61 +111,14 @@ public class VoidRuneSpell extends AbstractSpell {
                     float f1 = (float) (f + (Math.PI * 0.4f));
                     int delay = i / 3;
 
-                    summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
-                            targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity, targetEntity, spellLevel);
+                    Void_Rune_Entity voidRune = new Void_Rune_Entity(level, targetX + Mth.cos(f1) * 1.5D, blockPos.getY() + d0, targetZ + Mth.sin(f1) * 1.5D, (float) d0, delay, getDamage(spellLevel), entity);
+                    level.addFreshEntity(voidRune);
+                    targetEntity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SUMMON_VOID_RUNE.get(),
+                            getEffectDuration(spellLevel, entity), spellLevel - 1, false, false, false));
                 }
             }
         }
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-    }
-
-    // Literally looking at Evoker & Ender Guardian because they are almost the same
-    private void summonVoidRune(double x, double minY, double maxY, double z, float rotation, int delay, LivingEntity caster, LivingEntity target, int spellLevel)
-    {
-        BlockPos pos = new BlockPos(x, maxY, z);
-        boolean flag = false;
-        double d0 = 0.0D;
-
-        Level level = caster.level;
-
-        do {
-            BlockPos pos1 = pos.below();
-            BlockState blockState = level.getBlockState(pos1);
-            if (blockState.isFaceSturdy(level, pos1, Direction.UP))
-            {
-                if (!level.isEmptyBlock(pos))
-                {
-                    BlockState blockState1 = level.getBlockState(pos);
-                    VoxelShape voxelShape = blockState1.getCollisionShape(level, pos);
-                    if (!voxelShape.isEmpty())
-                    {
-                        d0 = voxelShape.max(Direction.Axis.Y);
-                    }
-                }
-
-                flag = true;
-                break;
-            }
-
-            pos = pos.below();
-        } while (pos.getY() >= Mth.floor(minY - 1));
-
-        if (flag)
-        {
-            Void_Rune_Entity voidRune = new Void_Rune_Entity(level, x, pos.getY() + d0, z, rotation, delay, getDamage(spellLevel), caster);
-            level.addFreshEntity(voidRune);
-            target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SUMMON_VOID_RUNE.get(),
-                    getEffectDuration(spellLevel, caster), spellLevel - 1, false, false, false));
-
-            //spawnRuneAndEffects(level, voidRune, target, caster, spellLevel);
-        }
-    }
-
-    private void spawnRuneAndEffects(Level level, Void_Rune_Entity rune, LivingEntity target, LivingEntity caster, int spellLevel)
-    {
-        level.addFreshEntity(rune);
-        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SUMMON_VOID_RUNE.get(),
-                getEffectDuration(spellLevel, caster), spellLevel - 1, false, false, false));
     }
 
     private int getDuration(int spellLevel, LivingEntity caster)

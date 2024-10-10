@@ -99,18 +99,6 @@ public class ServerEvents {
                 }
             }
         }
-
-        // Amethyst Puncture
-        // From old mixin
-        /*Entity projectile = event.getSource().getDirectEntity();
-
-        if (projectile instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
-        {
-            if (((IExtendedCataclysmProjectileInterface)amethystClusterProjectile).isFromSpell())
-            {
-                event.setAmount(6);
-            }
-        }*/
     }
 
     @SubscribeEvent

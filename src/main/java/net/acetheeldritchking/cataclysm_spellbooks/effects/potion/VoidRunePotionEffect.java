@@ -11,12 +11,11 @@ public class VoidRunePotionEffect extends MobEffect {
         super(MobEffectCategory.HARMFUL, 7812264);
     }
 
-    public static final float ATTACK_DAMAGE_PER_SPELL_LEVEL = 0.10F;
+    public static final float ATTACK_DAMAGE_PER_SPELL_LEVEL = 10F;
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (!pLivingEntity.level.isClientSide())
-        {
+        if (!pLivingEntity.level.isClientSide()) {
             ServerLevel world = (ServerLevel) pLivingEntity.level;
 
             double x = pLivingEntity.getX();
@@ -24,14 +23,17 @@ public class VoidRunePotionEffect extends MobEffect {
             double z = pLivingEntity.getZ();
             float yRot = pLivingEntity.getYRot();
 
-            for (int i = 0; i < pAmplifier; i++)
-            {
-                world.addFreshEntity(new Void_Rune_Entity(world, x, y ,z, yRot, 1, ATTACK_DAMAGE_PER_SPELL_LEVEL, null));
+            int runeCount = Math.max(1, pAmplifier);
+
+            for (int i = 0; i < runeCount; i++) {
+                Void_Rune_Entity runeEntity = new Void_Rune_Entity(world, x, y, z, yRot, 5, ATTACK_DAMAGE_PER_SPELL_LEVEL, null);
+
+                world.addFreshEntity(runeEntity);
             }
         }
-
         super.applyEffectTick(pLivingEntity, pAmplifier);
     }
+
 
     @Override
     public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
