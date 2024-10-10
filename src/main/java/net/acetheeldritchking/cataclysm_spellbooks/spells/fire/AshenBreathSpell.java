@@ -9,27 +9,40 @@ import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 @AutoSpellConfig
 public class AshenBreathSpell extends AbstractIgnisSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "ashen_breath");
 
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.irons_spellbooks.damage",
+                        Utils.stringTruncation(getDamage(spellLevel, caster), 1))
+        );
+    }
+
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
-            .setMaxLevel(1)
+            .setMaxLevel(5)
             .setCooldownSeconds(12)
             .build();
 
     public AshenBreathSpell()
     {
         this.manaCostPerLevel = 5;
-        this.baseSpellPower = 0;
+        this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
         this.castTime = 100;
         this.baseManaCost = 10;
@@ -56,11 +69,16 @@ public class AshenBreathSpell extends AbstractIgnisSpell {
         double casterY = CSUtils.getEyeHeight(entity);
         double casterZ = entity.getZ();
 
-        Ashen_Breath_Entity breath = new Ashen_Breath_Entity(ModEntities.ASHEN_BREATH.get(), level, entity);
+        Ashen_Breath_Entity breath = new Ashen_Breath_Entity(ModEntities.ASHEN_BREATH.get(), level, getDamage(spellLevel, entity), entity);
         breath.absMoveTo(casterX, casterY, casterZ, entity.getYHeadRot(), entity.getXRot());
 
         level.addFreshEntity(breath);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster)
+    {
+        return getSpellPower(spellLevel, caster);
     }
 }

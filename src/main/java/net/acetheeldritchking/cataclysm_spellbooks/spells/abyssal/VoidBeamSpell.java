@@ -44,7 +44,7 @@ public class VoidBeamSpell extends AbstractAbyssalSpell {
     public VoidBeamSpell()
     {
         this.manaCostPerLevel = 10;
-        this.baseSpellPower = 10;
+        this.baseSpellPower = 5;
         this.spellPowerPerLevel = 5;
         this.castTime = 0;
         this.baseManaCost = 100;
@@ -104,11 +104,21 @@ public class VoidBeamSpell extends AbstractAbyssalSpell {
                 double casterY = entity.getY();
                 double casterZ = entity.getZ();
                 Abyss_Mark_Entity mark = new Abyss_Mark_Entity(entity.level, casterX, casterY, casterZ,
-                        80, entity.getUUID(), targetEntity);
+                        80, getDamage(spellLevel, entity), getHPDamage(spellLevel), entity.getUUID(), targetEntity);
                 entity.level.addFreshEntity(mark);
             }
         }
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster)
+    {
+        return getSpellPower(spellLevel, caster)/2;
+    }
+
+    private float getHPDamage(int spellLevel)
+    {
+        return (float) (spellLevel * 10) /100;
     }
 
     @Override

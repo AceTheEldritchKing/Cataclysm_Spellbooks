@@ -104,18 +104,18 @@ public class IncinerationSpell extends AbstractIgnisSpell {
 
             if (percent <= 50)
             {
-                this.spawnFlameStrike(casterXYaw, casterZYaw, standOnYPos, casterHeadY, yawRadians, spellLevel * 20, j2, j2, level, 1.0F, true, entity);
+                spawnFlameStrike(casterXYaw, casterZYaw, standOnYPos, casterHeadY, yawRadians, spellLevel * 20, j2, j2, level, 1.0F, true, entity, spellLevel);
             }
             else
             {
-                this.spawnFlameStrike(casterXYaw, casterZYaw, standOnYPos, casterHeadY, yawRadians, spellLevel * 20, j2, j2, level, 1.0F, false, entity);
+                spawnFlameStrike(casterXYaw, casterZYaw, standOnYPos, casterHeadY, yawRadians, spellLevel * 20, j2, j2, level, 1.0F, false, entity, spellLevel);
             }
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnFlameStrike(double x, double z, double minY, double maxY, float rotation, int duration, int wait, int delay, Level level, float radius, boolean isSoul, LivingEntity caster)
+    private void spawnFlameStrike(double x, double z, double minY, double maxY, float rotation, int duration, int wait, int delay, Level level, float radius, boolean isSoul, LivingEntity caster, int spellLevel)
     {
         BlockPos pos = new BlockPos(x, maxY, z);
         boolean flag = false;
@@ -146,12 +146,28 @@ public class IncinerationSpell extends AbstractIgnisSpell {
 
         if (flag)
         {
-            level.addFreshEntity(new Flame_Strike_Entity(level, x, pos.getY() + d0, z, rotation, duration, wait, delay, radius, isSoul, caster));
+            level.addFreshEntity(new Flame_Strike_Entity(level, x, pos.getY() + d0, z, rotation, duration, wait, delay, radius, getDamage(spellLevel, caster), getHPDamage(spellLevel), isSoul, caster));
+
+            if (isSoul);
+            {
+                level.addFreshEntity(new Flame_Strike_Entity(level, x, pos.getY() + d0, z, rotation, duration, wait, delay, radius, (float) (getDamage(spellLevel, caster) * 1.5), getHPDamage(spellLevel), isSoul, caster));
+                System.out.println("Is soul?");
+            }
         }
     }
 
     private float spellPower(int spellLevel, LivingEntity caster)
     {
         return getSpellPower(spellLevel, caster);
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster)
+    {
+        return (float) (getSpellPower(spellLevel, caster)/1.5);
+    }
+
+    private float getHPDamage(int spellLevel)
+    {
+        return (float) (spellLevel * 10) /100;
     }
 }

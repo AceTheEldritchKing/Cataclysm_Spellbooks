@@ -101,7 +101,8 @@ public class ServerEvents {
         }
 
         // Amethyst Puncture
-        Entity projectile = event.getSource().getDirectEntity();
+        // From old mixin
+        /*Entity projectile = event.getSource().getDirectEntity();
 
         if (projectile instanceof Amethyst_Cluster_Projectile_Entity amethystClusterProjectile)
         {
@@ -109,7 +110,7 @@ public class ServerEvents {
             {
                 event.setAmount(6);
             }
-        }
+        }*/
     }
 
     @SubscribeEvent
@@ -242,13 +243,13 @@ public class ServerEvents {
     @SubscribeEvent
     public void onSpellModifyEvent(ModifySpellLevelEvent event)
     {
-        if (event.getEntity().getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
+        if (Objects.requireNonNull(event.getEntity()).getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
             if (event.getSpell().equals(SpellRegistries.AMETHYST_PUNCTURE.get()))
             {
                 event.addLevels(1);
-                //System.out.println("Added spell level");
-                //System.out.println("spell level: " + event.getLevel());
+                System.out.println("Added spell level");
+                System.out.println("spell level: " + event.getLevel());
             }
         }
     }

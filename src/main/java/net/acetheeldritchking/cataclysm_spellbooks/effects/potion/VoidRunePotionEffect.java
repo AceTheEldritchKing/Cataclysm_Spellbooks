@@ -11,6 +11,8 @@ public class VoidRunePotionEffect extends MobEffect {
         super(MobEffectCategory.HARMFUL, 7812264);
     }
 
+    public static final float ATTACK_DAMAGE_PER_SPELL_LEVEL = 0.10F;
+
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (!pLivingEntity.level.isClientSide())
@@ -24,8 +26,7 @@ public class VoidRunePotionEffect extends MobEffect {
 
             for (int i = 0; i < pAmplifier; i++)
             {
-                world.addFreshEntity(new Void_Rune_Entity
-                        (world, x, y ,z, yRot, 0, null));
+                world.addFreshEntity(new Void_Rune_Entity(world, x, y ,z, yRot, 1, ATTACK_DAMAGE_PER_SPELL_LEVEL, null));
             }
         }
 

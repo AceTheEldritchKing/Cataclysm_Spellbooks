@@ -71,17 +71,17 @@ public class AmethystPunctureSpell extends AbstractSpell {
         assert entity != null;
         if (entity.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.BLOOM_STONE_PAULDRONS.get()) && entity.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
-            //System.out.println("Bonus for chest & staff: " + 1 + spellLevel);
+            System.out.println("Bonus for chest & staff: " + 1 + spellLevel);
             return  1 + spellLevel;
         }
         else if (entity.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.BLOOM_STONE_PAULDRONS.get()) || entity.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
-            //System.out.println("Bonus for chest or staff: " + spellLevel);
+            System.out.println("Bonus for chest or staff: " + spellLevel);
             return spellLevel;
         }
         else
         {
-            //System.out.println("No bonus: " + spellLevel);
+            System.out.println("No bonus: " + spellLevel);
             return 2;
         }
     }
@@ -105,12 +105,15 @@ public class AmethystPunctureSpell extends AbstractSpell {
         double casterY = CSUtils.getEyeHeight(caster);
         double casterZ = caster.getZ();
 
-        Amethyst_Cluster_Projectile_Entity amethyst = new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), level, caster);
+        float projectileSpeed = 0.08F;
 
-        ((IExtendedCataclysmProjectileInterface)amethyst).setFromSpell(true);
+        Amethyst_Cluster_Projectile_Entity amethyst = new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), level, caster,
+                getDamageForProjectileSpeed(spellLevel, projectileSpeed, getSpellPower(spellLevel, caster)));
+
+        float speed = 0.08F;
 
         amethyst.moveTo(casterX, casterY, casterZ, 0, caster.getXRot());
-        float speed = 0.08F;
+
         float speedSpellPower = getAmethystClusterSpeed(speed, getSpellPower(spellLevel, caster));
         amethyst.setNoGravity(true);
         amethyst.shootFromRotation(caster, caster.getXRot(), caster.getYHeadRot(), 0, speedSpellPower, 1.0F);
@@ -121,5 +124,13 @@ public class AmethystPunctureSpell extends AbstractSpell {
     private float getAmethystClusterSpeed(float speed, float spellPower)
     {
         return speed * spellPower;
+    }
+
+    private float getDamageForProjectileSpeed(int spellLevel, float speed, float spellPower)
+    {
+        float totalSpeed = getAmethystClusterSpeed(speed, spellPower);
+        float damage = spellLevel + totalSpeed;
+
+        return damage;
     }
 }

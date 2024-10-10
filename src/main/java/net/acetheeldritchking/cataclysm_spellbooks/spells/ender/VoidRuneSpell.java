@@ -36,7 +36,9 @@ public class VoidRuneSpell extends AbstractSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.void_rune",
-                        Utils.stringTruncation(getSpellPower(spellLevel, caster), 1))
+                        Utils.stringTruncation(getSpellPower(spellLevel, caster), 1)),
+                Component.translatable("ui.irons_spellbooks.damage",
+                        Utils.stringTruncation(getDamage(spellLevel), 1))
         );
     }
 
@@ -106,7 +108,7 @@ public class VoidRuneSpell extends AbstractSpell {
                     float f1 = (float) (f + (Math.PI * 0.4f));
                     int delay = i / 3;
 
-                    this.summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
+                    summonVoidRune(targetX + Mth.cos(f1) * 1.5D,
                             targetZ + Mth.sin(f1) * 1.5D, d0, d1, f1, delay, entity, targetEntity, spellLevel);
                 }
             }
@@ -120,10 +122,6 @@ public class VoidRuneSpell extends AbstractSpell {
         BlockPos pos = new BlockPos(x, maxY, z);
         boolean flag = false;
         double d0 = 0.0D;
-
-        double targetX = target.getX();
-        double targetY = target.getY();
-        double targetZ = target.getZ();
 
         Level level = caster.level;
 
@@ -151,10 +149,12 @@ public class VoidRuneSpell extends AbstractSpell {
 
         if (flag)
         {
-            Void_Rune_Entity voidRune = new Void_Rune_Entity(level, x, pos.getY() + d0, z, rotation, delay, caster);
-            voidRune.moveTo(targetX, targetY, targetZ);
+            Void_Rune_Entity voidRune = new Void_Rune_Entity(level, x, pos.getY() + d0, z, rotation, delay, getDamage(spellLevel), caster);
+            level.addFreshEntity(voidRune);
+            target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SUMMON_VOID_RUNE.get(),
+                    getEffectDuration(spellLevel, caster), spellLevel - 1, false, false, false));
 
-            spawnRuneAndEffects(level, voidRune, target, caster, spellLevel);
+            //spawnRuneAndEffects(level, voidRune, target, caster, spellLevel);
         }
     }
 
@@ -162,7 +162,7 @@ public class VoidRuneSpell extends AbstractSpell {
     {
         level.addFreshEntity(rune);
         target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SUMMON_VOID_RUNE.get(),
-                getEffectDuration(spellLevel, caster), 1, false, false, false));
+                getEffectDuration(spellLevel, caster), spellLevel - 1, false, false, false));
     }
 
     private int getDuration(int spellLevel, LivingEntity caster)
@@ -177,6 +177,11 @@ public class VoidRuneSpell extends AbstractSpell {
         int maxDuration = Math.min(duration * 20, maxTicksForDuration);
 
         return maxDuration;
+    }
+
+    private float getDamage(int spellLevel)
+    {
+        return spellLevel;
     }
 
     @Override

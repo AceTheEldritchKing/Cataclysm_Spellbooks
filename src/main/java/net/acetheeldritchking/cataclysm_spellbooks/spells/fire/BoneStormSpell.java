@@ -32,7 +32,9 @@ public class BoneStormSpell extends AbstractIgnisSpell {
                 Component.translatable("ui.cataclysm_spellbooks.bone_speed_2",
                         Utils.stringTruncation(getBoneSpeed(0.3f, spellLevel), 2)),
                 Component.translatable("ui.cataclysm_spellbooks.bone_speed_3",
-                        Utils.stringTruncation(getBoneSpeed(0.1f, spellLevel), 2)));
+                        Utils.stringTruncation(getBoneSpeed(0.1f, spellLevel), 2)),
+                Component.translatable("ui.irons_spellbooks.damage",
+                        Utils.stringTruncation(getDamage(spellLevel), 2)));
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
@@ -91,7 +93,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             double angleY = 0.2D;
             double angleZ = Mth.sin(throwAngle);
 
-            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
+            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, getDamage(spellLevel), caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 45.0F, caster.getXRot());
             float speed = 0.3F;
             float speedSpellLevel = getBoneSpeed(speed, spellLevel);
@@ -118,7 +120,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             double angleY = 0.1D;
             double angleZ = Mth.sin(throwAngle);
 
-            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
+            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, getDamage(spellLevel), caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 60.0F, caster.getXRot());
             float speed = 0.4F;
             float speedSpellLevel = getBoneSpeed(speed, spellLevel);
@@ -145,7 +147,7 @@ public class BoneStormSpell extends AbstractIgnisSpell {
             double angleY = 0.1D;
             double angleZ = Mth.sin(throwAngle);
 
-            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
+            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, getDamage(spellLevel), caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 36.0F, caster.getXRot());
             float speed = 0.2F;
             float speedSpellLevel = getBoneSpeed(speed, spellLevel);
@@ -159,5 +161,10 @@ public class BoneStormSpell extends AbstractIgnisSpell {
     private float getBoneSpeed(float speed, int spellLevel)
     {
         return speed * spellLevel;
+    }
+
+    private float getDamage(int spellLevel)
+    {
+        return (float) (spellLevel * 1.5);
     }
 }

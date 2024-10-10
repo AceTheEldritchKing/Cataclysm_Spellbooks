@@ -25,7 +25,9 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
-        return List.of(Component.translatable("ui.irons_spellbooks.ring_count", getRings(spellLevel)));
+        return List.of(Component.translatable("ui.irons_spellbooks.ring_count", getRings(spellLevel)),
+                        Component.translatable("ui.irons_spellbooks.damage", getDamage(spellLevel, caster))
+                );
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
@@ -38,8 +40,8 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
     public VoidRuneBulwarkSpell()
     {
         this.manaCostPerLevel = 5;
-        this.baseSpellPower = 1;
-        this.spellPowerPerLevel = 1;
+        this.baseSpellPower = 4;
+        this.spellPowerPerLevel = 2;
         this.castTime = 10;
         this.baseManaCost = 50;
     }
@@ -61,11 +63,6 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        double casterX = entity.getX();
-        double casterY = entity.getY();
-        double casterZ = entity.getZ();
-
-        int casterYPosition = Mth.floor(casterY - 3);
 
         //spawnVoidRuneCircle(level, casterX, casterZ, casterYPosition, casterY + 1, 0, entity, 6, 3, spellLevel);
         spawnVoidRuneCircle(level, entity, spellLevel);
@@ -73,7 +70,7 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnVoidRune(Level level, double x, double z, double minY, double maxY, double rotation, int delay, LivingEntity caster)
+    private void spawnVoidRune(Level level, double x, double z, double minY, double maxY, double rotation, int delay, LivingEntity caster, int spellLevel)
     {
         BlockPos blockPos = new BlockPos(x, maxY, z);
         boolean flag = false;
@@ -103,8 +100,7 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
 
         if (flag)
         {
-            Void_Rune_Entity voidRune = new Void_Rune_Entity(level, x, blockPos.getY() + d0, z, (float) rotation, delay, caster);
-            //voidRune.moveTo(caster.getX(), caster.getY(), caster.getZ());
+            Void_Rune_Entity voidRune = new Void_Rune_Entity(level, x, blockPos.getY() + d0, z, (float) rotation, delay, getDamage(spellLevel, caster),caster);
             level.addFreshEntity(voidRune);
         }
     }
@@ -137,7 +133,7 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
                 double x = casterX + Mth.cos((float) angle) * radius;
                 double z = casterZ + Mth.sin((float) angle) * radius;
 
-                spawnVoidRune(level, x, z, casterYPosition, casterHeadY, angle, increaseWarmUp, caster);
+                spawnVoidRune(level, x, z, casterYPosition, casterHeadY, angle, increaseWarmUp, caster, spellLevel);
             }
         }
     }
@@ -145,5 +141,10 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
     private int getRings (int spellLevel)
     {
         return spellLevel;
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster)
+    {
+        return getSpellPower(spellLevel, caster)/2;
     }
 }

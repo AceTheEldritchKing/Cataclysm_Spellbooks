@@ -30,7 +30,9 @@ public class BonePierceSpell extends AbstractIgnisSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.blazing_bone_speed",
-                        Utils.stringTruncation(getBoneSpeed(0.05f, getSpellPower(spellLevel, caster)), 2)));
+                        Utils.stringTruncation(getBoneSpeed(0.05f, getSpellPower(spellLevel, caster)), 2)),
+                Component.translatable("ui.irons_spellbooks.damage",
+                        Utils.stringTruncation(getDamage(spellLevel, caster), 2)));
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
@@ -104,7 +106,7 @@ public class BonePierceSpell extends AbstractIgnisSpell {
         double casterY = CSUtils.getEyeHeight(caster);
         double casterZ = caster.getZ();
 
-        Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
+        Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, getDamage(spellLevel, caster), caster);
         blazingBone.moveTo(casterX, casterY, casterZ, 0, caster.getXRot());
         float speed = 0.05F;
         float speedSpellPower = getBoneSpeed(speed, getSpellPower(spellLevel, caster));
@@ -130,7 +132,7 @@ public class BonePierceSpell extends AbstractIgnisSpell {
             double angleY = 0.2D;
             double angleZ = Mth.sin(throwAngle);
 
-            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, caster);
+            Blazing_Bone_Entity blazingBone = new Blazing_Bone_Entity(level, 3, caster);
             blazingBone.moveTo(casterX, casterY, casterZ, i * 45.0F, caster.getXRot());
             float speed = 0.5F;
             blazingBone.setNoGravity(true);
@@ -143,5 +145,10 @@ public class BonePierceSpell extends AbstractIgnisSpell {
     private float getBoneSpeed(float speed, float spellPower)
     {
         return speed * spellPower;
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster)
+    {
+        return getSpellPower(spellLevel, caster);
     }
 }

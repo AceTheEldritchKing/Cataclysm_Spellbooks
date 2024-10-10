@@ -26,7 +26,7 @@ public class AbyssalBlastSpell extends AbstractAbyssalSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
-            .setMaxLevel(1)
+            .setMaxLevel(3)
             .setCooldownSeconds(450)
             .build();
 
@@ -84,11 +84,21 @@ public class AbyssalBlastSpell extends AbstractAbyssalSpell {
             // Firing mah laser
             Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity(ModEntities.ABYSS_BLAST.get(),
                     level, entity, casterX, casterY, casterZ,
-                    casterYHeadRot, casterXRot, 80, dir);
+                    casterYHeadRot, casterXRot, 80, dir, getDamage(spellLevel, entity), getHPDamage(spellLevel));
 
             level.addFreshEntity(abyss_blast);
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster)
+    {
+        return 1 + getSpellPower(spellLevel, caster);
+    }
+
+    private float getHPDamage(int spellLevel)
+    {
+        return (float) (spellLevel * 10) /100;
     }
 }
