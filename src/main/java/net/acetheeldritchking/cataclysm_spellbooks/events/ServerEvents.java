@@ -228,17 +228,17 @@ public class ServerEvents {
     }
 
     // Modify Spell Event
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void onSpellModifyEvent(ModifySpellLevelEvent event)
     {
-        if (Objects.requireNonNull(event.getEntity()).getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
+        if (event.getEntity().getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
         {
             if (event.getSpell().equals(SpellRegistries.AMETHYST_PUNCTURE.get()))
             {
                 event.addLevels(1);
-                System.out.println("Added spell level");
-                System.out.println("spell level: " + event.getLevel());
+                //System.out.println("Added spell level");
+                //System.out.println("spell level: " + event.getLevel());
             }
         }
-    }
+    }*/
 }

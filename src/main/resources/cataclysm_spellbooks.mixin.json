@@ -4,8 +4,7 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "client.MouseMixin",
-    "entities.projectiles.AmethystClusterMixin"
+    "client.MouseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -30,7 +30,7 @@ public class BloomStoneStaff extends StaffItem {
                 ));
     }
 
-    @Override
+    /*@Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         var affinityData = AffinityData.getAffinityData(pStack);
@@ -40,5 +40,5 @@ public class BloomStoneStaff extends StaffItem {
             pTooltipComponents.add(Component.translatable("tooltip.irons_spellbooks.enhance_spell_level",
                     spell.getDisplayName(MinecraftInstanceHelper.instance.player()).withStyle(spell.getSchoolType().getDisplayName().getStyle())).withStyle(ChatFormatting.YELLOW));
         }
-    }
+    }*/
 }

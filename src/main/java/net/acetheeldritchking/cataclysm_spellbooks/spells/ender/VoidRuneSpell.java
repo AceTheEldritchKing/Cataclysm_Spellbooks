@@ -103,7 +103,7 @@ public class VoidRuneSpell extends AbstractSpell {
 
                 for (int i = 0; i < getDuration(spellLevel, entity); i++)
                 {
-                    System.out.println("In main spell loop?");
+                    //System.out.println("In main spell loop?");
                     double d0 = targetY;
                     double d1 = targetY + 1.0D;
                     float f = (float) Mth.atan2(targetZ, targetX);
