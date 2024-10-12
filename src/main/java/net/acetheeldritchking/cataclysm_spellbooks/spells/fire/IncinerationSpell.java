@@ -151,7 +151,7 @@ public class IncinerationSpell extends AbstractIgnisSpell {
             if (isSoul);
             {
                 level.addFreshEntity(new Flame_Strike_Entity(level, x, pos.getY() + d0, z, rotation, duration, wait, delay, radius, (float) (getDamage(spellLevel, caster) * 1.5), getHPDamage(spellLevel), isSoul, caster));
-                System.out.println("Is soul?");
+                //System.out.println("Is soul?");
             }
         }
     }

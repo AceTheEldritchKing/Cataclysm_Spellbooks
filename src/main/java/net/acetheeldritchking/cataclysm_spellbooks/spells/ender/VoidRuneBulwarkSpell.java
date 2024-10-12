@@ -64,7 +64,6 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
 
-        //spawnVoidRuneCircle(level, casterX, casterZ, casterYPosition, casterY + 1, 0, entity, 6, 3, spellLevel);
         spawnVoidRuneCircle(level, entity, spellLevel);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

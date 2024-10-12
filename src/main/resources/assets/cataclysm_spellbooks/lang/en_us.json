@@ -122,6 +122,8 @@
     "ui.cataclysm_spellbooks.recast_count": "Can cast this spell %d times in succession before cooldown",
     "ui.cataclysm_spellbooks.amethyst_speed": "Launches Amethyst Clusters at %d projectile speed",
     "ui.cataclysm_spellbooks.gravity_storm.lifespan": "Summon a void vortex that lasts for %d seconds",
+    "ui.cataclysm_spellbooks.difference": "Affects entities in at %d speed",
+    "ui.cataclysm_spellbooks.gravitation": "While standing normally, drag entities towards you. While crouching, push entities away from you",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
