@@ -43,7 +43,7 @@ public class AshenBreathSpell extends AbstractIgnisSpell {
     {
         this.manaCostPerLevel = 5;
         this.baseSpellPower = 1;
-        this.spellPowerPerLevel = 1;
+        this.spellPowerPerLevel = 2;
         this.castTime = 100;
         this.baseManaCost = 10;
     }

@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravitationPullSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
@@ -60,6 +61,9 @@ public class SpellRegistries {
 
     // Gravity Storm (Ender)
     public static final RegistryObject<AbstractSpell> GRAVITY_STORM = registerSpell(new GravityStormSpell());
+
+    // Gravitational Pull (Pulls entities in like Gauntlet of Guard)
+    public static final RegistryObject<AbstractSpell> GRAVITATION_PULL = registerSpell(new GravitationPullSpell());
 
 
     // EVOCATION //

@@ -102,6 +102,9 @@
     "spell.cataclysm_spellbooks.void_bulwark": "Void Bulwark",
     "spell.cataclysm_spellbooks.void_bulwark.guide": "Conjure void runes around yourself to injure attackers in your radius",
 
+    "spell.cataclysm_spellbooks.gravitation_pull": "Gravitational Pull",
+    "spell.cataclysm_spellbooks.gravitation_pull.guide": "Reel in entities towards yourself by manipulating gravity around yourself",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
