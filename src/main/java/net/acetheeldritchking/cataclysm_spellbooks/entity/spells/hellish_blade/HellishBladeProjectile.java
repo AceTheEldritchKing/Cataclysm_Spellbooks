@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -77,6 +78,12 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
         {
             livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));
             livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 60, 0));
+
+            if (livingTarget instanceof Player playerTarget)
+            {
+                // Disable shield if blocking
+                playerTarget.disableShield(true);
+            }
 
             ScreenShake_Entity.ScreenShake(level, livingTarget.position(), 20, 0.1F, 20, 40);
         }

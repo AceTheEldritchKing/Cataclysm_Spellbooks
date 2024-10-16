@@ -96,13 +96,13 @@ public class GravitationPullSpell extends AbstractSpell {
         {
             LivingEntity target;
             do {
-                target = iterator.next();
                 if (!iterator.hasNext())
                 {
                     return;
                 }
-                System.out.println(target);
+                target = iterator.next();
 
+                System.out.println(target);
             } while (target instanceof Player && ((Player) target).getAbilities().invulnerable);
 
             if (entity.isCrouching())

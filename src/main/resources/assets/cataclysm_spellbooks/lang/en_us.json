@@ -105,6 +105,9 @@
     "spell.cataclysm_spellbooks.gravitation_pull": "Gravitational Pull",
     "spell.cataclysm_spellbooks.gravitation_pull.guide": "Reel in entities towards yourself by manipulating gravity around yourself",
 
+    "spell.cataclysm_spellbooks.sandstorm": "Sandstorm",
+    "spell.cataclysm_spellbooks.sandstorm.guide": "Summon sandstorms that surround you",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -123,7 +126,7 @@
     "ui.cataclysm_spellbooks.amethyst_speed": "Launches Amethyst Clusters at %d projectile speed",
     "ui.cataclysm_spellbooks.gravity_storm.lifespan": "Summon a void vortex that lasts for %d seconds",
     "ui.cataclysm_spellbooks.difference": "Affects entities in at %d speed",
-    "ui.cataclysm_spellbooks.gravitation": "While standing normally, drag entities towards you. While crouching, push entities away from you",
+    "ui.cataclysm_spellbooks.gravitation": "While standing, drag entities in. While crouching, push entities away",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

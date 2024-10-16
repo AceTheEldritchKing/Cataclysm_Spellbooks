@@ -42,7 +42,7 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
         this.manaCostPerLevel = 5;
         this.baseSpellPower = 4;
         this.spellPowerPerLevel = 2;
-        this.castTime = 10;
+        this.castTime = 20;
         this.baseManaCost = 50;
     }
 

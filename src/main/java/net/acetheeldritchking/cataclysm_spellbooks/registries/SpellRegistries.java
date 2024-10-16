@@ -10,6 +10,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkS
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -115,11 +116,14 @@ public class SpellRegistries {
 
 
     // NATURE //
-    // Sandstorm (Summon desert tornados around the user)
+    // Sandstorm (Summon desert tornadoes around the user)
+    public static final RegistryObject<AbstractSpell> SANDSTORM = registerSpell(new SandstormSpell());
 
     // Desert Winds (Throw a desert tornado in a path in front of the user. This damages blocks)
 
     // Grave Tremor (Strike the ground, causing a damaging quake around the user. Stronger than earthquake)
+
+    // Monolith Crash (Crashes down sandstone monoliths around the caster)
 
     // Amethyst Puncture (Shoots out an amethyst spike)
     public static final RegistryObject<AbstractSpell> AMETHYST_PUNCTURE = registerSpell(new AmethystPunctureSpell());

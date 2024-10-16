@@ -228,7 +228,7 @@ public class ServerEvents {
     }
 
     // Modify Spell Event
-    /*@SubscribeEvent
+    @SubscribeEvent
     public void onSpellModifyEvent(ModifySpellLevelEvent event)
     {
         if (event.getEntity().getItemBySlot(EquipmentSlot.MAINHAND).is(ItemRegistries.BLOOM_STONE_STAFF.get()))
@@ -240,5 +240,5 @@ public class ServerEvents {
                 //System.out.println("spell level: " + event.getLevel());
             }
         }
-    }*/
+    }
 }
