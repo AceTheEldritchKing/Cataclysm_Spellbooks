@@ -89,38 +89,50 @@ public class GravitationPullSpell extends AbstractSpell {
         {
             radius = spellLevel * 10;
         }
+
         List<LivingEntity> entitiesNearby = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius));
-        Iterator<LivingEntity> iterator = entitiesNearby.iterator();
+        entitiesNearby.forEach(target -> {
+            if (target == entity || target instanceof Player player && player.getAbilities().invulnerable)
+            {
+                return;
+            }
 
-        while (true)
-        {
-            LivingEntity target;
-            do {
-                if (!iterator.hasNext())
-                {
-                    return;
-                }
-                target = iterator.next();
-
-                System.out.println(target);
-            } while (target instanceof Player && ((Player) target).getAbilities().invulnerable);
+            // Ty Cadentem :D
+            Vec3 difference = entity.position().subtract(target.position());
+            difference = difference.normalize().scale(getDifference(spellLevel, entity));
 
             if (entity.isCrouching())
             {
                 // Pull entities away
-                Vec3 diff = target.position().add(entity.position().subtract(entity.getX(),entity.getY(),entity.getZ()));
-                diff = diff.normalize().scale(getDifference(spellLevel, entity));
-                target.setDeltaMovement(target.getDeltaMovement().add(diff));
-            } else
+                target.setDeltaMovement(difference.multiply(-getDifference(spellLevel, entity), -getDifference(spellLevel, entity), -getDifference(spellLevel, entity)));
+            }
+            else
             {
                 // Drag entities in
-                Vec3 diff = target.position().subtract(entity.position().add(0,0,0));
-                diff = diff.normalize().scale(getDifference(spellLevel, entity));
-                target.setDeltaMovement(target.getDeltaMovement().subtract(diff));
-            }
+                float distance = target.distanceTo(entity);
 
-            super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-        }
+                if (distance <= 1)
+                {
+                    // entities can't really exist in the same position as the caster (they just bounce around)
+                    return;
+                }
+
+                // Handle overshot
+                double overshot = difference.length() / distance;
+
+                if (overshot > 1)
+                {
+                    // max. pull should be the distance to the entity, not further (reduces bouncing around)
+                    difference = new Vec3(difference.x() / overshot, difference.y() / overshot, difference.z() / overshot);
+                }
+
+                // if the added movement is too much they fly past the target - 0.2F
+                difference = difference.multiply(getDifference(spellLevel, entity), getDifference(spellLevel, entity), getDifference(spellLevel, entity));
+                target.setDeltaMovement(difference);
+            }
+        });
+
+        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
     private float getDifference(int spellLevel, LivingEntity caster)

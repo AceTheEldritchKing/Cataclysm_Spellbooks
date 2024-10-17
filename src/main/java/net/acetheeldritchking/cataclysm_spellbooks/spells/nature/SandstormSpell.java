@@ -56,7 +56,7 @@ public class SandstormSpell extends AbstractSpell {
 
     private void summonSandstormAroundCaster(int spellLevel, Level level, LivingEntity caster)
     {
-        for (int i = 0; i < spellLevel; ++i)
+        for (int i = 0; i < spellLevel; i++)
         {
             double casterX = caster.getX();
             double casterY = caster.getY();
@@ -74,6 +74,6 @@ public class SandstormSpell extends AbstractSpell {
 
     private float getLifespan(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 100;
+        return getSpellPower(spellLevel, caster);
     }
 }
