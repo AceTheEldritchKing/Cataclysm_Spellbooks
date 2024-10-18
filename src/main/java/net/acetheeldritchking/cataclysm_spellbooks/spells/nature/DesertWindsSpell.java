@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -22,7 +23,7 @@ public class DesertWindsSpell extends AbstractSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.irons_spellbooks.damage", getDamage(spellLevel, caster))
+                Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1))
         );
     }
 
@@ -70,7 +71,7 @@ public class DesertWindsSpell extends AbstractSpell {
         Level level = caster.level;
 
         double casterX = caster.getX();
-        double casterEyeHeight = caster.getEyeY()/2;
+        double casterEyeHeight = caster.getEyeY() - 0.5F;
         double casterZ = caster.getZ();
 
         float casterYRot = caster.getYRot();
@@ -89,9 +90,8 @@ public class DesertWindsSpell extends AbstractSpell {
         double x = casterX + vecX;
         double z = casterZ + vexZ;
 
-        Sandstorm_Projectile sandstormProjectile = new Sandstorm_Projectile(caster, d1, d2, d3, level, getDamage(spellLevel, caster));
-
-        sandstormProjectile.setState(2);
+        Sandstorm_Projectile sandstormProjectile = new Sandstorm_Projectile(caster, d1, d2, d3, level,getDamage(spellLevel, caster));
+        sandstormProjectile.setState(1);
         sandstormProjectile.setPos(x, casterEyeHeight, z);
         level.addFreshEntity(sandstormProjectile);
     }

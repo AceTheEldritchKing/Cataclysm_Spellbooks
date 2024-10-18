@@ -32,7 +32,7 @@ public class AmethystPunctureSpell extends AbstractSpell {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.amethyst_speed",
                         Utils.stringTruncation(getAmethystClusterSpeed(spellLevel, getSpellPower(spellLevel, caster)), 1)),
-                Component.translatable("ui.irons_spellbooks.damage", getDamageForProjectileSpeed(spellLevel, 0, getSpellPower(spellLevel, caster)))
+                Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamageForProjectileSpeed(spellLevel, 1, getSpellPower(spellLevel, caster))/5, 1))
 
         );
     }
@@ -130,6 +130,7 @@ public class AmethystPunctureSpell extends AbstractSpell {
         float totalSpeed = getAmethystClusterSpeed(speed, spellPower);
         float damage = spellLevel * totalSpeed;
 
+        //System.out.println("Damage: " + damage);
         return damage;
     }
 }

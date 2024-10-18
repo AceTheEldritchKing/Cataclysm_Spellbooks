@@ -108,6 +108,9 @@
     "spell.cataclysm_spellbooks.sandstorm": "Sandstorm",
     "spell.cataclysm_spellbooks.sandstorm.guide": "Summon sandstorms that surround you",
 
+    "spell.cataclysm_spellbooks.desert_winds": "Desert Winds",
+    "spell.cataclysm_spellbooks.desert_winds.guide": "Summon a smaller sandstorm that damages mobs in front of you",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

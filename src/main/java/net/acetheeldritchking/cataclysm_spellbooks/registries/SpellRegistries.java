@@ -103,6 +103,8 @@ public class SpellRegistries {
     // LIGHTNING //
     // EMP (Cast an emp blast?)
 
+    // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds
+
 
     // ICE //
     // Malevolent Battlefield (Summon Maledictus' halberd field)

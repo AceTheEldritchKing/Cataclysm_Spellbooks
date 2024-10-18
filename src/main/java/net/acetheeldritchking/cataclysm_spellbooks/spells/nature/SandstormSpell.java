@@ -91,7 +91,7 @@ public class SandstormSpell extends AbstractSpell {
 
     private float getLifespan(int spellLevel, LivingEntity caster)
     {
-        //System.out.println("Lifespan: " + getSpellPower(spellLevel, caster) * 15);
-        return getSpellPower(spellLevel, caster) * 15;
+        //System.out.println("Lifespan: " + getSpellPower(spellLevel, caster) * 30);
+        return getSpellPower(spellLevel, caster) * 30;
     }
 }
