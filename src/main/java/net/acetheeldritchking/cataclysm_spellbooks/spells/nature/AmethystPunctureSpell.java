@@ -31,7 +31,9 @@ public class AmethystPunctureSpell extends AbstractSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.amethyst_speed",
-                        Utils.stringTruncation(getAmethystClusterSpeed(spellLevel, getSpellPower(spellLevel, caster)), 1))
+                        Utils.stringTruncation(getAmethystClusterSpeed(spellLevel, getSpellPower(spellLevel, caster)), 1)),
+                Component.translatable("ui.irons_spellbooks.damage", getDamageForProjectileSpeed(spellLevel, 0, getSpellPower(spellLevel, caster)))
+
         );
     }
 

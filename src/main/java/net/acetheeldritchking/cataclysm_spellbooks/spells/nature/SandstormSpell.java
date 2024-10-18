@@ -6,14 +6,29 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.util.IExtendedCataclysmProjectileInterface;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 @AutoSpellConfig
 public class SandstormSpell extends AbstractSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "sandstorm");
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.cataclysm_spellbooks.sandstorm.lifespan",
+                        getLifespan(spellLevel, caster)),
+                Component.translatable("ui.cataclysm_spellbooks.sandstorm_amount",
+                        spellLevel)
+        );
+    }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.RARE)
@@ -68,12 +83,15 @@ public class SandstormSpell extends AbstractSpell {
 
             Sandstorm_Entity sandstorm = new Sandstorm_Entity(level, stormX, casterY, stormZ, (int) getLifespan(spellLevel, caster), angle, caster.getUUID());
 
+            ((IExtendedCataclysmProjectileInterface)sandstorm).setFromSpell(true);
+
             level.addFreshEntity(sandstorm);
         }
     }
 
     private float getLifespan(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster);
+        //System.out.println("Lifespan: " + getSpellPower(spellLevel, caster) * 15);
+        return getSpellPower(spellLevel, caster) * 15;
     }
 }

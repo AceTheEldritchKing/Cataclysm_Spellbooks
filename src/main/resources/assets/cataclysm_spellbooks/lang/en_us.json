@@ -127,6 +127,8 @@
     "ui.cataclysm_spellbooks.gravity_storm.lifespan": "Summon a void vortex that lasts for %d seconds",
     "ui.cataclysm_spellbooks.difference": "Affects entities in at %d speed",
     "ui.cataclysm_spellbooks.gravitation": "While standing, drag entities in. While crouching, push entities away",
+    "ui.cataclysm_spellbooks.sandstorm.lifespan": "Summon a sandstorm that lasts for %d seconds",
+    "ui.cataclysm_spellbooks.sandstorm_amount": "Summons %d sandstorms the circle around the user",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
