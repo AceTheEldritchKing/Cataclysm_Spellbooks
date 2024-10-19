@@ -111,6 +111,9 @@
     "spell.cataclysm_spellbooks.desert_winds": "Desert Winds",
     "spell.cataclysm_spellbooks.desert_winds.guide": "Summon a smaller sandstorm that damages mobs in front of you",
 
+    "spell.cataclysm_spellbooks.monolith_crash": "Monolith Crash",
+    "spell.cataclysm_spellbooks.monolith_crash.guide": "Conjure several monoliths above you that crash around you and your foes",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -132,6 +135,8 @@
     "ui.cataclysm_spellbooks.gravitation": "While standing, drag entities in. While crouching, push entities away",
     "ui.cataclysm_spellbooks.sandstorm.lifespan": "Summon a sandstorm that lasts for %d seconds",
     "ui.cataclysm_spellbooks.sandstorm_amount": "Summons %d sandstorms the circle around the user",
+    "ui.cataclysm_spellbooks.windmill_rings": "%d rings",
+    "ui.cataclysm_spellbooks.windmill_amount": "%d monoliths per ring",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

@@ -31,7 +31,7 @@ public class DimensionalRiftSpell extends AbstractAbyssalSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan",
-                        getRiftLifespan(spellLevel, caster))
+                        getRiftLifespan(spellLevel, caster)/20)
         );
     }
 

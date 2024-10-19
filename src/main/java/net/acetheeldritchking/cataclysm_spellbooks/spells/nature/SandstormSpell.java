@@ -24,7 +24,7 @@ public class SandstormSpell extends AbstractSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.sandstorm.lifespan",
-                        getLifespan(spellLevel, caster)),
+                        getLifespan(spellLevel, caster)/20),
                 Component.translatable("ui.cataclysm_spellbooks.sandstorm_amount",
                         spellLevel)
         );
@@ -42,7 +42,7 @@ public class SandstormSpell extends AbstractSpell {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 2;
         this.spellPowerPerLevel = 2;
-        this.castTime = 15;
+        this.castTime = 25;
         this.baseManaCost = 60;
     }
 
