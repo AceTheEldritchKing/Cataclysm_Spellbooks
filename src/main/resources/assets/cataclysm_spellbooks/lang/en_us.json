@@ -114,6 +114,9 @@
     "spell.cataclysm_spellbooks.monolith_crash": "Monolith Crash",
     "spell.cataclysm_spellbooks.monolith_crash.guide": "Conjure several monoliths above you that crash around you and your foes",
 
+    "spell.cataclysm_spellbooks.malevolent_battlefield": "Malevolent Battlefield",
+    "spell.cataclysm_spellbooks.malevolent_battlefield.guide": "Conjure several phantom halberds around yourself, dealing massive amounts of damage to entities caught nearby",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -137,6 +140,8 @@
     "ui.cataclysm_spellbooks.sandstorm_amount": "Summons %d sandstorms the circle around the user",
     "ui.cataclysm_spellbooks.windmill_rings": "%d rings",
     "ui.cataclysm_spellbooks.windmill_amount": "%d monoliths per ring",
+    "ui.cataclysm_spellbooks.halberd_rings": "%d rings",
+    "ui.cataclysm_spellbooks.halberd_amount": "%d halberds per ring",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

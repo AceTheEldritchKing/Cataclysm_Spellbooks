@@ -9,6 +9,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpel
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.MalevolentBattlefieldSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.DesertWindsSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.MonolithCrashSpell;
@@ -109,6 +110,7 @@ public class SpellRegistries {
 
     // ICE //
     // Malevolent Battlefield (Summon Maledictus' halberd field)
+    public static final RegistryObject<AbstractSpell> MALEVOLENT_BATTLEFIELD = registerSpell(new MalevolentBattlefieldSpell());
 
     // Forgone Rage (Apply Wrath effect to the user. As the user attacks, it fills a rage meter. Each level is an additional 10% extra damage)
 
