@@ -142,6 +142,7 @@
     "ui.cataclysm_spellbooks.windmill_amount": "%d monoliths per ring",
     "ui.cataclysm_spellbooks.halberd_rings": "%d rings",
     "ui.cataclysm_spellbooks.halberd_amount": "%d halberds per ring",
+    "ui.cataclsym_spellboks.soul_render_damage": "Deals %d if Soul Render is held in the main hand",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
