@@ -173,6 +173,12 @@ public class ServerEvents {
             setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 0.5);
             setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
         }
+        if (mob.getType() == ModEntities.MALEDICTUS.get())
+        {
+            // Maledictus takes extra eldritch damage, and less ice damage
+            setIfNonNull(mob, AttributeRegistry.ELDRITCH_MAGIC_RESIST.get(), 0.5);
+            setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 1.5);
+        }
     }
 
     @SubscribeEvent
