@@ -47,7 +47,7 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
-            .setMaxLevel(5)
+            .setMaxLevel(10)
             .setCooldownSeconds(60)
             .build();
 
@@ -81,11 +81,6 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
     }
 
     @Override
-    public AnimationHolder getCastFinishAnimation() {
-        return SpellAnimations.SPIT_FINISH_ANIMATION;
-    }
-
-    @Override
     public Optional<SoundEvent> getCastStartSound() {
         return Optional.of(SoundEvents.WARDEN_HEARTBEAT);
     }
@@ -104,9 +99,9 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
         List<LivingEntity> entitiesNearby = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius));
         for (LivingEntity targets : entitiesNearby)
         {
-            targets.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 4*20, 1, false, false, false));
+            targets.addEffect(new MobEffectInstance(MobEffects.DARKNESS, getCastTime(spellLevel), 1, false, false, false));
         }
-        entity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 4*20, 1, false, false, false));
+        entity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, getCastTime(spellLevel), 1, false, false, false));
 
         super.onServerPreCast(level, spellLevel, entity, playerMagicData);
     }
@@ -130,7 +125,8 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
             level.addParticle(new RingParticle.RingData(0, (float) Math.PI / 2f, 40, 0.337f, 0.925f, 0.8f, 1.0f, 30f, false,
                     RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), casterX + 2.5F * vecX + f * 0.2F, casterY + 0.02F, casterZ + 2.5F * vecZ + f1 * 0.2F, 0, 0, 0);
         }
-        spawnHalberdField(spellLevel * 3, 1, 3.0, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity));
+
+        spawnHalberdField(spellLevel * 3, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity));
         System.out.println("After cast");
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
@@ -179,20 +175,24 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
         boolean flag = false;
         double d0 = 0.0D;
 
+        int maxIterations = 15;
+        int iterationCount = 0;
+
         do {
-            System.out.println("Spawn Halberds");
-            BlockPos pos1 = pos.above();
+            System.out.println("Trying to find block at pos: " + pos);
+
+            BlockPos pos1 = pos.below();
             BlockState blockState = level.getBlockState(pos1);
 
-            if (blockState.isFaceSturdy(level, pos1, Direction.DOWN))
-            {
-                if (!level.isEmptyBlock(pos))
-                {
+            if (blockState.isFaceSturdy(level, pos1, Direction.UP)) {
+
+                System.out.println("Found a sturdy block at: " + pos1);
+
+                if (!level.isEmptyBlock(pos)) {
                     BlockState blockState1 = level.getBlockState(pos);
                     VoxelShape shape = blockState1.getCollisionShape(level, pos);
 
-                    if (!shape.isEmpty())
-                    {
+                    if (!shape.isEmpty()) {
                         d0 = shape.max(Direction.Axis.Y);
                     }
                 }
@@ -201,14 +201,18 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
                 break;
             }
 
-            pos = pos.above();
-        } while (pos.getY() >= Mth.floor(minY) - 1);
+            pos = pos.below();
+            iterationCount++;
 
-        if (flag)
-        {
-            System.out.println("Actually Spawn Halberds");
+        } while (pos.getY() >= Mth.floor(minY) && iterationCount < maxIterations);
+
+        if (flag) {
+            System.out.println("Actually Spawn Halberds at pos: " + pos);
             Phantom_Halberd_Entity phantomHalberd = new Phantom_Halberd_Entity(level, x, pos.getY() + d0, z, rotation, delay, caster, damage);
             level.addFreshEntity(phantomHalberd);
+            System.out.println("Halberd spawned successfully!");
+        } else {
+            System.out.println("Failed to find a valid position to spawn the halberd.");
         }
     }
 

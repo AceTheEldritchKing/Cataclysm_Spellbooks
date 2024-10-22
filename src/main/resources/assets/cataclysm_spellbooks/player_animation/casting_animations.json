@@ -38,7 +38,7 @@
 		},
 		"malevolent_hand_sign": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 0.5417,
+			"animation_length": 1,
 			"bones": {
 				"torso": {
 					"rotation": {
