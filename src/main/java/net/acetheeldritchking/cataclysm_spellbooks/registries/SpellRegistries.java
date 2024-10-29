@@ -55,6 +55,8 @@ public class SpellRegistries {
     // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish)
     public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
 
+    // Summon Leviathan (April Fools spell)
+
 
     // ENDER //
     // Void Rune (Ender)
@@ -69,11 +71,15 @@ public class SpellRegistries {
     // Gravitational Pull (Pulls entities in like Gauntlet of Guard)
     public static final RegistryObject<AbstractSpell> GRAVITATION_PULL = registerSpell(new GravitationPullSpell());
 
+    // Summon End Guardian (April Fools spell)
+
 
     // EVOCATION //
     // Summon Koboleton (Evocation) (NOT READY YET)
 
     // Disarm (Disarm the target's current weapon - Koboldiator attack)
+
+    // Steal (Steals target's mainhand item)
 
 
     // FIRE //
@@ -101,11 +107,15 @@ public class SpellRegistries {
     // Abyss Fireball (Gurl even I don't know wtf it does)
     public static final RegistryObject<AbstractSpell> ABYSS_FIREBALL = registerSpell(new AbyssFireballSpell());
 
+    // Summon Ignis (April Fools spell)
+
 
     // LIGHTNING //
     // EMP (Cast an emp blast?)
 
     // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds
+
+    // Summon Harbinger (April Fools spell)
 
 
     // ICE //
@@ -120,6 +130,12 @@ public class SpellRegistries {
 
     // Rush (Mini boss rush attack?)
 
+    // Phantom Blade (Mini boss blade attack)
+
+    // Malicious Curse (Summons halberds that fall ontop of the target)
+
+    // Summon Maledictus (April Fools spell)
+
 
     // NATURE //
     // Sandstorm (Summon desert tornadoes around the user)
@@ -133,6 +149,8 @@ public class SpellRegistries {
 
     // Amethyst Puncture (Shoots out an amethyst spike)
     public static final RegistryObject<AbstractSpell> AMETHYST_PUNCTURE = registerSpell(new AmethystPunctureSpell());
+
+    // Summon Ancient Remnant (April Fools spell)
 
 
     public static void register(IEventBus eventBus)
