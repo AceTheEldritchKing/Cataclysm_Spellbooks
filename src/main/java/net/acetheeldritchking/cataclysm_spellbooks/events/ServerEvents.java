@@ -1,43 +1,37 @@
 package net.acetheeldritchking.cataclysm_spellbooks.events;
 
-import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignited_Revenant_Entity;
-import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Ignited_Berserker_Entity;
-import com.github.L_Ender.cataclysm.entity.projectile.Amethyst_Cluster_Projectile_Entity;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
-import com.github.L_Ender.cataclysm.init.ModTag;
+import com.github.L_Ender.cataclysm.init.ModSounds;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
-import io.redspace.ironsspellbooks.damage.DamageSources;
-import io.redspace.ironsspellbooks.entity.mobs.goals.*;
-import io.redspace.ironsspellbooks.player.ClientMagicData;
+import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
+import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
+import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.WrathfulPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.util.IExtendedCataclysmProjectileInterface;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class ServerEvents {
@@ -96,6 +90,30 @@ public class ServerEvents {
                 if (!attacker.isOnFire())
                 {
                     attacker.setSecondsOnFire(5);
+                }
+            }
+        }
+
+        // Forgone Rage
+        if (entity instanceof LivingEntity attacker)
+        {
+            if (attacker.hasEffect(CSPotionEffectRegistry.WRATHFUL.get()))
+            {
+                if (attacker instanceof Player player)
+                {
+                    player.getCapability(PlayerWrathProvider.PLAYER_WRATH).ifPresent(wrath -> {
+                        wrath.addWrath(1);
+
+                        float baseAmount = event.getAmount();
+                        float damageBonusPerLevel = WrathfulPotionEffect.ATTACK_DAMAGE_PER_WRATH * wrath.getWrath();
+                        float bonusDamage = baseAmount * damageBonusPerLevel;
+                        float totalDamage = baseAmount + bonusDamage;
+
+                        event.setAmount(totalDamage);
+                        System.out.println("Damage: " + totalDamage);
+                    });
+
+                    player.level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
@@ -195,34 +213,6 @@ public class ServerEvents {
         }
     }
 
-    @SubscribeEvent
-    public void onLivingSetTargetEvent(LivingChangeTargetEvent event)
-    {
-        if (event.getNewTarget() != null)
-        {
-            LivingEntity livingEntity = event.getEntity();
-
-            // Ignis Wizard Leggings
-            if (livingEntity instanceof Mob mob)
-            {
-                if (mob.getType().is(ModTag.LAVA_MONSTER) && livingEntity.getLastHurtByMob() != event.getNewTarget() && event.getNewTarget().getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistries.IGNITIUM_WIZARD_HELMET.get()))
-                {
-                    event.setCanceled(true);
-                }
-            }
-
-            // Ignited Reinforcement Spell
-            if (livingEntity instanceof Ignited_Revenant_Entity ignitedRevenant ||
-                    livingEntity instanceof Ignited_Berserker_Entity ignitedBerserker)
-            {
-                if (event.getNewTarget().hasEffect(CSPotionEffectRegistry.IGNITED_TIMER.get()))
-                {
-                    event.setCanceled(true);
-                }
-            }
-        }
-    }
-
     // Using same code from ISS for dealing with mob attributes, please forgive me
     private static void setIfNonNull(LivingEntity entity, Attribute attribute, double value)
     {
@@ -246,5 +236,76 @@ public class ServerEvents {
                 //System.out.println("spell level: " + event.getLevel());
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onEffectRemove(MobEffectEvent.Remove event)
+    {
+        Entity entity = event.getEntity();
+        MobEffect effect = event.getEffect();
+        if (entity instanceof LivingEntity livingEntity)
+        {
+            if (effect instanceof WrathfulPotionEffect)
+            {
+                if (livingEntity.hasEffect(effect) && livingEntity instanceof Player player)
+                {
+                    player.getCapability(PlayerWrathProvider.PLAYER_WRATH).ifPresent(wrath -> {
+
+                        player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60, 1, false, false, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10*20, 1 + wrath.getWrath(), false, true, true));
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10*20, 1 + wrath.getWrath(), false, true, true));
+
+                        wrath.resetWrath();
+                    });
+                    System.out.println("Poof!");
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEffectExpire(MobEffectEvent.Expired event)
+    {
+        Entity entity = event.getEntity();
+        MobEffect effect = event.getEffectInstance().getEffect();
+        if (entity instanceof LivingEntity livingEntity)
+        {
+            if (effect instanceof WrathfulPotionEffect)
+            {
+                if (livingEntity.hasEffect(effect) && livingEntity instanceof Player player)
+                {
+                    player.getCapability(PlayerWrathProvider.PLAYER_WRATH).ifPresent(wrath -> {
+
+                        player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60, 1, false, false, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10*20, 1 + wrath.getWrath(), false, true, true));
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10*20, 1 + wrath.getWrath(), false, true, true));
+
+                        wrath.resetWrath();
+                    });
+
+                    System.out.println("Poof!");
+                }
+            }
+        }
+    }
+
+    // Capabilities
+    @SubscribeEvent
+    public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event)
+    {
+        if (event.getObject() instanceof Player)
+        {
+            // Wrath
+            if (!event.getObject().getCapability(PlayerWrathProvider.PLAYER_WRATH).isPresent())
+            {
+                event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "wrath"), new PlayerWrathProvider());
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event)
+    {
+        event.register(PlayerWrath.class);
     }
 }

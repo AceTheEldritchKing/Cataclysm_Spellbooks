@@ -44,7 +44,7 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
                 Component.translatable("ui.cataclysm_spellbooks.halberd_rings", spellLevel),
                 Component.translatable("ui.cataclysm_spellbooks.halberd_amount", Utils.stringTruncation(getSpellPower(spellLevel, caster), 0)),
                 Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1)),
-                Component.translatable("ui.cataclsym_spellboks.soul_render_damage", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
+                Component.translatable("ui.cataclysm_spellbooks.soul_render_damage", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
         );
     }
 

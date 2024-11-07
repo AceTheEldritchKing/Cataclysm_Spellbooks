@@ -2,10 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import io.redspace.ironsspellbooks.effect.SummonTimer;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.IgnitedAllyPotionEffect;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.IncapacitatedPotionEffect;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.VoidRunePotionEffect;
+import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,7 +27,10 @@ public class CSPotionEffectRegistry {
             MOB_EFFECTS.register("abyssal_gnawer_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xbea925));
 
     public static final RegistryObject<MobEffect> IGNITED_TIMER =
-            MOB_EFFECTS.register("ignited_timer", IgnitedAllyPotionEffect::new);
+            MOB_EFFECTS.register("ignited_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16734003));
+
+    public static final RegistryObject<MobEffect> WRATHFUL =
+            MOB_EFFECTS.register("wrathful_effect", WrathfulPotionEffect::new);
 
     public static void register(IEventBus eventBus)
     {
