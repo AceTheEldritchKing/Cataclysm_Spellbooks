@@ -40,8 +40,8 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.RARE)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
-            .setMaxLevel(5)
-            .setCooldownSeconds(80)
+            .setMaxLevel(3)
+            .setCooldownSeconds(100)
             .build();
 
     public ConjureIgnitedReinforcement()
@@ -49,7 +49,7 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
         this.manaCostPerLevel = 15;
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
-        this.castTime = 25;
+        this.castTime = 80;
         this.baseManaCost = 50;
     }
 
@@ -92,7 +92,7 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
     {
         MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.IGNITED_TIMER.get(),
                 summonTimer, 0, false, false, false);
-        boolean isBerserker = Utils.random.nextDouble() < 0.4f;
+        boolean isBerserker = Utils.random.nextDouble() < 0.7f;
 
         Ignited_Revenant_Entity revenantEntity = new SummonedIgnitedRevenant(level, caster);
         Ignited_Berserker_Entity berserkerEntity = new SummonedIgnitedBerserker(level, caster);

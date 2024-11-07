@@ -59,7 +59,7 @@ public class CSEntityRegistry {
     public static final RegistryObject<EntityType<SummonedIgnitedRevenant>> SUMMONED_IGNITED_REVENANT =
             ENTITIES.register("summoned_ignited_revenant", () -> EntityType.Builder.<SummonedIgnitedRevenant>of
                             (SummonedIgnitedRevenant::new, MobCategory.MONSTER).
-                    sized(1f, 1f)
+                    sized(1f, 3f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_ignited_revenant").toString()
                     ));
@@ -68,7 +68,7 @@ public class CSEntityRegistry {
     public static final RegistryObject<EntityType<SummonedIgnitedBerserker>> SUMMONED_IGNITED_BERSERKER =
             ENTITIES.register("summoned_ignited_berserker", () -> EntityType.Builder.<SummonedIgnitedBerserker>of
                             (SummonedIgnitedBerserker::new, MobCategory.MONSTER).
-                    sized(1f, 1f)
+                    sized(1f, 3f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_ignited_berserker").toString()
                     ));
