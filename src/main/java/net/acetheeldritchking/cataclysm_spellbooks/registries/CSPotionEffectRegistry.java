@@ -26,7 +26,7 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> ABYSSAL_GNAWER_TIMER =
             MOB_EFFECTS.register("abyssal_gnawer_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xbea925));
 
-    public static final RegistryObject<MobEffect> IGNITED_TIMER =
+    public static final RegistryObject<SummonTimer> IGNITED_TIMER =
             MOB_EFFECTS.register("ignited_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16734003));
 
     public static final RegistryObject<MobEffect> WRATHFUL =

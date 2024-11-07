@@ -10,7 +10,9 @@ import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedRevenant;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -88,36 +90,19 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
     {
         MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.IGNITED_TIMER.get(),
                 summonTimer, 0, false, false, false);
+        boolean isBerserker = Utils.random.nextDouble() < 0.4f;
 
-        Ignited_Revenant_Entity revenantEntity = new Ignited_Revenant_Entity(ModEntities.IGNITED_REVENANT.get(), level);
-        Ignited_Berserker_Entity berserkerEntity = new Ignited_Berserker_Entity(ModEntities.IGNITED_BERSERKER.get(), level);
+        Ignited_Revenant_Entity revenantEntity = new SummonedIgnitedRevenant(level, caster);
 
         revenantEntity.moveTo(x, y, z);
-        berserkerEntity.moveTo(x, y, z);
 
         revenantEntity.finalizeSpawn((ServerLevelAccessor) level,
                 level.getCurrentDifficultyAt(revenantEntity.getOnPos()),
                 MobSpawnType.MOB_SUMMONED, null, null);
-        berserkerEntity.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(berserkerEntity.getOnPos()),
-                MobSpawnType.MOB_SUMMONED, null, null);
 
         revenantEntity.addEffect(effect);
-        berserkerEntity.addEffect(effect);
 
         level.addFreshEntity(revenantEntity);
-        level.addFreshEntity(berserkerEntity);
     }
-
-    /*
-    you may be able to avoid mixins by using LivingChangeTargetEvent and cancel it if the entity tries to target the summoner or their allies
-    (aoe abiltities would have to be handled using the damageevents to cancel it if it tries to damage the owner)
-
-    you can also add ai goals (maybe irosn spellbooks already has one for summoned entities) to follow the summoner whereever you create the entity (or in EntityJoinLevelEvent)
-
-    to force them to target other entities same deal - damageevent (when summoner attacks or gets attacked) and check summoned entities
-    (either store references yourself or look for utility methods / get nearby entities) and have them target the attacked entity
-
-     */
 
 }
