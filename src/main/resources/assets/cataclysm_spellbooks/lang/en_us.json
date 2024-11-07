@@ -155,6 +155,8 @@
     "entity.cataclysm_spellbooks.infernal_blade": "Infernal Blade",
     "entity.cataclysm_spellbooks.hellish_blade": "Hellish Blade",
     "entity.cataclysm_spellbooks.blazing_aoe": "Blazing AoE",
+    "entity.cataclysm_spellbooks.summoned_ignited_revenant": "Ignited Revenant",
+    "entity.cataclysm_spellbooks.summoned_ignited_berserker": "Ignited Berserker",
 
 
 
@@ -162,10 +164,14 @@
     "death.attack.cataclysm_spellbooks.blazing_aoe": "%1$s was immolated in %2$s's blazing field",
     "death.attack.cataclysm_spellbooks.hellish_blade": "%1$s was gored by %2$s's hellish blade",
     "death.attack.cataclysm_spellbooks.infernal_strike": "%1$s was pierced by %2$s's infernal blade",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$s was bashed in by %2$s's ignited revenants",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s was cleaved by %2$s's ignited berserkers",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
 
     "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$s was lacerated by %2$s's gnawers using %3$s",
     "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s was gored by %2$s's hellish blade using %3$s",
-    "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s was pierced by %2$s's infernal blade using %3$s"
+    "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s was pierced by %2$s's infernal blade using %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$s was bashed in by %2$s's ignited revenants using %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s"
 }

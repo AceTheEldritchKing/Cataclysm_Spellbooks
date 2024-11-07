@@ -1,8 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
-import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignited_Revenant_Entity;
+import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Ignited_Berserker_Entity;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.effect.SummonTimer;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
@@ -25,17 +24,17 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SummonedIgnitedRevenant extends Ignited_Revenant_Entity implements MagicSummon {
+public class SummonedIgnitedBerserker extends Ignited_Berserker_Entity implements MagicSummon {
     protected LivingEntity cachedSummoner;
     protected UUID summonerUUID;
 
-    public SummonedIgnitedRevenant(EntityType<? extends Ignited_Revenant_Entity> entity, Level world) {
+    public SummonedIgnitedBerserker(EntityType<? extends Ignited_Berserker_Entity> entity, Level world) {
         super(entity, world);
         xpReward = 0;
     }
 
-    public SummonedIgnitedRevenant(Level level, LivingEntity owner) {
-        this(CSEntityRegistry.SUMMONED_IGNITED_REVENANT.get(), level);
+    public SummonedIgnitedBerserker(Level level, LivingEntity owner) {
+        this(CSEntityRegistry.SUMMONED_IGNITED_BERSERKER.get(), level);
         setSummoner(owner);
     }
 

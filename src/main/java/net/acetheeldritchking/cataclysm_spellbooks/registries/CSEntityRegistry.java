@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAbyssalGnawer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedBerserker;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedRevenant;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
@@ -58,9 +59,18 @@ public class CSEntityRegistry {
     public static final RegistryObject<EntityType<SummonedIgnitedRevenant>> SUMMONED_IGNITED_REVENANT =
             ENTITIES.register("summoned_ignited_revenant", () -> EntityType.Builder.<SummonedIgnitedRevenant>of
                             (SummonedIgnitedRevenant::new, MobCategory.MONSTER).
-                    sized(0.9f, 1f)
+                    sized(1f, 1f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_ignited_revenant").toString()
+                    ));
+
+    // Summoned Ignited Berserker
+    public static final RegistryObject<EntityType<SummonedIgnitedBerserker>> SUMMONED_IGNITED_BERSERKER =
+            ENTITIES.register("summoned_ignited_berserker", () -> EntityType.Builder.<SummonedIgnitedBerserker>of
+                            (SummonedIgnitedBerserker::new, MobCategory.MONSTER).
+                    sized(1f, 1f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_ignited_berserker").toString()
                     ));
 
     public static void register(IEventBus eventBus)

@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.events;
 
+import com.github.L_Ender.cataclysm.client.render.entity.Ignited_Berserker_Renderer;
 import com.github.L_Ender.cataclysm.client.render.entity.Ignited_Revenant_Renderer;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
@@ -14,5 +15,6 @@ public class ClientSetup {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_IGNITED_REVENANT.get(), Ignited_Revenant_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_IGNITED_BERSERKER.get(), Ignited_Berserker_Renderer::new);
     }
 }
