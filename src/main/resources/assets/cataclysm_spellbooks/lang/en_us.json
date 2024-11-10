@@ -122,6 +122,9 @@
     "spell.cataclysm_spellbooks.forgone_rage": "Forgone Rage",
     "spell.cataclysm_spellbooks.forgone_rage.guide": "Fill yourself with a chilling rage that increases your damage as you attack entities. You are weakened afterwards once your wrath ends",
 
+    "spell.cataclysm_spellbooks.conjure_koboldiator": "Conjure: Koboldiator",
+    "spell.cataclysm_spellbooks.conjure_koboldiator.guide": "Conjure the powerful Koboldiator to your aid",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -157,6 +160,7 @@
     "entity.cataclysm_spellbooks.blazing_aoe": "Blazing AoE",
     "entity.cataclysm_spellbooks.summoned_ignited_revenant": "Ignited Revenant",
     "entity.cataclysm_spellbooks.summoned_ignited_berserker": "Ignited Berserker",
+    "entity.cataclysm_spellbooks.summoned_koboldiator": "Koboldiator",
 
 
 

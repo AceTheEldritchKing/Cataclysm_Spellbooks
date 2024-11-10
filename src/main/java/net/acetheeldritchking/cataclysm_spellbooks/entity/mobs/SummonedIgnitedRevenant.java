@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignited_Revenant_Entity;
+import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.effect.SummonTimer;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
@@ -46,8 +47,8 @@ public class SummonedIgnitedRevenant extends Ignited_Revenant_Entity implements 
         );
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5f, true));
-        this.goalSelector.addGoal(5, new GenericFollowOwnerGoal(this, this::getSummoner, .3f, 10, 2, true, 50));
-        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 4.0F, 1.0F));
+        this.goalSelector.addGoal(5, new GenericFollowOwnerGoal(this, this::getSummoner, 1.0f, 10, 2, true, 50));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 9.0F));
 
         this.targetSelector.addGoal(1, new GenericOwnerHurtByTargetGoal(this, this::getSummoner));
@@ -88,9 +89,13 @@ public class SummonedIgnitedRevenant extends Ignited_Revenant_Entity implements 
     public void onUnSummon() {
         if (!level.isClientSide)
         {
-            MagicManager.spawnParticles(level, ParticleTypes.FLAME,
+            MagicManager.spawnParticles(level, ModParticle.SMALL_CURSED_FLAME.get(),
                     getX(), getY(), getZ(),
-                    25, 0.4, 0.8, 0.4, 0.03, false);
+                    25,
+                    level.random.nextGaussian() * 0.007D,
+                    level.random.nextGaussian() * 0.009D,
+                    level.random.nextGaussian() * 0.007D,
+                    0.08, false);
             discard();
         }
     }

@@ -94,8 +94,8 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
                 summonTimer, 0, false, false, false);
         boolean isBerserker = Utils.random.nextDouble() < 0.7f;
 
-        Ignited_Revenant_Entity revenantEntity = new SummonedIgnitedRevenant(level, caster);
-        Ignited_Berserker_Entity berserkerEntity = new SummonedIgnitedBerserker(level, caster);
+        SummonedIgnitedRevenant revenantEntity = new SummonedIgnitedRevenant(level, caster);
+        SummonedIgnitedBerserker berserkerEntity = new SummonedIgnitedBerserker(level, caster);
 
         Monster ignited = isBerserker ? berserkerEntity : revenantEntity;
 

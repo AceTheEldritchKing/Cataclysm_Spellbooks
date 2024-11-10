@@ -9,6 +9,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpel
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ForgoneRageSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.MalevolentBattlefieldSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
@@ -76,11 +77,14 @@ public class SpellRegistries {
 
 
     // EVOCATION //
-    // Summon Koboleton (Evocation) (NOT READY YET)
-
-    // Disarm (Disarm the target's current weapon - Koboldiator attack)
-
     // Steal (Steals target's mainhand item)
+
+
+    // HOLY //
+    // Summon Koboldiator
+    public static final RegistryObject<AbstractSpell> CONJURE_KOBOLDIATOR = registerSpell(new ConjureKoboldiatorSpell());
+
+    // Summon Koboleton (Summon Koboletons)
 
 
     // FIRE //

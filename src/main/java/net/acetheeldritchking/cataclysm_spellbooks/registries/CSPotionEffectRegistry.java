@@ -32,6 +32,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> WRATHFUL =
             MOB_EFFECTS.register("wrathful_effect", WrathfulPotionEffect::new);
 
+    public static final RegistryObject<SummonTimer> KOBOLDIATOR_TIMER =
+            MOB_EFFECTS.register("koboldiator_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16443474));
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);
