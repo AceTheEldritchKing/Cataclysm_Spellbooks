@@ -41,7 +41,7 @@ public class PilferSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(SchoolRegistry.EVOCATION_RESOURCE)
             .setMaxLevel(3)
-            .setCooldownSeconds(30)
+            .setCooldownSeconds(100)
             .build();
 
     public PilferSpell()
