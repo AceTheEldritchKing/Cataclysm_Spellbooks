@@ -8,6 +8,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravitationPullS
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.evocation.PilferSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ForgoneRageSpell;
@@ -78,6 +79,7 @@ public class SpellRegistries {
 
     // EVOCATION //
     // Steal (Steals target's mainhand item)
+    public static final RegistryObject<AbstractSpell> PILFER = registerSpell(new PilferSpell());
 
 
     // HOLY //

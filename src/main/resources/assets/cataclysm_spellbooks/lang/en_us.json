@@ -125,6 +125,9 @@
     "spell.cataclysm_spellbooks.conjure_koboldiator": "Conjure: Koboldiator",
     "spell.cataclysm_spellbooks.conjure_koboldiator.guide": "Conjure the powerful Koboldiator to your aid",
 
+    "spell.cataclysm_spellbooks.pilfer": "Pilfer",
+    "spell.cataclysm_spellbooks.pilfer.guide": "Cast a spell that rips away the item held in the target's hand",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -152,6 +155,7 @@
     "ui.cataclysm_spellbooks.halberd_amount": "%d halberds per ring",
     "ui.cataclysm_spellbooks.soul_render_damage": "Deals %d if Soul Render is held in the main hand",
     "ui.cataclysm_spellbooks.forgone_rage_strikes": "Each consecutive strike increases damage by 20%, maxing out at four strikes ",
+    "ui.cataclysm_spellbooks.pilfer_priority": "Prioritizes offhand items before mainhand items to be stolen",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
