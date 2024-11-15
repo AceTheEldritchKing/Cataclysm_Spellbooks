@@ -1,10 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAbyssalGnawer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedBerserker;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedRevenant;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedKoboldiator;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
@@ -82,6 +79,16 @@ public class CSEntityRegistry {
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_koboldiator").toString()
                     ));
+
+    // Summoned Koboleton
+    public static final RegistryObject<EntityType<SummonedKoboleton>> SUMMONED_KOBOLETON =
+            ENTITIES.register("summoned_koboleton", () -> EntityType.Builder.<SummonedKoboleton>of
+                            (SummonedKoboleton::new, MobCategory.MONSTER).
+                    sized(2.5f, 4.5f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_koboleton").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

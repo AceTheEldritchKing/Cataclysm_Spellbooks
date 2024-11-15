@@ -128,14 +128,17 @@
     "spell.cataclysm_spellbooks.pilfer": "Pilfer",
     "spell.cataclysm_spellbooks.pilfer.guide": "Cast a spell that rips away the item held in the target's hand",
 
+    "spell.cataclysm_spellbooks.summon_koboleton": "Conjure: Koboleton",
+    "spell.cataclysm_spellbooks.summon_koboleton.guide": "Conjure a group of Koboletons to fight by your side",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
     "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Summon a dimensional rift that lasts for %d seconds",
     "ui.cataclysm_spellbooks.gnawer_count": "%d Summons",
     "ui.cataclysm_spellbooks.range": "%d range to cast the spell",
-    "ui.cataclsym_spellboks.incinerator_damage": "Deals %d if Incinerator is held in the main hand",
-    "ui.cataclsym_spellboks.incineration_duration": "Lasts for %d seconds",
+    "ui.cataclysm_spellbooks.incinerator_damage": "Deals %d if Incinerator is held in the main hand",
+    "ui.cataclysm_spellbooks.incineration_duration": "Lasts for %d seconds",
     "ui.cataclysm_spellbooks.ignited_count": "%d Summons",
     "ui.cataclysm_spellbooks.bone_speed_1": "%d Projectile speed",
     "ui.cataclysm_spellbooks.bone_speed_2": "%d Projectile speed",
@@ -165,6 +168,7 @@
     "entity.cataclysm_spellbooks.summoned_ignited_revenant": "Ignited Revenant",
     "entity.cataclysm_spellbooks.summoned_ignited_berserker": "Ignited Berserker",
     "entity.cataclysm_spellbooks.summoned_koboldiator": "Koboldiator",
+    "entity.cataclysm_spellbooks.summoned_koboleton": "Koboleton",
 
 
 

@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 import com.github.L_Ender.cataclysm.client.render.entity.Ignited_Berserker_Renderer;
 import com.github.L_Ender.cataclysm.client.render.entity.Ignited_Revenant_Renderer;
 import com.github.L_Ender.cataclysm.client.render.entity.Kobolediator_Renderer;
+import com.github.L_Ender.cataclysm.client.render.entity.Koboleton_Renderer;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,5 +19,6 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_IGNITED_REVENANT.get(), Ignited_Revenant_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_IGNITED_BERSERKER.get(), Ignited_Berserker_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_KOBOLDIATOR.get(), Kobolediator_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_KOBOLETON.get(), Koboleton_Renderer::new);
     }
 }

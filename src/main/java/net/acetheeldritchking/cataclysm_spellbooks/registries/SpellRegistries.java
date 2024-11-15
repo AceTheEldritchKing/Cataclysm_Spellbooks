@@ -11,6 +11,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.evocation.PilferSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboletonSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ForgoneRageSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.MalevolentBattlefieldSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
@@ -87,6 +88,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CONJURE_KOBOLDIATOR = registerSpell(new ConjureKoboldiatorSpell());
 
     // Summon Koboleton (Summon Koboletons)
+    public static final RegistryObject<AbstractSpell> CONJURE_KOBOLETON = registerSpell(new ConjureKoboletonSpell());
 
 
     // FIRE //

@@ -40,7 +40,7 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
         return List.of(
                 Component.translatable("ui.irons_spellbooks.damage",
                         Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
-                Component.translatable("ui.cataclsym_spellboks.incinerator_damage",
+                Component.translatable("ui.cataclysm_spellbooks.incinerator_damage",
                         Utils.stringTruncation(getBonusDamage(spellLevel, caster), 2)));
     }
 

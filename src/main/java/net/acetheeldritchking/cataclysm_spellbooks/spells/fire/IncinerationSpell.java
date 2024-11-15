@@ -33,7 +33,7 @@ public class IncinerationSpell extends AbstractIgnisSpell {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.range",
                         Utils.stringTruncation(spellLevel, 2)),
-                Component.translatable("ui.cataclsym_spellboks.incineration_duration",
+                Component.translatable("ui.cataclysm_spellbooks.incineration_duration",
                         Utils.stringTruncation(spellPower(spellLevel, caster)/10, 2)));
     }
 
