@@ -88,7 +88,7 @@ public class SummonedKoboleton extends Koboleton_Entity implements MagicSummon {
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.IGNITED_TIMER.get());
+        this.onRemovedHelper(this, CSPotionEffectRegistry.KOBOLDETON_TIMER.get());
         super.onRemovedFromWorld();
     }
 

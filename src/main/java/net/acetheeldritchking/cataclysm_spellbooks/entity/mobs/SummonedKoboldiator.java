@@ -85,7 +85,7 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.IGNITED_TIMER.get());
+        this.onRemovedHelper(this, CSPotionEffectRegistry.KOBOLDIATOR_TIMER.get());
         super.onRemovedFromWorld();
     }
 
