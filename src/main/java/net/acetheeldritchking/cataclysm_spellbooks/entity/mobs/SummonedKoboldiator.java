@@ -114,7 +114,7 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
         {
             return true;
         }
-        // He's a little stupid, he can't attack his own people </3
+        // He gained 50 braincells!
         else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner().getTeam()))
         {
             return false;
