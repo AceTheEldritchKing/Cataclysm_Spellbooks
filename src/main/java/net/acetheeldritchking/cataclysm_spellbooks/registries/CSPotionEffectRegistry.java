@@ -38,6 +38,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> KOBOLDETON_TIMER =
             MOB_EFFECTS.register("koboleton_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16443474));
 
+    public static final RegistryObject<MobEffect> CURSED_FRENZY =
+            MOB_EFFECTS.register("cursed_frenzy", CursedFrenzyEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

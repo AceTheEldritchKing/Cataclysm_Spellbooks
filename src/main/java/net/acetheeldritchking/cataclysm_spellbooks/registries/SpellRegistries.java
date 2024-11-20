@@ -12,6 +12,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.evocation.PilferSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboletonSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.CursedRushSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ForgoneRageSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.MalevolentBattlefieldSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
@@ -138,11 +139,14 @@ public class SpellRegistries {
 
     // Arrow Spray (Release a barrage of icy arrows. Damage increases if the user is holding a bow/crossbow)
 
-    // Rush (Mini boss rush attack?)
+    // Cursed Rush (Mini boss rush attack + Soul Render charge)
+    public static final RegistryObject<AbstractSpell> CURSED_RUSH = registerSpell(new CursedRushSpell());
 
     // Phantom Blade (Mini boss blade attack)
 
     // Malicious Curse (Summons halberds that fall ontop of the target)
+
+    // Phantasmal Slam (Summons either a custom winged entity or Maledictus to grab and slam the target)
 
     // Summon Maledictus (April Fools spell)
 
