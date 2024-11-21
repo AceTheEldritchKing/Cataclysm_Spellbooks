@@ -10,11 +10,13 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
+import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.CursedFrenzyEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.WrathfulPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -270,6 +272,7 @@ public class ServerEvents {
         MobEffect effect = event.getEffectInstance().getEffect();
         if (entity instanceof LivingEntity livingEntity)
         {
+            // Wrathful
             if (effect instanceof WrathfulPotionEffect)
             {
                 if (livingEntity.hasEffect(effect) && livingEntity instanceof Player player)
@@ -286,8 +289,30 @@ public class ServerEvents {
                     System.out.println("Poof!");
                 }
             }
+
+            // Cursed Frenzy
+            if (effect instanceof CursedFrenzyEffect)
+            {
+                CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 1.0F, 0.2F, 1, livingEntity, livingEntity.level, 5, 1);
+            }
         }
     }
+
+    /*@SubscribeEvent
+    public void onFallEvent(LivingFallEvent event)
+    {
+        Entity entity = event.getEntity();
+
+        if (entity instanceof LivingEntity livingEntity)
+        {
+            boolean hasCursedFrenzy = livingEntity.hasEffect(CSPotionEffectRegistry.CURSED_FRENZY.get());
+
+            if (hasCursedFrenzy)
+            {
+                CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 1.0F, 0.2F, 1, livingEntity, livingEntity.level, 5, 1);
+            }
+        }
+    }*/
 
     // Capabilities
     @SubscribeEvent
