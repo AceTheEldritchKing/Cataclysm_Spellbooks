@@ -44,7 +44,8 @@ public class CSUtils {
                 double deltaX = level.random.nextGaussian() * 0.007D;
                 double deltaY = level.random.nextGaussian() * 0.007D;
                 double deltaZ = level.random.nextGaussian() * 0.007D;
-                if (level.isClientSide)
+
+                if (!level.isClientSide())
                 {
                     //System.out.println("Particles");
                     level.addParticle(ModParticle.PHANTOM_WING_FLAME.get(), spawnX, spawnY, spawnZ, deltaX, deltaY, deltaZ);

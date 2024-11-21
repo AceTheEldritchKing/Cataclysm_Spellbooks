@@ -30,15 +30,22 @@ public class CursedFrenzyEffect extends MobEffect {
                     targets.invulnerableTime = 20;
                 }
             }
-        } else if (pLivingEntity.verticalCollision || pLivingEntity.minorHorizontalCollision)
+        } /*else if (pLivingEntity.verticalCollision)
         {
-            //System.out.println("Floor Collide?");
-            CSUtils.spawnHalberdWindmill(10, 10, 1.0F, 1.0F, 0.2F, 1, pLivingEntity, pLivingEntity.level, 5, 2);
+            if (!pLivingEntity.level.isClientSide())
+            {
+                System.out.println("Vertical Collision");
+                CSUtils.spawnHalberdWindmill(10, 10, 1.0F, 1.0F, 0.2F, 1, pLivingEntity, pLivingEntity.level, 5, 2);
+            }
             //spawnHalberdLine();
-        } else if (pLivingEntity.horizontalCollision)
+        } */
+        else if (pLivingEntity.horizontalCollision || pLivingEntity.minorHorizontalCollision)
         {
-            //System.out.println("Wall collide?");
-            //CSUtils.spawnHalberdWindmill(10, 10, 1.0F, 1.0F, 0.2F, 1, pLivingEntity, pLivingEntity.level, 5, 2);
+            /*if (!pLivingEntity.level.isClientSide())
+            {
+                System.out.println("Horizontal Collision");
+                CSUtils.spawnHalberdWindmill(10, 10, 1.0F, 1.0F, 0.2F, 1, pLivingEntity, pLivingEntity.level, 5, 2);
+            }*/
             pLivingEntity.removeEffect(this);
         }
         pLivingEntity.fallDistance = 0;

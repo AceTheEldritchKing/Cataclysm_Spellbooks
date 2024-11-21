@@ -112,7 +112,7 @@ public class CursedRushSpell extends AbstractSpell {
                 Mth.lerp(0.75F, entity.getDeltaMovement().z, vec3.z)
         ));
 
-        entity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.CURSED_FRENZY.get(), 15, (int) getDamage(spellLevel, entity), false, false, false));
+        entity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.CURSED_FRENZY.get(), 20, (int) getDamage(spellLevel, entity), false, false, false));
         CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 1.0F, 0.2F, 1, entity, level, 5, spellLevel);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

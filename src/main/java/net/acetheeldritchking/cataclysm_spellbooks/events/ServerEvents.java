@@ -286,14 +286,18 @@ public class ServerEvents {
                         wrath.resetWrath();
                     });
 
-                    System.out.println("Poof!");
+                    //System.out.println("Poof!");
                 }
             }
 
             // Cursed Frenzy
             if (effect instanceof CursedFrenzyEffect)
             {
-                CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 1.0F, 0.2F, 1, livingEntity, livingEntity.level, 5, 1);
+                if (!entity.level.isClientSide())
+                {
+                    //System.out.println("Potion Effect!");
+                    CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level, 5, 1);
+                }
             }
         }
     }
