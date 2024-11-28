@@ -1,9 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.events;
 
-import com.github.L_Ender.cataclysm.client.render.entity.Ignited_Berserker_Renderer;
-import com.github.L_Ender.cataclysm.client.render.entity.Ignited_Revenant_Renderer;
-import com.github.L_Ender.cataclysm.client.render.entity.Kobolediator_Renderer;
-import com.github.L_Ender.cataclysm.client.render.entity.Koboleton_Renderer;
+import com.github.L_Ender.cataclysm.client.render.entity.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,5 +17,9 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_IGNITED_BERSERKER.get(), Ignited_Berserker_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_KOBOLDIATOR.get(), Kobolediator_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_KOBOLETON.get(), Koboleton_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_DRAUGUR.get(), Draugr_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_ROYAL_DRAUGUR.get(), Royal_Draugr_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_ELITE_DRAUGUR.get(), Elite_Draugr_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_APTRGANGR.get(), Aptrgangr_Renderer::new);
     }
 }

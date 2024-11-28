@@ -1,7 +1,5 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.ice;
 
-import com.github.L_Ender.cataclysm.entity.projectile.Phantom_Halberd_Entity;
-import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
@@ -12,16 +10,12 @@ import io.redspace.ironsspellbooks.capabilities.magic.ImpulseCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
 @AutoSpellConfig
 public class CursedRushSpell extends AbstractSpell {
@@ -31,7 +25,7 @@ public class CursedRushSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
             .setMaxLevel(3)
-            .setCooldownSeconds(80)
+            .setCooldownSeconds(40)
             .build();
 
     public CursedRushSpell()
@@ -85,7 +79,6 @@ public class CursedRushSpell extends AbstractSpell {
         float multiplier = ((getSpellPower(spellLevel, entity) + (spellLevel + 10)) / 10);
 
         Vec3 forwards = entity.getLookAngle();
-        //forwards = forwards.yRot(90);
         if (playerMagicData.getAdditionalCastData() instanceof CursedRushDirectionOverrideCastData)
         {
             if (Utils.random.nextBoolean())

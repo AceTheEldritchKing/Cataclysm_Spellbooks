@@ -7,6 +7,7 @@ import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -71,7 +72,7 @@ public class DesertWindsSpell extends AbstractSpell {
         Level level = caster.level;
 
         double casterX = caster.getX();
-        double casterEyeHeight = caster.getEyeY() - 0.5F;
+        double casterEyeHeight = CSUtils.getEyeHeight(caster);
         double casterZ = caster.getZ();
 
         float casterYRot = caster.getYRot();

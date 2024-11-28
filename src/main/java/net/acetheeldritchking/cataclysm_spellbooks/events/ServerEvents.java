@@ -302,6 +302,7 @@ public class ServerEvents {
         }
     }
 
+    // Fall event - commented out in case I want to use it later
     /*@SubscribeEvent
     public void onFallEvent(LivingFallEvent event)
     {

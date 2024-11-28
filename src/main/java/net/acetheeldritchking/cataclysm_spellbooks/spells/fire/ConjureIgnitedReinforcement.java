@@ -82,7 +82,7 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
             spawnIgnitedNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
         }
 
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.IGNITED_TIMER.get());
+        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.IGNITED_TIMER.get(), summonTimer, 0, false, true, true);
         entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

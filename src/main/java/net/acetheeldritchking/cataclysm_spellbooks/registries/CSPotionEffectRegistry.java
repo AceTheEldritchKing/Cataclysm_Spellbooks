@@ -41,6 +41,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> CURSED_FRENZY =
             MOB_EFFECTS.register("cursed_frenzy", CursedFrenzyEffect::new);
 
+    public static final RegistryObject<SummonTimer> DRAUGUR_TIMER =
+            MOB_EFFECTS.register("draugur_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

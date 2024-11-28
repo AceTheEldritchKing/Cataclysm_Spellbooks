@@ -17,5 +17,9 @@ public class ModSetup {
         event.put(CSEntityRegistry.SUMMONED_IGNITED_BERSERKER.get(), SummonedIgnitedBerserker.ignited_berserker().build());
         event.put(CSEntityRegistry.SUMMONED_KOBOLDIATOR.get(), SummonedKoboldiator.kobolediator().build());
         event.put(CSEntityRegistry.SUMMONED_KOBOLETON.get(), SummonedKoboleton.koboleton().build());
+        event.put(CSEntityRegistry.SUMMONED_DRAUGUR.get(), SummonedDraugur.draugr().build());
+        event.put(CSEntityRegistry.SUMMONED_ROYAL_DRAUGUR.get(), SummonedRoyalDraugur.royal_draugr().build());
+        event.put(CSEntityRegistry.SUMMONED_ELITE_DRAUGUR.get(), SummonedEliteDraugur.elite_draugr().build());
+        event.put(CSEntityRegistry.SUMMONED_APTRGANGR.get(), SummonedAptrgangr.aptrgangr().build());
     }
 }

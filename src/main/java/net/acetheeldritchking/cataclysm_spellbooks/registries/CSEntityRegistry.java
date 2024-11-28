@@ -84,9 +84,45 @@ public class CSEntityRegistry {
     public static final RegistryObject<EntityType<SummonedKoboleton>> SUMMONED_KOBOLETON =
             ENTITIES.register("summoned_koboleton", () -> EntityType.Builder.<SummonedKoboleton>of
                             (SummonedKoboleton::new, MobCategory.MONSTER).
-                    sized(2.5f, 4.5f)
+                    sized(1f, 2f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_koboleton").toString()
+                    ));
+
+    // Summoned Draugur
+    public static final RegistryObject<EntityType<SummonedDraugur>> SUMMONED_DRAUGUR =
+            ENTITIES.register("summoned_draugur", () -> EntityType.Builder.<SummonedDraugur>of
+                            (SummonedDraugur::new, MobCategory.MONSTER).
+                    sized(1f, 2f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_draugur").toString()
+                    ));
+
+    // Summoned Royal Draugur
+    public static final RegistryObject<EntityType<SummonedRoyalDraugur>> SUMMONED_ROYAL_DRAUGUR =
+            ENTITIES.register("summoned_royal_draugur", () -> EntityType.Builder.<SummonedRoyalDraugur>of
+                            (SummonedRoyalDraugur::new, MobCategory.MONSTER).
+                    sized(1f, 2f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_royal_draugur").toString()
+                    ));
+
+    // Summoned Elite Draugur
+    public static final RegistryObject<EntityType<SummonedEliteDraugur>> SUMMONED_ELITE_DRAUGUR =
+            ENTITIES.register("summoned_elite_draugur", () -> EntityType.Builder.<SummonedEliteDraugur>of
+                            (SummonedEliteDraugur::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_elite_draugur").toString()
+                    ));
+
+    // Summoned Aptrgangr
+    public static final RegistryObject<EntityType<SummonedAptrgangr>> SUMMONED_APTRGANGR =
+            ENTITIES.register("summoned_aptrgangr", () -> EntityType.Builder.<SummonedAptrgangr>of
+                            (SummonedAptrgangr::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_aptrgangr").toString()
                     ));
 
 

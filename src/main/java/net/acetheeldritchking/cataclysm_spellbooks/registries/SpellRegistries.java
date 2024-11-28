@@ -12,6 +12,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.evocation.PilferSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboletonSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ConjureThrallsSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.CursedRushSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ForgoneRageSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.MalevolentBattlefieldSpell;
@@ -136,6 +137,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> FORGONE_RAGE = registerSpell(new ForgoneRageSpell());
 
     // Conjure Thrall (Summons the ice undead warriors)
+    public static final RegistryObject<AbstractSpell> CONJURE_THRALL = registerSpell(new ConjureThrallsSpell());
 
     // Arrow Spray (Release a barrage of icy arrows. Damage increases if the user is holding a bow/crossbow)
 
@@ -147,6 +149,8 @@ public class SpellRegistries {
     // Malicious Curse (Summons halberds that fall ontop of the target)
 
     // Phantasmal Slam (Summons either a custom winged entity or Maledictus to grab and slam the target)
+
+    // Echoed Whirlwind (Summons Wrath of The Desert sandstorms)
 
     // Summon Maledictus (April Fools spell)
 

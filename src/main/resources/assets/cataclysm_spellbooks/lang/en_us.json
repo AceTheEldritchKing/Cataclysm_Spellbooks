@@ -131,6 +131,12 @@
     "spell.cataclysm_spellbooks.summon_koboleton": "Conjure: Koboleton",
     "spell.cataclysm_spellbooks.summon_koboleton.guide": "Conjure a group of Koboletons to fight by your side",
 
+    "spell.cataclysm_spellbooks.cursed_rush": "Cursed Rush",
+    "spell.cataclysm_spellbooks.cursed_rush.guide": "Rush in the direction you're looking in, summoning phantom halberds at both your original and new destination. Any entity caught in your path will be damaged",
+
+    "spell.cataclysm_spellbooks.conjure_thralls": "Conjure: Undead Thralls",
+    "spell.cataclysm_spellbooks.conjure_thralls.guide": "Conjure a group of undead draugur to fight by your side",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -169,6 +175,10 @@
     "entity.cataclysm_spellbooks.summoned_ignited_berserker": "Ignited Berserker",
     "entity.cataclysm_spellbooks.summoned_koboldiator": "Koboldiator",
     "entity.cataclysm_spellbooks.summoned_koboleton": "Koboleton",
+    "entity.cataclysm_spellbooks.summoned_draugur": "Draugur",
+    "entity.cataclysm_spellbooks.summoned_royal_draugur": "Royal Draugur",
+    "entity.cataclysm_spellbooks.summoned_elite_draugur": "Elite Draugur",
+    "entity.cataclysm_spellbooks.summoned_aptrgangr": "Aptrgangr",
 
 
 
