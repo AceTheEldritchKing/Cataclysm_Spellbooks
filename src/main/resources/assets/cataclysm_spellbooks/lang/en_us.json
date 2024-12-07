@@ -38,6 +38,12 @@
     "item.cataclysm_spellbooks.abyssal_warlock_leggings": "Abyssal Warlock Leggings",
     "item.cataclysm_spellbooks.abyssal_warlock_boots": "Abyssal Warlock Greaves",
 
+    "item.cataclysm_spellbooks.cursium_mage_circlet": "Cursium Mage Circlet",
+    "item.cataclysm_spellbooks.cursium_mage_chestplate": "Cursium Mage Breastplate",
+    "item.cataclysm_spellbooks.cursium_mage_elytra": "Cursium Mage Winged Breastplate",
+    "item.cataclysm_spellbooks.cursium_mage_skirt": "Cursium Mage Skirt",
+    "item.cataclysm_spellbooks.cursium_mage_boots": "Cursium Mage Greaves",
+
     "item.cataclysm_spellbooks.leviathans_blessing": "Leviathan's Blessing",
     "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
 

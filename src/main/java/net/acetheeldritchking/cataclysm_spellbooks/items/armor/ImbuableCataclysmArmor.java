@@ -16,10 +16,14 @@ public class ImbuableCataclysmArmor extends CSArmorItem implements IPresetSpellC
             return;
         }
 
-        if (itemStack.getItem() instanceof CSArmorItem armorItem && armorItem.getSlot() == EquipmentSlot.CHEST) {
-            if (!ISpellContainer.isSpellContainer(itemStack)) {
-                var spellContainer = ISpellContainer.create(1, true, true);
-                spellContainer.save(itemStack);
+        if (itemStack.getItem() instanceof CSArmorItem armorItem)
+        {
+            if (armorItem.getSlot() == EquipmentSlot.CHEST || armorItem.getSlot() == EquipmentSlot.HEAD)
+            {
+                if (!ISpellContainer.isSpellContainer(itemStack)) {
+                    var spellContainer = ISpellContainer.create(1, true, true);
+                    spellContainer.save(itemStack);
+                }
             }
         }
     }

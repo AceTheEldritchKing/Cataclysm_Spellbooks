@@ -10,10 +10,7 @@ import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockArmorItem;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockMaskItem;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.CSUpgradeTypes;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.BloomStoneStaff;
@@ -136,6 +133,18 @@ public class ItemRegistries {
             () -> new AbyssalWarlockArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> ABYSSAL_WARLOCK_BOOTS = ITEMS.register("abyssal_warlock_boots",
             () -> new AbyssalWarlockArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
+
+    // Cursium Mage Set
+    public static final RegistryObject<Item> CURSIUM_MAGE_HELMET = ITEMS.register("cursium_mage_circlet",
+            () -> new CursiumMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> CURSIUM_MAGE_CHESTPLATE = ITEMS.register("cursium_mage_chestplate",
+            () -> new CursiumMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> CURSIUM_MAGE_CHESTPLATE_ELYTRA = ITEMS.register("cursium_mage_elytra",
+            () -> new CursiumMageElytraArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> CURSIUM_MAGE_LEGGINGS = ITEMS.register("cursium_mage_skirt",
+            () -> new CursiumMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> CURSIUM_MAGE_BOOTS = ITEMS.register("cursium_mage_boots",
+            () -> new CursiumMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
 
     public static Collection<RegistryObject<Item>> getCSItems()

@@ -32,7 +32,7 @@ public enum CSArmorMaterials implements ArmorMaterial {
             CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), new AttributeModifier("Abyssal resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
                     )),
 
-    CURSIUM_WARLOCK_ARMOR("cursium_warlock_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+    CURSIUM_WARLOCK_ARMOR("cursium_mage_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
             () -> Ingredient.of(ModItems.CURSIUM_INGOT.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
             AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier("Ice power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
