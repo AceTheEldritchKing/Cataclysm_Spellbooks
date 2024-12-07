@@ -29,7 +29,7 @@ displayName="Cataclysm: Spellbooks" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="cataclysm_spellbooks.png" #optional
 # A text field displayed in the mod UI
-credits="StarOcean for the lovely models, textures, and the whole idea!" #optional
+credits="StarOcean for the lovely models, textures, and the whole idea, and Hal for the awesome Cursium flying animations!" #optional
 # A text field displayed in the mod UI
 authors="Ace The Eldritch King & StarOcean" #optional
 # Display Test controls the display for your mod in the server connection screen
