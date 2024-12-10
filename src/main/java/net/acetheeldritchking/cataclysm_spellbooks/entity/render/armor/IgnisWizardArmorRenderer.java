@@ -3,8 +3,11 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.renderer.GeoArmorRenderer;
 import mod.azure.azurelib.renderer.layer.AutoGlowingGeoLayer;
+import mod.azure.azurelib.util.RenderUtils;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.IgnisWizardArmorModel;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.IgnisWizardArmorItem;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
 
 public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorItem> {
@@ -53,6 +56,17 @@ public class IgnisWizardArmorRenderer extends GeoArmorRenderer<IgnisWizardArmorI
                 this.setBoneVisible(getRightBootBone(), true);
                 this.setBoneVisible(getLeftBootBone(), true);
             }
+        }
+    }
+
+    @Override
+    protected void applyBaseTransformations(HumanoidModel<?> baseModel) {
+        super.applyBaseTransformations(baseModel);
+        if (this.armorLeggingTorsoBone() != null)
+        {
+            ModelPart modelPart = baseModel.body;
+            RenderUtils.matchModelPartRot(modelPart, this.armorLeggingTorsoBone());
+            this.armorLeggingTorsoBone().updatePosition(modelPart.x, -modelPart.y, modelPart.z);
         }
     }
 }

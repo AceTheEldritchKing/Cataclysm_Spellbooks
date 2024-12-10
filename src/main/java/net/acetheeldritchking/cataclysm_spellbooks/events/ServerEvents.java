@@ -20,6 +20,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -37,7 +38,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class ServerEvents {
-
+    // https://github.com/min2222/L_ender-s-Cataclysm-Backport/blob/master/src/main/java/com/github/L_Ender/cataclysm/event/ServerEventHandler.java
     @SubscribeEvent
     public static void onLivingDamageEvent(LivingDamageEvent event)
     {
@@ -302,22 +303,71 @@ public class ServerEvents {
         }
     }
 
-    // Fall event - commented out in case I want to use it later
-    /*@SubscribeEvent
+    @SubscribeEvent
     public void onFallEvent(LivingFallEvent event)
     {
         Entity entity = event.getEntity();
 
+        // Cursium Boots
         if (entity instanceof LivingEntity livingEntity)
         {
-            boolean hasCursedFrenzy = livingEntity.hasEffect(CSPotionEffectRegistry.CURSED_FRENZY.get());
-
-            if (hasCursedFrenzy)
+            if (!livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty() &&
+                    livingEntity.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemRegistries.CURSIUM_MAGE_BOOTS.get())
             {
-                CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 1.0F, 0.2F, 1, livingEntity, livingEntity.level, 5, 1);
+                event.setDistance(event.getDistance() * 0.3F);
             }
         }
-    }*/
+    }
+
+    @SubscribeEvent
+    public void onLivingDeathEvent(LivingDeathEvent event)
+    {
+        DamageSource damageSource = event.getSource();
+        Entity entity = event.getEntity();
+
+        // Cursium Chestplate
+        if (entity instanceof LivingEntity livingEntity)
+        {
+            if (!livingEntity.level.isClientSide())
+            {
+                if (!damageSource.isBypassInvul())
+                {
+                    if (CSUtils.tryCurisumChestplateRebirth(livingEntity))
+                    {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingAttackEvent(LivingAttackEvent event)
+    {
+        Entity entity = event.getEntity();
+
+        // Cursium Legs
+        if (entity instanceof LivingEntity livingEntity)
+        {
+            if (!livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&
+                    livingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemRegistries.CURSIUM_MAGE_LEGGINGS.get())
+            {
+                if (event.getSource().isBypassInvul())
+                {
+                    if (livingEntity.getRandom().nextFloat() < 0.15F)
+                    {
+                        event.setCanceled(true);
+                    }
+                } else if (!event.getSource().isBypassInvul())
+                {
+                    if (livingEntity.getRandom().nextFloat() < 0.08F)
+                    {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
 
     // Capabilities
     @SubscribeEvent

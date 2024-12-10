@@ -10,7 +10,6 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 import java.util.UUID;
-import java.util.function.Supplier;
 
 public class DesertSpellBook extends UniqueSpellBook {
     public DesertSpellBook() {

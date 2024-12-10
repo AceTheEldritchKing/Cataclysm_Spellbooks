@@ -125,6 +125,7 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
         }
     }
 
+    // Rideable
     @Override
     protected InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         if (pPlayer == getSummoner())
