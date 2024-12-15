@@ -61,6 +61,16 @@ public class ItemRegistries {
                 return new SimpleAttributeSpellBook(12, SpellRarity.LEGENDARY, builder.build(), ItemPropertiesHelper.equipment().fireResistant());
             });
 
+    // Codex of Malice
+    public static final RegistryObject<Item> CODEX_OF_MALICE = ITEMS.register
+            ("codex_of_malice_spell_book", () ->
+            {
+                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+                builder.put(AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
+                return new SimpleAttributeSpellBook(12, SpellRarity.LEGENDARY, builder.build(), ItemPropertiesHelper.equipment().fireResistant());
+            });
+
     /***
      * Staffs
      */
@@ -87,6 +97,16 @@ public class ItemRegistries {
                     (ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 3, -3,
                             Map.of(
                                     AttributeRegistry.ENDER_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE)
+                            )));
+
+    // Spirit Sunderer Staff
+    public static final RegistryObject<Item> SPIRIT_SUNDERER_STAFF = ITEMS.register
+            ("spirit_sunderer", () -> new StaffItem
+                    (ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 4, -3,
+                            Map.of(
+                                    AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.MANA_REGEN.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .30, AttributeModifier.Operation.MULTIPLY_BASE),
                                     AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE)
                             )));
 

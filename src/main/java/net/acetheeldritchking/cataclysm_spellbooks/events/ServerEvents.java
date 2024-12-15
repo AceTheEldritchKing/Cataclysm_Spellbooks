@@ -38,7 +38,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class ServerEvents {
-    // https://github.com/min2222/L_ender-s-Cataclysm-Backport/blob/master/src/main/java/com/github/L_Ender/cataclysm/event/ServerEventHandler.java
     @SubscribeEvent
     public static void onLivingDamageEvent(LivingDamageEvent event)
     {
@@ -113,7 +112,7 @@ public class ServerEvents {
                         float totalDamage = baseAmount + bonusDamage;
 
                         event.setAmount(totalDamage);
-                        System.out.println("Damage: " + totalDamage);
+                        //System.out.println("Damage: " + totalDamage);
                     });
 
                     player.level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -260,7 +259,7 @@ public class ServerEvents {
 
                         wrath.resetWrath();
                     });
-                    System.out.println("Poof!");
+                    //System.out.println("Poof!");
                 }
             }
         }

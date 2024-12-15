@@ -28,8 +28,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
                 Component.translatable("ui.cataclysm_spellbooks.halberd_rings", spellLevel),
                 Component.translatable("ui.cataclysm_spellbooks.halberd_amount", Utils.stringTruncation(getSpellPower(spellLevel, caster), 0)),
                 Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1)),
-                Component.translatable("ui.cataclysm_spellbooks.soul_render_damage", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
+                Component.translatable("ui.cataclysm_spellbooks.maledictus_armory_bonus", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
         );
     }
 
@@ -58,9 +57,9 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
 
     public MalevolentBattlefieldSpell()
     {
-        this.manaCostPerLevel = 15;
-        this.baseSpellPower = 5;
-        this.spellPowerPerLevel = 1;
+        this.manaCostPerLevel = 20;
+        this.baseSpellPower = 10;
+        this.spellPowerPerLevel = 3;
         this.castTime = 80;
         this.baseManaCost = 100;
     }
@@ -120,8 +119,9 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         // Summon halberd field
         Item soulRenderer = ModItems.SOUL_RENDER.get();
+        Item annihilator = ModItems.THE_ANNIHILATOR.get();
 
-        if (entity.getMainHandItem().is(soulRenderer))
+        if (entity.getMainHandItem().is(soulRenderer) || entity.getMainHandItem().is(annihilator))
         {
             CSUtils.spawnHalberdWindmill(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
@@ -138,7 +138,7 @@ public class MalevolentBattlefieldSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 5;
+        return getSpellPower(spellLevel, caster) + 7;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)

@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "irons_spellbooks:ice_staff"
+    },
+    "addition": {
+        "item": "cataclysm:cursium_ingot"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:spirit_sunderer"
+    }
+}

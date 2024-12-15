@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "irons_spellbooks:netherite_spell_book"
+    },
+    "addition": {
+        "item": "cataclysm:cursium_ingot"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:codex_of_malice_spell_book"
+    }
+}

@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import io.redspace.ironsspellbooks.util.MinecraftInstanceHelper;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -37,6 +38,8 @@ public class BloomStoneStaff extends StaffItem {
         var spell = affinityData.getSpell();
         if (spell != SpellRegistry.none())
         {
+            AffinityData.setAffinityData(pStack, SpellRegistries.AMETHYST_PUNCTURE.get());
+
             pTooltipComponents.add(Component.translatable("tooltip.irons_spellbooks.enhance_spell_level",
                     spell.getDisplayName(MinecraftInstanceHelper.instance.player()).withStyle(spell.getSchoolType().getDisplayName().getStyle())).withStyle(ChatFormatting.YELLOW));
         }

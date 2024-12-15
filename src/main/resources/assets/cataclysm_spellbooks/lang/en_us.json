@@ -19,11 +19,13 @@
     "item.cataclysm_spellbooks.abyss_spell_book": "Book o' R'lyeh",
     "item.cataclysm_spellbooks.desert_spell_book": "Desert Spellbook",
     "item.cataclysm_spellbooks.ignis_spell_book": "Ignis Spellbook",
+    "item.cataclysm_spellbooks.codex_of_malice_spell_book": "Codex of Malice",
 
     "item.cataclysm_spellbooks.bloom_stone_staff": "Bloom Stone Staff",
     "item.cataclysm_spellbooks.coral_staff": "Coral Staff",
     "item.cataclysm_spellbooks.fake_wudjets_staff": "Fake Wadjet's Staff",
     "item.cataclysm_spellbooks.void_staff": "Void Staff",
+    "item.cataclysm_spellbooks.spirit_sunderer": "Spirit Sunderer",
 
     "item.cataclysm_spellbooks.abyssal_rune": "Abyssal Rune",
 
@@ -172,6 +174,11 @@
     "ui.cataclysm_spellbooks.soul_render_damage": "Deals %d if Soul Render is held in the main hand",
     "ui.cataclysm_spellbooks.forgone_rage_strikes": "Each consecutive strike increases damage by 20%, maxing out at four strikes ",
     "ui.cataclysm_spellbooks.pilfer_priority": "Prioritizes offhand items before mainhand items to be stolen",
+    "ui.cataclysm_spellbooks.koboleton_count": "%d Summons",
+    "ui.cataclysm_spellbooks.koboldiator_count": "%d Summons",
+    "ui.cataclysm_spellbooks.thrall_count": "%d Summons",
+    "ui.cataclysm_spellbooks.halberd_rush": "Spawns halberds at starting location and occasionally at end location",
+    "ui.cataclysm_spellbooks.maledictus_armory_bonus": "Deals %d if Soul Render or Annihilator is held in the main hand",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

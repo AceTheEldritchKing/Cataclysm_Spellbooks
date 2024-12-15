@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:item/handheld",
+    "loader": "forge:separate_transforms",
+    "base": {
+        "parent": "cataclysm_spellbooks:item/codex_of_malice_spell_book_model"
+    },
+    "perspectives": {
+        "gui": {
+            "parent": "cataclysm_spellbooks:item/codex_of_malice_spell_book_gui"
+        }
+    }
+}
