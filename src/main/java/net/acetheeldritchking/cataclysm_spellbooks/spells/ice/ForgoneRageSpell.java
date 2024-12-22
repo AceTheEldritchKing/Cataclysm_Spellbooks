@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class ForgoneRageSpell extends AbstractSpell {
+public class ForgoneRageSpell extends AbstractMaledictusSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "forgone_rage");
 
     @Override

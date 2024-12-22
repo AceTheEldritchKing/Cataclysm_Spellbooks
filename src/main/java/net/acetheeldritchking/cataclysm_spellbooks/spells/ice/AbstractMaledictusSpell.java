@@ -1,12 +1,11 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.fire;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.ice;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.AbstractAbyssalSpell;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public abstract class AbstractIgnisSpell extends AbstractSpell {
+public abstract class AbstractMaledictusSpell extends AbstractSpell {
 
     @Override
     public boolean allowLooting() {
@@ -15,7 +14,8 @@ public abstract class AbstractIgnisSpell extends AbstractSpell {
 
     @Override
     public boolean canBeCraftedBy(Player player) {
-        Item burningEmbers = ModItems.BURNING_ASHES.get();
-        return player.getMainHandItem().is(burningEmbers);
+        // Will change this later to overhaul how crafting will be done
+        Item cursium = ModItems.CURSIUM_INGOT.get();
+        return player.getMainHandItem().is(cursium);
     }
 }

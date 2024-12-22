@@ -25,7 +25,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 @AutoSpellConfig
-public class ConjureThrallsSpell extends AbstractSpell {
+public class ConjureThrallsSpell extends AbstractMaledictusSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "conjure_thralls");
 
     @Override

@@ -14,28 +14,24 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class MalevolentBattlefieldSpell extends AbstractSpell {
+public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "malevolent_battlefield");
 
     @Override
