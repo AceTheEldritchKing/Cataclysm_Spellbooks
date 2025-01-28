@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "irons_spellbooks:item/template_large_sword",
+    "textures": {
+      "layer0": "cataclysm_spellbooks:item/monstrous_flamberge"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "minecraft:item/handheld",
+      "textures": {
+        "layer0": "cataclysm_spellbooks:item/monstrous_flamberge_gui"
+      }
+    }
+  }
+}

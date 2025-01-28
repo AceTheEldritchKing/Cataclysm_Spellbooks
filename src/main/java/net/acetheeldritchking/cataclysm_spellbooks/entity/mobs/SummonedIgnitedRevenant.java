@@ -12,6 +12,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegi
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -97,6 +98,26 @@ public class SummonedIgnitedRevenant extends Ignited_Revenant_Entity implements 
                     level.random.nextGaussian() * 0.007D,
                     0.08, false);
             discard();
+        }
+    }
+
+    @Override
+    public boolean isAlliedTo(Entity entityIn) {
+        if (entityIn == this)
+        {
+            return true;
+        }
+        else if (entityIn == getSummoner())
+        {
+            return true;
+        }
+        else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner().getTeam()))
+        {
+            return false;
+        }
+        else
+        {
+            return this.getTeam() == null && entityIn.getTeam() == null;
         }
     }
 

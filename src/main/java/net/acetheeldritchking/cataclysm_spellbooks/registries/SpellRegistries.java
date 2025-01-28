@@ -120,6 +120,9 @@ public class SpellRegistries {
 
     // Summon Ignis (April Fools spell)
 
+    // Tectonic Tremble
+    public static final RegistryObject<AbstractSpell> TECTONIC_TREMBLE = registerSpell(new TectonicTrembleSpell());
+
 
     // LIGHTNING //
     // EMP (Cast an emp blast?)

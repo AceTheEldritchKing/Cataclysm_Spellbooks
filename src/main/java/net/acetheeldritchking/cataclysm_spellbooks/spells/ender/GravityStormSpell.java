@@ -87,7 +87,7 @@ public class GravityStormSpell extends AbstractSpell {
 
         Level casterLevel = entity.level;
 
-        Void_Vortex_Entity voidVortex = new Void_Vortex_Entity(casterLevel, casterX, casterEye, casterZ, 0, entity);
+        Void_Vortex_Entity voidVortex = new Void_Vortex_Entity(casterLevel, casterX, casterEye, casterZ, 0, entity, 10);
 
         voidVortex.setLifespan(getVortexLifeSpan(spellLevel, entity));
         voidVortex.moveTo(gravityStormLocation);

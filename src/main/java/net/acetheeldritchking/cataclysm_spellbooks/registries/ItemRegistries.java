@@ -2,6 +2,8 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import com.google.common.collect.ImmutableMultimap;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
+import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
 import io.redspace.ironsspellbooks.item.armor.UpgradeTypes;
@@ -17,6 +19,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellB
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.BloomStoneStaff;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.FakeWadjetStaff;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.SpiritSundererStaff;
+import net.acetheeldritchking.cataclysm_spellbooks.items.weapons.MonstrousFlambergeItem;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -70,9 +73,10 @@ public class ItemRegistries {
                 ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
                 builder.put(AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
                 builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
-                // Yeah this is weird, I know
+                // Yeah, this is weird, I know
                 return new CodexOfMaliceSpellBook(builder.build());
             });
+
 
     /***
      * Staffs
@@ -107,11 +111,13 @@ public class ItemRegistries {
     public static final RegistryObject<Item> SPIRIT_SUNDERER_STAFF = ITEMS.register
             ("spirit_sunderer", SpiritSundererStaff::new);
 
+
     /**
      * Curios
      */
     // Leviathan's Blessing Ring
     public static final RegistryObject<CurioBaseItem> LEVIATHANS_BLESSING = ITEMS.register("leviathans_blessing", LeviathansBlessingRing::new);
+
 
     /**
      * Items
@@ -119,11 +125,27 @@ public class ItemRegistries {
     // Abyssal Rune
     public static final RegistryObject<Item> ABYSSAL_RUNE = ITEMS.register("abyssal_rune", () -> new Item(ItemPropertiesHelper.material()));
 
+    // Technomancy Rune
+
+
+    /**
+     * Weapons
+     */
+    // Monstrous Flamberge
+    public static final RegistryObject<Item> MONSTROUS_FLAMBERGE = ITEMS.register("monstrous_flamberge", () -> new MonstrousFlambergeItem(SpellDataRegistryHolder.of(
+            new SpellDataRegistryHolder(SpellRegistries.TECTONIC_TREMBLE, 1))));
+
+    // Spellstealer - Only planned for 1.21.1
+
+
     /***
      * Upgrade Orbs
      */
+    // Abyssal Upgrade Orb
     public static final RegistryObject<Item> ABYSSAL_UPGRADE_ORB = ITEMS.register("abyssal_upgrade_orb",
             () -> new UpgradeOrbItem(CSUpgradeTypes.ABYSSAL_SPELL_POWER, ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON)));
+
+    // Technomancy Upgrade Orb
 
 
     /***
@@ -134,6 +156,8 @@ public class ItemRegistries {
             () -> new IgnisWizardArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> IGNITIUM_WIZARD_CHESTPLATE = ITEMS.register("ignis_chestplate",
             () -> new IgnisWizardArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> IGNITIUM_WIZARD_CHESTPLATE_ELYTRA = ITEMS.register("ignis_chestplate_elytra",
+            () -> new IgnisWizardElytraArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> IGNITIUM_WIZARD_LEGGINGS = ITEMS.register("ignis_leggings",
             () -> new IgnisWizardArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> IGNITIUM_WIZARD_BOOTS = ITEMS.register("ignis_boots",
@@ -162,6 +186,16 @@ public class ItemRegistries {
             () -> new CursiumMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> CURSIUM_MAGE_BOOTS = ITEMS.register("cursium_mage_boots",
             () -> new CursiumMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
+
+    // Pharaoh Mage Set
+
+    // Technomancer Mage set
+
+    // Monstrous Wizard Hat
+
+    // Boulder Blossom Mage Set
+
+    // Excelsius Mage Set
 
 
     public static Collection<RegistryObject<Item>> getCSItems()
