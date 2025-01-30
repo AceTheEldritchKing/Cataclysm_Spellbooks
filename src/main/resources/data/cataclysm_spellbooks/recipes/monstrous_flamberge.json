@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "irons_spellbooks:keeper_flamberge"
+    },
+    "addition": {
+        "item": "cataclysm:monstrous_horn"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:monstrous_flamberge"
+    }
+}

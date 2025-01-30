@@ -25,19 +25,31 @@ public enum CSArmorMaterials implements ArmorMaterial {
                     AttributeRegistry.FIRE_MAGIC_RESIST.get(), new AttributeModifier("Fire resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
                     )),
 
-    ABYSSAL_WARLOCK_ARMOR("abyssal_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.0F,
+    // Abyssal Warlock Armor
+    ABYSSAL_WARLOCK_ARMOR("abyssal_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, 0.0F,
             () -> Ingredient.of(ItemRegistry.MAGIC_CLOTH.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
             CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), new AttributeModifier("Abyssal power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
             CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), new AttributeModifier("Abyssal resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
                     )),
 
+    // Cursium Warlock Armor
     CURSIUM_WARLOCK_ARMOR("cursium_mage_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
             () -> Ingredient.of(ModItems.CURSIUM_INGOT.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
             AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier("Ice power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
             AttributeRegistry.ICE_MAGIC_RESIST.get(), new AttributeModifier("Ice resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
     ));
+
+    // Pharaoh Mage Armor
+
+    // Boulder Blossom Armor
+
+    // Monstrous Wizard Hat
+
+    // Technomancer Mage Armor
+
+    // Excelsius Warlock Armor
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;

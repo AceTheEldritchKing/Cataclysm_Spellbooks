@@ -174,6 +174,9 @@ public class SpellRegistries {
     // Summon Ancient Remnant (April Fools spell)
 
 
+    // TECHNOMANCY //
+
+
     public static void register(IEventBus eventBus)
     {
         SPELLS.register(eventBus);

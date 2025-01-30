@@ -6,10 +6,16 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
+import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
+import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +27,14 @@ import java.util.List;
 @AutoSpellConfig
 public class TectonicTrembleSpell extends AbstractSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "tectonic_tremble");
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.cataclysm_spellbooks.range", Utils.stringTruncation(getRange(spellLevel, caster), 0)),
+                Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1))
+        );
+    }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
@@ -35,7 +49,7 @@ public class TectonicTrembleSpell extends AbstractSpell {
         this.baseSpellPower = 15;
         this.spellPowerPerLevel = 0;
         this.castTime = 15;
-        this.baseManaCost = 100;
+        this.baseManaCost = 150;
     }
 
     @Override
@@ -101,9 +115,9 @@ public class TectonicTrembleSpell extends AbstractSpell {
             if (flag)
             {
                 doKnockback(targets, entity, 2.0D, 0.6D);
-                // Why aren't the being set ON FIRE???
-                targets.setSecondsOnFire(15);
             }
+
+            targets.setSecondsOnFire(10);
         }
 
         // Temp
@@ -117,18 +131,20 @@ public class TectonicTrembleSpell extends AbstractSpell {
         aoe.setSlownessAmplifier(0);
 
         level.addFreshEntity(aoe);
+        CSUtils.spawnFlameJetWindmill(5, 5, 1, 1.25D, 0, 1, entity, level, 1);
+        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), getRange(spellLevel, entity)), entity.getX(), entity.getY() + 0.5F, entity.getZ(), 1, 0, 0, 0, 0, true);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster);
+        return getSpellPower(spellLevel, caster) * 0.9F;
     }
 
     private int getRange(int spellLevel, LivingEntity caster)
     {
-        return (int) (10 + spellLevel * getEntityPowerMultiplier(caster));
+        return (int) (5 + spellLevel * getEntityPowerMultiplier(caster));
     }
 
     private void doKnockback(LivingEntity target, LivingEntity caster, double x, double y)
