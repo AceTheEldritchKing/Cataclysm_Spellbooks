@@ -125,11 +125,6 @@ public class SpellRegistries {
 
 
     // LIGHTNING //
-    // EMP (Cast an emp blast?)
-
-    // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds
-
-    // Summon Harbinger (April Fools spell)
 
 
     // ICE //
@@ -153,7 +148,7 @@ public class SpellRegistries {
 
     // Phantasmal Slam (Summons either a custom winged entity or Maledictus to grab and slam the target)
 
-    // Echoed Whirlwind (Summons Wrath of The Desert sandstorms)
+    // Echoed Whirlwind/Snow Squall (Summons Wrath of The Desert sandstorms)
 
     // Summon Maledictus (April Fools spell)
 
@@ -175,6 +170,11 @@ public class SpellRegistries {
 
 
     // TECHNOMANCY //
+    // EMP (Cast an emp blast?)
+
+    // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds
+
+    // Summon Harbinger (April Fools spell)
 
 
     public static void register(IEventBus eventBus)
