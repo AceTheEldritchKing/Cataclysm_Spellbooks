@@ -188,12 +188,28 @@ public class ItemRegistries {
             () -> new CursiumMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Pharaoh Mage Set
+    public static final RegistryObject<Item> PHARAOH_MAGE_HELMET = ITEMS.register("pharaoh_helmet",
+            () -> new PharaohMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> PHARAOH_MAGE_CHESTPLATE_ELYTRA = ITEMS.register("pharaoh_chestplate",
+            () -> new PharaohMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> PHARAOH_MAGE_LEGGINGS = ITEMS.register("pharaoh_leggings",
+            () -> new PharaohMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> PHARAOH_MAGE_BOOTS = ITEMS.register("pharaoh_greaves",
+            () -> new PharaohMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Technomancer Mage set
 
     // Monstrous Wizard Hat
 
-    // Boulder Blossom Mage Set
+    // Bloom Stone Mage Set
+    public static final RegistryObject<Item> BLOOM_STONE_HAT = ITEMS.register("bloom_stone_hat",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> BLOOM_STONE_CHESTPLATE = ITEMS.register("bloom_stone_chestplate",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> BLOOM_STONE_SKIRT = ITEMS.register("bloom_stone_skirt",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> BLOOM_STONE_GREAVES = ITEMS.register("bloom_stone_greaves",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Excelsius Mage Set
 
