@@ -50,7 +50,7 @@ public enum CSArmorMaterials implements ArmorMaterial {
     )),
 
     // Boulder Blossom Armor
-    BOULDER_BLOSSOM_ARMOR("boulder_blossom_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+    BOULDER_BLOSSOM_ARMOR("boulder_blossom_armor", 45, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
             () -> Ingredient.of(ModItems.AMETHYST_CRAB_SHELL.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
             AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier("Nature power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
@@ -58,7 +58,7 @@ public enum CSArmorMaterials implements ArmorMaterial {
     )),
 
     // Monstrous Wizard Hat
-    MONSTROUS_WIZARD_ARMOR("monstrous_wizard", 45, new int[]{4, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 2.5F, 0.2F,
+    MONSTROUS_WIZARD_ARMOR("monstrous_wizard", 45, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 3.0F, 0.2F,
             () -> Ingredient.of(ModItems.MONSTROUS_HORN.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 100, AttributeModifier.Operation.ADDITION),
             AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier("Nature power", 0.15, AttributeModifier.Operation.MULTIPLY_BASE),

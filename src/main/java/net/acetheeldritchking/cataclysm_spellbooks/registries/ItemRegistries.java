@@ -197,10 +197,6 @@ public class ItemRegistries {
     public static final RegistryObject<Item> PHARAOH_MAGE_BOOTS = ITEMS.register("pharaoh_greaves",
             () -> new PharaohMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
-    // Technomancer Mage set
-
-    // Monstrous Wizard Hat
-
     // Bloom Stone Mage Set
     public static final RegistryObject<Item> BLOOM_STONE_HAT = ITEMS.register("bloom_stone_hat",
             () -> new BloomStoneMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
@@ -210,6 +206,12 @@ public class ItemRegistries {
             () -> new BloomStoneMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> BLOOM_STONE_GREAVES = ITEMS.register("bloom_stone_greaves",
             () -> new BloomStoneMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
+
+    // Monstrous Wizard Hat
+    public static final RegistryObject<Item> MONSTROUS_WIZARD_HAT = ITEMS.register("monstrous_wizard_hat",
+            () -> new MonstrousWizardHatArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+
+    // Technomancer Mage set
 
     // Excelsius Mage Set
 
