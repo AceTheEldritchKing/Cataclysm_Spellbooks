@@ -136,7 +136,7 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 5.0f;
+        return (getSpellPower(spellLevel, caster) * 5.0f) * 0.6f;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)

@@ -99,6 +99,6 @@ public class DesertWindsSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 2;
+        return (getSpellPower(spellLevel, caster) * 2) * 0.4f;
     }
 }
