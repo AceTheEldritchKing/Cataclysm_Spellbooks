@@ -2,22 +2,20 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import mod.azure.azurelib.animatable.GeoItem;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class CSArmorItem extends ArmorItem implements GeoItem {
     private static final UUID[] ARMOR_ATTRIBUTE_UUID_PER_SLOT = new UUID[]
@@ -26,7 +24,7 @@ public class CSArmorItem extends ArmorItem implements GeoItem {
                     UUID.fromString("15C1FE6B-3596-412A-B6CF-4077CB37140F"),
                     UUID.fromString("82A575D1-366A-4BBD-91F8-25DB6B804F06")};
     private final Multimap<Attribute, AttributeModifier> ARMOR_ATTRIBUTES;
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -78,15 +76,5 @@ public class CSArmorItem extends ArmorItem implements GeoItem {
         {
             return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
         }));
-    }
-
-    // TODO: Review
-
-    @Override
-    public void createRenderer(Consumer<Object> consumer) {}
-
-    @Override
-    public Supplier<Object> getRenderProvider() {
-        return null;
     }
 }

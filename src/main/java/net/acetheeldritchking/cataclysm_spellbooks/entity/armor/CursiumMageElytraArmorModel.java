@@ -1,9 +1,9 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.armor;
 
-import mod.azure.azurelib.model.GeoModel;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.CursiumMageElytraArmorItem;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.GeoModel;
 
 public class CursiumMageElytraArmorModel extends GeoModel<CursiumMageElytraArmorItem> {
     @Override

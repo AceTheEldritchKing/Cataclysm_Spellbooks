@@ -1,14 +1,14 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
-import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.renderer.GeoArmorRenderer;
-import mod.azure.azurelib.renderer.layer.AutoGlowingGeoLayer;
-import mod.azure.azurelib.util.RenderUtils;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.AbyssalWarlockArmorModel;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.AbyssalWarlockArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
+import software.bernie.geckolib.util.RenderUtils;
 
 public class AbyssalWarlockArmorRenderer extends GeoArmorRenderer<AbyssalWarlockArmorItem> {
     public AbyssalWarlockArmorRenderer()

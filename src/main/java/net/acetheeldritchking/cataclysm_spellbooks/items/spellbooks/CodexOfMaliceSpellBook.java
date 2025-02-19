@@ -4,21 +4,21 @@ import com.google.common.collect.Multimap;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
-import mod.azure.azurelib.animatable.GeoItem;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.util.AzureLibUtil;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.CodexOfMaliceSpellBookRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class CodexOfMaliceSpellBook extends SimpleAttributeSpellBook implements GeoItem {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public CodexOfMaliceSpellBook(Multimap<Attribute, AttributeModifier> defaultModifiers) {
         super(12, SpellRarity.LEGENDARY, defaultModifiers,ItemPropertiesHelper.equipment().fireResistant().stacksTo(1));
@@ -52,15 +52,5 @@ public class CodexOfMaliceSpellBook extends SimpleAttributeSpellBook implements 
         });
     }
 
-    // TODO: Review
 
-    @Override
-    public void createRenderer(Consumer<Object> consumer) {
-
-    }
-
-    @Override
-    public Supplier<Object> getRenderProvider() {
-        return null;
-    }
 }

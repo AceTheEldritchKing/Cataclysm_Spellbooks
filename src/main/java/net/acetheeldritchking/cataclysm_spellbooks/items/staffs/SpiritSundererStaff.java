@@ -3,17 +3,15 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.staffs;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
-import mod.azure.azurelib.animatable.GeoItem;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.util.AzureLibUtil;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.CodexOfMaliceSpellBookRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.SpiritSundererStaffRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Map;
 import java.util.UUID;
@@ -21,7 +19,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class SpiritSundererStaff extends StaffItem implements GeoItem {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public SpiritSundererStaff() {
         super(ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 4, -3,
@@ -34,7 +32,7 @@ public class SpiritSundererStaff extends StaffItem implements GeoItem {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        // Guh
+// Guh
     }
 
     @Override
@@ -58,17 +56,5 @@ public class SpiritSundererStaff extends StaffItem implements GeoItem {
                 return this.renderer;
             }
         });
-    }
-
-    // TODO: Review
-
-    @Override
-    public void createRenderer(Consumer<Object> consumer) {
-
-    }
-
-    @Override
-    public Supplier<Object> getRenderProvider() {
-        return null;
     }
 }

@@ -1,9 +1,9 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks;
 
 import io.redspace.ironsspellbooks.IronsSpellbooks;
-import mod.azure.azurelib.model.GeoModel;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.GeoModel;
 
 public class CodexOfMaliceSpellBookModel extends GeoModel<CodexOfMaliceSpellBook> {
     @Override
