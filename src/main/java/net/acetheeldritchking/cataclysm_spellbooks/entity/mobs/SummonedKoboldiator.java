@@ -153,7 +153,10 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
 
     @Override
     public LivingEntity getControllingPassenger() {
-        return this.getFirstPassenger().getControllingPassenger();
+        if (this.getFirstPassenger() == null) {
+            return null;
+        }
+        return (LivingEntity) this.getFirstPassenger();
     }
 
     public void travel(Vec3 pTravelVector) {
