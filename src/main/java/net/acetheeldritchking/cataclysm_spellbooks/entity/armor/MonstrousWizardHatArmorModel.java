@@ -1,11 +1,10 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.armor;
 
 import io.redspace.ironsspellbooks.IronsSpellbooks;
-import mod.azure.azurelib.model.GeoModel;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.MonstrousWizardHatArmorItem;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.PharaohMageArmorItem;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.GeoModel;
 
 public class MonstrousWizardHatArmorModel extends GeoModel<MonstrousWizardHatArmorItem> {
     @Override

@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -21,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 public class BloomStoneMageArmorItem extends ImbuableCataclysmArmor {
-    public BloomStoneMageArmorItem(EquipmentSlot slot, Properties settings) {
+    public BloomStoneMageArmorItem(ArmorItem.Type slot, Properties settings) {
         super(CSArmorMaterials.BOULDER_BLOSSOM_ARMOR, slot, settings);
     }
 
@@ -77,13 +78,13 @@ public class BloomStoneMageArmorItem extends ImbuableCataclysmArmor {
                 double v3 = Mth.sqrt((float) (vX * vY * vZ));
 
                 Amethyst_Cluster_Projectile_Entity amethystClusterProjectile =
-                        new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), player.level, player, (float) CMConfig.AmethystClusterdamage);
+                        new Amethyst_Cluster_Projectile_Entity(ModEntities.AMETHYST_CLUSTER_PROJECTILE.get(), player.level(), player, (float) CMConfig.AmethystClusterdamage);
 
                 amethystClusterProjectile.moveTo(sX, sY, sZ, i * 11.25F, player.getXRot());
                 float speed = 0.8F;
                 amethystClusterProjectile.shoot(vX, vY + v3 * 0.2D, vZ, speed, 1.0F);
 
-                player.level.addFreshEntity(amethystClusterProjectile);
+                player.level().addFreshEntity(amethystClusterProjectile);
             }
 
             player.getCooldowns().addCooldown(ItemRegistries.BLOOM_STONE_CHESTPLATE.get(), 240);

@@ -5,6 +5,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.PharaohMa
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 public class PharaohMageArmorItem extends ImbuableCataclysmArmor {
-    public PharaohMageArmorItem(EquipmentSlot slot, Properties settings) {
+    public PharaohMageArmorItem(ArmorItem.Type slot, Properties settings) {
         super(CSArmorMaterials.PHARAOH_MAGE_ARMOR, slot, settings);
     }
 

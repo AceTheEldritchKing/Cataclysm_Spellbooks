@@ -169,7 +169,7 @@ public class CSUtils {
     // Flame Jet Spawning
     public static void spawnFlameJets(Level level, double x, double z, double minY, double maxY, float rotation, int delay, LivingEntity caster, float damage)
     {
-        BlockPos pos = new BlockPos(x, maxY, z);
+        BlockPos pos = new BlockPos((int) x, (int) maxY, (int) z);
         boolean flag = false;
         double d0 = 0.0D;
 
