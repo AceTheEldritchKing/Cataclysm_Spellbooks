@@ -63,12 +63,37 @@ public enum CSArmorMaterials implements ArmorMaterial {
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 100, AttributeModifier.Operation.ADDITION),
             AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier("Nature power", 0.15, AttributeModifier.Operation.MULTIPLY_BASE),
             AttributeRegistry.SPELL_RESIST.get(), new AttributeModifier("Spell resist", 0.05, AttributeModifier.Operation.MULTIPLY_BASE)
-    ));
+    )),
 
     // Technomancer Mage Armor
 
-
     // Excelsius Warlock Armor
+    EXCELSIUS_WARLOCK_ARMOR("excelsius_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    EXCELSIUS_COOLDOWN_ARMOR("excelsius_cooldown_warlock", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier("Cooldown", 0.15, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    EXCELSIUS_POWER_ARMOR("excelsius_power_warlock", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.SPELL_POWER.get(), new AttributeModifier("Spell power", 0.15, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    EXCELSIUS_RESIST_ARMOR("excelsius_resist_warlock", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.SPELL_RESIST.get(), new AttributeModifier("Spell resist", 0.15, AttributeModifier.Operation.MULTIPLY_BASE)
+    ));
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;

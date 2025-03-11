@@ -190,7 +190,7 @@ public class ItemRegistries {
     // Pharaoh Mage Set
     public static final RegistryObject<Item> PHARAOH_MAGE_HELMET = ITEMS.register("pharaoh_helmet",
             () -> new PharaohMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
-    public static final RegistryObject<Item> PHARAOH_MAGE_CHESTPLATE_ELYTRA = ITEMS.register("pharaoh_chestplate",
+    public static final RegistryObject<Item> PHARAOH_MAGE_CHESTPLATE = ITEMS.register("pharaoh_chestplate",
             () -> new PharaohMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
     public static final RegistryObject<Item> PHARAOH_MAGE_LEGGINGS = ITEMS.register("pharaoh_leggings",
             () -> new PharaohMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
@@ -214,6 +214,22 @@ public class ItemRegistries {
     // Technomancer Mage set
 
     // Excelsius Mage Set
+    public static final RegistryObject<Item> EXCELSIUS_SPEED_HELMET = ITEMS.register("excelsius_speed_visors",
+            () -> new ExcelsiusCooldownArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_SPEED_CHESTPLATE = ITEMS.register("excelsius_speed_chestplate",
+            () -> new ExcelsiusCooldownArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_POWER_HELMET = ITEMS.register("excelsius_power_visors",
+            () -> new ExcelsiusPowerArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_POWER_CHESTPLATE = ITEMS.register("excelsius_power_chestplate",
+            () -> new ExcelsiusPowerArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_RESIST_HELMET = ITEMS.register("excelsius_resist_visors",
+            () -> new ExcelsiusResistArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_RESIST_CHESTPLATE = ITEMS.register("excelsius_resist_chestplate",
+            () -> new ExcelsiusResistArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_WARLOCK_LEGGINGS = ITEMS.register("excelsius_leggings",
+            () -> new ExcelsiusLegArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_WARLOCK_BOOTS = ITEMS.register("excelsius_greaves",
+            () -> new ExcelsiusLegArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
 
     public static Collection<RegistryObject<Item>> getCSItems()
