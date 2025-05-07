@@ -126,6 +126,7 @@ public class ItemRegistries {
     public static final RegistryObject<Item> ABYSSAL_RUNE = ITEMS.register("abyssal_rune", () -> new Item(ItemPropertiesHelper.material()));
 
     // Technomancy Rune
+    public static final RegistryObject<Item> TECHNOMANCY_RUNE = ITEMS.register("technomancy_rune", () -> new Item(ItemPropertiesHelper.material()));
 
 
     /**
@@ -146,6 +147,8 @@ public class ItemRegistries {
             () -> new UpgradeOrbItem(CSUpgradeTypes.ABYSSAL_SPELL_POWER, ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON)));
 
     // Technomancy Upgrade Orb
+    public static final RegistryObject<Item> TECHNOMANCY_UPGRADE_ORB = ITEMS.register("technomancy_upgrade_orb",
+            () -> new UpgradeOrbItem(CSUpgradeTypes.TECHNOMANCY_SPELL_POWER, ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON)));
 
 
     /***
@@ -212,6 +215,14 @@ public class ItemRegistries {
             () -> new MonstrousWizardHatArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Technomancer Mage set
+    public static final RegistryObject<Item> ENGINEER_MAGE_HOOD = ITEMS.register("engineer_hood",
+            () -> new EngineerMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> ENGINEER_MAGE_SUIT = ITEMS.register("engineer_suit",
+            () -> new EngineerMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> ENGINEER_MAGE_LEGGINGS = ITEMS.register("engineer_leggings",
+            () -> new EngineerMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> ENGINEER_MAGE_BOOTS = ITEMS.register("engineer_boots",
+            () -> new EngineerMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Excelsius Mage Set
     public static final RegistryObject<Item> EXCELSIUS_SPEED_HELMET = ITEMS.register("excelsius_speed_visors",

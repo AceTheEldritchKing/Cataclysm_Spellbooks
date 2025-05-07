@@ -168,10 +168,7 @@ dependencies {
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5314835")
 
     // Cataclysm
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:6106826")
-
-    // Archeology API
-    implementation fg.deobf("curse.maven:archaeology-api-950822:4996103")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6470672")
 
     // AzureLib
     implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.19.2:1.0.47")

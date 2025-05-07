@@ -1,7 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
-import com.github.L_Ender.cataclysm.config.CMConfig;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.BloomStoneMageArmorRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.EngineerMageArmorRenderer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,36 +10,23 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
-public class BloomStoneMageArmorItem extends ImbuableCataclysmArmor {
-    public BloomStoneMageArmorItem(EquipmentSlot slot, Properties settings) {
-        super(CSArmorMaterials.BOULDER_BLOSSOM_ARMOR, slot, settings);
+public class EngineerMageArmorItem extends ImbuableCataclysmArmor{
+    public EngineerMageArmorItem(EquipmentSlot slot, Properties settings) {
+        super(CSArmorMaterials.ENGINEER_ARMOR, slot, settings);
     }
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
-            private BloomStoneMageArmorRenderer renderer;
+            private EngineerMageArmorRenderer renderer;
 
             @Override
             public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 if (renderer == null)
-                    renderer = new BloomStoneMageArmorRenderer();
+                    renderer = new EngineerMageArmorRenderer();
                 renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
                 return this.renderer;
             }
         });
-    }
-
-    // Durability
-    @Override
-    public void setDamage(ItemStack stack, int damage) {
-        if (CMConfig.Armor_Infinity_Durability)
-        {
-            super.setDamage(stack, 0);
-        }
-        else
-        {
-            super.setDamage(stack, damage);
-        }
     }
 }

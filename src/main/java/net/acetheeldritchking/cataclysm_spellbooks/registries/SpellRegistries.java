@@ -20,6 +20,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctur
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.DesertWindsSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.MonolithCrashSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LaserboltSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -181,6 +182,7 @@ public class SpellRegistries {
     // Hijack (Steals a target's summons for yourself)
 
     // Laserbolt (Shoots out the little Harbinger small laser)
+    public static final RegistryObject<AbstractSpell> LASERBOLT = registerSpell(new LaserboltSpell());
 
     // Atomic Laser (Harbinger big laser blast)
 

@@ -75,6 +75,11 @@
     "item.cataclysm_spellbooks.excelsius_leggings": "Excelsius Propulsion Leggings",
     "item.cataclysm_spellbooks.excelsius_greaves": "Excelsius Propulsion Greaves",
 
+    "item.cataclysm_spellbooks.engineer_hood": "Engineer's Hood",
+    "item.cataclysm_spellbooks.engineer_suit": "Engineer's Suit",
+    "item.cataclysm_spellbooks.engineer_leggings": "Engineer's Pants",
+    "item.cataclysm_spellbooks.engineer_boots": "Engineer's Boots",
+
     "item.cataclysm_spellbooks.leviathans_blessing": "Leviathan's Blessing",
     "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
 
@@ -176,6 +181,9 @@
 
     "spell.cataclysm_spellbooks.tectonic_tremble": "Tectonic Tremble",
     "spell.cataclysm_spellbooks.tectonic_tremble.guide": "Shake the earth, igniting nearby entites and knocking them back",
+
+    "spell.cataclysm_spellbooks.laserbolt": "Laserbolt",
+    "spell.cataclysm_spellbooks.laserbolt.guide": "Shoot a small laser out",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

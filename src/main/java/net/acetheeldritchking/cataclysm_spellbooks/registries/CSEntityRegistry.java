@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.minecraft.resources.ResourceLocation;
@@ -123,6 +124,15 @@ public class CSEntityRegistry {
                     sized(1f, 3f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_aptrgangr").toString()
+                    ));
+
+    // Laser Beam
+    public static final RegistryObject<EntityType<ExtendedLaserBeamEntity>> EXTENDED_LASER_BEAM =
+            ENTITIES.register("extended_laser_beam", () -> EntityType.Builder.<ExtendedLaserBeamEntity>of
+                            (ExtendedLaserBeamEntity::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "extended_laser_beam").toString()
                     ));
 
 
