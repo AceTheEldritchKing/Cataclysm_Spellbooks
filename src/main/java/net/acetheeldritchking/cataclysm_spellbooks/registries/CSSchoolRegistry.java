@@ -26,6 +26,7 @@ public class CSSchoolRegistry extends SchoolRegistry {
         return CATACLYSM_SCHOOLS.register(type.getId().getPath(), () -> type);
     }
 
+    // Abyssal
     public static final ResourceLocation ABYSSAL_RESOURCE = CataclysmSpellbooks.id("abyssal");
 
     public static final RegistryObject<SchoolType> ABYSSAL = registerSchool(new SchoolType
@@ -35,6 +36,19 @@ public class CSSchoolRegistry extends SchoolRegistry {
                     Component.translatable("school.cataclysm_spellbooks.abyssal").withStyle(Style.EMPTY.withColor(0x36156c)),
                     LazyOptional.of(CSAttributeRegistry.ABYSSAL_MAGIC_POWER::get),
                     LazyOptional.of(CSAttributeRegistry.ABYSSAL_MAGIC_RESIST::get),
+                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get)
+            ));
+
+    // Technomancy
+    public static final ResourceLocation TECHNOMANCY_RESOURCE = CataclysmSpellbooks.id("technomancy");
+
+    public static final RegistryObject<SchoolType> TECHNOMANCY = registerSchool(new SchoolType
+            (
+                    TECHNOMANCY_RESOURCE,
+                    CSTags.TECHNOMANCY_FOCUS,
+                    Component.translatable("school.cataclysm_spellbooks.technomancy").withStyle(Style.EMPTY.withColor(0xb3bec5)),
+                    LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_RESIST::get),
+                    LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER::get),
                     LazyOptional.of(SoundRegistry.EVOCATION_CAST::get)
             ));
 }

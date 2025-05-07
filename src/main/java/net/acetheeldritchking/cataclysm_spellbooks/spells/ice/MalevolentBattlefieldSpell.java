@@ -1,9 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.ice;
 
-import com.github.L_Ender.cataclysm.client.particle.RingParticle;
-import com.github.L_Ender.cataclysm.entity.projectile.Phantom_Halberd_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
-import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
@@ -19,6 +16,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,7 +36,7 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.cataclysm_spellbooks.halberd_rings", spellLevel),
-                Component.translatable("ui.cataclysm_spellbooks.halberd_amount", Utils.stringTruncation(getSpellPower(spellLevel, caster), 0)),
+                Component.translatable("ui.cataclysm_spellbooks.halberd_amount", Utils.stringTruncation(getHalberdsPerBranch(spellLevel, caster), 0)),
                 Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1)),
                 Component.translatable("ui.cataclysm_spellbooks.maledictus_armory_bonus", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
         );
@@ -119,17 +117,22 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
 
         if (entity.getMainHandItem().is(soulRenderer) || entity.getMainHandItem().is(annihilator))
         {
-            CSUtils.spawnHalberdWindmill(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
+            CSUtils.spawnHalberdWindmill(spellLevel * 4, getHalberdsPerBranch(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
         }
         else
         {
-            CSUtils.spawnHalberdWindmill(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
+            CSUtils.spawnHalberdWindmill(spellLevel * 4, getHalberdsPerBranch(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
         }
         //System.out.println("After cast");
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    private int getHalberdsPerBranch(int spellLevel, LivingEntity caster)
+    {
+        return (int) Mth.clamp(getSpellPower(spellLevel, caster), 1, 5);
     }
 
     private float getDamage(int spellLevel, LivingEntity caster)

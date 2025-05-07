@@ -8,4 +8,6 @@ import net.minecraft.world.item.Item;
 
 public class CSTags {
     public static final TagKey<Item> ABYSSAL_FOCUS = ItemTags.create(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_focus"));
+
+    public static final TagKey<Item> TECHNOMANCY_FOCUS = ItemTags.create(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "technomancy_focus"));
 }

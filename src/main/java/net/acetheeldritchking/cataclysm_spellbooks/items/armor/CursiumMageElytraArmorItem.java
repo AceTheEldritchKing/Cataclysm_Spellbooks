@@ -17,6 +17,8 @@ import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +34,7 @@ public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             private CursiumMageElytraArmorRenderer renderer;
@@ -86,6 +89,7 @@ public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
 
     // Animated armor based on conditions
     // Thank you Noah for showing me how to do this all those months back <3
+    @OnlyIn(Dist.CLIENT)
     private PlayState wings(AnimationState animationState)
     {
         Player player = Minecraft.getInstance().player;

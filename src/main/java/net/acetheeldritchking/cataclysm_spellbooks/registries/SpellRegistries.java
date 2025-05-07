@@ -61,7 +61,11 @@ public class SpellRegistries {
     // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish)
     public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
 
-    // Summon Leviathan (April Fools spell)
+    // Summon Coral Golem (Summons a few coral golem guys)
+
+    // Summon Corallusus (Summons a singular Corallusus for you to ride)
+
+    // Summon Lionfish Swarm (Summons a bunch of lionfish, can only be casted while in the water)
 
 
     // ENDER //
@@ -76,8 +80,6 @@ public class SpellRegistries {
 
     // Gravitational Pull (Pulls entities in like Gauntlet of Guard)
     public static final RegistryObject<AbstractSpell> GRAVITATION_PULL = registerSpell(new GravitationPullSpell());
-
-    // Summon End Guardian (April Fools spell)
 
 
     // EVOCATION //
@@ -123,13 +125,12 @@ public class SpellRegistries {
     // Tectonic Tremble
     public static final RegistryObject<AbstractSpell> TECTONIC_TREMBLE = registerSpell(new TectonicTrembleSpell());
 
+    // Meteor Spew (Ejects Monstrosity big lava bomb)
+
+    // Comet Shower (Shoots out the Monstrosity little fire bombs)
+
 
     // LIGHTNING //
-    // EMP (Cast an emp blast?)
-
-    // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds
-
-    // Summon Harbinger (April Fools spell)
 
 
     // ICE //
@@ -153,9 +154,7 @@ public class SpellRegistries {
 
     // Phantasmal Slam (Summons either a custom winged entity or Maledictus to grab and slam the target)
 
-    // Echoed Whirlwind (Summons Wrath of The Desert sandstorms)
-
-    // Summon Maledictus (April Fools spell)
+    // Echoed Whirlwind/Snow Squall (Summons Wrath of The Desert sandstorms)
 
 
     // NATURE //
@@ -171,7 +170,41 @@ public class SpellRegistries {
     // Amethyst Puncture (Shoots out an amethyst spike)
     public static final RegistryObject<AbstractSpell> AMETHYST_PUNCTURE = registerSpell(new AmethystPunctureSpell());
 
-    // Summon Ancient Remnant (April Fools spell)
+    // Summon Amethyst Crab (Summons The Crab:tm:, can ride it)
+
+
+    // TECHNOMANCY //
+    // EMP (Cast an emp blast?)
+
+    // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds)
+
+    // Hijack (Steals a target's summons for yourself)
+
+    // Laserbolt (Shoots out the little Harbinger small laser)
+
+    // Atomic Laser (Harbinger big laser blast)
+
+    // Botnet Swarm (Summons a swarm of Watchers that act as a counterspell projectile)
+
+    // Missile Launch (Shoots out a missile)
+
+    // Construct: Watchers (Summons a group of Watchers)
+
+    // Construct: Prowler (Summons a Prowler)
+
+    // DDoS (Name WIP, AoE counterspell)
+
+    // Shutdown (Prevent the target from attacking or using items. Does not stack with Lock-on)
+
+    // Rewire (Buff selected summons' speed and damage, reducing their armor and armor toughness)
+
+    // Hardware Update (Increases your damage and armor, does not stack with charge/clears it)
+
+    // Software Update (Increases your speed and cooldown, does not stack with charge and haste/clears it)
+
+    // Circuit Breaker (Chain lightning but RED, gives a miniscule amount of lifesteal and weakens targets)
+
+    // Bothearder (AoE summon steal)
 
 
     public static void register(IEventBus eventBus)

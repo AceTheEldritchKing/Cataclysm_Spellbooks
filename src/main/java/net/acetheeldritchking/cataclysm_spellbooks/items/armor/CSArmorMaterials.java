@@ -23,20 +23,76 @@ public enum CSArmorMaterials implements ArmorMaterial {
                     AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
                     AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier("Fire power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
                     AttributeRegistry.FIRE_MAGIC_RESIST.get(), new AttributeModifier("Fire resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
-                    )),
+    )),
 
-    ABYSSAL_WARLOCK_ARMOR("abyssal_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.0F, 0.0F,
+    // Abyssal Warlock Armor
+    ABYSSAL_WARLOCK_ARMOR("abyssal_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, 0.0F,
             () -> Ingredient.of(ItemRegistry.MAGIC_CLOTH.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
             CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), new AttributeModifier("Abyssal power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
             CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), new AttributeModifier("Abyssal resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
-                    )),
+    )),
 
+    // Cursium Warlock Armor
     CURSIUM_WARLOCK_ARMOR("cursium_mage_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
             () -> Ingredient.of(ModItems.CURSIUM_INGOT.get()), Map.of(
             AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
             AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier("Ice power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
             AttributeRegistry.ICE_MAGIC_RESIST.get(), new AttributeModifier("Ice resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    // Pharaoh Mage Armor
+    PHARAOH_MAGE_ARMOR("pharaoh_mage_armor", 45, new int[]{5, 8, 10, 5}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.ANCIENT_METAL_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier("Nature power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.HOLY_SPELL_POWER.get(), new AttributeModifier("Holy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    // Boulder Blossom Armor
+    BOULDER_BLOSSOM_ARMOR("boulder_blossom_armor", 45, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.AMETHYST_CRAB_SHELL.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier("Nature power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.NATURE_MAGIC_RESIST.get(), new AttributeModifier("Nature resist", 0.1, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    // Monstrous Wizard Hat
+    MONSTROUS_WIZARD_ARMOR("monstrous_wizard", 45, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 3.0F, 0.2F,
+            () -> Ingredient.of(ModItems.MONSTROUS_HORN.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 100, AttributeModifier.Operation.ADDITION),
+            AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier("Nature power", 0.15, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.SPELL_RESIST.get(), new AttributeModifier("Spell resist", 0.05, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    // Technomancer Mage Armor
+
+    // Excelsius Warlock Armor
+    EXCELSIUS_WARLOCK_ARMOR("excelsius_warlock_armor", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    EXCELSIUS_COOLDOWN_ARMOR("excelsius_cooldown_warlock", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier("Cooldown", 0.15, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    EXCELSIUS_POWER_ARMOR("excelsius_power_warlock", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.SPELL_POWER.get(), new AttributeModifier("Spell power", 0.15, AttributeModifier.Operation.MULTIPLY_BASE)
+    )),
+
+    EXCELSIUS_RESIST_ARMOR("excelsius_resist_warlock", 35, new int[]{5, 8, 10, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
+            () -> Ingredient.of(ModItems.WITHERITE_INGOT.get()), Map.of(
+            AttributeRegistry.MAX_MANA.get(), new AttributeModifier("Max mana", 150, AttributeModifier.Operation.ADDITION),
+            CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier("Technomancy power", 0.2, AttributeModifier.Operation.MULTIPLY_BASE),
+            AttributeRegistry.SPELL_RESIST.get(), new AttributeModifier("Spell resist", 0.15, AttributeModifier.Operation.MULTIPLY_BASE)
     ));
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};

@@ -16,11 +16,13 @@ public class DesertSpellBook extends UniqueSpellBook {
         super(SpellRarity.EPIC, SpellDataRegistryHolder.of(
                 new SpellDataRegistryHolder(SpellRegistries.MONOLITH_CRASH, 5),
                 new SpellDataRegistryHolder(SpellRegistries.DESERT_WINDS, 3),
-                new SpellDataRegistryHolder(SpellRegistries.SANDSTORM, 5)
+                new SpellDataRegistryHolder(SpellRegistries.SANDSTORM, 3)
         ), 7, () -> {
             ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
             // Nature Spell Power
             builder.put(AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 0.20D, AttributeModifier.Operation.MULTIPLY_BASE));
+            // Holy Spell Power
+            builder.put(AttributeRegistry.HOLY_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 0.20D, AttributeModifier.Operation.MULTIPLY_BASE));
             // Mana
             builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 200, AttributeModifier.Operation.ADDITION));
             return builder.build();

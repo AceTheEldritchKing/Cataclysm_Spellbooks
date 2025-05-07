@@ -188,14 +188,48 @@ public class ItemRegistries {
             () -> new CursiumMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Pharaoh Mage Set
+    public static final RegistryObject<Item> PHARAOH_MAGE_HELMET = ITEMS.register("pharaoh_helmet",
+            () -> new PharaohMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> PHARAOH_MAGE_CHESTPLATE = ITEMS.register("pharaoh_chestplate",
+            () -> new PharaohMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> PHARAOH_MAGE_LEGGINGS = ITEMS.register("pharaoh_leggings",
+            () -> new PharaohMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> PHARAOH_MAGE_BOOTS = ITEMS.register("pharaoh_greaves",
+            () -> new PharaohMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
+
+    // Bloom Stone Mage Set
+    public static final RegistryObject<Item> BLOOM_STONE_HAT = ITEMS.register("bloom_stone_hat",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> BLOOM_STONE_CHESTPLATE = ITEMS.register("bloom_stone_chestplate",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> BLOOM_STONE_SKIRT = ITEMS.register("bloom_stone_skirt",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> BLOOM_STONE_GREAVES = ITEMS.register("bloom_stone_greaves",
+            () -> new BloomStoneMageArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
+
+    // Monstrous Wizard Hat
+    public static final RegistryObject<Item> MONSTROUS_WIZARD_HAT = ITEMS.register("monstrous_wizard_hat",
+            () -> new MonstrousWizardHatArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
 
     // Technomancer Mage set
 
-    // Monstrous Wizard Hat
-
-    // Boulder Blossom Mage Set
-
     // Excelsius Mage Set
+    public static final RegistryObject<Item> EXCELSIUS_SPEED_HELMET = ITEMS.register("excelsius_speed_visors",
+            () -> new ExcelsiusCooldownArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_SPEED_CHESTPLATE = ITEMS.register("excelsius_speed_chestplate",
+            () -> new ExcelsiusCooldownArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_POWER_HELMET = ITEMS.register("excelsius_power_visors",
+            () -> new ExcelsiusPowerArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_POWER_CHESTPLATE = ITEMS.register("excelsius_power_chestplate",
+            () -> new ExcelsiusPowerArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_RESIST_HELMET = ITEMS.register("excelsius_resist_visors",
+            () -> new ExcelsiusResistArmorItem(EquipmentSlot.HEAD, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_RESIST_CHESTPLATE = ITEMS.register("excelsius_resist_chestplate",
+            () -> new ExcelsiusResistArmorItem(EquipmentSlot.CHEST, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_WARLOCK_LEGGINGS = ITEMS.register("excelsius_leggings",
+            () -> new ExcelsiusLegArmorItem(EquipmentSlot.LEGS, ItemPropertiesHelper.equipment().fireResistant()));
+    public static final RegistryObject<Item> EXCELSIUS_WARLOCK_BOOTS = ITEMS.register("excelsius_greaves",
+            () -> new ExcelsiusLegArmorItem(EquipmentSlot.FEET, ItemPropertiesHelper.equipment().fireResistant()));
 
 
     public static Collection<RegistryObject<Item>> getCSItems()

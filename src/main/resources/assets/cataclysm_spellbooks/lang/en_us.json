@@ -2,6 +2,9 @@
     "attribute.cataclysm_spellbooks.abyssal_magic_resist": "Abyssal Magic Resist",
     "attribute.cataclysm_spellbooks.abyssal_spell_power": "Abyssal Spell Power",
 
+    "attribute.cataclysm_spellbooks.technomancy_magic_resist": "Technomancy Magic Resist",
+    "attribute.cataclysm_spellbooks.technomancy_spell_power": "Technomancy Spell Power",
+
 
     "effect.cataclysm_spellbooks.abyssal_predator_effect": "Abyssal Predator",
     "effect.cataclysm_spellbooks.abyssal_predator_effect.description": "Grants increased speed, swim speed and damage in water or in rain.",
@@ -14,6 +17,7 @@
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
+    "school.cataclysm_spellbooks.technomancy": "Technomancy",
 
 
     "item.cataclysm_spellbooks.abyss_spell_book": "Book o' R'lyeh",
@@ -49,6 +53,27 @@
     "item.cataclysm_spellbooks.cursium_mage_skirt": "Cursium Mage Skirt",
     "item.cataclysm_spellbooks.cursium_mage_boots": "Cursium Mage Greaves",
     "item.cataclysm_spellbooks.cursium_chestplate.desc4": "Can be combined with elytra",
+
+    "item.cataclysm_spellbooks.pharaoh_helmet": "Pharaoh Sacred Head Dress",
+    "item.cataclysm_spellbooks.pharaoh_chestplate": "Pharaoh Sacred Hauberk",
+    "item.cataclysm_spellbooks.pharaoh_leggings": "Pharaoh Sacred Skirt",
+    "item.cataclysm_spellbooks.pharaoh_greaves": "Pharaoh Sacred Greaves",
+
+    "item.cataclysm_spellbooks.bloom_stone_hat": "Bloom Stone Hat",
+    "item.cataclysm_spellbooks.bloom_stone_chestplate": "Bloom Stone Chestplate",
+    "item.cataclysm_spellbooks.bloom_stone_skirt": "Bloom Stone Skirt",
+    "item.cataclysm_spellbooks.bloom_stone_greaves": "Bloom Stone Greaves",
+
+    "item.cataclysm_spellbooks.monstrous_wizard_hat": "Monstrous Wizard Hat",
+
+    "item.cataclysm_spellbooks.excelsius_speed_visors": "Excelsius Velocity Visor",
+    "item.cataclysm_spellbooks.excelsius_speed_chestplate": "Excelsius Velocity Chestplate",
+    "item.cataclysm_spellbooks.excelsius_power_visors": "Excelsius Adversary Visor",
+    "item.cataclysm_spellbooks.excelsius_power_chestplate": "Excelsius Adversary Chestplate",
+    "item.cataclysm_spellbooks.excelsius_resist_visors": "Excelsius Oppressor Visor",
+    "item.cataclysm_spellbooks.excelsius_resist_chestplate": "Excelsius Oppressor Chestplate",
+    "item.cataclysm_spellbooks.excelsius_leggings": "Excelsius Propulsion Leggings",
+    "item.cataclysm_spellbooks.excelsius_greaves": "Excelsius Propulsion Greaves",
 
     "item.cataclysm_spellbooks.leviathans_blessing": "Leviathan's Blessing",
     "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
