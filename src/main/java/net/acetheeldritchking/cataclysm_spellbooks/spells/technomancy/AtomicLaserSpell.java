@@ -1,37 +1,45 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
-;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
+
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.The_Leviathan.Abyss_Blast_Entity;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
-import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
-import java.util.Optional;
+import java.util.List;
 
 @AutoSpellConfig
-public class AbyssalBlastSpell extends AbstractAbyssalSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_blast");
+public class AtomicLaserSpell extends AbstractSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "atomic_laser");
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 2)));
+    }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
-            .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
+            .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(3)
-            .setCooldownSeconds(450)
+            .setCooldownSeconds(10)
             .build();
 
-    public AbyssalBlastSpell()
+    public AtomicLaserSpell()
     {
         this.manaCostPerLevel = 100;
         this.baseSpellPower = 15;
@@ -56,16 +64,6 @@ public class AbyssalBlastSpell extends AbstractAbyssalSpell {
     }
 
     @Override
-    public Optional<SoundEvent> getCastStartSound() {
-        return Optional.of(ModSounds.ABYSS_BLAST_ONLY_CHARGE.get());
-    }
-
-    @Override
-    public Optional<SoundEvent> getCastFinishSound() {
-        return Optional.of(ModSounds.ABYSS_BLAST.get());
-    }
-
-    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         double casterX = entity.getX();
         double casterY = CSUtils.getEyeHeight(entity);
@@ -85,11 +83,16 @@ public class AbyssalBlastSpell extends AbstractAbyssalSpell {
                     100, 2, true, true, true));
 
             // Firing mah laser
-            Abyss_Blast_Entity abyss_blast = new Abyss_Blast_Entity(ModEntities.ABYSS_BLAST.get(),
+            // This laser doesn't destroy blocks, honestly I might keep it that way
+            ExtendedDeathLaserBeamEntity atomic_laser = new ExtendedDeathLaserBeamEntity(
+                    CSEntityRegistry.EXTENDED_DEATH_LASER_BEAM.get(),
                     level, entity, casterX, casterY, casterZ,
-                    casterYHeadRot, casterXRot, 80, dir, getDamage(spellLevel, entity), getHPDamage(spellLevel));
+                    casterYHeadRot, casterXRot,
+                    80,
+                    getDamage(spellLevel, entity),
+                    getHPDamage(spellLevel));
 
-            level.addFreshEntity(abyss_blast);
+            level.addFreshEntity(atomic_laser);
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

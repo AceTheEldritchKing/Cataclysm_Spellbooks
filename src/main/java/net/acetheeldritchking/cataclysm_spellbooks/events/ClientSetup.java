@@ -22,5 +22,6 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_ELITE_DRAUGUR.get(), Elite_Draugr_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_APTRGANGR.get(), Aptrgangr_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.EXTENDED_LASER_BEAM.get(), Laser_Beam_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.EXTENDED_DEATH_LASER_BEAM.get(), Death_Laser_beam_Renderer::new);
     }
 }

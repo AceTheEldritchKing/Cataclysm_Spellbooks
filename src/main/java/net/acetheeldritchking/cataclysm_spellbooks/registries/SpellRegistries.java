@@ -20,6 +20,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctur
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.DesertWindsSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.MonolithCrashSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.AtomicLaserSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LaserboltSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -185,8 +186,9 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> LASERBOLT = registerSpell(new LaserboltSpell());
 
     // Atomic Laser (Harbinger big laser blast)
+    public static final RegistryObject<AbstractSpell> ATOMIC_LASER = registerSpell(new AtomicLaserSpell());
 
-    // Botnet Swarm (Summons a swarm of Watchers that act as a counterspell projectile)
+    // Botnet Swarm (Summons a swarm of Watchers that act as a counterspell projectiles)
 
     // Missile Launch (Shoots out a missile)
 

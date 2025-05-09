@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
@@ -133,6 +134,15 @@ public class CSEntityRegistry {
                     sized(1f, 3f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "extended_laser_beam").toString()
+                    ));
+
+    // Death Laser
+    public static final RegistryObject<EntityType<ExtendedDeathLaserBeamEntity>> EXTENDED_DEATH_LASER_BEAM =
+            ENTITIES.register("extended_death_laser_beam", () -> EntityType.Builder.<ExtendedDeathLaserBeamEntity>of
+                            (ExtendedDeathLaserBeamEntity::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "extended_death_laser_beam").toString()
                     ));
 
 
