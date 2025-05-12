@@ -1,0 +1,43 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"loop": true,
+			"animation_length": 2.8571,
+			"bones": {
+				"discs": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.3571": {
+							"vector": [45, 0, 0]
+						},
+						"0.7143": {
+							"vector": [90, 0, 0]
+						},
+						"1.0714": {
+							"vector": [135, 0, 0]
+						},
+						"1.4286": {
+							"vector": [180, 0, 0]
+						},
+						"1.7857": {
+							"vector": [225, 0, 0]
+						},
+						"2.1429": {
+							"vector": [270, 0, 0]
+						},
+						"2.5": {
+							"vector": [315, 0, 0]
+						},
+						"2.8571": {
+							"vector": [360, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

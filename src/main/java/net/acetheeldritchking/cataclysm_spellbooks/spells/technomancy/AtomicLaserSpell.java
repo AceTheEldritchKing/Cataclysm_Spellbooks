@@ -4,9 +4,11 @@ import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.The_Lev
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModEntities;
+import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
@@ -17,11 +19,13 @@ import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
+import java.util.Optional;
 
 @AutoSpellConfig
 public class AtomicLaserSpell extends AbstractSpell {
@@ -64,6 +68,26 @@ public class AtomicLaserSpell extends AbstractSpell {
     }
 
     @Override
+    public AnimationHolder getCastStartAnimation() {
+        return SpellAnimations.CHARGE_SPIT_ANIMATION;
+    }
+
+    @Override
+    public AnimationHolder getCastFinishAnimation() {
+        return SpellAnimations.SPIT_FINISH_ANIMATION;
+    }
+
+    @Override
+    public Optional<SoundEvent> getCastStartSound() {
+        return Optional.of(ModSounds.HARBINGER_DEATHLASER_PREPARE.get());
+    }
+
+    @Override
+    public Optional<SoundEvent> getCastFinishSound() {
+        return Optional.of(ModSounds.DEATH_LASER.get());
+    }
+
+    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         double casterX = entity.getX();
         double casterY = CSUtils.getEyeHeight(entity);
@@ -73,7 +97,7 @@ public class AtomicLaserSpell extends AbstractSpell {
         float casterXRot = (float) -(entity.getXRot() * Math.PI/180F);
         float casterYHeadRot = (float) ((entity.getYHeadRot() + dir) * Math.PI/180D);
 
-        ScreenShake_Entity.ScreenShake(level, entity.position(), 15, 0.2F, 20, 40);
+        ScreenShake_Entity.ScreenShake(level, entity.position(), 15, 0.05F, 20, 20);
         if (!level.isClientSide)
         {
             // Prevent player from moving
@@ -100,11 +124,11 @@ public class AtomicLaserSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return 1 + getSpellPower(spellLevel, caster);
+        return (float) (1.5 * getSpellPower(spellLevel, caster));
     }
 
     private float getHPDamage(int spellLevel)
     {
-        return (float) (spellLevel * 10) /100;
+        return (float) (spellLevel * 10) / 100;
     }
 }

@@ -24,12 +24,14 @@
     "item.cataclysm_spellbooks.desert_spell_book": "Desert Spellbook",
     "item.cataclysm_spellbooks.ignis_spell_book": "Ignis Spellbook",
     "item.cataclysm_spellbooks.codex_of_malice_spell_book": "Codex of Malice",
+    "item.cataclysm_spellbooks.disc_driver": "Disc Driver",
 
     "item.cataclysm_spellbooks.bloom_stone_staff": "Bloom Stone Staff",
     "item.cataclysm_spellbooks.coral_staff": "Coral Staff",
     "item.cataclysm_spellbooks.fake_wudjets_staff": "Fake Wadjet's Staff",
     "item.cataclysm_spellbooks.void_staff": "Void Staff",
     "item.cataclysm_spellbooks.spirit_sunderer": "Spirit Sunderer",
+    "item.cataclysm_spellbooks.gauntlet_of_power": "The Ordeal",
 
     "item.cataclysm_spellbooks.monstrous_flamberge": "Monstrous Flamberge",
 
@@ -84,6 +86,7 @@
     "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
 
     "item.cataclysm_spellbooks.abyssal_upgrade_orb": "Abyssal Upgrade Orb",
+    "item.cataclysm_spellbooks.technomancy_upgrade_orb": "Technomancy Upgrade Orb",
 
 
     "spell.cataclysm_spellbooks.void_beam": "Abyssal Beam",

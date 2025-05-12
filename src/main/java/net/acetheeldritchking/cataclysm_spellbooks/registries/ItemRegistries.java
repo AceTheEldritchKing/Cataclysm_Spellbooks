@@ -16,8 +16,10 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.CodexOfMaliceSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellBook;
+import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DiscDriverSpellbook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.BloomStoneStaff;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.FakeWadjetStaff;
+import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.GauntletOfPowerItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.SpiritSundererStaff;
 import net.acetheeldritchking.cataclysm_spellbooks.items.weapons.MonstrousFlambergeItem;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -77,6 +79,17 @@ public class ItemRegistries {
                 return new CodexOfMaliceSpellBook(builder.build());
             });
 
+    // Disc Driver
+    public static final RegistryObject<Item> DISC_DRIVER = ITEMS.register
+            ("disc_driver", () ->
+            {
+                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+                builder.put(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
+                // Yeah, this is weird, I know
+                return new DiscDriverSpellbook(builder.build());
+            });
+
 
     /***
      * Staffs
@@ -110,6 +123,10 @@ public class ItemRegistries {
     // Spirit Sunderer Staff
     public static final RegistryObject<Item> SPIRIT_SUNDERER_STAFF = ITEMS.register
             ("spirit_sunderer", SpiritSundererStaff::new);
+
+    // Gauntlet of Power
+    public static final RegistryObject<Item> GAUNTLET_OF_POWER = ITEMS.register
+            ("gauntlet_of_power", GauntletOfPowerItem::new);
 
 
     /**

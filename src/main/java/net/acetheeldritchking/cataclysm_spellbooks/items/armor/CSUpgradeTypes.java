@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public enum CSUpgradeTypes implements UpgradeType {
     ABYSSAL_SPELL_POWER("abyssal_power", ItemRegistries.ABYSSAL_UPGRADE_ORB ,CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
-    TECHNOMANCY_SPELL_POWER("technomancy_power", ItemRegistries.ABYSSAL_UPGRADE_ORB ,CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
+    TECHNOMANCY_SPELL_POWER("technomancy_power", ItemRegistries.TECHNOMANCY_UPGRADE_ORB ,CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
     ;
 
     final Attribute attribute;

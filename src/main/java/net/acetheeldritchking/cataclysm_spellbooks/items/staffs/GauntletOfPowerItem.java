@@ -7,7 +7,8 @@ import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.util.AzureLibUtil;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.SpiritSundererStaffRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.GauntletOfPowerRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Rarity;
@@ -17,22 +18,21 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class SpiritSundererStaff extends StaffItem implements GeoItem {
+public class GauntletOfPowerItem extends StaffItem implements GeoItem {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    public SpiritSundererStaff() {
-        super(ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 4, -3,
+    public GauntletOfPowerItem() {
+        super(ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 10.5, -3.1,
                 Map.of(
-                        AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE),
-                        AttributeRegistry.MANA_REGEN.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .10, AttributeModifier.Operation.MULTIPLY_BASE),
-                        AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .10, AttributeModifier.Operation.MULTIPLY_BASE),
+                        CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .20, AttributeModifier.Operation.MULTIPLY_BASE),
+                        AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .15, AttributeModifier.Operation.MULTIPLY_BASE),
                         AttributeRegistry.SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .05, AttributeModifier.Operation.MULTIPLY_BASE)
                 ));
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        // Guh
+        //controllerRegistrar.add(animationController);
     }
 
     @Override
@@ -44,13 +44,13 @@ public class SpiritSundererStaff extends StaffItem implements GeoItem {
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions()
         {
-            private SpiritSundererStaffRenderer renderer;
+            private GauntletOfPowerRenderer renderer;
 
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 if (renderer == null)
                 {
-                    renderer = new SpiritSundererStaffRenderer();
+                    renderer = new GauntletOfPowerRenderer();
                 }
 
                 return this.renderer;
