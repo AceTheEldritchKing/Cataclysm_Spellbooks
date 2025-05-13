@@ -2,9 +2,12 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 
 import com.github.L_Ender.cataclysm.client.render.entity.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.particle.TargetParticle;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSParticleRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -23,5 +26,10 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_APTRGANGR.get(), Aptrgangr_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.EXTENDED_LASER_BEAM.get(), Laser_Beam_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.EXTENDED_DEATH_LASER_BEAM.get(), Death_Laser_beam_Renderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerParticles(RegisterParticleProvidersEvent event) {
+        event.register(CSParticleRegistry.TARGET_PARTICLE.get(), TargetParticle.Provider::new);
     }
 }

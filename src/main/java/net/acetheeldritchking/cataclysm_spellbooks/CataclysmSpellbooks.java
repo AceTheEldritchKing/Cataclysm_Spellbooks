@@ -57,6 +57,8 @@ public class CataclysmSpellbooks
         CSEntityRegistry.register(modEventBus);
         // Spells
         SpellRegistries.register(modEventBus);
+        // Particles
+        CSParticleRegistry.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

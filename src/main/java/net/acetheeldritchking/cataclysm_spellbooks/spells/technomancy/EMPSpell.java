@@ -11,6 +11,7 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSParticleRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -36,7 +37,7 @@ public class EMPSpell extends AbstractSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
-                Component.translatable("ui.irons_spellbooks.effect_length", Utils.timeFromTicks(spellLevel * 20, 1))
+                Component.translatable("ui.irons_spellbooks.effect_length", Utils.timeFromTicks(getEffectDuration(spellLevel), 1))
         );
     }
 
@@ -44,7 +45,7 @@ public class EMPSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.RARE)
             .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(5)
-            .setCooldownSeconds(10)
+            .setCooldownSeconds(20)
             .build();
 
     public EMPSpell()
@@ -104,6 +105,8 @@ public class EMPSpell extends AbstractSpell {
 
         spawnParticles(entity);
 
+        level.addParticle(CSParticleRegistry.TARGET_PARTICLE.get(), entity.getX(), entity.getEyeY(), entity.getZ(), 1, 1, 1);
+
         var entities = level.getEntities(entity,
                 AABB.ofSize(EMPLocation, radius * 2, radius, radius * 2));
 
@@ -117,7 +120,7 @@ public class EMPSpell extends AbstractSpell {
             {
                 spawnParticles(livingTarget);
                 livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(),
-                        spellLevel * 20, 0, true, true, true));
+                        getEffectDuration(spellLevel), 0, true, true, true));
             }
         }
 
@@ -126,12 +129,17 @@ public class EMPSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return (float) (0.9 * getSpellPower(spellLevel, caster));
+        return (float) (0.7 * getSpellPower(spellLevel, caster));
     }
 
     private void spawnParticles(LivingEntity entity)
     {
         ServerLevel level = (ServerLevel) entity.level;
         level.sendParticles(ModParticle.EM_PULSE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
+    }
+
+    private int getEffectDuration(int spellLevel)
+    {
+        return 20 * (spellLevel + 1);
     }
 }
