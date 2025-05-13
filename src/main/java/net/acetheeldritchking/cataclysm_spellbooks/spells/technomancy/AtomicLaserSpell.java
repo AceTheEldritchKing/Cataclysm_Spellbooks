@@ -40,7 +40,7 @@ public class AtomicLaserSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(3)
-            .setCooldownSeconds(10)
+            .setCooldownSeconds(300)
             .build();
 
     public AtomicLaserSpell()
@@ -49,7 +49,7 @@ public class AtomicLaserSpell extends AbstractSpell {
         this.baseSpellPower = 15;
         this.spellPowerPerLevel = 15;
         this.castTime = 60;
-        this.baseManaCost = 800;
+        this.baseManaCost = 600;
     }
 
     @Override
@@ -102,9 +102,9 @@ public class AtomicLaserSpell extends AbstractSpell {
         {
             // Prevent player from moving
             entity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.INCAPACITATED_EFFECT.get(),
-                    100, 2, true, true, true));
+                    80, 2, true, true, true));
             entity.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(),
-                    100, 2, true, true, true));
+                    80, 2, true, true, true));
 
             // Firing mah laser
             // This laser doesn't destroy blocks, honestly I might keep it that way
@@ -112,7 +112,7 @@ public class AtomicLaserSpell extends AbstractSpell {
                     CSEntityRegistry.EXTENDED_DEATH_LASER_BEAM.get(),
                     level, entity, casterX, casterY, casterZ,
                     casterYHeadRot, casterXRot,
-                    80,
+                    60,
                     getDamage(spellLevel, entity),
                     getHPDamage(spellLevel));
 

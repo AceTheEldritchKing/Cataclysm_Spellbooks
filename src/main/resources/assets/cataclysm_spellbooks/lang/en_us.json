@@ -191,6 +191,9 @@
     "spell.cataclysm_spellbooks.atomic_laser": "Atomic Laser",
     "spell.cataclysm_spellbooks.atomic_laser.guide": "Fire a devastating laser in the direction you are looking it, incapacitating you",
 
+    "spell.cataclysm_spellbooks.emp_blast": "EMP",
+    "spell.cataclysm_spellbooks.emp_blast.guide": "Emit an EMP pulse from yourself, stunning nearby mobs",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

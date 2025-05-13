@@ -21,6 +21,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.DesertWindsSpel
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.MonolithCrashSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.AtomicLaserSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.EMPSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LaserboltSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -177,6 +178,7 @@ public class SpellRegistries {
 
     // TECHNOMANCY //
     // EMP (Cast an emp blast?)
+    public static final RegistryObject<AbstractSpell> EMP_BLAST = registerSpell(new EMPSpell());
 
     // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds)
 
