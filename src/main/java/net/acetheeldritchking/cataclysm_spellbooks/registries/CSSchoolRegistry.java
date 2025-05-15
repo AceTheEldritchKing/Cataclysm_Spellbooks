@@ -47,8 +47,8 @@ public class CSSchoolRegistry extends SchoolRegistry {
                     TECHNOMANCY_RESOURCE,
                     CSTags.TECHNOMANCY_FOCUS,
                     Component.translatable("school.cataclysm_spellbooks.technomancy").withStyle(Style.EMPTY.withColor(0xb3bec5)),
-                    LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_RESIST::get),
                     LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER::get),
+                    LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_RESIST::get),
                     LazyOptional.of(SoundRegistry.EVOCATION_CAST::get)
             ));
 }

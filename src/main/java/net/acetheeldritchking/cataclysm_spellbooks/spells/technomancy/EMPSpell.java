@@ -11,7 +11,6 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSParticleRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -45,7 +44,7 @@ public class EMPSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.RARE)
             .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(5)
-            .setCooldownSeconds(20)
+            .setCooldownSeconds(45)
             .build();
 
     public EMPSpell()
@@ -53,7 +52,7 @@ public class EMPSpell extends AbstractSpell {
         this.manaCostPerLevel = 5;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 5;
-        this.castTime = 20;
+        this.castTime = 15;
         this.baseManaCost = 90;
     }
 
@@ -99,18 +98,16 @@ public class EMPSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        float radius = 4.10f;
+        float radius = spellLevel + 0.5F;
         float distance = 2.0f;
         Vec3 EMPLocation = entity.position().add(entity.getForward().multiply(distance, 0.3f, distance));
 
         spawnParticles(entity);
 
-        level.addParticle(CSParticleRegistry.TARGET_PARTICLE.get(), entity.getX(), entity.getEyeY(), entity.getZ(), 1, 1, 1);
-
         var entities = level.getEntities(entity,
                 AABB.ofSize(EMPLocation, radius * 2, radius, radius * 2));
 
-        ScreenShake_Entity.ScreenShake(level, entity.position(), 5, 0.01F, 0, 20);
+        ScreenShake_Entity.ScreenShake(level, entity.position(), radius, 0.01F, 0, 20);
 
         for (Entity target : entities)
         {

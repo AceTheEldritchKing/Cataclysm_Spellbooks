@@ -36,6 +36,7 @@
     "item.cataclysm_spellbooks.monstrous_flamberge": "Monstrous Flamberge",
 
     "item.cataclysm_spellbooks.abyssal_rune": "Abyssal Rune",
+    "item.cataclysm_spellbooks.technomancy_rune": "Technomancy Rune",
 
     "item.cataclysm_spellbooks.ignis_helmet": "Ignis Mage Hat",
     "item.cataclysm_spellbooks.ignis_chestplate": "Ignis Mage Robes",
@@ -193,6 +194,9 @@
 
     "spell.cataclysm_spellbooks.emp_blast": "EMP",
     "spell.cataclysm_spellbooks.emp_blast.guide": "Emit an EMP pulse from yourself, stunning nearby mobs",
+
+    "spell.cataclysm_spellbooks.lock_on": "Lock-On",
+    "spell.cataclysm_spellbooks.lock_on.guide": "Target an entity, displaying a target above their head and stunning them for a short period of time",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

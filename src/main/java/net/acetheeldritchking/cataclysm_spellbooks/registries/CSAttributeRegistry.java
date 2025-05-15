@@ -17,24 +17,24 @@ public class CSAttributeRegistry {
 
     // Abyssal Magic
     public static final RegistryObject<Attribute> ABYSSAL_MAGIC_RESIST = registerResistanceAttribute("abyssal");
-
     public static final RegistryObject<Attribute> ABYSSAL_MAGIC_POWER = registerPowerAttribute("abyssal");
 
     // Technomancy
     public static final RegistryObject<Attribute> TECHNOMANCY_MAGIC_RESIST = registerResistanceAttribute("technomancy");
-
     public static final RegistryObject<Attribute> TECHNOMANCY_MAGIC_POWER = registerPowerAttribute("technomancy");
 
 
     @SubscribeEvent
     public static void modifyEntityAttributes(EntityAttributeModificationEvent event)
     {
-        event.getTypes().forEach(entity -> {
+        /*event.getTypes().forEach(entity -> {
             event.add(entity, ABYSSAL_MAGIC_RESIST.get());
             event.add(entity, ABYSSAL_MAGIC_POWER.get());
             event.add(entity, TECHNOMANCY_MAGIC_RESIST.get());
             event.add(entity, TECHNOMANCY_MAGIC_POWER.get());
-        });
+        });*/
+
+        event.getTypes().forEach(entity -> ATTRIBUTES.getEntries().forEach(attribute -> event.add(entity, attribute.get())));
     }
 
     // ;_;

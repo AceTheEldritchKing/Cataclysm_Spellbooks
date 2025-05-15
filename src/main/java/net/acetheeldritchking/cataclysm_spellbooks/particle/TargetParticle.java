@@ -9,7 +9,6 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.core.particles.ShriekParticleOption;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
@@ -29,11 +28,16 @@ public class TargetParticle extends TextureSheetParticle {
         this.xd = pX;
         this.yd = pY;
         this.zd = pZ;
+        this.quadSize = 1.5f;
+        this.lifetime = 20 * 5;
     }
 
     @Override
     public void tick() {
-        super.tick();
+        if (this.age++ >= lifetime)
+        {
+            this.remove();
+        }
     }
 
     @Override
@@ -41,11 +45,13 @@ public class TargetParticle extends TextureSheetParticle {
         this.renderRotatedParticle(pBuffer, pRenderInfo, pPartialTicks, (p_234005_) -> {
             p_234005_.mul(Vector3f.YP.rotation(0));
             p_234005_.mul(Vector3f.XP.rotation(-DEGREES_90));
+            //System.out.println("Render top?");
         });
         //back face
         this.renderRotatedParticle(pBuffer, pRenderInfo, pPartialTicks, (p_234000_) -> {
             p_234000_.mul(Vector3f.YP.rotation(-(float) Math.PI));
             p_234000_.mul(Vector3f.XP.rotation(DEGREES_90));
+            //System.out.println("Render back?");
         });
     }
 

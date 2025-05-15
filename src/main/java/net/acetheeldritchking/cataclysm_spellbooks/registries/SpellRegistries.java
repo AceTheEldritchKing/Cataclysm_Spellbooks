@@ -23,6 +23,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.AtomicLaserSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.EMPSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LaserboltSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LockOnSpell;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -181,6 +182,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> EMP_BLAST = registerSpell(new EMPSpell());
 
     // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds)
+    public static final RegistryObject<AbstractSpell> LOCK_ON = registerSpell(new LockOnSpell());
 
     // Hijack (Steals a target's summons for yourself)
 
@@ -211,6 +213,10 @@ public class SpellRegistries {
     // Circuit Breaker (Chain lightning but RED, gives a miniscule amount of lifesteal and weakens targets)
 
     // Bothearder (AoE summon steal)
+
+    // Flash Bang (Throw a live grenade, blinding nearby entities within the blast zone)
+
+    // Aerial Assault (Summon various missiles down from the sky)
 
 
     public static void register(IEventBus eventBus)
