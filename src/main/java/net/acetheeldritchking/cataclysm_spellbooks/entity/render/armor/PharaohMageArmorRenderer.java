@@ -1,69 +1,106 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
-import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.renderer.GeoArmorRenderer;
+import mod.azure.azurelib.rewrite.model.AzBakedModel;
+import mod.azure.azurelib.rewrite.model.AzBone;
+import mod.azure.azurelib.rewrite.render.AzRendererConfig;
+import mod.azure.azurelib.rewrite.render.AzRendererPipeline;
+import mod.azure.azurelib.rewrite.render.AzRendererPipelineContext;
+import mod.azure.azurelib.rewrite.render.armor.AzArmorRenderer;
+import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererConfig;
+import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererPipeline;
+import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererPipelineContext;
+import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneContext;
+import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneProvider;
 import mod.azure.azurelib.util.RenderUtils;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.armor.PharaohMageArmorModel;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.PharaohMageArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
-public class PharaohMageArmorRenderer extends GeoArmorRenderer<PharaohMageArmorItem> {
+public class PharaohMageArmorRenderer extends AzArmorRenderer {
+    private static final ResourceLocation GEO = new ResourceLocation(
+            CataclysmSpellbooks.MOD_ID,
+            "geo/pharaoh_armor.geo.json"
+    );
+
+    private static final ResourceLocation TEX = new ResourceLocation(
+            CataclysmSpellbooks.MOD_ID,
+            "textures/models/armor/pharaoh_armor.png"
+    );
+
     public PharaohMageArmorRenderer() {
-        super(new PharaohMageArmorModel());
-    }
-
-    String armorLeggingTorsoLayer = "armorLeggingTorsoLayer";
-
-    // New bone, don't use new Bone, use this.model.getBone().orElse(null) for this.
-    private GeoBone armorLeggingTorsoBone()
-    {
-        return this.model.getBone(armorLeggingTorsoLayer).orElse(null);
+        super(
+                AzArmorRendererConfig.builder(GEO, TEX)
+                        .build()
+        );
     }
 
     @Override
-    protected void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
-        this.setBoneVisible(getHeadBone(),false);
-        this.setBoneVisible(getBodyBone(),false);
-        this.setBoneVisible(getRightArmBone(),false);
-        this.setBoneVisible(getLeftArmBone(),false);
-        this.setBoneVisible(getRightLegBone(),false);
-        this.setBoneVisible(getLeftLegBone(),false);
-        this.setBoneVisible(getRightBootBone(),false);
-        this.setBoneVisible(getLeftBootBone(),false);
-        // First, set the bone so it is not visible.
-        this.setBoneVisible(armorLeggingTorsoBone(),false);
+    protected AzArmorRendererPipeline createPipeline(AzRendererConfig config) {
+        return new AzArmorRendererPipeline(config, this){
+            @Override
+            protected AzRendererPipelineContext<ItemStack> createContext(AzRendererPipeline<ItemStack> rendererPipeline) {
+                return  new AzArmorRendererPipelineContext(rendererPipeline){
+                    @Override
+                    public AzArmorBoneContext boneContext() {
+                        return new AzArmorBoneContext(){
+                            protected AzBone armorLeggingTorsoBone;
 
-        switch (currentSlot) {
-            case HEAD -> this.setBoneVisible(getHeadBone(), true);
-            case CHEST -> {
-                this.setBoneVisible(getBodyBone(), true);
-                this.setBoneVisible(getRightArmBone(), true);
-                this.setBoneVisible(getLeftArmBone(), true);
-            }
-            case LEGS -> {
-                // Now set the bone to be visable now that the legs slot is filled.
-                this.setBoneVisible(armorLeggingTorsoBone(),true);
-                this.setBoneVisible(getRightLegBone(), true);
-                this.setBoneVisible(getLeftLegBone(), true);
-                this.setBoneVisible(armorLeggingTorsoBone(), true);
-            }
-            case FEET -> {
-                this.setBoneVisible(getRightBootBone(), true);
-                this.setBoneVisible(getLeftBootBone(), true);
-            }
-        }
-    }
+                            public AzBone getArmorLeggingTorsoBone(AzBakedModel model) {
+                                return model.getBone("armorLeggingTorsoLayer").orElse(null);
+                            }
 
-    @Override
-    protected void applyBaseTransformations(HumanoidModel<?> baseModel) {
-        super.applyBaseTransformations(baseModel);
-        if (this.armorLeggingTorsoBone() != null)
-        {
-            ModelPart modelPart = baseModel.body;
-            RenderUtils.matchModelPartRot(modelPart, this.armorLeggingTorsoBone());
-            this.armorLeggingTorsoBone().updatePosition(modelPart.x, -modelPart.y, modelPart.z);
-        }
+                            @Override
+                            public void grabRelevantBones(AzBakedModel model, AzArmorBoneProvider boneProvider) {
+                                super.grabRelevantBones(model, boneProvider);
+                                this.armorLeggingTorsoBone = this.getArmorLeggingTorsoBone(model) ;
+                            }
+
+                            @Override
+                            public void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
+                                setAllVisible(false);
+
+                                // Hide the legging torso bone initially
+                                this.setBoneVisible(this.armorLeggingTorsoBone, false);
+
+                                switch (currentSlot) {
+                                    case HEAD -> setBoneVisible(this.head, true);
+                                    case CHEST -> {
+                                        setBoneVisible(this.body, true);
+                                        setBoneVisible(this.rightArm, true);
+                                        setBoneVisible(this.leftArm, true);
+                                    }
+                                    case LEGS -> {
+                                        // Make the legging torso bone visible when the legging armor is equiped
+                                        this.setBoneVisible(this.armorLeggingTorsoBone, true);
+                                        setBoneVisible(this.rightLeg, true);
+                                        setBoneVisible(this.leftLeg, true);
+                                    }
+                                    case FEET -> {
+                                        setBoneVisible(this.rightBoot, true);
+                                        setBoneVisible(this.leftBoot, true);
+                                    }
+                                    case MAINHAND, OFFHAND -> { /* NO-OP */ }
+                                }
+                            }
+
+                            @Override
+                            public void applyBaseTransformations(HumanoidModel<?> baseModel)
+                            {
+                                super.applyBaseTransformations(baseModel);
+                                if (this.armorLeggingTorsoBone != null)
+                                {
+                                    ModelPart modelPart = baseModel.body;
+                                    RenderUtils.matchModelPartRot(modelPart, this.armorLeggingTorsoBone);
+                                    this.armorLeggingTorsoBone.updatePosition(modelPart.x, -modelPart.y, modelPart.z);
+                                }
+                            }
+                        };
+                    }
+                };
+            }
+        };
     }
 }

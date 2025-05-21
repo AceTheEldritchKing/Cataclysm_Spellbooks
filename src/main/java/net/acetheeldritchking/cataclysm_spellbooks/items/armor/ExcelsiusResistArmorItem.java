@@ -1,7 +1,5 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.ExcelsiusResistArmorRenderer;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,10 +8,6 @@ import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Consumer;
 
 public class ExcelsiusResistArmorItem extends MechanicalFlightArmorItem {
     public ExcelsiusResistArmorItem(EquipmentSlot slot, Properties settings) {
@@ -67,20 +61,5 @@ public class ExcelsiusResistArmorItem extends MechanicalFlightArmorItem {
                 ).normalize());
             }
         }
-    }
-
-    @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            private ExcelsiusResistArmorRenderer renderer;
-
-            @Override
-            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                if (renderer == null)
-                    renderer = new ExcelsiusResistArmorRenderer();
-                renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-                return this.renderer;
-            }
-        });
     }
 }

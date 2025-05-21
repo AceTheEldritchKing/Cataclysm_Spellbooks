@@ -1,34 +1,12 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.github.L_Ender.cataclysm.config.CMConfig;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.BloomStoneMageArmorRenderer;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Consumer;
 
 public class BloomStoneMageArmorItem extends ImbuableCataclysmArmor {
     public BloomStoneMageArmorItem(EquipmentSlot slot, Properties settings) {
         super(CSArmorMaterials.BOULDER_BLOSSOM_ARMOR, slot, settings);
-    }
-
-    @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            private BloomStoneMageArmorRenderer renderer;
-
-            @Override
-            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                if (renderer == null)
-                    renderer = new BloomStoneMageArmorRenderer();
-                renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-                return this.renderer;
-            }
-        });
     }
 
     // Durability
