@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
+import mod.azure.azurelib.AzureLib;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.CSItemDispatcher;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -22,9 +23,12 @@ public class DiscDriverSpellbook extends SimpleAttributeSpellBook {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        if (!level.isClientSide && entity instanceof Player player )
+        if (stack.getOrCreateTag().contains(AzureLib.ITEM_UUID_TAG))
         {
-            dispatcher.idle(player, stack);
+            if (!level.isClientSide && entity instanceof Player player )
+            {
+                dispatcher.idle(player, stack);
+            }
         }
     }
 }

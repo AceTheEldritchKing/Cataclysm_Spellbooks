@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import mod.azure.azurelib.AzureLib;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.CSItemDispatcher;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSTags;
 import net.minecraft.world.entity.Entity;
@@ -69,17 +70,22 @@ public class CSArmorItem extends ArmorItem {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if (!level.isClientSide && entity instanceof Player player ) {
-            player.getArmorSlots().forEach(wornArmor -> {
-                // Doing this through tags rather than listing everything in an or condition
-                if (wornArmor != null && wornArmor.is(CSTags.ARMORS_FOR_IDLE)) {
-                   dispatcher.idle(player, wornArmor);
-                }
-
-                // This is for Elytra flight
-                if (wornArmor != null && wornArmor.is(CSTags.ARMORS_FOR_FLIGHT) && player.isFallFlying()) {
-                    dispatcher.flight(player, wornArmor);
-                }
-            });
+            if (stack.getOrCreateTag().contains(AzureLib.ITEM_UUID_TAG))
+            {
+                player.getArmorSlots().forEach(wornArmor -> {
+                    // Doing this through tags rather than listing everything in an or condition
+                    if (wornArmor != null) {
+                        //dispatcher.idle(player, wornArmor);
+                        if (player.isFallFlying() && wornArmor.is(CSTags.ARMORS_FOR_FLIGHT))
+                        {
+                            dispatcher.flight(player, wornArmor);
+                        } else if (wornArmor.is(CSTags.ARMORS_FOR_IDLE))
+                        {
+                            dispatcher.idle(player, wornArmor);
+                        }
+                    }
+                });
+            }
         }
     }
 }
