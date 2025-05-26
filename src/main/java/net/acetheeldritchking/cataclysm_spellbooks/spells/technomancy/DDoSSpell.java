@@ -1,14 +1,18 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
+import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
+import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
 import io.redspace.ironsspellbooks.entity.mobs.AntiMagicSusceptible;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -57,10 +61,16 @@ public class DDoSSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        float radius = spellLevel + 0.5F;
+        float radius = getRange(spellLevel);
         float distance = 2.0f;
 
         Vec3 ddosLocation = entity.position().add(entity.getForward().multiply(distance, 0.3f, distance));
+
+        ScreenShake_Entity.ScreenShake(level, entity.position(), radius, 0.15F, 0, 20);
+
+        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), getRange(spellLevel - 3)), entity.getX(), entity.getY() + 0.8F, entity.getZ(), 1, 0, 0, 0, 0, true);
+        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), getRange(spellLevel)), entity.getX(), entity.getY() + 0.5F, entity.getZ(), 1, 0, 0, 0, 0, true);
+        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), getRange(spellLevel - 3)), entity.getX(), entity.getY() + 0.2F, entity.getZ(), 1, 0, 0, 0, 0, true);
 
         var entities = level.getEntities(entity,
                 AABB.ofSize(ddosLocation, radius * 2, radius, radius * 2));
@@ -103,5 +113,10 @@ public class DDoSSpell extends AbstractSpell {
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    private int getRange(int spellLevel)
+    {
+        return (int) (spellLevel * 1.2F);
     }
 }
