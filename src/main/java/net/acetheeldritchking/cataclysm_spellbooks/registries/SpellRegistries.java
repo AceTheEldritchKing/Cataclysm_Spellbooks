@@ -181,7 +181,7 @@ public class SpellRegistries {
     // Lock-on (Summon a target particle above the entity's head, stuns and incapacitates them for a few seconds)
     public static final RegistryObject<AbstractSpell> LOCK_ON = registerSpell(new LockOnSpell());
 
-    // Hijack (Steals a target's summons for yourself)
+    // Hijack (Steals a target's summons for yourself - 1.21.1)
 
     // Laserbolt (Shoots out the little Harbinger small laser)
     public static final RegistryObject<AbstractSpell> LASERBOLT = registerSpell(new LaserboltSpell());
@@ -189,7 +189,7 @@ public class SpellRegistries {
     // Atomic Laser (Harbinger big laser blast)
     public static final RegistryObject<AbstractSpell> ATOMIC_LASER = registerSpell(new AtomicLaserSpell());
 
-    // Botnet Swarm (Summons a swarm of Watchers that act as a counterspell projectiles)
+    // DoS Swarm (Summons a swarm of Watchers that act as a counterspell projectiles - 1.21.1)
 
     // Missile Launch (Shoots out a missile)
 
@@ -200,6 +200,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CONSTRUCT_PROWLER = registerSpell(new ConstructProwlerSpell());
 
     // DDoS (Name WIP, AoE counterspell)
+    public static final RegistryObject<AbstractSpell> DDOS = registerSpell(new DDoSSpell());
 
     // Shutdown (Prevent the target from attacking or using items. Does not stack with Lock-on)
 
@@ -211,7 +212,7 @@ public class SpellRegistries {
 
     // Circuit Breaker (Chain lightning but RED, gives a miniscule amount of lifesteal and weakens targets)
 
-    // Bothearder (AoE summon steal)
+    // Bothearder (AoE summon steal - 1.21.1)
 
     // Flash Bang (Throw a live grenade, blinding nearby entities within the blast zone)
 
