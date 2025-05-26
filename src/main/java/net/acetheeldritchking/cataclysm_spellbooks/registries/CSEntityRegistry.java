@@ -145,6 +145,24 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "extended_death_laser_beam").toString()
                     ));
 
+    // Summoned Watcher
+    public static final RegistryObject<EntityType<SummonedWatcher>> SUMMONED_WATCHER =
+            ENTITIES.register("summoned_watcher", () -> EntityType.Builder.<SummonedWatcher>of
+                            (SummonedWatcher::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_watcher").toString()
+                    ));
+
+    // Summoned Prowler
+    public static final RegistryObject<EntityType<SummonedProwler>> SUMMONED_PROWLER =
+            ENTITIES.register("summoned_prowler", () -> EntityType.Builder.<SummonedProwler>of
+                            (SummonedProwler::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_prowler").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

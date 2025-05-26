@@ -21,5 +21,7 @@ public class ModSetup {
         event.put(CSEntityRegistry.SUMMONED_ROYAL_DRAUGUR.get(), SummonedRoyalDraugur.royal_draugr().build());
         event.put(CSEntityRegistry.SUMMONED_ELITE_DRAUGUR.get(), SummonedEliteDraugur.elite_draugr().build());
         event.put(CSEntityRegistry.SUMMONED_APTRGANGR.get(), SummonedAptrgangr.aptrgangr().build());
+        event.put(CSEntityRegistry.SUMMONED_WATCHER.get(), SummonedWatcher.the_watcher().build());
+        event.put(CSEntityRegistry.SUMMONED_PROWLER.get(), SummonedProwler.the_prowler().build());
     }
 }

@@ -44,6 +44,12 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> DRAUGUR_TIMER =
             MOB_EFFECTS.register("draugur_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
 
+    public static final RegistryObject<SummonTimer> WATCHER_TIMER =
+            MOB_EFFECTS.register("watcher_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
+
+    public static final RegistryObject<SummonTimer> PROWLER_TIMER =
+            MOB_EFFECTS.register("prowler_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

@@ -25,6 +25,7 @@ public class CSArmorItem extends ArmorItem {
                     UUID.fromString("15C1FE6B-3596-412A-B6CF-4077CB37140F"),
                     UUID.fromString("82A575D1-366A-4BBD-91F8-25DB6B804F06")};
     private final Multimap<Attribute, AttributeModifier> ARMOR_ATTRIBUTES;
+
     public final CSItemDispatcher dispatcher;
 
     public CSArmorItem(CSArmorMaterials materialIn, EquipmentSlot slot, Properties settings) {

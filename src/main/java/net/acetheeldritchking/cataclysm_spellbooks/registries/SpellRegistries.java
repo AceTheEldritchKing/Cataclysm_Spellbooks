@@ -20,10 +20,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctur
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.DesertWindsSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.MonolithCrashSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.AtomicLaserSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.EMPSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LaserboltSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.LockOnSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -197,8 +194,10 @@ public class SpellRegistries {
     // Missile Launch (Shoots out a missile)
 
     // Construct: Watchers (Summons a group of Watchers)
+    public static final RegistryObject<AbstractSpell> CONSTRUCT_WATCHERS = registerSpell(new ConstructWatchersSpell());
 
     // Construct: Prowler (Summons a Prowler)
+    public static final RegistryObject<AbstractSpell> CONSTRUCT_PROWLER = registerSpell(new ConstructProwlerSpell());
 
     // DDoS (Name WIP, AoE counterspell)
 
@@ -217,6 +216,10 @@ public class SpellRegistries {
     // Flash Bang (Throw a live grenade, blinding nearby entities within the blast zone)
 
     // Aerial Assault (Summon various missiles down from the sky)
+
+    // Intrusion Defense System (Reduce all incoming projectile damage, prevent summons from being counterspelled)
+
+    // Overclock (Special imbue on Excelsius armor, overclock the caster which unlocks more capabilities and stats from the armor)
 
 
     public static void register(IEventBus eventBus)

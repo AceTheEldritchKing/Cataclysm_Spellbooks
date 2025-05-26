@@ -198,6 +198,12 @@
     "spell.cataclysm_spellbooks.lock_on": "Lock-On",
     "spell.cataclysm_spellbooks.lock_on.guide": "Target an entity, displaying a target above their head and stunning them for a short period of time",
 
+    "spell.cataclysm_spellbooks.construct_watchers": "Construct: Watchers",
+    "spell.cataclysm_spellbooks.construct_watchers.guide": "Construct a group of Watchers to aid you in combat",
+
+    "spell.cataclysm_spellbooks.construct_prowler": "Construct: Prowler",
+    "spell.cataclysm_spellbooks.construct_prowler.guide": "Construct a Prowler to aid you in combat",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -231,6 +237,8 @@
     "ui.cataclysm_spellbooks.thrall_count": "%d Summons",
     "ui.cataclysm_spellbooks.halberd_rush": "Spawns halberds at starting location and occasionally at end location",
     "ui.cataclysm_spellbooks.maledictus_armory_bonus": "Deals %d if Soul Render or Annihilator is held in the main hand",
+    "ui.cataclysm_spellbooks.watcher_count": "%d Summons",
+    "ui.cataclysm_spellbooks.prowler_count": "%d Summons",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -246,6 +254,8 @@
     "entity.cataclysm_spellbooks.summoned_elite_draugur": "Elite Draugur",
     "entity.cataclysm_spellbooks.summoned_aptrgangr": "Aptrgangr",
     "entity.cataclysm_spellbooks.extended_laser_beam": "Laser Beam",
+    "entity.cataclysm_spellbooks.summoned_watcher": "Watcher",
+    "entity.cataclysm_spellbooks.summoned_prowler": "Prowler",
 
 
 
