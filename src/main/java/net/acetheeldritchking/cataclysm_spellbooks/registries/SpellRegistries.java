@@ -37,7 +37,9 @@ public class SpellRegistries {
     // Spells //
     //        //
 
-    // ABYSSAL //
+    /***
+     * Abyssal
+     */
     // Void Beam
     public static final RegistryObject<AbstractSpell> VOID_BEAM = registerSpell(new VoidBeamSpell());
 
@@ -68,8 +70,52 @@ public class SpellRegistries {
 
     // Summon Lionfish Swarm (Summons a bunch of lionfish, can only be casted while in the water)
 
+    // Wrath of The Abyss (Apply an effect to yourself that prevents your death. This applies an effect that boosts your spell power but reduces your max health)
 
-    // ENDER //
+    //
+    // THESE ARE FOR 1.21.1 ONLY - I JUST HAVE THESE HERE FOR PLANNING //
+    //
+
+    // Delta Pressure [ABYSSAL]: Evaluate the pressure between the caster and the target. If the target has less pressure than the caster, equalize the pressure and deal damage to the target based on the difference in pressure. If the caster has more pressure than the target, equalize and debuff the caster. Pressure is influenced by the gravitational attributes of the target and caster, whether the caster is in water or not, and whether the caster has the Pressurized effect.
+
+    // Pressurize [ABYSSAL]: Increases the caster's gravity outside of water and apply the pressurized status effect.
+
+    // Aquatic Lungs [ABYSSAL]: Grant the caster the ability to breathe underwater for a short time.
+
+    // Whalefall [ABYSSAL]: Apply the Whalefall effect on the targeted entity. When that entity dies, creates an explosion that heals the caster and nearby entities.
+
+    // Thermal Adaptation [ABYSSAL]: Boil the water around you, granting you increased resistance against fire spells. Can only be casted while underwater, effect clears once the caster leaves the water.
+
+    // Abyssal Prey [ABYSSAL]: Target an entity; you deal more damage to that specific entity, however, you will deal less damage to any other entity.
+
+    // Midnight Zone [ABYSSAL]: In a radius around the caster, inflict darkness and blindness to all entities within that radius. Can only be casted while underwater. All entities in range take more damage from Abyssal spells.
+
+    // Aquatic Snow [ABYSSAL]: Summon aquatic snow around the caster, heals a small amount per time spent in the snow.
+
+    // Bio-Disorient [ABYSSAL]: The caster turns transparent, gains bioluminescent, and creates copies of itself to distract targets. Can only be casted while under the water.
+
+    // Submerge [ABYSSAL]: Greatly increase the target's pressure and gravity, increasing even more while the target is in the water.
+
+    // Downpour/Deluge (Summons a rainstorm around the caster, entities within become conductive)
+
+    // Riptide (Drag nearby entities into you, dealing damage to them. Only casted in water)
+
+    // Undercurrent (Dash in the direction you are looking in. Increased power when underwater)
+
+    // Saltwater Spray (Spray saltwater, entities caught in it become conductive)
+
+    // Schooling (Based on the amount of fish entities near you, your abyssal spell power is increased for X amount of spells. Only works underwater)
+
+    // Alkaline Waters (Clears all effects from the caster, negative and positive)
+
+    // Squid Launcher (Unleash an empowered squid in the direction the caster is looking in - Apparition Maw exclusive)
+
+    // Tide Turn (Hold a defensive stance, increasing spell resistance and clearing negative effects. After the spell finishes, spell power is increased - Lacerator exclusive)
+
+
+    /***
+     * Ender
+     */
     // Void Rune (Ender)
     public static final RegistryObject<AbstractSpell> VOID_RUNE = registerSpell(new VoidRuneSpell());
 
@@ -82,13 +128,19 @@ public class SpellRegistries {
     // Gravitational Pull (Pulls entities in like Gauntlet of Guard)
     public static final RegistryObject<AbstractSpell> GRAVITATION_PULL = registerSpell(new GravitationPullSpell());
 
+    // Shell Smash (Envelop yourself in a thick shell, reducing damage to yourself. After X amount of hits, the shell breaks and you briefly gain speed and extra spell power for X number of attacks)
 
-    // EVOCATION //
+
+    /***
+     * Evocation
+     */
     // Steal (Steals target's mainhand item)
     public static final RegistryObject<AbstractSpell> PILFER = registerSpell(new PilferSpell());
 
 
-    // HOLY //
+    /***
+     * Holy
+     */
     // Summon Koboldiator
     public static final RegistryObject<AbstractSpell> CONJURE_KOBOLDIATOR = registerSpell(new ConjureKoboldiatorSpell());
 
@@ -96,7 +148,9 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CONJURE_KOBOLETON = registerSpell(new ConjureKoboletonSpell());
 
 
-    // FIRE //
+    /***
+     * Fire
+     */
     // Incineration (Fire) (Summon Fire runes in row) - Requires Burning Ashes
     public static final RegistryObject<AbstractSpell> INCINERATION = registerSpell(new IncinerationSpell());
 
@@ -130,11 +184,19 @@ public class SpellRegistries {
 
     // Comet Shower (Shoots out the Monstrosity little fire bombs)
 
+    // Avatar of Flame (Ignite yourself on fire, at half health you turn into soul fire and your fire spell power is increased but every other element is decreased. Prevents you from being placed on fire, all your attacks ignite opponents. Buffs to Ignis spells)
 
-    // LIGHTNING //
+    // Infernal Inhalation (Absorb any lava blocks near you, healing you for how much lava is around you)
 
 
-    // ICE //
+    /***
+     * Lightning
+     */
+
+
+    /***
+     * Ice
+     */
     // Malevolent Battlefield (Summon Maledictus' halberd field)
     public static final RegistryObject<AbstractSpell> MALEVOLENT_BATTLEFIELD = registerSpell(new MalevolentBattlefieldSpell());
 
@@ -158,7 +220,9 @@ public class SpellRegistries {
     // Echoed Whirlwind/Snow Squall (Summons Wrath of The Desert sandstorms)
 
 
-    // NATURE //
+    /***
+     * Nature
+     */
     // Sandstorm (Summon desert tornadoes around the user)
     public static final RegistryObject<AbstractSpell> SANDSTORM = registerSpell(new SandstormSpell());
 
@@ -174,7 +238,9 @@ public class SpellRegistries {
     // Summon Amethyst Crab (Summons The Crab:tm:, can ride it)
 
 
-    // TECHNOMANCY //
+    /***
+     * Technomancy
+     */
     // EMP (Cast an emp blast?)
     public static final RegistryObject<AbstractSpell> EMP_BLAST = registerSpell(new EMPSpell());
 
