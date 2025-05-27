@@ -207,6 +207,9 @@
     "spell.cataclysm_spellbooks.ddos": "Distributed Denial of Service",
     "spell.cataclysm_spellbooks.ddos.guide": "Disrupt services around you, dispelling summons and removing magic effects from nearby entities",
 
+    "spell.cataclysm_spellbooks.dos_swarm": "DoS Swarm",
+    "spell.cataclysm_spellbooks.dos_swarm.guide": "Summon a group of Watchers which attack any nearby mobs on sight, dispelling any magic properties from the target and exploding on impact",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -259,6 +262,7 @@
     "entity.cataclysm_spellbooks.extended_laser_beam": "Laser Beam",
     "entity.cataclysm_spellbooks.summoned_watcher": "Watcher",
     "entity.cataclysm_spellbooks.summoned_prowler": "Prowler",
+    "entity.cataclysm_spellbooks.summoned_counterspell_watcher": "DoS Watcher",
 
 
 

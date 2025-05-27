@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedCounterspellWatcher;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedWatcher;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
@@ -20,8 +21,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 @AutoSpellConfig
-public class ConstructWatchersSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "construct_watchers");
+public class DoSSwarmSpell extends AbstractSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "dos_swarm");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -29,19 +30,19 @@ public class ConstructWatchersSpell extends AbstractSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.UNCOMMON)
+            .setMinRarity(SpellRarity.RARE)
             .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(5)
-            .setCooldownSeconds(80)
+            .setCooldownSeconds(100)
             .build();
 
-    public ConstructWatchersSpell()
+    public DoSSwarmSpell()
     {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 2;
-        this.castTime = 20;
-        this.baseManaCost = 75;
+        this.castTime = 35;
+        this.baseManaCost = 90;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class ConstructWatchersSpell extends AbstractSpell {
         MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.WATCHER_TIMER.get(),
                 summonTimer, 0, false, false, false);
 
-        SummonedWatcher watcher = new SummonedWatcher(level, caster);
+        SummonedCounterspellWatcher watcher = new SummonedCounterspellWatcher(level, caster);
 
         watcher.finalizeSpawn((ServerLevelAccessor) level,
                 level.getCurrentDifficultyAt(watcher.getOnPos()),

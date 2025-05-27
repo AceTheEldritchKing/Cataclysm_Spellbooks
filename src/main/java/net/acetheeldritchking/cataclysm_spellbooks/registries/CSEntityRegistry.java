@@ -163,6 +163,15 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_prowler").toString()
                     ));
 
+    // Summoned Counterspell Watcher
+    public static final RegistryObject<EntityType<SummonedCounterspellWatcher>> SUMMONED_COUNTERSPELL_WATCHER =
+            ENTITIES.register("summoned_counterspell_watcher", () -> EntityType.Builder.<SummonedCounterspellWatcher>of
+                            (SummonedCounterspellWatcher::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_counterspell_watcher").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

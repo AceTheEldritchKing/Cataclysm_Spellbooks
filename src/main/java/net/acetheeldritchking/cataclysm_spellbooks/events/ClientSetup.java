@@ -27,6 +27,7 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.EXTENDED_LASER_BEAM.get(), Laser_Beam_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.EXTENDED_DEATH_LASER_BEAM.get(), Death_Laser_beam_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_WATCHER.get(), The_Watcher_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_COUNTERSPELL_WATCHER.get(), The_Watcher_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_PROWLER.get(), The_Prowler_Renderer::new);
     }
 

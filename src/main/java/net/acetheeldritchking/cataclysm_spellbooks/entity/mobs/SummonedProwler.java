@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.The_Prowler_Entity;
+import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.init.ModTag;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
@@ -12,6 +13,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegi
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -103,15 +105,15 @@ public class SummonedProwler extends The_Prowler_Entity implements MagicSummon {
     public void onUnSummon() {
         if (!level.isClientSide)
         {
-            MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK,
-                    getX(), getY(), getZ(),
-                    25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
-                    0.1, false);
+            spawnParticles(this);
             discard();
         }
+    }
+
+    private void spawnParticles(LivingEntity entity)
+    {
+        ServerLevel level = (ServerLevel) entity.level;
+        level.sendParticles(ModParticle.EM_PULSE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 
     @Override

@@ -190,6 +190,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> ATOMIC_LASER = registerSpell(new AtomicLaserSpell());
 
     // DoS Swarm (Summons a swarm of Watchers that act as a counterspell projectiles - 1.21.1)
+    public static final RegistryObject<AbstractSpell> DOS_SWARM = registerSpell(new DoSSwarmSpell());
 
     // Missile Launch (Shoots out a missile)
 
