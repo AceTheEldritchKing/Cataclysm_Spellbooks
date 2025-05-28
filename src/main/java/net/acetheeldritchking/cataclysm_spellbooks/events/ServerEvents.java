@@ -119,6 +119,16 @@ public class ServerEvents {
                 }
             }
         }
+
+        // Shutdown
+        if (entity instanceof LivingEntity attacker)
+        {
+            if (attacker.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()))
+            {
+                attacker.hurt(SpellRegistries.SHUTDOWN.get().getDamageSource(null), 1);
+                event.setCanceled(true);
+            }
+        }
     }
 
     @SubscribeEvent
@@ -364,6 +374,22 @@ public class ServerEvents {
                         event.setCanceled(true);
                     }
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onItemUseEvent(LivingEntityUseItemEvent event)
+    {
+        Entity entity = event.getEntity();
+
+        // Shutdown
+        if (entity instanceof LivingEntity attacker)
+        {
+            if (attacker.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()))
+            {
+                attacker.hurt(SpellRegistries.SHUTDOWN.get().getDamageSource(null), 1);
+                event.setCanceled(true);
             }
         }
     }

@@ -71,6 +71,12 @@ public class CataclysmSpellbooks
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
+        // Animation Registry
+        AzIdentityRegistry.register(
+                ItemRegistries.IGNITIUM_WIZARD_CHESTPLATE_ELYTRA.get(),
+                ItemRegistries.CURSIUM_MAGE_CHESTPLATE_ELYTRA.get(),
+                ItemRegistries.DISC_DRIVER.get()
+        );
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -166,13 +172,6 @@ public class CataclysmSpellbooks
             AzItemRendererRegistry.register(DiscDriverSpellbookRenderer::new, ItemRegistries.DISC_DRIVER.get());
             AzItemRendererRegistry.register(SpiritSundererStaffRenderer::new, ItemRegistries.SPIRIT_SUNDERER_STAFF.get());
             AzItemRendererRegistry.register(GauntletOfPowerRenderer::new, ItemRegistries.GAUNTLET_OF_POWER.get());
-
-            // Animation Registry
-            AzIdentityRegistry.register(
-                    ItemRegistries.IGNITIUM_WIZARD_CHESTPLATE_ELYTRA.get(),
-                    ItemRegistries.CURSIUM_MAGE_CHESTPLATE_ELYTRA.get(),
-                    ItemRegistries.DISC_DRIVER.get()
-            );
         }
     }
 

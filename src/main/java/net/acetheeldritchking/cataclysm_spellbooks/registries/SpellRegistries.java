@@ -266,12 +266,14 @@ public class SpellRegistries {
     // Construct: Prowler (Summons a Prowler)
     public static final RegistryObject<AbstractSpell> CONSTRUCT_PROWLER = registerSpell(new ConstructProwlerSpell());
 
-    // DDoS (Name WIP, AoE counterspell)
+    // DDoS (AoE counterspell)
     public static final RegistryObject<AbstractSpell> DDOS = registerSpell(new DDoSSpell());
 
     // Shutdown (Prevent the target from attacking or using items. Does not stack with Lock-on)
+    public static final RegistryObject<AbstractSpell> SHUTDOWN = registerSpell(new ShutdownSpell());
 
     // Rewire (Buff selected summons' speed and damage, reducing their armor and armor toughness)
+    public static final RegistryObject<AbstractSpell> REWIRE = registerSpell(new RewireSpell());
 
     // Hardware Update (Increases your damage and armor, does not stack with charge/clears it)
 

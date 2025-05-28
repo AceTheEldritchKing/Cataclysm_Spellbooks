@@ -50,6 +50,12 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> PROWLER_TIMER =
             MOB_EFFECTS.register("prowler_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
 
+    public static final RegistryObject<MobEffect> SHUTDOWN_EFFECT =
+            MOB_EFFECTS.register("shutdown_effect", ShutdownPotionEffect::new);
+
+    public static final RegistryObject<MobEffect> REWIRED_EFFECT =
+            MOB_EFFECTS.register("rewired_effect", RewirePotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

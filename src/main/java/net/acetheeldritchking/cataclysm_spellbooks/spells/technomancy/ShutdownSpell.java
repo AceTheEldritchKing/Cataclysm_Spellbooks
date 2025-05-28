@@ -1,33 +1,28 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
 import com.github.L_Ender.cataclysm.init.ModEffect;
-import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
-import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSParticleRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
-import java.util.Optional;
 
 @AutoSpellConfig
-public class LockOnSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "lock_on");
+public class ShutdownSpell extends AbstractSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "shutdown");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -37,13 +32,13 @@ public class LockOnSpell extends AbstractSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.RARE)
+            .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(5)
             .setCooldownSeconds(30)
             .build();
 
-    public LockOnSpell()
+    public ShutdownSpell()
     {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 1;
@@ -68,11 +63,6 @@ public class LockOnSpell extends AbstractSpell {
     }
 
     @Override
-    public Optional<SoundEvent> getCastFinishSound() {
-        return Optional.of(ModSounds.EMP_ACTIVATED.get());
-    }
-
-    @Override
     public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
         return Utils.preCastTargetHelper(level, entity, playerMagicData, this, 32, .15f);
     }
@@ -85,23 +75,15 @@ public class LockOnSpell extends AbstractSpell {
 
             if (targetEntity != null)
             {
-                // We want to remove Shutdown if the target already has it
-                if (!targetEntity.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()))
+                // Don't stack with Lock-On, doing this by proxy with effect stun
+                if (!targetEntity.hasEffect(ModEffect.EFFECTSTUN.get()))
                 {
-                    spawnParticles(targetEntity);
-
-                    targetEntity.addEffect(new MobEffectInstance(MobEffectRegistry.GUIDING_BOLT.get(), getEffectDuration(spellLevel, entity)));
-                    targetEntity.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), getEffectDuration(spellLevel, entity)));
-                    targetEntity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.INCAPACITATED_EFFECT.get(), getEffectDuration(spellLevel, entity)));
+                    targetEntity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get(), getEffectDuration(spellLevel, entity)));
                 } else
                 {
-                    targetEntity.removeEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get());
+                    targetEntity.removeEffect(ModEffect.EFFECTSTUN.get());
 
-                    spawnParticles(targetEntity);
-
-                    targetEntity.addEffect(new MobEffectInstance(MobEffectRegistry.GUIDING_BOLT.get(), getEffectDuration(spellLevel, entity)));
-                    targetEntity.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), getEffectDuration(spellLevel, entity)));
-                    targetEntity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.INCAPACITATED_EFFECT.get(), getEffectDuration(spellLevel, entity)));
+                    targetEntity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get(), getEffectDuration(spellLevel, entity)));
                 }
             }
         }
@@ -114,11 +96,5 @@ public class LockOnSpell extends AbstractSpell {
         int amount = (int) Mth.clamp((getSpellPower(spellLevel, caster) * 20), 20, 5*20);
         //System.out.println("Clamp: " + amount);
         return amount;
-    }
-
-    private void spawnParticles(LivingEntity entity)
-    {
-        ServerLevel level = (ServerLevel) entity.level;
-        level.sendParticles(CSParticleRegistry.TARGET_PARTICLE.get(), entity.getX(), entity.getY() + 2.5, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 }

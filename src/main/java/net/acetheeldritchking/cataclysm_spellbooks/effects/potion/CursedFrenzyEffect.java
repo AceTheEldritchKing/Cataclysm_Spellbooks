@@ -3,7 +3,6 @@ package net.acetheeldritchking.cataclysm_spellbooks.effects.potion;
 import com.github.L_Ender.cataclysm.client.particle.RingParticle;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -30,22 +29,9 @@ public class CursedFrenzyEffect extends MobEffect {
                     targets.invulnerableTime = 20;
                 }
             }
-        } /*else if (pLivingEntity.verticalCollision)
-        {
-            if (!pLivingEntity.level.isClientSide())
-            {
-                System.out.println("Vertical Collision");
-                CSUtils.spawnHalberdWindmill(10, 10, 1.0F, 1.0F, 0.2F, 1, pLivingEntity, pLivingEntity.level, 5, 2);
-            }
-            //spawnHalberdLine();
-        } */
+        }
         else if (pLivingEntity.horizontalCollision || pLivingEntity.minorHorizontalCollision)
         {
-            /*if (!pLivingEntity.level.isClientSide())
-            {
-                System.out.println("Horizontal Collision");
-                CSUtils.spawnHalberdWindmill(10, 10, 1.0F, 1.0F, 0.2F, 1, pLivingEntity, pLivingEntity.level, 5, 2);
-            }*/
             pLivingEntity.removeEffect(this);
         }
         pLivingEntity.fallDistance = 0;
