@@ -6,12 +6,13 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.effect.ChargeEffect;
+import io.redspace.ironsspellbooks.effect.MagicMobEffect;
+import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrathProvider;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.AbyssalPredatorPotionEffect;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.CursedFrenzyEffect;
-import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.WrathfulPotionEffect;
+import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.*;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
@@ -308,6 +309,51 @@ public class ServerEvents {
                     //System.out.println("Potion Effect!");
                     CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level, 5, 1);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEffectGainEvent(MobEffectEvent.Added event)
+    {
+        Entity entity = event.getEntity();
+        MobEffect effect = event.getEffectInstance().getEffect();
+
+        if (effect instanceof HardwireUpdatePotionEffect)
+        {
+            if (entity instanceof LivingEntity livingEntity)
+            {
+                livingEntity.removeEffect(MobEffectRegistry.CHARGED.get());
+                livingEntity.removeEffect(MobEffectRegistry.HASTENED.get());
+                livingEntity.removeEffect(CSPotionEffectRegistry.SOFTWARE_UPDATE_EFFECT.get());
+            }
+        }
+
+        if (effect instanceof SoftwareUpdatePotionEffect)
+        {
+            if (entity instanceof LivingEntity livingEntity)
+            {
+                livingEntity.removeEffect(MobEffectRegistry.CHARGED.get());
+                livingEntity.removeEffect(MobEffectRegistry.HASTENED.get());
+                livingEntity.removeEffect(CSPotionEffectRegistry.HARDWARE_UPDATE_EFFECT.get());
+            }
+        }
+
+        if (effect instanceof ChargeEffect)
+        {
+            if (entity instanceof LivingEntity livingEntity)
+            {
+                livingEntity.removeEffect(CSPotionEffectRegistry.HARDWARE_UPDATE_EFFECT.get());
+                livingEntity.removeEffect(CSPotionEffectRegistry.SOFTWARE_UPDATE_EFFECT.get());
+            }
+        }
+
+        if (effect instanceof MagicMobEffect || effect == MobEffectRegistry.HASTENED.get())
+        {
+            if (entity instanceof LivingEntity livingEntity)
+            {
+                livingEntity.removeEffect(CSPotionEffectRegistry.HARDWARE_UPDATE_EFFECT.get());
+                livingEntity.removeEffect(CSPotionEffectRegistry.SOFTWARE_UPDATE_EFFECT.get());
             }
         }
     }

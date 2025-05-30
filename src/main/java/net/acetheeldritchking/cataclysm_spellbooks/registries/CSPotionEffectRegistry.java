@@ -56,6 +56,12 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> REWIRED_EFFECT =
             MOB_EFFECTS.register("rewired_effect", RewirePotionEffect::new);
 
+    public static final RegistryObject<MobEffect> HARDWARE_UPDATE_EFFECT =
+            MOB_EFFECTS.register("hardware_update_effect", HardwireUpdatePotionEffect::new);
+
+    public static final RegistryObject<MobEffect> SOFTWARE_UPDATE_EFFECT =
+            MOB_EFFECTS.register("software_update_effect", SoftwareUpdatePotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

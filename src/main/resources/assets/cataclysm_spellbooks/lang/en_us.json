@@ -18,6 +18,10 @@
     "effect.cataclysm_spellbooks.shutdown_effect.description": "The player is unable to use items or attack, damaging them in the process.",
     "effect.cataclysm_spellbooks.rewired_effect": "Rewired",
     "effect.cataclysm_spellbooks.rewired_effect.description": "Increases damage and movement speed but inversely reduces armor and armor toughness.",
+    "effect.cataclysm_spellbooks.hardware_update_effect": "Updated Hardware",
+    "effect.cataclysm_spellbooks.hardware_update_effect.description": "Increases damage and armor.",
+    "effect.cataclysm_spellbooks.software_update_effect": "Updated Software",
+    "effect.cataclysm_spellbooks.software_update_effect.description": "Increases speed and reduces spell cooldown.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -219,6 +223,12 @@
 
     "spell.cataclysm_spellbooks.rewire": "Rewire",
     "spell.cataclysm_spellbooks.rewire.guide": "Rewire your summons' capabilities, increasing their speed and damage, but inversely decreasing their armor and toughness",
+
+    "spell.cataclysm_spellbooks.hardware_update": "Hardware Update",
+    "spell.cataclysm_spellbooks.hardware_update.guide": "Update your internals with new hardware, increasing your armor and attack damage. Does not stack with Charge, Haste, or Software Update",
+
+    "spell.cataclysm_spellbooks.software_update": "Software Update",
+    "spell.cataclysm_spellbooks.software_update.guide": "Update your internals with new software, increasing your speed and reducing your spell cooldown. Does not stack with Charge, Haste, or Hardware Update",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

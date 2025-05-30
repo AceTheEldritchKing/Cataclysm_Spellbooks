@@ -276,8 +276,10 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> REWIRE = registerSpell(new RewireSpell());
 
     // Hardware Update (Increases your damage and armor, does not stack with charge/clears it)
+    public static final RegistryObject<AbstractSpell> HARDWARE_UPDATE = registerSpell(new HardwareUpdateSpell());
 
     // Software Update (Increases your speed and cooldown, does not stack with charge and haste/clears it)
+    public static final RegistryObject<AbstractSpell> SOFTWARE_UPDATE = registerSpell(new SoftwareUpdateSpell());
 
     // Circuit Breaker (Chain lightning but RED, gives a miniscule amount of lifesteal and weakens targets)
 
