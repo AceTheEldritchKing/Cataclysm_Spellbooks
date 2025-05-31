@@ -259,6 +259,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> DOS_SWARM = registerSpell(new DoSSwarmSpell());
 
     // Missile Launch (Shoots out a missile)
+    public static final RegistryObject<AbstractSpell> MISSILE_LAUNCH = registerSpell(new MissileLaunchSpell());
 
     // Construct: Watchers (Summons a group of Watchers)
     public static final RegistryObject<AbstractSpell> CONSTRUCT_WATCHERS = registerSpell(new ConstructWatchersSpell());
