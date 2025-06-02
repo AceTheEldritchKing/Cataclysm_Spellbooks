@@ -230,8 +230,11 @@
     "spell.cataclysm_spellbooks.software_update": "Software Update",
     "spell.cataclysm_spellbooks.software_update.guide": "Update your internals with new software, increasing your speed and reducing your spell cooldown. Does not stack with Charge, Haste, or Hardware Update",
 
-    "spell.cataclysm_spellbooks.missile_launch": "Missile Launch",
-    "spell.cataclysm_spellbooks.missile_launch.guide": "Target an entity and launch homing Wither missiles at them",
+    "spell.cataclysm_spellbooks.missile_launch": "Missile Barrage",
+    "spell.cataclysm_spellbooks.missile_launch.guide": "Target an entity and launch a barrage Homing Wither Missiles at them",
+
+    "spell.cataclysm_spellbooks.aerial_assault": "Aerial Assault",
+    "spell.cataclysm_spellbooks.aerial_assault.guide": "Launch an aerial assault of Wither Missiles around you",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

@@ -289,6 +289,7 @@ public class SpellRegistries {
     // Flash Bang (Throw a live grenade, blinding nearby entities within the blast zone)
 
     // Aerial Assault (Summon various missiles down from the sky)
+    public static final RegistryObject<AbstractSpell> AERIAL_ASSAULT = registerSpell(new AerialAssaultSpell());
 
     // Intrusion Defense System (Reduce all incoming projectile damage, prevent summons from being counterspelled)
 

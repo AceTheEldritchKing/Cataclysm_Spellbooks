@@ -21,6 +21,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @AutoSpellConfig
 public class MissileLaunchSpell extends AbstractSpell {
@@ -103,16 +105,39 @@ public class MissileLaunchSpell extends AbstractSpell {
 
         if (castDataSerializable instanceof MultiTargetEntityCastData targetingData)
         {
+            Timer missileTimer = new Timer();
+            int missileDelay = 150;
+
+            int delay = missileDelay * recastInstance.getSpellLevel();
+
             targetingData.getTargets().forEach(uuid -> {
                 var target = (LivingEntity) ((ServerLevel) serverPlayer.level).getEntity(uuid);
 
                 if (target != null)
                 {
-                    float yDiff = 0.5F;
-                    yDiff += 1.5F;
+                    launchMissiles(1.5F, 1.5F, serverPlayer, target);
 
-                    launchMissiles(yDiff, 0.5F, serverPlayer, target);
+                    launchMissiles(1.5F, -1.5F, serverPlayer, target);
                 }
+
+                /*missileTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (target != null)
+                        {
+                            launchMissiles(1.5F, 1.5F, serverPlayer, target);
+
+                            launchMissiles(1.5F, -1.5F, serverPlayer, target);
+                        }
+                    }
+                }, delay);
+
+                missileTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        missileTimer.cancel();
+                    }
+                }, (long) (recastInstance.getSpellLevel() + 1) * missileDelay);*/
             });
         }
     }
@@ -135,6 +160,27 @@ public class MissileLaunchSpell extends AbstractSpell {
         Wither_Homing_Missile_Entity homingMissile = new Wither_Homing_Missile_Entity(caster.level, caster, target);
         homingMissile.setPosRaw(x, y, z);
         caster.level.addFreshEntity(homingMissile);
+
+        /*Timer missileTimer = new Timer();
+        int missileDelay = 150;
+
+        int delay = missileDelay * spellLevel;
+
+        missileTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Wither_Homing_Missile_Entity homingMissile = new Wither_Homing_Missile_Entity(caster.level, caster, target);
+                        homingMissile.setPosRaw(x, y, z);
+                        caster.level.addFreshEntity(homingMissile);
+                    }
+                }, delay);
+
+                missileTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        missileTimer.cancel();
+                    }
+                }, (long) (spellLevel + 1) * missileDelay);*/
     }
 
     private float getDamage(int spellLevel, LivingEntity caster) {
