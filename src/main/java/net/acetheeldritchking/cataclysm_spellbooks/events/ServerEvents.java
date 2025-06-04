@@ -5,6 +5,7 @@ import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
+import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.effect.ChargeEffect;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
@@ -17,8 +18,15 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistr
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -43,6 +51,7 @@ public class ServerEvents {
     public static void onLivingDamageEvent(LivingDamageEvent event)
     {
         Entity entity = event.getSource().getEntity();
+        Entity target = event.getEntity();
 
         if (entity instanceof LivingEntity attacker)
         {
@@ -130,6 +139,20 @@ public class ServerEvents {
                 event.setCanceled(true);
             }
         }
+
+        // Intrusion Defense System
+        if (target instanceof LivingEntity livingTarget)
+        {
+            if (livingTarget.hasEffect(CSPotionEffectRegistry.IPS_POTION_EFFECT.get()))
+            {
+                if (event.getSource().isProjectile())
+                {
+                    float baseDamage = event.getAmount();
+
+                    event.setAmount(baseDamage / 2);
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -168,47 +191,50 @@ public class ServerEvents {
     {
         var mob = event.getEntity();
 
-        if (mob.getType() == ModEntities.IGNIS.get())
+        if (CSConfig.bossAttributes.get())
         {
-            // Ignis takes extra abyssal damage, and less fire damage
-            setIfNonNull(mob, CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
-        }
-        if (mob.getType() == ModEntities.THE_LEVIATHAN.get())
-        {
-            // Leviathan takes extra lightning damage, and less abyssal damage
-            setIfNonNull(mob, AttributeRegistry.LIGHTNING_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), 1.5);
-        }
-        if (mob.getType() == ModEntities.ENDER_GUARDIAN.get())
-        {
-            // Ender Guardian takes extra ice damage, and less ender damage
-            setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, AttributeRegistry.ENDER_MAGIC_RESIST.get(), 1.5);
-        }
-        if (mob.getType() == ModEntities.THE_HARBINGER.get())
-        {
-            // Harbinger takes extra lightning damage, and less blood damage
-            setIfNonNull(mob, AttributeRegistry.LIGHTNING_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, AttributeRegistry.BLOOD_MAGIC_RESIST.get(), 1.5);
-        }
-        if (mob.getType() == ModEntities.ANCIENT_REMNANT.get())
-        {
-            // Ancient Remnant takes extra holy damage, and less fire damage(?)
-            setIfNonNull(mob, AttributeRegistry.HOLY_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
-        }
-        if (mob.getType() == ModEntities.NETHERITE_MONSTROSITY.get())
-        {
-            // Netherite Monstrosity takes extra ice damage, and less fire damage
-            setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
-        }
-        if (mob.getType() == ModEntities.MALEDICTUS.get())
-        {
-            // Maledictus takes extra eldritch damage, and less ice damage
-            setIfNonNull(mob, AttributeRegistry.ELDRITCH_MAGIC_RESIST.get(), 0.5);
-            setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 1.5);
+            if (mob.getType() == ModEntities.IGNIS.get())
+            {
+                // Ignis takes extra abyssal damage, and less fire damage
+                setIfNonNull(mob, CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
+            }
+            if (mob.getType() == ModEntities.THE_LEVIATHAN.get())
+            {
+                // Leviathan takes extra lightning damage, and less abyssal damage
+                setIfNonNull(mob, AttributeRegistry.LIGHTNING_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, CSAttributeRegistry.ABYSSAL_MAGIC_RESIST.get(), 1.5);
+            }
+            if (mob.getType() == ModEntities.ENDER_GUARDIAN.get())
+            {
+                // Ender Guardian takes extra ice damage, and less ender damage
+                setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, AttributeRegistry.ENDER_MAGIC_RESIST.get(), 1.5);
+            }
+            if (mob.getType() == ModEntities.THE_HARBINGER.get())
+            {
+                // Harbinger takes extra lightning damage, and less blood damage
+                setIfNonNull(mob, AttributeRegistry.LIGHTNING_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, AttributeRegistry.BLOOD_MAGIC_RESIST.get(), 1.5);
+            }
+            if (mob.getType() == ModEntities.ANCIENT_REMNANT.get())
+            {
+                // Ancient Remnant takes extra holy damage, and less fire damage(?)
+                setIfNonNull(mob, AttributeRegistry.HOLY_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
+            }
+            if (mob.getType() == ModEntities.NETHERITE_MONSTROSITY.get())
+            {
+                // Netherite Monstrosity takes extra ice damage, and less fire damage
+                setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, AttributeRegistry.FIRE_MAGIC_RESIST.get(), 1.5);
+            }
+            if (mob.getType() == ModEntities.MALEDICTUS.get())
+            {
+                // Maledictus takes extra eldritch damage, and less ice damage
+                setIfNonNull(mob, AttributeRegistry.ELDRITCH_MAGIC_RESIST.get(), 0.5);
+                setIfNonNull(mob, AttributeRegistry.ICE_MAGIC_RESIST.get(), 1.5);
+            }
         }
     }
 
@@ -422,6 +448,21 @@ public class ServerEvents {
                 }
             }
         }
+
+        // Intrusion Defense System
+        if (CSConfig.ipsProjectileImmunity.get())
+        {
+            if (entity instanceof LivingEntity livingTarget)
+            {
+                if (livingTarget.hasEffect(CSPotionEffectRegistry.IPS_POTION_EFFECT.get()))
+                {
+                    if (event.getSource().isProjectile())
+                    {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -438,6 +479,43 @@ public class ServerEvents {
                 event.setCanceled(true);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerCastEvent(SpellPreCastEvent event) {
+        var entity = event.getEntity();
+        boolean hasSilenceEffect = entity.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get());
+
+        if (CSConfig.shutdownSpellCasting.get())
+        {
+            if (entity instanceof ServerPlayer player && !player.level.isClientSide)
+            {
+                if (hasSilenceEffect)
+                {
+                    event.setCanceled(true);
+                    // Effect Duration
+                    int time = player.getEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()).getDuration();
+                    // convert duration to time format  using the method convertTicksToTime
+                    String formattedTime = convertTicksToTime(time);
+                    // display a message to the player
+                    player.connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("ui.irons_spellbooks.spell_target_success_self", formattedTime).withStyle(ChatFormatting.GREEN)));
+                    player.level.playSound(null , player.getX() , player.getY() , player.getZ() ,
+                            SoundEvents.FIRE_EXTINGUISH , SoundSource.PLAYERS , 0.5f , 1f);
+                }
+            }
+        }
+    }
+
+    public static String convertTicksToTime(int ticks) {
+        // Convert ticks to seconds
+        int totalSeconds = ticks / 20;
+
+        // Calculate minutes and seconds
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+
+        // Format the result as mm:ss
+        return String.format("%02d:%02d" , minutes , seconds);
     }
 
     // Capabilities

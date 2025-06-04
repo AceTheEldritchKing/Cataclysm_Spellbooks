@@ -22,6 +22,8 @@
     "effect.cataclysm_spellbooks.hardware_update_effect.description": "Increases damage and armor.",
     "effect.cataclysm_spellbooks.software_update_effect": "Updated Software",
     "effect.cataclysm_spellbooks.software_update_effect.description": "Increases speed and reduces spell cooldown.",
+    "effect.cataclysm_spellbooks.intrusion_defense_system_software": "IPS Software",
+    "effect.cataclysm_spellbooks.intrusion_defense_system_software.description": "Reduces projectile damage and prevents summons from being counterspelled.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -235,6 +237,9 @@
 
     "spell.cataclysm_spellbooks.aerial_assault": "Aerial Assault",
     "spell.cataclysm_spellbooks.aerial_assault.guide": "Launch an aerial assault of Wither Missiles around you",
+
+    "spell.cataclysm_spellbooks.intrusion_prevention_system": "Intrusion Prevention System",
+    "spell.cataclysm_spellbooks.intrusion_prevention_system.guide": "Enforce yourself and your nearby summon with IPS, preventing projectile damage and preventing your summons from being counterspelled",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

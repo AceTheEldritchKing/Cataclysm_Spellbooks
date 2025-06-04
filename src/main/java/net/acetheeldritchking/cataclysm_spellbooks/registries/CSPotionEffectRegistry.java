@@ -62,6 +62,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> SOFTWARE_UPDATE_EFFECT =
             MOB_EFFECTS.register("software_update_effect", SoftwareUpdatePotionEffect::new);
 
+    public static final RegistryObject<MobEffect> IPS_POTION_EFFECT =
+            MOB_EFFECTS.register("intrusion_defense_system_software", IPSPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

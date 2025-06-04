@@ -17,6 +17,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.Infernal
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -25,7 +26,9 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -62,6 +65,9 @@ public class CataclysmSpellbooks
         SpellRegistries.register(modEventBus);
         // Particles
         CSParticleRegistry.register(modEventBus);
+
+        // Config
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CSConfig.SPEC, "cataclysm_spellbooks_config.toml");
 
         modEventBus.addListener(this::commonSetup);
 

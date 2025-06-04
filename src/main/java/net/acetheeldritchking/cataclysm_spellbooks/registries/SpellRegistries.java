@@ -291,7 +291,8 @@ public class SpellRegistries {
     // Aerial Assault (Summon various missiles down from the sky)
     public static final RegistryObject<AbstractSpell> AERIAL_ASSAULT = registerSpell(new AerialAssaultSpell());
 
-    // Intrusion Defense System (Reduce all incoming projectile damage, prevent summons from being counterspelled)
+    // Intrusion Prevention System (Reduce all incoming projectile damage, prevent summons from being counterspelled)
+    public static final RegistryObject<AbstractSpell> INTRUSION_PREVENTION_SYSTEM = registerSpell(new IntrusionPreventionSystemSpell());
 
     // Overclock (Special imbue on Excelsius armor, overclock the caster which unlocks more capabilities and stats from the armor)
 
