@@ -14,6 +14,7 @@ import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneProvider;
 import mod.azure.azurelib.rewrite.render.layer.AzAutoGlowingLayer;
 import mod.azure.azurelib.util.RenderUtils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.resources.ResourceLocation;
@@ -31,9 +32,28 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
             "textures/models/armor/excelsius_spell_power.png"
     );
 
+    private static final ResourceLocation TEX_CHARGED = new ResourceLocation(
+            CataclysmSpellbooks.MOD_ID,
+            "textures/models/armor/excelsius_spell_power_overcharged.png"
+    );
+
+    private static ResourceLocation TEXTURE()
+    {
+        //ExcelsiusPowerArmorItem.IsOvercharged = true;
+
+        if (ExcelsiusPowerArmorItem.IsOvercharged)
+        {
+            return TEX_CHARGED;
+        }
+        else
+        {
+            return TEX;
+        }
+    }
+
     public ExcelsiusPowerArmorRenderer() {
         super(
-                AzArmorRendererConfig.builder(GEO, TEX)
+                AzArmorRendererConfig.builder(GEO, TEXTURE())
                         //.setAnimatorProvider(CursiumMageElytraAnimator::new)
                         .addRenderLayer(new AzAutoGlowingLayer<>())
                         .build()

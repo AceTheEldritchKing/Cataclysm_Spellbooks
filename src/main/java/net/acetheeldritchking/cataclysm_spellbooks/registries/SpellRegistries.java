@@ -295,6 +295,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> INTRUSION_PREVENTION_SYSTEM = registerSpell(new IntrusionPreventionSystemSpell());
 
     // Overclock (Special imbue on Excelsius armor, overclock the caster which unlocks more capabilities and stats from the armor)
+    public static final RegistryObject<AbstractSpell> OVERCHARGED = registerSpell(new OverchargedSpell());
 
 
     public static void register(IEventBus eventBus)

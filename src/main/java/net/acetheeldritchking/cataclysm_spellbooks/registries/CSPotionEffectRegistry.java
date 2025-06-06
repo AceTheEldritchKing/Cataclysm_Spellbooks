@@ -65,6 +65,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> IPS_POTION_EFFECT =
             MOB_EFFECTS.register("intrusion_defense_system_software", IPSPotionEffect::new);
 
+    public static final RegistryObject<MobEffect> MANA_OVERCHARGED_EFFECT =
+            MOB_EFFECTS.register("mana_overcharged_effect", ManaOverchargedPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

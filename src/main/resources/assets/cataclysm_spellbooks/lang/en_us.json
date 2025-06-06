@@ -241,6 +241,9 @@
     "spell.cataclysm_spellbooks.intrusion_prevention_system": "Intrusion Prevention System",
     "spell.cataclysm_spellbooks.intrusion_prevention_system.guide": "Enforce yourself and your nearby summon with IPS, preventing projectile damage and preventing your summons from being counterspelled",
 
+    "spell.cataclysm_spellbooks.overcharged": "Overcharged",
+    "spell.cataclysm_spellbooks.overcharged.guide": "Overcharge your systems, boosting your capabilities beyond normal limits. Has unique interactions with certain items",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",

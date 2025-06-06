@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,6 +11,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class ExcelsiusPowerArmorItem extends MechanicalFlightArmorItem {
+    public static boolean IsOvercharged;
+
     public ExcelsiusPowerArmorItem(EquipmentSlot slot, Properties settings) {
         super(CSArmorMaterials.EXCELSIUS_POWER_ARMOR, slot, settings);
     }
@@ -60,6 +63,20 @@ public class ExcelsiusPowerArmorItem extends MechanicalFlightArmorItem {
                         playerRotation.z * speed + (playerRotation.z * 1.5D - playerVelocity.z) * speed
                 ).normalize());
             }
+        }
+    }
+
+    @Override
+    public void onArmorTick(ItemStack stack, Level level, Player player) {
+        super.onArmorTick(stack, level, player);
+
+        if (player.hasEffect(CSPotionEffectRegistry.MANA_OVERCHARGED_EFFECT.get()) && !IsOvercharged)
+        {
+            ExcelsiusPowerArmorItem.IsOvercharged = true;
+        }
+        else
+        {
+            ExcelsiusPowerArmorItem.IsOvercharged = false;
         }
     }
 }

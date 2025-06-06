@@ -14,6 +14,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.*;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
@@ -282,6 +283,8 @@ public class ServerEvents {
     {
         Entity entity = event.getEntity();
         MobEffect effect = event.getEffect();
+
+        // Wrathful
         if (entity instanceof LivingEntity livingEntity)
         {
             if (effect instanceof WrathfulPotionEffect)
