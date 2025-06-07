@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
+import io.redspace.ironsspellbooks.util.MinecraftInstanceHelper;
 import mod.azure.azurelib.rewrite.model.AzBakedModel;
 import mod.azure.azurelib.rewrite.model.AzBone;
 import mod.azure.azurelib.rewrite.render.AzRendererConfig;
@@ -17,9 +18,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.Objects;
 
 public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
     private static final ResourceLocation GEO = new ResourceLocation(
@@ -40,8 +44,9 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
     private static ResourceLocation TEXTURE()
     {
         //ExcelsiusPowerArmorItem.IsOvercharged = true;
+        ItemStack itemStack = Objects.requireNonNull(MinecraftInstanceHelper.getPlayer()).getItemBySlot(EquipmentSlot.CHEST);
 
-        if (ExcelsiusPowerArmorItem.IsOvercharged)
+        if (itemStack.getTag().getBoolean("overcharged"))
         {
             return TEX_CHARGED;
         }

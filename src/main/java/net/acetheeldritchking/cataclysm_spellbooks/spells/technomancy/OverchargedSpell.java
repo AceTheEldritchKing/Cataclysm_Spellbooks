@@ -9,10 +9,13 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -66,14 +69,18 @@ public class OverchargedSpell extends AbstractSpell {
                             60*20, castSource, null), playerMagicData);
         }
 
-        if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get() && ExcelsiusPowerArmorItem.IsOvercharged == false)
+        if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get() && !ExcelsiusPowerArmorItem.IsOvercharged)
         {
-            System.out.println("Overcharged = true");
-            System.out.println("Overcharge type before: " + ExcelsiusPowerArmorItem.IsOvercharged);
+            CompoundTag nbt = new CompoundTag();
 
-            ExcelsiusPowerArmorItem.IsOvercharged = true;
+            nbt.putBoolean("overcharged", true);
 
-            System.out.println("Overcharge type after: " + ExcelsiusPowerArmorItem.IsOvercharged);
+            ItemStack itemStack = entity.getItemBySlot(EquipmentSlot.CHEST);
+
+            itemStack.setTag(nbt);
+
+            System.out.println("Renderer: " + ExcelsiusPowerArmorItem.IsOvercharged);
+            System.out.println("NBT: " + itemStack.getTag());
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
@@ -85,11 +92,16 @@ public class OverchargedSpell extends AbstractSpell {
 
         if (serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get())
         {
-            System.out.println("Overcharged = false");
-            System.out.println("Overcharge type before: " + ExcelsiusPowerArmorItem.IsOvercharged);
-            ExcelsiusPowerArmorItem.IsOvercharged = false;
+            CompoundTag nbt = new CompoundTag();
 
-            System.out.println("Overcharge type after: " + ExcelsiusPowerArmorItem.IsOvercharged);
+            nbt.putBoolean("overcharged", false);
+
+            ItemStack itemStack = serverPlayer.getItemBySlot(EquipmentSlot.CHEST);
+
+            itemStack.setTag(nbt);
+
+            System.out.println("Renderer: " + ExcelsiusPowerArmorItem.IsOvercharged);
+            System.out.println("NBT: " + itemStack.getTag());
         }
     }
 }

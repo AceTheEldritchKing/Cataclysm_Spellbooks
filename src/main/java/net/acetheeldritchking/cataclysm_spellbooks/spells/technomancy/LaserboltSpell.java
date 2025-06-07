@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -73,43 +74,23 @@ public class LaserboltSpell extends AbstractSpell {
     }
 
     @Override
-    public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
-        return Utils.preCastTargetHelper(level, entity, playerMagicData, this, 32, .15f);
-    }
-
-    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData targetingData)
+        // Recasts
+        if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId()))
         {
-            // Recasts
-            if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId()))
-            {
-                playerMagicData.getPlayerRecasts().addRecast
-                        (new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity),
-                                100, castSource, null), playerMagicData);
-            }
-
-            var targetEntity = targetingData.getTarget((ServerLevel) level);
-
-            if (targetEntity != null)
-            {
-                double entityX = entity.getX();
-                double entityY = entity.getEyeY();
-                double entityZ = entity.getZ();
-
-                double targetXDiff = targetEntity.getX() - entityX;
-                double targetYDiff = (targetEntity.getY() + targetEntity.getEyeHeight() * 0.5) - entityY;
-                double targetZDiff = targetEntity.getZ() - entityZ;
-
-                ExtendedLaserBeamEntity laserBeam = new ExtendedLaserBeamEntity(level, entity);
-
-                laserBeam.shoot(targetXDiff, targetYDiff, targetZDiff, 1.0F, 1.0F);
-                laserBeam.setDamage(getDamage(spellLevel, entity));
-                laserBeam.setPosRaw(entityX, entityY, entityZ);
-
-                level.addFreshEntity(laserBeam);
-            }
+            playerMagicData.getPlayerRecasts().addRecast
+                    (new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity),
+                            100, castSource, null), playerMagicData);
         }
+
+        ExtendedLaserBeamEntity laserBeam = new ExtendedLaserBeamEntity(level, entity);
+
+        Vec3 viewVec = entity.getViewVector(1.0F);
+
+        laserBeam.shoot(viewVec.x, viewVec.y, viewVec.z, 1.0F, 1.0F);
+        laserBeam.setDamage(getDamage(spellLevel, entity));
+
+        level.addFreshEntity(laserBeam);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
