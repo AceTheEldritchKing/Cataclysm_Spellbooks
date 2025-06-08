@@ -41,12 +41,12 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
             "textures/models/armor/excelsius_spell_power_overcharged.png"
     );
 
-    private static ResourceLocation TEXTURE()
+    public static ResourceLocation TEXTURE()
     {
         //ExcelsiusPowerArmorItem.IsOvercharged = true;
         ItemStack itemStack = Objects.requireNonNull(MinecraftInstanceHelper.getPlayer()).getItemBySlot(EquipmentSlot.CHEST);
 
-        if (itemStack.getTag().getBoolean("overcharged"))
+        if (ExcelsiusPowerArmorItem.IsOvercharged == true)
         {
             return TEX_CHARGED;
         }

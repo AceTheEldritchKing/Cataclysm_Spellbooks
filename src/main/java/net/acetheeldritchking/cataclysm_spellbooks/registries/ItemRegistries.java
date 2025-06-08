@@ -17,10 +17,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessi
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.CodexOfMaliceSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DiscDriverSpellbook;
-import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.BloomStoneStaff;
-import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.FakeWadjetStaff;
-import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.GauntletOfPowerItem;
-import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.SpiritSundererStaff;
+import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.weapons.MonstrousFlambergeItem;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -126,6 +123,10 @@ public class ItemRegistries {
     // Gauntlet of Power
     public static final RegistryObject<Item> GAUNTLET_OF_POWER = ITEMS.register
             ("gauntlet_of_power", GauntletOfPowerItem::new);
+
+    // Gauntlet of Gattling
+    public static final RegistryObject<Item> GAUNTLET_OF_GATTLING = ITEMS.register
+            ("gauntlet_of_gattling", GauntletOfGattlingItem::new);
 
 
     /**

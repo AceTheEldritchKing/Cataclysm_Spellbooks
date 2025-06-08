@@ -7,10 +7,7 @@ import mod.azure.azurelib.rewrite.animation.cache.AzIdentityRegistry;
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import mod.azure.azurelib.rewrite.render.item.AzItemRendererRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.CodexOfMaliceSpellBookRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.DiscDriverSpellbookRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.GauntletOfPowerRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.SpiritSundererStaffRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.HellishBladeRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.InfernalBladeRenderer;
@@ -81,7 +78,8 @@ public class CataclysmSpellbooks
         AzIdentityRegistry.register(
                 ItemRegistries.IGNITIUM_WIZARD_CHESTPLATE_ELYTRA.get(),
                 ItemRegistries.CURSIUM_MAGE_CHESTPLATE_ELYTRA.get(),
-                ItemRegistries.DISC_DRIVER.get()
+                ItemRegistries.DISC_DRIVER.get(),
+                ItemRegistries.GAUNTLET_OF_GATTLING.get()
         );
     }
 
@@ -178,6 +176,7 @@ public class CataclysmSpellbooks
             AzItemRendererRegistry.register(DiscDriverSpellbookRenderer::new, ItemRegistries.DISC_DRIVER.get());
             AzItemRendererRegistry.register(SpiritSundererStaffRenderer::new, ItemRegistries.SPIRIT_SUNDERER_STAFF.get());
             AzItemRendererRegistry.register(GauntletOfPowerRenderer::new, ItemRegistries.GAUNTLET_OF_POWER.get());
+            AzItemRendererRegistry.register(GauntletOfGattlingRenderer::new, ItemRegistries.GAUNTLET_OF_GATTLING.get());
         }
     }
 

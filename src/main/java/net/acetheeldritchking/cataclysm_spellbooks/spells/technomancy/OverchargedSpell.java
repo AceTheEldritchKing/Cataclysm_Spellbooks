@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.ExcelsiusPowerArmorRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
@@ -71,6 +72,8 @@ public class OverchargedSpell extends AbstractSpell {
 
         if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get() && !ExcelsiusPowerArmorItem.IsOvercharged)
         {
+            ExcelsiusPowerArmorItem.IsOvercharged = true;
+
             CompoundTag nbt = new CompoundTag();
 
             nbt.putBoolean("overcharged", true);
@@ -81,6 +84,7 @@ public class OverchargedSpell extends AbstractSpell {
 
             System.out.println("Renderer: " + ExcelsiusPowerArmorItem.IsOvercharged);
             System.out.println("NBT: " + itemStack.getTag());
+            System.out.println("Texture: " + ExcelsiusPowerArmorRenderer.TEXTURE());
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
@@ -92,6 +96,8 @@ public class OverchargedSpell extends AbstractSpell {
 
         if (serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem() == ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get())
         {
+            ExcelsiusPowerArmorItem.IsOvercharged = false;
+
             CompoundTag nbt = new CompoundTag();
 
             nbt.putBoolean("overcharged", false);
@@ -102,6 +108,7 @@ public class OverchargedSpell extends AbstractSpell {
 
             System.out.println("Renderer: " + ExcelsiusPowerArmorItem.IsOvercharged);
             System.out.println("NBT: " + itemStack.getTag());
+            System.out.println("Texture: " + ExcelsiusPowerArmorRenderer.TEXTURE());
         }
     }
 }
