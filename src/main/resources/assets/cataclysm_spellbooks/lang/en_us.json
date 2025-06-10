@@ -42,6 +42,7 @@
     "item.cataclysm_spellbooks.void_staff": "Void Staff",
     "item.cataclysm_spellbooks.spirit_sunderer": "Spirit Sunderer",
     "item.cataclysm_spellbooks.gauntlet_of_power": "The Ordeal",
+    "item.cataclysm_spellbooks.gauntlet_of_gattling": "The Subjugator",
 
     "item.cataclysm_spellbooks.monstrous_flamberge": "Monstrous Flamberge",
 
@@ -243,6 +244,9 @@
 
     "spell.cataclysm_spellbooks.overcharged": "Overcharged",
     "spell.cataclysm_spellbooks.overcharged.guide": "Overcharge your systems, boosting your capabilities beyond normal limits. Has unique interactions with certain items",
+
+    "spell.cataclysm_spellbooks.parting_shot": "Parting Shot",
+    "spell.cataclysm_spellbooks.parting_shot.guide": "Charge up your weapon, unleashing two powerful lasers that inflict Wither on hit",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

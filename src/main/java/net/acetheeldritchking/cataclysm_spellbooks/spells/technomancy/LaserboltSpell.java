@@ -4,12 +4,14 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -66,6 +68,11 @@ public class LaserboltSpell extends AbstractSpell {
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
         return Optional.of(ModSounds.HARBINGER_LASER.get());
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return CSSpellAnimations.ANIMATION_SIMPLE_SHOOT;
     }
 
     @Override

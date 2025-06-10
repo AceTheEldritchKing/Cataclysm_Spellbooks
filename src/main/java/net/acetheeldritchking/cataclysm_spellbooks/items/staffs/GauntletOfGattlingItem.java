@@ -2,13 +2,11 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.staffs;
 
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
-import io.redspace.ironsspellbooks.render.StaffArmPose;
+import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import mod.azure.azurelib.AzureLib;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.CSItemDispatcher;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -36,25 +34,16 @@ public class GauntletOfGattlingItem extends StaffItem {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if (stack.getOrCreateTag().contains(AzureLib.ITEM_UUID_TAG))
         {
-            if (!level.isClientSide && entity instanceof Player player )
+            if (entity instanceof Player player)
             {
-                dispatcher.idle(player, stack);
+                if (!level.isClientSide)
+                {
+                    dispatcher.idle(player, stack);
+                } else if (ClientMagicData.getSyncedSpellData(player).isCasting())
+                {
+                    dispatcher.casting(player, stack);
+                }
             }
         }
-    }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack itemStack = player.getItemInHand(hand);
-
-        if (itemStack.getOrCreateTag().contains(AzureLib.ITEM_UUID_TAG))
-        {
-            if (!level.isClientSide)
-            {
-                dispatcher.casting(player, itemStack);
-            }
-        }
-
-        return super.use(level, player, hand);
     }
 }

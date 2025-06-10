@@ -297,6 +297,9 @@ public class SpellRegistries {
     // Overclock (Special imbue on Excelsius armor, overclock the caster which unlocks more capabilities and stats from the armor)
     public static final RegistryObject<AbstractSpell> OVERCHARGED = registerSpell(new OverchargedSpell());
 
+    // Parting Shot (Exclusive to The Subjugator, shoots out two shots that inflict Wither)
+    public static final RegistryObject<AbstractSpell> PARTING_SHOT = registerSpell(new PartingShotSpell());
+
 
     public static void register(IEventBus eventBus)
     {

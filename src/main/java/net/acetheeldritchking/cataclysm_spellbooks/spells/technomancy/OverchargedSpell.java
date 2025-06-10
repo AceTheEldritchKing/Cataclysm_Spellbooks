@@ -10,13 +10,10 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.Excelsius
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,16 +71,7 @@ public class OverchargedSpell extends AbstractSpell {
         {
             ExcelsiusPowerArmorItem.IsOvercharged = true;
 
-            CompoundTag nbt = new CompoundTag();
-
-            nbt.putBoolean("overcharged", true);
-
-            ItemStack itemStack = entity.getItemBySlot(EquipmentSlot.CHEST);
-
-            itemStack.setTag(nbt);
-
             System.out.println("Renderer: " + ExcelsiusPowerArmorItem.IsOvercharged);
-            System.out.println("NBT: " + itemStack.getTag());
             System.out.println("Texture: " + ExcelsiusPowerArmorRenderer.TEXTURE());
         }
 
@@ -98,16 +86,7 @@ public class OverchargedSpell extends AbstractSpell {
         {
             ExcelsiusPowerArmorItem.IsOvercharged = false;
 
-            CompoundTag nbt = new CompoundTag();
-
-            nbt.putBoolean("overcharged", false);
-
-            ItemStack itemStack = serverPlayer.getItemBySlot(EquipmentSlot.CHEST);
-
-            itemStack.setTag(nbt);
-
             System.out.println("Renderer: " + ExcelsiusPowerArmorItem.IsOvercharged);
-            System.out.println("NBT: " + itemStack.getTag());
             System.out.println("Texture: " + ExcelsiusPowerArmorRenderer.TEXTURE());
         }
     }

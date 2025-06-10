@@ -14,6 +14,7 @@ public class ExcelsiusPowerArmorItem extends MechanicalFlightArmorItem {
 
     public ExcelsiusPowerArmorItem(EquipmentSlot slot, Properties settings) {
         super(CSArmorMaterials.EXCELSIUS_POWER_ARMOR, slot, settings);
+        IsOvercharged = false;
     }
 
     @Override

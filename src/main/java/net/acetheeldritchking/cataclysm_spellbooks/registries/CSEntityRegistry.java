@@ -7,6 +7,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.Extend
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot.PartingShotProjectile;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -170,6 +171,15 @@ public class CSEntityRegistry {
                     sized(1f, 3f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_counterspell_watcher").toString()
+                    ));
+
+    // Parting Shot Projectile
+    public static final RegistryObject<EntityType<PartingShotProjectile>> PARTING_SHOT_PROJECTILE =
+            ENTITIES.register("parting_shot", () -> EntityType.Builder.<PartingShotProjectile>of(PartingShotProjectile::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "parting_shot").toString()
                     ));
 
 

@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
@@ -15,6 +16,7 @@ import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
@@ -23,6 +25,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 @AutoSpellConfig
 public class DDoSSpell extends AbstractSpell {
@@ -57,6 +60,21 @@ public class DDoSSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.LONG;
+    }
+
+    @Override
+    public int getEffectiveCastTime(int spellLevel, @Nullable LivingEntity entity) {
+        return getCastTime(spellLevel);
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return CSSpellAnimations.ANIMATION_CHARGED_GROUND_SLAM;
+    }
+
+    @Override
+    public AnimationHolder getCastFinishAnimation() {
+        return AnimationHolder.pass();
     }
 
     @Override

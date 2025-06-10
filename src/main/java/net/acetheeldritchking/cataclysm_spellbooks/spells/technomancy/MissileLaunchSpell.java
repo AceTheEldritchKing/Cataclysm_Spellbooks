@@ -4,6 +4,7 @@ import com.github.L_Ender.cataclysm.entity.projectile.Wither_Homing_Missile_Enti
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MultiTargetEntityCastData;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
@@ -11,6 +12,7 @@ import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -64,6 +66,11 @@ public class MissileLaunchSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.INSTANT;
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return CSSpellAnimations.ANIMATION_SIMPLE_SHOOT;
     }
 
     @Override
