@@ -5,11 +5,17 @@ import com.github.L_Ender.cataclysm.util.CMDamageTypes;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.event.ForgeEventFactory;
 
 public class ExtendedLaserBeamEntity extends Laser_Beam_Entity {
     public ExtendedLaserBeamEntity(EntityType type, Level worldIn) {
@@ -47,5 +53,34 @@ public class ExtendedLaserBeamEntity extends Laser_Beam_Entity {
                         SpellRegistries.LASERBOLT.get().getDamageSource(this, getOwner()));
             }
         }
+    }
+
+    @Override
+    protected void onHitBlock(BlockHitResult pResult) {
+        super.onHitBlock(pResult);
+
+        if (!this.level.isClientSide)
+        {
+            Entity entity = this.getOwner();
+            BlockPos pos;
+
+            if (CSConfig.doSpellGriefing.get())
+            {
+                pos = pResult.getBlockPos().relative(pResult.getDirection());
+                if (this.level.isEmptyBlock(pos))
+                {
+                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                }
+            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level, entity))
+            {
+                pos = pResult.getBlockPos().relative(pResult.getDirection());
+                if (this.level.isEmptyBlock(pos))
+                {
+                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                }
+            }
+        }
+
+        discard();
     }
 }

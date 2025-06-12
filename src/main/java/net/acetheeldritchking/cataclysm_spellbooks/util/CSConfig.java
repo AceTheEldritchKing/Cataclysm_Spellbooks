@@ -10,8 +10,9 @@ public class CSConfig {
     // Config values
     public static ForgeConfigSpec.BooleanValue bossAttributes;
     public static ForgeConfigSpec.BooleanValue shutdownSpellCasting;
-    public static ForgeConfigSpec.BooleanValue ipsPlayerCounterspellImmune;
+    //public static ForgeConfigSpec.BooleanValue ipsPlayerCounterspellImmune;
     public static ForgeConfigSpec.BooleanValue ipsProjectileImmunity;
+    public static ForgeConfigSpec.BooleanValue doSpellGriefing;
 
     static
     {
@@ -19,6 +20,7 @@ public class CSConfig {
         shutdownSpellCasting = configBuilder.worldRestart().define("Should Shutdown spell prevent target from spell casting (default value is True): ", true);
         //ipsPlayerCounterspellImmune = configBuilder.worldRestart().define("Should Intrusion Prevent System prevent the player themselves from being unable to be counterspelled (default value is False): ", false);
         ipsProjectileImmunity = configBuilder.worldRestart().define("Should Intrusion Prevent System prevent the entities from receiving projectile damage (default is True): ", true);
+        doSpellGriefing = configBuilder.worldRestart().define("Should Cataclysm: Spellbooks spells cause griefing (default is True): ", true);
 
         SPEC = configBuilder.build();
     }

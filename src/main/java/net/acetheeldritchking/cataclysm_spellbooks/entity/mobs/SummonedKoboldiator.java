@@ -106,16 +106,16 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
 
     @Override
     public boolean isAlliedTo(Entity entityIn) {
+        //return super.isAlliedTo(entityIn) || this.isAlliedHelper(entityIn);
         if (entityIn == this)
         {
             return true;
         }
-        else if (entityIn == getSummoner())
+        else if (entityIn == getSummoner() || this.isAlliedHelper(entityIn))
         {
             return true;
         }
-        // He gained 50 braincells!
-        else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner().getTeam()))
+        else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner()))
         {
             return false;
         }

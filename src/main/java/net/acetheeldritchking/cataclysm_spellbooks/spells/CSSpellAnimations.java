@@ -13,6 +13,8 @@ public class CSSpellAnimations {
 
     public static final AnimationHolder ANIMATION_CHARGE_GUN_RELEASE = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":charged_gun_release", true);
 
+    public static final AnimationHolder ANIMATION_CHARGE_GUN_FULL = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":full_gun_shoot", true);
+
     public static final AnimationHolder ANIMATION_SIMPLE_SHOOT = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":simple_shoot", true);
 
     public static final AnimationHolder ANIMATION_CHARGED_GROUND_SLAM = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":charged_ground_slam", true);

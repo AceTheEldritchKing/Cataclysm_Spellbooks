@@ -182,6 +182,15 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "parting_shot").toString()
                     ));
 
+    // Parting Shot Projectile
+    public static final RegistryObject<EntityType<SurveillanceDroneEntity>> SURVEILLANCE_DRONE =
+            ENTITIES.register("surveillance_drone", () -> EntityType.Builder.<SurveillanceDroneEntity>of(SurveillanceDroneEntity::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "surveillance_drone").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

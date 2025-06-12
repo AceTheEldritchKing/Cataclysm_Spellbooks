@@ -44,9 +44,19 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
     public static ResourceLocation TEXTURE()
     {
         //ExcelsiusPowerArmorItem.IsOvercharged = true;
+        ItemStack head = Objects.requireNonNull(MinecraftInstanceHelper.getPlayer()).getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chest = Objects.requireNonNull(MinecraftInstanceHelper.getPlayer()).getItemBySlot(EquipmentSlot.CHEST);
 
-        if (ExcelsiusPowerArmorItem.IsOvercharged == true)
+        if (ExcelsiusPowerArmorItem.IsOvercharged || head.hasTag() || chest.hasTag())
         {
+            if (chest.getOrCreateTagElement("overcharged").getBoolean("overcharged") || chest.getOrCreateTagElement("overcharged").getBoolean("overcharged"))
+            {
+                return TEX_CHARGED;
+            } else if (!chest.getOrCreateTagElement("overcharged").getBoolean("overcharged") || !chest.getOrCreateTagElement("overcharged").getBoolean("overcharged"))
+            {
+                return TEX;
+            }
+
             return TEX_CHARGED;
         }
         else

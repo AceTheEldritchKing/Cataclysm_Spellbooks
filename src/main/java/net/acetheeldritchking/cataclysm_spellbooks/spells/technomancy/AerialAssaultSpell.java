@@ -28,7 +28,7 @@ public class AerialAssaultSpell extends AbstractSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
-                Component.translatable("ui.irons_spellbooks.radius", Utils.stringTruncation(getRadius(caster), 1))
+                Component.translatable("ui.irons_spellbooks.radius", Utils.stringTruncation(getRadius(spellLevel, caster), 1))
         );
     }
 
@@ -68,7 +68,7 @@ public class AerialAssaultSpell extends AbstractSpell {
         if (!(playerMagicData.getAdditionalCastData() instanceof TargetAreaCastData))
         {
             Vec3 targetArea = Utils.moveToRelativeGroundLevel(level, Utils.raycastForEntity(level, entity, 40, true).getLocation(), 12);
-            playerMagicData.setAdditionalCastData(new TargetAreaCastData(targetArea, TargetedAreaEntity.createTargetAreaEntity(level, targetArea, getRadius(entity), 0xfa1033)));
+            playerMagicData.setAdditionalCastData(new TargetAreaCastData(targetArea, TargetedAreaEntity.createTargetAreaEntity(level, targetArea, getRadius(spellLevel, entity), 0xfa1033)));
         }
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
@@ -83,7 +83,7 @@ public class AerialAssaultSpell extends AbstractSpell {
                 for (int i = 0; i < 2; i++)
                 {
                     Vec3 center = targetAreaCastData.getCenter();
-                    float radius = getRadius(entity);
+                    float radius = getRadius(spellLevel, entity);
                     Vec3 spawn = center.add(new Vec3(0, entity.getY(), entity.getRandom().nextFloat() * radius).yRot(entity.getRandom().nextInt(360)));
 
                     shootMissiles(level, entity, spellLevel, spawn);
@@ -112,8 +112,8 @@ public class AerialAssaultSpell extends AbstractSpell {
         return getSpellPower(spellLevel, entity) * 0.9f;
     }
 
-    private float getRadius(LivingEntity caster)
+    private float getRadius(int spellLevel, LivingEntity caster)
     {
-        return 6;
+        return getSpellPower(spellLevel, caster);
     }
 }

@@ -109,20 +109,16 @@ public class SummonedKoboleton extends Koboleton_Entity implements MagicSummon {
 
     @Override
     public boolean isAlliedTo(Entity entityIn) {
+        //return super.isAlliedTo(entityIn) || this.isAlliedHelper(entityIn);
         if (entityIn == this)
         {
             return true;
         }
-        else if (super.isAlliedTo(entityIn))
+        else if (entityIn == getSummoner() || this.isAlliedHelper(entityIn))
         {
             return true;
         }
-        else if (entityIn == getSummoner())
-        {
-            return true;
-        }
-        // He's a little stupid, he can't attack his own people </3
-        else if (!(entityIn instanceof SummonedKoboleton))
+        else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner()))
         {
             return false;
         }

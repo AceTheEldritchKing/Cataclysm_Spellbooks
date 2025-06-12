@@ -9,6 +9,7 @@ import mod.azure.azurelib.rewrite.render.item.AzItemRendererRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SurveillanceDroneRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.HellishBladeRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.InfernalBladeRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.PartingShotRenderer;
@@ -114,6 +115,8 @@ public class CataclysmSpellbooks
             EntityRenderers.register(CSEntityRegistry.BLAZING_AOE_ENTITY.get(), NoopRenderer::new);
             // Parting Shot
             EntityRenderers.register(CSEntityRegistry.PARTING_SHOT_PROJECTILE.get(), PartingShotRenderer::new);
+            // Surveillance Drone
+            EntityRenderers.register(CSEntityRegistry.SURVEILLANCE_DRONE.get(), SurveillanceDroneRenderer::new);
 
 
             // Armor Rendering Registry

@@ -118,19 +118,16 @@ public class SummonedProwler extends The_Prowler_Entity implements MagicSummon {
 
     @Override
     public boolean isAlliedTo(Entity entityIn) {
+        //return super.isAlliedTo(entityIn) || this.isAlliedHelper(entityIn);
         if (entityIn == this)
         {
             return true;
         }
-        else if (super.isAlliedTo(entityIn))
+        else if (entityIn == getSummoner() || this.isAlliedHelper(entityIn))
         {
             return true;
         }
-        else if (entityIn == getSummoner())
-        {
-            return true;
-        }
-        else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner().getTeam()))
+        else if (getSummoner() != null && !entityIn.isAlliedTo(getSummoner()))
         {
             return false;
         }

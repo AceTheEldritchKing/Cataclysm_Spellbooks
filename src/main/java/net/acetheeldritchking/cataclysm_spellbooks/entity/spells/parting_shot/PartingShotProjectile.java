@@ -7,21 +7,28 @@ import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
+import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.ForgeEventFactory;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -44,7 +51,8 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     @Override
     public void trailParticles() {
-        //
+        Vec3 vec3 = this.position().subtract(getDeltaMovement());
+        level.addParticle(new TrackLightningParticle.OrbData(232, 59, 59), vec3.x, vec3.y, vec3.z, vec3.x, vec3.y, vec3.z);
     }
 
     @Override
@@ -80,11 +88,11 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
         setYRot(lerpRotation(yRotO, getYRot()));
 
         Vec3 center = this.position().add(deltaMovement);
-        arcVec = center.add(new Vec3((double)(this.random.nextFloat() - 0.5F), (double)(this.random.nextFloat() - 0.5F), (double)(this.random.nextFloat() - 0.5F)));
+        arcVec = center.add(new Vec3((this.random.nextFloat() - 0.5F), (this.random.nextFloat() - 0.5F), (this.random.nextFloat() - 0.5F)));
 
         //this.level.addParticle(new TrackLightningParticle.OrbData(255, 6, 62), arcVec.x, arcVec.y, arcVec.z, 0, 0, 0);
 
-        this.level.addParticle(new TrackLightningParticle.OrbData(255, 6, 62), center.x, center.y, center.z, arcVec.x, arcVec.y, arcVec.z);
+        this.level.addParticle(new TrackLightningParticle.OrbData(232, 59, 59), center.x, center.y, center.z, arcVec.x, arcVec.y, arcVec.z);
 
         super.tick();
     }
@@ -104,16 +112,49 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
         var target = pResult.getEntity();
         DamageSources.applyDamage(target, damage,
                 SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()));
+
+        int i = target.getRemainingFireTicks();
+        target.setSecondsOnFire(5);
+
         if (target instanceof LivingEntity livingTarget)
         {
             livingTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 0));
         }
+
+        if (!target.hurt(SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), this.getDamage()))
+        {
+            target.setRemainingFireTicks(i);
+        }
+
         discard();
     }
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
+
+        if (!this.level.isClientSide)
+        {
+            Entity entity = this.getOwner();
+            BlockPos pos;
+
+            if (CSConfig.doSpellGriefing.get())
+            {
+                pos = pResult.getBlockPos().relative(pResult.getDirection());
+                if (this.level.isEmptyBlock(pos))
+                {
+                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                }
+            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level, entity))
+            {
+                pos = pResult.getBlockPos().relative(pResult.getDirection());
+                if (this.level.isEmptyBlock(pos))
+                {
+                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                }
+            }
+        }
+
         discard();
     }
 

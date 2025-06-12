@@ -30,19 +30,19 @@ public class PartingShotSpell extends AbstractSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.COMMON)
+            .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.TECHNOMANCY_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(30)
+            .setCooldownSeconds(120)
             .build();
 
     public PartingShotSpell()
     {
-        this.manaCostPerLevel = 1;
+        this.manaCostPerLevel = 0;
         this.baseSpellPower = 25;
-        this.spellPowerPerLevel = 2;
-        this.castTime = 20;
-        this.baseManaCost = 5;
+        this.spellPowerPerLevel = 0;
+        this.castTime = 35;
+        this.baseManaCost = 150;
     }
 
     @Override
@@ -82,12 +82,12 @@ public class PartingShotSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return CSSpellAnimations.ANIMATION_CHARGE_GUN;
+        return CSSpellAnimations.ANIMATION_CHARGE_GUN_FULL;
     }
 
     @Override
     public AnimationHolder getCastFinishAnimation() {
-        return CSSpellAnimations.ANIMATION_CHARGE_GUN_RELEASE;
+        return AnimationHolder.pass();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class PartingShotSpell extends AbstractSpell {
         PartingShotProjectile partingShot1 = new PartingShotProjectile(level, entity);
         PartingShotProjectile partingShot2 = new PartingShotProjectile(level, entity);
 
-        partingShot1.setPos(entity.position().add(0, entity.getEyeHeight() - partingShot1.getBoundingBox().getYsize() * .5f, 0));
+        partingShot1.setPos(entity.position().add(0, (entity.getEyeHeight() + 0.5) - partingShot1.getBoundingBox().getYsize() * .5f, 0));
         partingShot1.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 1, 1);
 
         partingShot2.setPos(entity.position().add(0, (entity.getEyeHeight() - 0.5) - partingShot2.getBoundingBox().getYsize() * .5f, 0));

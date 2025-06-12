@@ -134,7 +134,6 @@
 			}
 		},
 		"dash": {
-			"loop": true,
 			"animation_length": 1.2917,
 			"bones": {
 				"body": {
@@ -1881,7 +1880,6 @@
 			}
 		},
 		"construct_summon": {
-			"loop": true,
 			"animation_length": 0.625,
 			"bones": {
 				"body": {

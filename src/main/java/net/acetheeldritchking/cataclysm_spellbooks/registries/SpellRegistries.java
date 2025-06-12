@@ -295,10 +295,19 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> INTRUSION_PREVENTION_SYSTEM = registerSpell(new IntrusionPreventionSystemSpell());
 
     // Overclock (Special imbue on Excelsius armor, overclock the caster which unlocks more capabilities and stats from the armor)
-    public static final RegistryObject<AbstractSpell> OVERCHARGED = registerSpell(new OverchargedSpell());
+    //public static final RegistryObject<AbstractSpell> OVERCHARGED = registerSpell(new OverchargedSpell());
 
     // Parting Shot (Exclusive to The Subjugator, shoots out two shots that inflict Wither)
     public static final RegistryObject<AbstractSpell> PARTING_SHOT = registerSpell(new PartingShotSpell());
+
+    // Disabling Swipe (Charge up a slash attack, the swipe prevents hit entities from healing)
+
+    // Gear Shift (A multicast movement spell, dash forwards when standing and upwards when crouching)
+
+    // Reboot (Heals the caster and any nearby summons)
+
+    // Surveillance Drone (Summons a drone on top of your selected summon, healing nearby summons and clearing any negative status effects)
+    public static final RegistryObject<AbstractSpell> SURVEILLANCE_DRONE = registerSpell(new SurveillanceDroneSpell());
 
 
     public static void register(IEventBus eventBus)
