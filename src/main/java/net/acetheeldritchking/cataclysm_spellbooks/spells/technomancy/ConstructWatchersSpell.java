@@ -68,7 +68,7 @@ public class ConstructWatchersSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastFinishAnimation() {
-        return AnimationHolder.pass();
+        return SpellAnimations.ANIMATION_LONG_CAST_FINISH;
     }
 
     @Override

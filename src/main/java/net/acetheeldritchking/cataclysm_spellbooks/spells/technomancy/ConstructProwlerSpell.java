@@ -68,7 +68,7 @@ public class ConstructProwlerSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastFinishAnimation() {
-        return AnimationHolder.pass();
+        return SpellAnimations.ANIMATION_LONG_CAST_FINISH;
     }
 
     @Override

@@ -123,8 +123,8 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAn
                         livingEntity.heal(getHealingAmount());
                         getSummoner().heal((float) getHealingAmount() / 2);
 
-                        System.out.println("Healing: " + getHealingAmount());
-                        System.out.println("Healing for summoner: " + getHealingAmount()/2);
+                        //System.out.println("Healing: " + getHealingAmount());
+                        //System.out.println("Healing for summoner: " + getHealingAmount()/2);
                     }
                 }
             }

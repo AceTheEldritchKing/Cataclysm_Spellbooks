@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
@@ -11,6 +12,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.RewirePotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -66,6 +68,16 @@ public class RewireSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.INSTANT;
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return CSSpellAnimations.ANIMATION_CONSTRUCT_SUMMON;
+    }
+
+    @Override
+    public AnimationHolder getCastFinishAnimation() {
+        return SpellAnimations.ANIMATION_LONG_CAST_FINISH;
     }
 
     @Override

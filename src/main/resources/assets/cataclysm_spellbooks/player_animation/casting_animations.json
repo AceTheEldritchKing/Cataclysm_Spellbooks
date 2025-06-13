@@ -1880,6 +1880,7 @@
 			}
 		},
 		"construct_summon": {
+			"loop": true,
 			"animation_length": 0.625,
 			"bones": {
 				"body": {

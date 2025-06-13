@@ -67,11 +67,9 @@ public class SurveillanceDroneSpell extends AbstractSpell {
 
                 SurveillanceDroneEntity droneEntity = new SurveillanceDroneEntity(level, entity);
                 droneEntity.moveTo(spawn);
-                System.out.println("GetHealing before" + droneEntity.getHealingAmount());
 
                 droneEntity.setHealingAmount(getHealing(spellLevel, entity));
 
-                System.out.println("GetHealing after" + droneEntity.getHealingAmount());
 
                 level.addFreshEntity(droneEntity);
 
