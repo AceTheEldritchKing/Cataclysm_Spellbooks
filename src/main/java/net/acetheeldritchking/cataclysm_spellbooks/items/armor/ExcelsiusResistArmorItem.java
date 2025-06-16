@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
+import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -44,7 +45,7 @@ public class ExcelsiusResistArmorItem extends MechanicalFlightArmorItem {
 
         if (pEntity instanceof Player player)
         {
-            if (this.slot == EquipmentSlot.CHEST && player.isFallFlying())
+            if (this.slot == EquipmentSlot.CHEST && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()) && player.isFallFlying())
             {
                 Vec3 playerMotion = player.getDeltaMovement().add(player.getLookAngle()).normalize();
 

@@ -45,7 +45,38 @@
 			}
 		},
 		"idle": {
-			"loop": true
+			"loop": true,
+			"animation_length": 0.813,
+			"bones": {
+				"glow": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.4065": {
+							"vector": [0, 0.5, 0]
+						},
+						"0.813": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.4065": {
+							"vector": [1.1, 1.1, 1.1],
+							"easing": "easeInOutBounce",
+							"easingArgs": [1]
+						},
+						"0.813": {
+							"vector": [1, 1, 1],
+							"easing": "easeInOutBounce",
+							"easingArgs": [1]
+						}
+					}
+				}
+			}
 		}
 	},
 	"azurelib_format_version": 2

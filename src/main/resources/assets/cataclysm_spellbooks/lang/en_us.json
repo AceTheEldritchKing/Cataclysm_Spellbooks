@@ -248,8 +248,11 @@
     "spell.cataclysm_spellbooks.parting_shot": "Parting Shot",
     "spell.cataclysm_spellbooks.parting_shot.guide": "Charge up your weapon, unleashing two powerful lasers that inflict Wither on hit",
 
-    "spell.cataclysm_spellbooks.flash_bang": "Flash Bang!",
-    "spell.cataclysm_spellbooks.flash_bang.guide": "Throw a flash bang, blinding nearby entities",
+    "spell.cataclysm_spellbooks.surveillance_drone": "Construct: Surveillance Drone",
+    "spell.cataclysm_spellbooks.surveillance_drone.guide": "Construct a surveillance drone on top of your summons, healing you and nearby summons",
+
+    "spell.cataclysm_spellbooks.flash_bang": "Flash Bang",
+    "spell.cataclysm_spellbooks.flash_bang.guide": "Throw a non-lethal flash bang, blinding nearby entities",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
@@ -306,6 +309,7 @@
     "entity.cataclysm_spellbooks.summoned_counterspell_watcher": "DoS Watcher",
     "entity.cataclysm_spellbooks.parting_shot": "Parted Shot",
     "entity.cataclysm_spellbooks.flash_bang": "Flash Bang",
+    "entity.cataclysm_spellbooks.surveillance_drone": "Surveillance Drone",
 
 
 
@@ -316,6 +320,7 @@
     "death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$s was bashed in by %2$s's ignited revenants",
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s was cleaved by %2$s's ignited berserkers",
     "death.attack.cataclysm_spellbooks.parting_shot": "%1$s was atomized by %2$s's parted shot",
+    "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s was somehow killed by %2$s's passive surveillance drone",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
 
@@ -324,5 +329,6 @@
     "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s was pierced by %2$s's infernal blade using %3$s",
     "death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$s was bashed in by %2$s's ignited revenants using %3$s",
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s",
-    "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s"
+    "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s",
+    "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s was somehow killed by %2$s's passive surveillance drone using %3$s"
 }

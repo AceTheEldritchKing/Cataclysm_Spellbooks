@@ -23,7 +23,7 @@ public class FlashBangSpell extends AbstractSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.irons_spellbooks.radius", getRadius(spellLevel)),
-                Component.translatable("ui.irons_spellbooks.effect_length", getRadius(spellLevel))
+                Component.translatable("ui.irons_spellbooks.effect_length", getEffectDuration(spellLevel, caster))
         );
     }
 
