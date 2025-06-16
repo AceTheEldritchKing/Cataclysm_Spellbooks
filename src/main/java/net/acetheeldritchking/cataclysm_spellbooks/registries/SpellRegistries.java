@@ -303,6 +303,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> DISABLING_SWIPE = registerSpell(new DisablingSwipeSpell());
 
     // Gear Shift (A multicast movement spell, dash forwards when standing and upwards when crouching)
+    public static final RegistryObject<AbstractSpell> GEAR_SHIFT = registerSpell(new GearShiftSpell());
 
     // Reboot (Heals the caster and any nearby summons)
 

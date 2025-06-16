@@ -259,6 +259,9 @@
     "spell.cataclysm_spellbooks.disabling_swipe": "Disabling Swipe",
     "spell.cataclysm_spellbooks.disabling_swipe.guide": "Swipe at your target's hardware, briefly preventing any incoming healing on hit",
 
+    "spell.cataclysm_spellbooks.gear_shift": "Gear Shift",
+    "spell.cataclysm_spellbooks.gear_shift.guide": "While standing, briefly dash forwards. While crouching, dash upwards",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -294,6 +297,8 @@
     "ui.cataclysm_spellbooks.maledictus_armory_bonus": "Deals %d if Soul Render or Annihilator is held in the main hand",
     "ui.cataclysm_spellbooks.watcher_count": "%d Summons",
     "ui.cataclysm_spellbooks.prowler_count": "%d Summons",
+    "ui.cataclysm_spellbooks.forward_acceleration": "%d Forward acceleration",
+    "ui.cataclysm_spellbooks.upward_acceleration": "%d Upward acceleration",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -316,6 +321,7 @@
     "entity.cataclysm_spellbooks.flash_bang": "Flash Bang",
     "entity.cataclysm_spellbooks.surveillance_drone": "Surveillance Drone",
     "entity.cataclysm_spellbooks.disabling_swipe": "Disabling Swipe",
+    "entity.cataclysm_spellbooks.no_man_zone_aoe": "No Man's Zone",
 
 
 
@@ -328,6 +334,7 @@
     "death.attack.cataclysm_spellbooks.parting_shot": "%1$s was atomized by %2$s's parted shot",
     "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s was somehow killed by %2$s's passive surveillance drone",
     "death.attack.cataclysm_spellbooks.disabling_swipe": "%1$s had their hardwire torn by %2$s's disabling swipe",
+    "death.attack.cataclysm_spellbooks.no_man_zone_aoe": "%1$s was reduced to nothing in %2$s's No Man's Zone",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
 
@@ -338,5 +345,6 @@
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s",
     "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s",
     "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s was somehow killed by %2$s's passive surveillance drone using %3$s",
-    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s"
+    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s",
+    "death.attack.cataclysm_spellbooks.no_man_zone_aoe.item": "%1$s was reduced to nothing in %2$s's No Man's Zone while using %3$s"
 }

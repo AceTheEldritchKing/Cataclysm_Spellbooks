@@ -119,6 +119,8 @@ public class CataclysmSpellbooks
             EntityRenderers.register(CSEntityRegistry.FLASH_BANG_PROJECTILE.get(), FlashBangRenderer::new);
             // Disabling Swipe
             EntityRenderers.register(CSEntityRegistry.DISABLING_SWIPE.get(), DisablingSwipeAoERenderer::new);
+            // No-Man's Zone AoE
+            EntityRenderers.register(CSEntityRegistry.NO_MAN_ZONE_AOE.get(), NoopRenderer::new);
 
 
             // Armor Rendering Registry

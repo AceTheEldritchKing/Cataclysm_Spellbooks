@@ -5,6 +5,7 @@ import com.github.L_Ender.cataclysm.init.ModEntities;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.entity.spells.target_area.TargetedAreaEntity;
 import io.redspace.ironsspellbooks.spells.TargetAreaCastData;
@@ -62,6 +63,16 @@ public class AerialAssaultSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.CONTINUOUS;
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return SpellAnimations.CHARGE_RAISED_HAND;
+    }
+
+    @Override
+    public AnimationHolder getCastFinishAnimation() {
+        return SpellAnimations.ANIMATION_LONG_CAST_FINISH;
     }
 
     @Override

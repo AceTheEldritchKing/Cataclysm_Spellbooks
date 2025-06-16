@@ -1,12 +1,16 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot;
 
 import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
+import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.NoManZoneAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
@@ -21,6 +25,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
@@ -118,7 +123,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
         if (target instanceof LivingEntity livingTarget)
         {
-            livingTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 0));
+            livingTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 0, true, true, true));
         }
 
         if (!target.hurt(SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), this.getDamage()))
@@ -160,8 +165,29 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     @Override
     protected void onHit(HitResult hitresult) {
+        super.onHit(hitresult);
         if (!this.level.isClientSide)
         {
+            float radius = getExplosionRadius();
+            var radiusSqr = radius * radius;
+            var entities = level.getEntities(this, this.getBoundingBox().inflate(radius));
+            Vec3 losPoint = Utils.raycastForBlock(level, this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+
+            for (Entity entity : entities)
+            {
+                double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
+
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
+                {
+                    double modifier = (1 - distanceToSqr / radiusSqr);
+                    float damage = (float) (this.damage * modifier);
+
+                    ScreenShake_Entity.ScreenShake(level, entity.position(), 5.0F, 0.15F, 20, 20);
+
+                    DamageSources.applyDamage(entity, damage, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()));
+                }
+            }
+
             if (CSConfig.doSpellGriefing.get())
             {
                 // EXPLOSION
@@ -173,11 +199,33 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
             }
 
             // I just want red, man
-            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.BLOOD.get().getTargetingColor(), this.getExplosionRadius() * 2),
+            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), this.getExplosionRadius() * 2),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
 
+            if (hitresult instanceof EntityHitResult entityHitResult)
+            {
+                onHitEntity(entityHitResult);
+            }
+
+            createAoEField(hitresult.getLocation());
+
             discard();
+        }
+    }
+
+    public void createAoEField(Vec3 location)
+    {
+        if (!level.isClientSide)
+        {
+            NoManZoneAoE aoE = new NoManZoneAoE(level);
+            aoE.setOwner(getOwner());
+            aoE.setDuration(200);
+            aoE.setDamage(5.5F);
+            aoE.setRadius(6.0F);
+            aoE.setCircular();
+            aoE.moveTo(location);
+            level.addFreshEntity(aoE);
         }
     }
 

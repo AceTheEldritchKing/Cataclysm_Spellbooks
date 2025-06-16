@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.NoManZoneAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
@@ -202,12 +203,22 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "flash_bang").toString()
                     ));
 
+    // Disabling Swipe
     public static final RegistryObject<EntityType<DisablingSwipeAoE>> DISABLING_SWIPE =
             ENTITIES.register("disabling_swipe", () -> EntityType.Builder.<DisablingSwipeAoE>of(DisablingSwipeAoE::new, MobCategory.MISC)
                     .sized(5f, 1f)
                     .clientTrackingRange(64)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "disabling_swipe").toString()
+                    ));
+
+    // No-Man Zone AoE Entity
+    public static final RegistryObject<EntityType<NoManZoneAoE>> NO_MAN_ZONE_AOE =
+            ENTITIES.register("no_man_zone_aoe", () -> EntityType.Builder.<NoManZoneAoE>of(NoManZoneAoE::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe").toString()
                     ));
 
 
