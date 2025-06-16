@@ -306,6 +306,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> GEAR_SHIFT = registerSpell(new GearShiftSpell());
 
     // Reboot (Heals the caster and any nearby summons)
+    public static final RegistryObject<AbstractSpell> REBOOT = registerSpell(new RebootSpell());
 
     // Surveillance Drone (Summons a drone on top of your selected summon, healing nearby summons and clearing any negative status effects)
     public static final RegistryObject<AbstractSpell> SURVEILLANCE_DRONE = registerSpell(new SurveillanceDroneSpell());

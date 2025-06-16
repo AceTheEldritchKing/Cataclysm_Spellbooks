@@ -262,6 +262,9 @@
     "spell.cataclysm_spellbooks.gear_shift": "Gear Shift",
     "spell.cataclysm_spellbooks.gear_shift.guide": "While standing, briefly dash forwards. While crouching, dash upwards",
 
+    "spell.cataclysm_spellbooks.reboot": "Reboot",
+    "spell.cataclysm_spellbooks.reboot.guide": "Reboot your systems, healing yourself and nearby allies",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -299,6 +302,7 @@
     "ui.cataclysm_spellbooks.prowler_count": "%d Summons",
     "ui.cataclysm_spellbooks.forward_acceleration": "%d Forward acceleration",
     "ui.cataclysm_spellbooks.upward_acceleration": "%d Upward acceleration",
+    "ui.cataclysm_spellbooks.summon_healing": "%d Ally healing",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
