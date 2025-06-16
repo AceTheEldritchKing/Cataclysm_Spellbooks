@@ -68,6 +68,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> MANA_OVERCHARGED_EFFECT =
             MOB_EFFECTS.register("mana_overcharged_effect", ManaOverchargedPotionEffect::new);
 
+    public static final RegistryObject<MobEffect> DISABLED_EFFECT =
+            MOB_EFFECTS.register("disabled_effect", DisabledPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

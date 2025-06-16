@@ -10,6 +10,7 @@ import io.redspace.ironsspellbooks.entity.spells.target_area.TargetedAreaEntity;
 import io.redspace.ironsspellbooks.spells.TargetAreaCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -80,11 +81,12 @@ public class AerialAssaultSpell extends AbstractSpell {
         {
             if (playerMagicData.getAdditionalCastData() instanceof TargetAreaCastData targetAreaCastData)
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < spellLevel; i++)
                 {
                     Vec3 center = targetAreaCastData.getCenter();
                     float radius = getRadius(spellLevel, entity);
                     Vec3 spawn = center.add(new Vec3(0, entity.getY(), entity.getRandom().nextFloat() * radius).yRot(entity.getRandom().nextInt(360)));
+                    spawn = raiseWithCollision(spawn, 12, level);
 
                     shootMissiles(level, entity, spellLevel, spawn);
                 }
@@ -92,6 +94,17 @@ public class AerialAssaultSpell extends AbstractSpell {
         }
 
         super.onServerCastTick(level, spellLevel, entity, playerMagicData);
+    }
+
+    private Vec3 raiseWithCollision(Vec3 start, int blocks, Level level) {
+        for (int i = 0; i < blocks; i++) {
+            Vec3 raised = start.add(0, 1, 0);
+            if (level.getBlockState(new BlockPos(raised)).isAir())
+                start = raised;
+            else
+                break;
+        }
+        return start;
     }
 
     public void shootMissiles(Level level, LivingEntity caster, int spellLevel, Vec3 spawn)
@@ -114,6 +127,6 @@ public class AerialAssaultSpell extends AbstractSpell {
 
     private float getRadius(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster);
+        return getSpellPower(spellLevel, caster) / 5;
     }
 }

@@ -117,6 +117,7 @@ public class FlashBangProjectileEntity extends AbstractMagicProjectile implement
                     {
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, duration, 0, true, true, true));
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, duration, 0, true, true, true));
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, 0, true, true, true));
                     }
                 }
             }

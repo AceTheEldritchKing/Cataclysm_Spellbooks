@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang.FlashBangProjectileEntity;
@@ -199,6 +200,14 @@ public class CSEntityRegistry {
                     .clientTrackingRange(64)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "flash_bang").toString()
+                    ));
+
+    public static final RegistryObject<EntityType<DisablingSwipeAoE>> DISABLING_SWIPE =
+            ENTITIES.register("disabling_swipe", () -> EntityType.Builder.<DisablingSwipeAoE>of(DisablingSwipeAoE::new, MobCategory.MISC)
+                    .sized(5f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "disabling_swipe").toString()
                     ));
 
 

@@ -10,10 +10,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SurveillanceDroneRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.FlashBangRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.HellishBladeRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.InfernalBladeRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.PartingShotRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.*;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
@@ -120,6 +117,8 @@ public class CataclysmSpellbooks
             EntityRenderers.register(CSEntityRegistry.SURVEILLANCE_DRONE.get(), SurveillanceDroneRenderer::new);
             // Flash Bang
             EntityRenderers.register(CSEntityRegistry.FLASH_BANG_PROJECTILE.get(), FlashBangRenderer::new);
+            // Disabling Swipe
+            EntityRenderers.register(CSEntityRegistry.DISABLING_SWIPE.get(), DisablingSwipeAoERenderer::new);
 
 
             // Armor Rendering Registry

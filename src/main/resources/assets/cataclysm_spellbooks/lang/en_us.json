@@ -24,6 +24,8 @@
     "effect.cataclysm_spellbooks.software_update_effect.description": "Increases speed and reduces spell cooldown.",
     "effect.cataclysm_spellbooks.intrusion_defense_system_software": "IPS Software",
     "effect.cataclysm_spellbooks.intrusion_defense_system_software.description": "Reduces projectile damage and prevents summons from being counterspelled.",
+    "effect.cataclysm_spellbooks.disabled_effect": "Hardware Disabled",
+    "effect.cataclysm_spellbooks.disabled_effect.description": "Prevents healing of any type.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -254,6 +256,9 @@
     "spell.cataclysm_spellbooks.flash_bang": "Flash Bang",
     "spell.cataclysm_spellbooks.flash_bang.guide": "Throw a non-lethal flash bang, blinding nearby entities",
 
+    "spell.cataclysm_spellbooks.disabling_swipe": "Disabling Swipe",
+    "spell.cataclysm_spellbooks.disabling_swipe.guide": "Swipe at your target's hardware, briefly preventing any incoming healing on hit",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -310,6 +315,7 @@
     "entity.cataclysm_spellbooks.parting_shot": "Parted Shot",
     "entity.cataclysm_spellbooks.flash_bang": "Flash Bang",
     "entity.cataclysm_spellbooks.surveillance_drone": "Surveillance Drone",
+    "entity.cataclysm_spellbooks.disabling_swipe": "Disabling Swipe",
 
 
 
@@ -321,6 +327,7 @@
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s was cleaved by %2$s's ignited berserkers",
     "death.attack.cataclysm_spellbooks.parting_shot": "%1$s was atomized by %2$s's parted shot",
     "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s was somehow killed by %2$s's passive surveillance drone",
+    "death.attack.cataclysm_spellbooks.disabling_swipe": "%1$s had their hardwire torn by %2$s's disabling swipe",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
 
@@ -330,5 +337,6 @@
     "death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$s was bashed in by %2$s's ignited revenants using %3$s",
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s",
     "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s",
-    "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s was somehow killed by %2$s's passive surveillance drone using %3$s"
+    "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s was somehow killed by %2$s's passive surveillance drone using %3$s",
+    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s"
 }

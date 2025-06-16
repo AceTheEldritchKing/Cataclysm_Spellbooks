@@ -300,6 +300,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> PARTING_SHOT = registerSpell(new PartingShotSpell());
 
     // Disabling Swipe (Charge up a slash attack, the swipe prevents hit entities from healing)
+    public static final RegistryObject<AbstractSpell> DISABLING_SWIPE = registerSpell(new DisablingSwipeSpell());
 
     // Gear Shift (A multicast movement spell, dash forwards when standing and upwards when crouching)
 

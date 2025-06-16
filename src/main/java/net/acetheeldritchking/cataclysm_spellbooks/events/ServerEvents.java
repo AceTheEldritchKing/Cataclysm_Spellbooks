@@ -521,6 +521,17 @@ public class ServerEvents {
         return String.format("%02d:%02d" , minutes , seconds);
     }
 
+    @SubscribeEvent
+    public static void onLivingHealEvent(LivingHealEvent event)
+    {
+        MobEffectInstance disabledEffect = event.getEntity().getEffect(CSPotionEffectRegistry.DISABLED_EFFECT.get());
+
+        if (disabledEffect != null)
+        {
+            event.setCanceled(true);
+        }
+    }
+
     // Capabilities
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event)
