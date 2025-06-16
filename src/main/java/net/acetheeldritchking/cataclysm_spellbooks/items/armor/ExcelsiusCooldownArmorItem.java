@@ -1,6 +1,10 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
+import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

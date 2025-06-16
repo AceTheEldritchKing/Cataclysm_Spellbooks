@@ -80,7 +80,7 @@ public class CSArmorItem extends ArmorItem {
                         if (player.isFallFlying() && wornArmor.is(CSTags.ARMORS_FOR_FLIGHT))
                         {
                             dispatcher.flight(player, wornArmor);
-                        } else if (wornArmor.is(CSTags.ARMORS_FOR_IDLE))
+                        } else if (!player.isFallFlying() && wornArmor.is(CSTags.ARMORS_FOR_IDLE))
                         {
                             dispatcher.idle(player, wornArmor);
                         }
