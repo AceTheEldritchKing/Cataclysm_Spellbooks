@@ -5,6 +5,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang.FlashBangProjectileEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot.PartingShotProjectile;
@@ -189,6 +190,15 @@ public class CSEntityRegistry {
                     .clientTrackingRange(64)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "surveillance_drone").toString()
+                    ));
+
+    // Flash Bang Projectile
+    public static final RegistryObject<EntityType<FlashBangProjectileEntity>> FLASH_BANG_PROJECTILE =
+            ENTITIES.register("flash_bang", () -> EntityType.Builder.<FlashBangProjectileEntity>of(FlashBangProjectileEntity::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "flash_bang").toString()
                     ));
 
 

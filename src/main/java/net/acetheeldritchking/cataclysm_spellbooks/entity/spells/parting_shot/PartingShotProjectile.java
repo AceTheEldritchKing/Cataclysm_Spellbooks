@@ -1,32 +1,32 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot;
 
 import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
-import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
-import com.github.L_Ender.cataclysm.init.ModEffect;
-import com.github.L_Ender.cataclysm.init.ModParticle;
+import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
+import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
-import io.redspace.ironsspellbooks.util.ParticleHelper;
+import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -99,7 +99,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     @Override
     public float getSpeed() {
-        return 0.5F;
+        return 0.3F;
     }
 
     @Override
@@ -156,6 +156,29 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
         }
 
         discard();
+    }
+
+    @Override
+    protected void onHit(HitResult hitresult) {
+        if (!this.level.isClientSide)
+        {
+            if (CSConfig.doSpellGriefing.get())
+            {
+                // EXPLOSION
+                Explosion explosion = new Explosion(level, null, SpellRegistry.FIREBALL_SPELL.get().getDamageSource(this, getOwner()), null, this.getX(), this.getY(), this.getZ(), this.getExplosionRadius() / 2, true, Explosion.BlockInteraction.DESTROY);
+                if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(level, explosion)) {
+                    explosion.explode();
+                    explosion.finalizeExplosion(false);
+                }
+            }
+
+            // I just want red, man
+            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.BLOOD.get().getTargetingColor(), this.getExplosionRadius() * 2),
+                    getX(), getY(), getZ(),
+                    1, 0, 0, 0, 0, false);
+
+            discard();
+        }
     }
 
     @Override

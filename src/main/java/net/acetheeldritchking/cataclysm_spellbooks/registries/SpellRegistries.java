@@ -282,11 +282,10 @@ public class SpellRegistries {
     // Software Update (Increases your speed and cooldown, does not stack with charge and haste/clears it)
     public static final RegistryObject<AbstractSpell> SOFTWARE_UPDATE = registerSpell(new SoftwareUpdateSpell());
 
-    // Circuit Breaker (Chain lightning but RED, gives a miniscule amount of lifesteal and weakens targets)
-
     // Bothearder (AoE summon steal - 1.21.1)
 
     // Flash Bang (Throw a live grenade, blinding nearby entities within the blast zone)
+    public static final RegistryObject<AbstractSpell> FLASH_BANG = registerSpell(new FlashBangSpell());
 
     // Aerial Assault (Summon various missiles down from the sky)
     public static final RegistryObject<AbstractSpell> AERIAL_ASSAULT = registerSpell(new AerialAssaultSpell());

@@ -248,6 +248,9 @@
     "spell.cataclysm_spellbooks.parting_shot": "Parting Shot",
     "spell.cataclysm_spellbooks.parting_shot.guide": "Charge up your weapon, unleashing two powerful lasers that inflict Wither on hit",
 
+    "spell.cataclysm_spellbooks.flash_bang": "Flash Bang!",
+    "spell.cataclysm_spellbooks.flash_bang.guide": "Throw a flash bang, blinding nearby entities",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -301,6 +304,8 @@
     "entity.cataclysm_spellbooks.summoned_watcher": "Watcher",
     "entity.cataclysm_spellbooks.summoned_prowler": "Prowler",
     "entity.cataclysm_spellbooks.summoned_counterspell_watcher": "DoS Watcher",
+    "entity.cataclysm_spellbooks.parting_shot": "Parted Shot",
+    "entity.cataclysm_spellbooks.flash_bang": "Flash Bang",
 
 
 
@@ -310,6 +315,7 @@
     "death.attack.cataclysm_spellbooks.infernal_strike": "%1$s was pierced by %2$s's infernal blade",
     "death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$s was bashed in by %2$s's ignited revenants",
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s was cleaved by %2$s's ignited berserkers",
+    "death.attack.cataclysm_spellbooks.parting_shot": "%1$s was atomized by %2$s's parted shot",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
 
@@ -317,5 +323,6 @@
     "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s was gored by %2$s's hellish blade using %3$s",
     "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s was pierced by %2$s's infernal blade using %3$s",
     "death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$s was bashed in by %2$s's ignited revenants using %3$s",
-    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s"
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s",
+    "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s"
 }

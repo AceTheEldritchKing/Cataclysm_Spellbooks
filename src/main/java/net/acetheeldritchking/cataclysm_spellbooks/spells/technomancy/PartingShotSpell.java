@@ -97,9 +97,11 @@ public class PartingShotSpell extends AbstractSpell {
 
         partingShot1.setPos(entity.position().add(0, (entity.getEyeHeight() + 0.5) - partingShot1.getBoundingBox().getYsize() * .5f, 0));
         partingShot1.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 1, 1);
+        partingShot1.setExplosionRadius(6);
 
         partingShot2.setPos(entity.position().add(0, (entity.getEyeHeight() - 0.5) - partingShot2.getBoundingBox().getYsize() * .5f, 0));
         partingShot2.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 1, 1);
+        partingShot2.setExplosionRadius(6);
 
         float damage = getDamage(spellLevel, entity);
 
