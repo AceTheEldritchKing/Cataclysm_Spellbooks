@@ -8,14 +8,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
-public class ManaOverchargedPotionEffect extends MobEffect {
-    public ManaOverchargedPotionEffect() {
+public class SpellResOverchargedPotionEffect extends MobEffect {
+    public SpellResOverchargedPotionEffect() {
         super(MobEffectCategory.BENEFICIAL, 8571381);
-        this.addAttributeModifier(AttributeRegistry.MAX_MANA.get(), "fa91389c-34f3-4fcb-866f-ffcc44c0e3f0", ManaOverchargedPotionEffect.MANA_BONUS, AttributeModifier.Operation.MULTIPLY_TOTAL);
-        this.addAttributeModifier(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), "821167be-7ff7-4ca8-92a6-3a6c2de2b52a", ManaOverchargedPotionEffect.SPELL_POWER_BONUS, AttributeModifier.Operation.MULTIPLY_TOTAL);
+        this.addAttributeModifier(AttributeRegistry.SPELL_RESIST.get(), "928f0a67-df68-42eb-b838-52c6dc4255c0", SpellResOverchargedPotionEffect.SPELL_RES_BONUS, AttributeModifier.Operation.MULTIPLY_TOTAL);
+        this.addAttributeModifier(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), "531b39a8-0276-4869-b703-5582a6041577", SpellResOverchargedPotionEffect.SPELL_POWER_BONUS, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
-    public static final float MANA_BONUS = 0.10f;
+    public static final float SPELL_RES_BONUS = 0.10f;
     public static final float SPELL_POWER_BONUS = 0.10f;
 
     @Override

@@ -71,6 +71,15 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> DISABLED_EFFECT =
             MOB_EFFECTS.register("disabled_effect", DisabledPotionEffect::new);
 
+    public static final RegistryObject<MobEffect> SPELL_RES_OVERCHARGED_EFFECT =
+            MOB_EFFECTS.register("spell_res_overcharged_effect", SpellResOverchargedPotionEffect::new);
+
+    public static final RegistryObject<MobEffect> COOLDOWN_OVERCHARGED_EFFECT =
+            MOB_EFFECTS.register("cooldown_overcharged_effect", CooldownOverchargedPotionEffect::new);
+
+    public static final RegistryObject<MobEffect> BASE_OVERCHARGED_EFFECT =
+            MOB_EFFECTS.register("base_overcharged_effect", BaseOverchargedPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

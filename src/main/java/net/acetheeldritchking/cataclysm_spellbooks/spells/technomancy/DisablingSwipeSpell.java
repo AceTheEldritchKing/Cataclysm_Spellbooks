@@ -7,6 +7,9 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.capabilities.magic.MultiTargetEntityCastData;
+import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
+import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.ISpellDamageSource;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
@@ -16,6 +19,8 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,7 +40,11 @@ public class DisablingSwipeSpell extends AbstractSpell {
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
-        return List.of(Component.translatable("ui.irons_spellbooks.damage", getDamageText(spellLevel, caster)));
+        return List.of(
+                Component.translatable("ui.irons_spellbooks.damage", getDamageText(spellLevel, caster)),
+                Component.translatable("ui.irons_spellbooks.effect_length", getEffectDuration(spellLevel, caster)),
+                Component.translatable("ui.cataclysm_spellbooks.recast_bonus_damage", getBonusDamage(spellLevel, caster))
+        );
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
@@ -90,40 +99,59 @@ public class DisablingSwipeSpell extends AbstractSpell {
     }
 
     @Override
+    public int getRecastCount(int spellLevel, @Nullable LivingEntity entity) {
+        return spellLevel;
+    }
+
+    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        var recasts = playerMagicData.getPlayerRecasts();
+
+        if (!recasts.hasRecastForSpell(getSpellId()))
+        {
+            playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 100, castSource, null), playerMagicData);
+        } else
+        {
+            var instance = recasts.getRecastInstance(this.getSpellId());
+        }
+
+        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    @Override
+    public void onRecastFinished(ServerPlayer serverPlayer, RecastInstance recastInstance, RecastResult recastResult, ICastDataSerializable castDataSerializable) {
+        super.onRecastFinished(serverPlayer, recastInstance, recastResult, castDataSerializable);
+
         float radius = 3.25F;
         float distance = 1.65F;
-        Vec3 hitLocation = entity.position().add(0, entity.getBbHeight() * 0.3F, 0).add(entity.getForward().multiply(distance, 0.35F, distance));
-        var entities = level.getEntities(entity, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));
+        Vec3 hitLocation = serverPlayer.position().add(0, serverPlayer.getBbHeight() * 0.3F, 0).add(serverPlayer.getForward().multiply(distance, 0.35F, distance));
+        var entities = serverPlayer.level.getEntities(serverPlayer, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));
 
         for (Entity target : entities)
         {
-            if (entity.isPickable() && entity.distanceToSqr(target) < radius * radius && Utils.hasLineOfSight(level, entity.getEyePosition(), target.getBoundingBox().getCenter(), true))
+            if (serverPlayer.isPickable() && serverPlayer.distanceToSqr(target) < radius * radius && Utils.hasLineOfSight(serverPlayer.level, serverPlayer.getEyePosition(), target.getBoundingBox().getCenter(), true))
             {
-                if (DamageSources.applyDamage(target, getDamage(spellLevel, entity), this.getDamageSource(entity)))
+                if (DamageSources.applyDamage(target, getDamage(recastInstance.getSpellLevel(), serverPlayer) + getBonusDamage(recastInstance.getSpellLevel(), serverPlayer), this.getDamageSource(serverPlayer)))
                 {
-                    MagicManager.spawnParticles(level, ParticleHelper.ELECTRIC_SPARKS, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
-                    EnchantmentHelper.doPostDamageEffects(entity, target);
+                    MagicManager.spawnParticles(serverPlayer.level, ParticleHelper.ELECTRIC_SPARKS, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
+                    EnchantmentHelper.doPostDamageEffects(serverPlayer, target);
                 }
             }
         }
         boolean mirrored = false;
-        if (entity instanceof Player player)
+        var selection = new SpellSelectionManager(serverPlayer).getSelection();
+        new SpellSelectionManager(serverPlayer).getSelection();
+        if (selection != null)
         {
-            var selection = new SpellSelectionManager(player).getSelection();
-            new SpellSelectionManager(player).getSelection();
-            if (selection != null)
-            {
-                mirrored = selection.slot.equals(SpellSelectionManager.OFFHAND);
-            }
+            mirrored = selection.slot.equals(SpellSelectionManager.OFFHAND);
         }
 
-        DisablingSwipeAoE swipe = new DisablingSwipeAoE(level, mirrored);
+        DisablingSwipeAoE swipe = new DisablingSwipeAoE(serverPlayer.level, mirrored);
         swipe.moveTo(hitLocation);
-        swipe.setYRot(entity.getYRot());
-        level.addFreshEntity(swipe);
-
-        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+        swipe.setYRot(serverPlayer.getYRot());
+        swipe.setEffectDuration(getEffectDuration(recastInstance.getSpellLevel(), serverPlayer));
+        swipe.setEffectAmplifier(recastInstance.getSpellLevel());
+        serverPlayer.level.addFreshEntity(swipe);
     }
 
     @Override
@@ -133,7 +161,17 @@ public class DisablingSwipeSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity entity)
     {
-        return getSpellPower(spellLevel, entity) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
+        return (getSpellPower(spellLevel, entity) / 3.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
+    }
+
+    private float getBonusDamage(int spellLevel, LivingEntity caster)
+    {
+        return getRecastCount(spellLevel, caster);
+    }
+
+    private float getEffectDuration(int spellLevel, LivingEntity caster)
+    {
+        return getSpellPower(spellLevel, caster);
     }
 
     private String getDamageText(int spellLevel, LivingEntity caster)

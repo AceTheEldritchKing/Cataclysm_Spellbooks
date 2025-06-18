@@ -26,6 +26,14 @@
     "effect.cataclysm_spellbooks.intrusion_defense_system_software.description": "Reduces projectile damage and prevents summons from being counterspelled.",
     "effect.cataclysm_spellbooks.disabled_effect": "Hardware Disabled",
     "effect.cataclysm_spellbooks.disabled_effect.description": "Prevents healing of any type.",
+    "effect.cataclysm_spellbooks.mana_overcharged_effect": "Overcharged Mana",
+    "effect.cataclysm_spellbooks.mana_overcharged_effect.description": "Increased mana and Technomancy spell power.",
+    "effect.cataclysm_spellbooks.spell_res_overcharged_effect": "Overcharged Resistance",
+    "effect.cataclysm_spellbooks.spell_res_overcharged_effect.description": "Increased spell resistance and Technomancy spell power.",
+    "effect.cataclysm_spellbooks.cooldown_overcharged_effect": "Overcharged Cooldown",
+    "effect.cataclysm_spellbooks.cooldown_overcharged_effect.description": "Decreased spell cooldown and increased Technomancy spell power.",
+    "effect.cataclysm_spellbooks.base_overcharged_effect": "Overcharged",
+    "effect.cataclysm_spellbooks.base_overcharged_effect.description": "Increased Technomancy spell power.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -303,6 +311,9 @@
     "ui.cataclysm_spellbooks.forward_acceleration": "%d Forward acceleration",
     "ui.cataclysm_spellbooks.upward_acceleration": "%d Upward acceleration",
     "ui.cataclysm_spellbooks.summon_healing": "%d Ally healing",
+    "ui.cataclysm_spellbooks.recast_bonus_damage": "%d Added damage (+1 damage per recast)",
+    "ui.cataclysm_spellbooks.effect_percentage": "%d To Overcharged stats",
+    "ui.cataclysm_spellbooks.howitzer_crouching": "When crouching, summon Howitzers instead",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -335,12 +346,20 @@
     "death.attack.cataclysm_spellbooks.infernal_strike": "%1$s was pierced by %2$s's infernal blade",
     "death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$s was bashed in by %2$s's ignited revenants",
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s was cleaved by %2$s's ignited berserkers",
+    "death.attack.cataclysm_spellbooks.summoned_koboldiator": "%1$s was crushed by %2$s's Koboldiator",
+    "death.attack.cataclysm_spellbooks.summoned_koboleton": "%1$s was hacked to death by %2$s's Koboldeton",
+    "death.attack.cataclysm_spellbooks.summoned_draugur": "%1$s was swarmed by %2$s's dragur",
+    "death.attack.cataclysm_spellbooks.summoned_royal_draugur": "%1$s was swarmed by %2$s's dragur",
+    "death.attack.cataclysm_spellbooks.summoned_elite_draugur": "%1$s was swarmed by %2$s's dragur",
+    "death.attack.cataclysm_spellbooks.summoned_aptrgangr": "%1$s was chopped in half %2$s's Aptrgangr",
+    "death.attack.cataclysm_spellbooks.summoned_amethyst_crab": "%1$s was crunched between %2$s's Amethyst Crab's claws",
     "death.attack.cataclysm_spellbooks.parting_shot": "%1$s was atomized by %2$s's parted shot",
     "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s was somehow killed by %2$s's passive surveillance drone",
     "death.attack.cataclysm_spellbooks.disabling_swipe": "%1$s had their hardwire torn by %2$s's disabling swipe",
     "death.attack.cataclysm_spellbooks.no_man_zone_aoe": "%1$s was reduced to nothing in %2$s's No Man's Zone",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
+    "death.attack.no_man_zone_aoe.item": "%1$s was reduced to nothing in %2$s's No Man's Zone while using %3$s",
 
     "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$s was lacerated by %2$s's gnawers using %3$s",
     "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s was gored by %2$s's hellish blade using %3$s",
@@ -349,6 +368,5 @@
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s",
     "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s",
     "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s was somehow killed by %2$s's passive surveillance drone using %3$s",
-    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s",
-    "death.attack.cataclysm_spellbooks.no_man_zone_aoe.item": "%1$s was reduced to nothing in %2$s's No Man's Zone while using %3$s"
+    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s"
 }

@@ -19,6 +19,8 @@ import java.util.Optional;
 
 public class DisablingSwipeAoE extends AoeEntity {
     private static final EntityDataAccessor<Boolean> DATA_IS_MIRRORED = SynchedEntityData.defineId(DisablingSwipeAoE.class, EntityDataSerializers.BOOLEAN);
+    protected int effectAmplifier;
+    protected float effectDuration;
 
     public DisablingSwipeAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -38,9 +40,29 @@ public class DisablingSwipeAoE extends AoeEntity {
         }
     }
 
+    public int getEffectAmplifier()
+    {
+        return effectAmplifier;
+    }
+
+    public void setEffectAmplifier(int amount)
+    {
+        this.effectAmplifier = amount;
+    }
+
+    public int getEffectDuration()
+    {
+        return effectAmplifier;
+    }
+
+    public void setEffectDuration(float amount)
+    {
+        this.effectDuration = amount;
+    }
+
     @Override
     public void applyEffect(LivingEntity target) {
-        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 5 * 20, 0, true, true, true));
+        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), getEffectDuration(), getEffectAmplifier(), true, true, true));
     }
 
     @Override

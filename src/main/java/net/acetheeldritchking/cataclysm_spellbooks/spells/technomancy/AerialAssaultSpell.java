@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
+import com.github.L_Ender.cataclysm.entity.projectile.Wither_Howitzer_Entity;
 import com.github.L_Ender.cataclysm.entity.projectile.Wither_Missile_Entity;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
@@ -67,7 +68,7 @@ public class AerialAssaultSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.CHARGE_RAISED_HAND;
+        return SpellAnimations.CHARGE_WAVY_ANIMATION;
     }
 
     @Override
@@ -133,7 +134,7 @@ public class AerialAssaultSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity entity)
     {
-        return getSpellPower(spellLevel, entity) * 0.9f;
+        return getSpellPower(spellLevel, entity) * 0.5f;
     }
 
     private float getRadius(int spellLevel, LivingEntity caster)

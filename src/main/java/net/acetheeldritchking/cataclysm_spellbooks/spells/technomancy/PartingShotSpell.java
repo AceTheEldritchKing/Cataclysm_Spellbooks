@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
+import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
@@ -107,6 +108,8 @@ public class PartingShotSpell extends AbstractSpell {
 
         partingShot1.setDamage(damage);
         //partingShot2.setDamage(damage);
+
+        ScreenShake_Entity.ScreenShake(level, entity.position(), 5.0F, 0.15F, 20, 20);
 
         level.addFreshEntity(partingShot1);
         level.addFreshEntity(partingShot2);

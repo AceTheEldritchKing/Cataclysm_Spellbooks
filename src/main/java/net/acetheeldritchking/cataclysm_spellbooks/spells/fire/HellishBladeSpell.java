@@ -102,6 +102,10 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
                 float damage = getDamage(spellLevel, entity);
                 float bonusDamage = getBonusDamage(spellLevel, entity);
 
+                final float MAX_HEALTH = entity.getMaxHealth();
+                float baseHealth = entity.getHealth();
+                double percent = (baseHealth/MAX_HEALTH) * 100;
+
                 // Damage if Incinerator is in main hand
                 Item incinerator = ModItems.THE_INCINERATOR.get();
 
@@ -120,6 +124,13 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
                 else
                 {
                     hellishBlade.setDamage(damage);
+                }
+
+                if (percent <= 50)
+                {
+                    hellishBlade.setIsSoul(true);
+                } else {
+                    hellishBlade.setIsSoul(false);
                 }
 
                 level.addFreshEntity(hellishBlade);

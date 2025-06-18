@@ -86,6 +86,11 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
 
         float damage = getDamage(spellLevel, entity);
         float bonusDamage = getBonusDamage(spellLevel, entity);
+
+        final float MAX_HEALTH = entity.getMaxHealth();
+        float baseHealth = entity.getHealth();
+        double percent = (baseHealth/MAX_HEALTH) * 100;
+
         if (entity.getMainHandItem().is(incinerator))
         {
             infernalBlade.setDamage(bonusDamage);
@@ -94,6 +99,14 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
         {
             infernalBlade.setDamage(damage);
         }
+
+        if (percent <= 50)
+        {
+            infernalBlade.setIsSoul(true);
+        } else {
+            infernalBlade.setIsSoul(false);
+        }
+
         level.addFreshEntity(infernalBlade);
         //System.out.println("Damage: " + infernalBlade.getDamage());
 

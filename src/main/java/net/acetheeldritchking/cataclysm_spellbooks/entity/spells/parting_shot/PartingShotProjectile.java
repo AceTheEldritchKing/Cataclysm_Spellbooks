@@ -3,16 +3,13 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot;
 import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.NoManZoneAoE;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.minecraft.core.BlockPos;
@@ -180,7 +177,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
                 if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
                 {
                     double modifier = (1 - distanceToSqr / radiusSqr);
-                    float damage = (float) (this.damage * modifier);
+                    float damage = (float) (getDamage() * modifier);
 
                     ScreenShake_Entity.ScreenShake(level, entity.position(), 5.0F, 0.15F, 20, 20);
 
@@ -191,7 +188,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
             if (CSConfig.doSpellGriefing.get())
             {
                 // EXPLOSION
-                Explosion explosion = new Explosion(level, null, SpellRegistry.FIREBALL_SPELL.get().getDamageSource(this, getOwner()), null, this.getX(), this.getY(), this.getZ(), this.getExplosionRadius() / 2, true, Explosion.BlockInteraction.DESTROY);
+                Explosion explosion = new Explosion(level, null, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), null, this.getX(), this.getY(), this.getZ(), this.getExplosionRadius() / 2, true, Explosion.BlockInteraction.DESTROY);
                 if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(level, explosion)) {
                     explosion.explode();
                     explosion.finalizeExplosion(false);

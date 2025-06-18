@@ -7,8 +7,13 @@ import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -34,6 +39,11 @@ import java.util.Optional;
 
 public class InfernalBladeProjectile extends AbstractMagicProjectile implements IAnimatable {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private static final EntityDataAccessor<Boolean> SOUL;
+
+    static {
+        SOUL = SynchedEntityData.defineId(InfernalBladeProjectile.class, EntityDataSerializers.BOOLEAN);
+    }
 
     public InfernalBladeProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -117,6 +127,16 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
         discard();
     }
 
+    public boolean getIsSoul()
+    {
+        return this.entityData.get(SOUL);
+    }
+
+    public void setIsSoul(boolean soul)
+    {
+        this.entityData.set(SOUL, soul);
+    }
+
     // Geckolib
     @Override
     public void registerControllers(AnimationData data) {
@@ -137,5 +157,23 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     @Override
     public AnimationFactory getFactory() {
         return factory;
+    }
+
+    // NBT
+    @Override
+    protected void defineSynchedData() {
+        this.entityData.define(SOUL, false);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.setIsSoul(pCompound.getBoolean("Soul"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putBoolean("Soul", this.getIsSoul());
     }
 }

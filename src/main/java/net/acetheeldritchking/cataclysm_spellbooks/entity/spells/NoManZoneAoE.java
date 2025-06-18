@@ -37,7 +37,7 @@ public class NoManZoneAoE extends AoeEntity {
         var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());
-        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 5 * 20, 0, true, true, true));
+        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
         target.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 1, true, true, true));
     }
 
