@@ -126,7 +126,8 @@ public class ItemRegistries {
 
     // Gauntlet of Gattling
     public static final RegistryObject<Item> GAUNTLET_OF_GATTLING = ITEMS.register
-            ("gauntlet_of_gattling", GauntletOfGattlingItem::new);
+            ("gauntlet_of_gattling", () -> new GauntletOfGattlingItem((SpellDataRegistryHolder.of(
+                    new SpellDataRegistryHolder(SpellRegistries.PARTING_SHOT, 1)))));
 
 
     /**

@@ -312,7 +312,7 @@
     "ui.cataclysm_spellbooks.upward_acceleration": "%d Upward acceleration",
     "ui.cataclysm_spellbooks.summon_healing": "%d Ally healing",
     "ui.cataclysm_spellbooks.recast_bonus_damage": "%d Added damage (+1 damage per recast)",
-    "ui.cataclysm_spellbooks.effect_percentage": "%d To Overcharged stats",
+    "ui.cataclysm_spellbooks.effect_percentage": "%d% Bonus To Overcharged stats",
     "ui.cataclysm_spellbooks.howitzer_crouching": "When crouching, summon Howitzers instead",
 
 

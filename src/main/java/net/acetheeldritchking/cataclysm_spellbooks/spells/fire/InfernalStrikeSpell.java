@@ -84,12 +84,13 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
         // Damage if Incinerator is in main hand
         Item incinerator = ModItems.THE_INCINERATOR.get();
 
-        float damage = getDamage(spellLevel, entity);
-        float bonusDamage = getBonusDamage(spellLevel, entity);
-
         final float MAX_HEALTH = entity.getMaxHealth();
         float baseHealth = entity.getHealth();
         double percent = (baseHealth/MAX_HEALTH) * 100;
+
+        // Eval the damage if soul or not
+        float damage = infernalBlade.getIsSoul() ? getDamage(spellLevel, entity) * 1.5F : getDamage(spellLevel, entity);
+        float bonusDamage = infernalBlade.getIsSoul() ? getBonusDamage(spellLevel, entity) * 1.5F : getBonusDamage(spellLevel, entity);
 
         if (entity.getMainHandItem().is(incinerator))
         {

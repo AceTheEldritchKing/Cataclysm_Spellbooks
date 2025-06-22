@@ -99,9 +99,6 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
             {
                 double targetEye = targetEntity.getEyeHeight();
 
-                float damage = getDamage(spellLevel, entity);
-                float bonusDamage = getBonusDamage(spellLevel, entity);
-
                 final float MAX_HEALTH = entity.getMaxHealth();
                 float baseHealth = entity.getHealth();
                 double percent = (baseHealth/MAX_HEALTH) * 100;
@@ -117,6 +114,18 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
 
                 hellishBlade.moveTo(spawn);
                 hellishBlade.shoot(motion);
+
+                // Eval the damage if soul or not
+                float damage = hellishBlade.getIsSoul() ? getDamage(spellLevel, entity) * 1.5F : getDamage(spellLevel, entity);
+                float bonusDamage = hellishBlade.getIsSoul() ? getBonusDamage(spellLevel, entity) * 1.5F : getBonusDamage(spellLevel, entity);
+
+                if (percent <= 50)
+                {
+                    hellishBlade.setIsSoul(true);
+                } else {
+                    hellishBlade.setIsSoul(false);
+                }
+
                 if (entity.getMainHandItem().is(incinerator))
                 {
                     hellishBlade.setDamage(bonusDamage);
@@ -124,13 +133,6 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
                 else
                 {
                     hellishBlade.setDamage(damage);
-                }
-
-                if (percent <= 50)
-                {
-                    hellishBlade.setIsSoul(true);
-                } else {
-                    hellishBlade.setIsSoul(false);
                 }
 
                 level.addFreshEntity(hellishBlade);
