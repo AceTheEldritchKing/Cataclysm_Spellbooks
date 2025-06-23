@@ -5,10 +5,12 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.WrathfulPotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -67,6 +69,11 @@ public class ForgoneRageSpell extends AbstractMaledictusSpell {
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
         return Optional.of(ModSounds.MALEDICTUS_BATTLE_CRY.get());
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return CSSpellAnimations.ANIMATION_WRATH_ROAR;
     }
 
     @Override

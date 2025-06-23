@@ -20,4 +20,6 @@ public class CSSpellAnimations {
     public static final AnimationHolder ANIMATION_CHARGED_GROUND_SLAM = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":charged_ground_slam", true);
 
     public static final AnimationHolder ANIMATION_CONSTRUCT_SUMMON = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":construct_summon", true);
+
+    public static final AnimationHolder ANIMATION_WRATH_ROAR = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":wrathful_roar", true);
 }
