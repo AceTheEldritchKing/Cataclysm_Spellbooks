@@ -221,6 +221,15 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe").toString()
                     ));
 
+    // Summoned Amethyst Crab
+    public static final RegistryObject<EntityType<SummonedAmethystCrab>> SUMMONED_AMETHYST_CRAB =
+            ENTITIES.register("summoned_amethyst_crab", () -> EntityType.Builder.<SummonedAmethystCrab>of
+                            (SummonedAmethystCrab::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_amethyst_crab").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

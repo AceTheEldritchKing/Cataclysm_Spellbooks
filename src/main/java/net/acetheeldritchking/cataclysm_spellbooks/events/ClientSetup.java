@@ -29,6 +29,7 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_WATCHER.get(), The_Watcher_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_COUNTERSPELL_WATCHER.get(), The_Watcher_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_PROWLER.get(), The_Prowler_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_AMETHYST_CRAB.get(), Amethyst_Crab_Renderer::new);
     }
 
     @SubscribeEvent

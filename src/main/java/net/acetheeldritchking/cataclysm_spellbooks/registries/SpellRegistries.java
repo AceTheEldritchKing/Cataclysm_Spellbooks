@@ -12,14 +12,8 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.evocation.PilferSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboletonSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ConjureThrallsSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.CursedRushSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.ForgoneRageSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.MalevolentBattlefieldSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.AmethystPunctureSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.DesertWindsSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.MonolithCrashSpell;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.SandstormSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -212,6 +206,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CURSED_RUSH = registerSpell(new CursedRushSpell());
 
     // Phantom Blade (Mini boss blade attack)
+    public static final RegistryObject<AbstractSpell> PHANTASMAL_BLADE = registerSpell(new PhantasmalBladeSpell());
 
     // Malicious Curse (Summons halberds that fall ontop of the target)
 
@@ -236,6 +231,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> AMETHYST_PUNCTURE = registerSpell(new AmethystPunctureSpell());
 
     // Summon Amethyst Crab (Summons The Crab:tm:, can ride it)
+    public static final RegistryObject<AbstractSpell> CONJURE_AMETHYST_CRAB = registerSpell(new ConjureAmethystCrabSpell());
 
 
     /***

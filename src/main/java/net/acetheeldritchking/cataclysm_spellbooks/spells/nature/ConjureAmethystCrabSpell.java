@@ -1,11 +1,11 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.holy;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.nature;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedKoboldiator;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAmethystCrab;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -20,28 +20,28 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 @AutoSpellConfig
-public class ConjureKoboldiatorSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "conjure_koboldiator");
+public class ConjureAmethystCrabSpell extends AbstractSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "conjure_amethyst_crab");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
-        return List.of(Component.translatable("ui.cataclysm_spellbooks.koboldiator_count", spellLevel));
+        return List.of(Component.translatable("ui.cataclysm_spellbooks.crab_count", spellLevel));
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
-            .setSchoolResource(SchoolRegistry.HOLY_RESOURCE)
+            .setSchoolResource(SchoolRegistry.NATURE_RESOURCE)
             .setMaxLevel(1)
             .setCooldownSeconds(200)
             .build();
 
-    public ConjureKoboldiatorSpell()
+    public ConjureAmethystCrabSpell()
     {
         this.manaCostPerLevel = 20;
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
         this.castTime = 80;
-        this.baseManaCost = 250;
+        this.baseManaCost = 200;
     }
 
     @Override
@@ -70,33 +70,31 @@ public class ConjureKoboldiatorSpell extends AbstractSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnKoboldiator(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnCrab(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
         }
 
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.KOBOLDIATOR_TIMER.get(),
+        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.CRAB_TIMER.get(),
                 summonTimer, 0, false, false, false);
         entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnKoboldiator(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnCrab(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.KOBOLDIATOR_TIMER.get(),
+        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.CRAB_TIMER.get(),
                 summonTimer, 0, false, false, false);
 
-        SummonedKoboldiator kobolediator = new SummonedKoboldiator(level, caster);
+        SummonedAmethystCrab amethystCrab  = new SummonedAmethystCrab(level, caster);
 
-        kobolediator.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(kobolediator.getOnPos()),
+        amethystCrab.finalizeSpawn((ServerLevelAccessor) level,
+                level.getCurrentDifficultyAt(amethystCrab.getOnPos()),
                 MobSpawnType.MOB_SUMMONED, null, null);
 
-        kobolediator.moveTo(x, y, z);
+        amethystCrab.moveTo(x, y, z);
 
-        kobolediator.setSleep(false);
+        amethystCrab.addEffect(effect);
 
-        kobolediator.addEffect(effect);
-
-        level.addFreshEntity(kobolediator);
+        level.addFreshEntity(amethystCrab);
     }
 }

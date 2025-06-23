@@ -80,6 +80,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> BASE_OVERCHARGED_EFFECT =
             MOB_EFFECTS.register("base_overcharged_effect", BaseOverchargedPotionEffect::new);
 
+    public static final RegistryObject<SummonTimer> CRAB_TIMER  =
+            MOB_EFFECTS.register("crab_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xfa87fa));
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

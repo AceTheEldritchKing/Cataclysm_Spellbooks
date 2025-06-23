@@ -14,6 +14,8 @@
     "effect.cataclysm_spellbooks.abyssal_gnawer_timer.description": "The amount of time an Abyssal Gnawer remains in the world.",
     "effect.cataclysm_spellbooks.wrathful_effect": "Wrathful",
     "effect.cataclysm_spellbooks.wrathful_effect.description": "The player is filled with wrath that increases their damage per hit.",
+    "effect.cataclysm_spellbooks.crab_timer": "Conjured Amethyst Crab",
+    "effect.cataclysm_spellbooks.crab_timer.description": "The amount of time an summoned Amethyst Crab remains in the world.",
     "effect.cataclysm_spellbooks.shutdown_effect": "Shutdown",
     "effect.cataclysm_spellbooks.shutdown_effect.description": "The player is unable to use items or attack, damaging them in the process.",
     "effect.cataclysm_spellbooks.rewired_effect": "Rewired",
@@ -207,6 +209,9 @@
     "spell.cataclysm_spellbooks.tectonic_tremble": "Tectonic Tremble",
     "spell.cataclysm_spellbooks.tectonic_tremble.guide": "Shake the earth, igniting nearby entites and knocking them back",
 
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab": "Conjure: Amethyst Crab",
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab.guide": "Conjure the mythical Amethyst Crab to fight by your side",
+
     "spell.cataclysm_spellbooks.laserbolt": "Laserbolt",
     "spell.cataclysm_spellbooks.laserbolt.guide": "Target an entity and shoot out a small laser bolt in their direction",
 
@@ -273,6 +278,9 @@
     "spell.cataclysm_spellbooks.reboot": "Reboot",
     "spell.cataclysm_spellbooks.reboot.guide": "Reboot your systems, healing yourself and nearby allies",
 
+    "spell.cataclysm_spellbooks.phantasmal_blade": "Phantasmal Blade",
+    "spell.cataclysm_spellbooks.phantasmal_blade.guide": "Slam your weapon in the ground, shooting out phantom axe blades around you",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -306,6 +314,8 @@
     "ui.cataclysm_spellbooks.thrall_count": "%d Summons",
     "ui.cataclysm_spellbooks.halberd_rush": "Spawns halberds at starting location and occasionally at end location",
     "ui.cataclysm_spellbooks.maledictus_armory_bonus": "Deals %d if Soul Render or Annihilator is held in the main hand",
+    "ui.cataclysm_spellbooks.crab_count": "%d Summons",
+    "ui.cataclysm_spellbooks.underwater_damage_bonus": "Deal bonus damage while underwater or in rain",
     "ui.cataclysm_spellbooks.watcher_count": "%d Summons",
     "ui.cataclysm_spellbooks.prowler_count": "%d Summons",
     "ui.cataclysm_spellbooks.forward_acceleration": "%d Forward acceleration",
@@ -314,6 +324,7 @@
     "ui.cataclysm_spellbooks.recast_bonus_damage": "%d Added damage (+1 damage per recast)",
     "ui.cataclysm_spellbooks.effect_percentage": "%d% Bonus To Overcharged stats",
     "ui.cataclysm_spellbooks.howitzer_crouching": "When crouching, summon Howitzers instead",
+    "ui.cataclysm_spellbooks.phantom_blades": "%d Phantom Blades",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -328,6 +339,7 @@
     "entity.cataclysm_spellbooks.summoned_royal_draugur": "Royal Draugur",
     "entity.cataclysm_spellbooks.summoned_elite_draugur": "Elite Draugur",
     "entity.cataclysm_spellbooks.summoned_aptrgangr": "Aptrgangr",
+    "entity.cataclysm_spellbooks.summoned_amethyst_crab": "Amethyst Crab",
     "entity.cataclysm_spellbooks.extended_laser_beam": "Laser Beam",
     "entity.cataclysm_spellbooks.summoned_watcher": "Watcher",
     "entity.cataclysm_spellbooks.summoned_prowler": "Prowler",
