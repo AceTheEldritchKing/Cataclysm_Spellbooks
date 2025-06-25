@@ -1,12 +1,15 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.holy;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
+import io.redspace.ironsspellbooks.api.spells.CastSource;
+import io.redspace.ironsspellbooks.api.spells.CastType;
+import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedKoboleton;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedCoralGolem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -20,22 +23,22 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 @AutoSpellConfig
-public class ConjureKoboletonSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summon_koboleton");
+public class ConjureCoralGolemSpell extends AbstractAbyssalSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "conjure_coral_golem");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
-        return List.of(Component.translatable("ui.cataclysm_spellbooks.koboleton_count", spellLevel));
+        return List.of(Component.translatable("ui.cataclysm_spellbooks.coral_golem_count", spellLevel));
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.RARE)
-            .setSchoolResource(SchoolRegistry.HOLY_RESOURCE)
+            .setSchoolResource(CSSchoolRegistry.ABYSSAL_RESOURCE)
             .setMaxLevel(5)
             .setCooldownSeconds(80)
             .build();
 
-    public ConjureKoboletonSpell()
+    public ConjureCoralGolemSpell()
     {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 5;
@@ -70,31 +73,31 @@ public class ConjureKoboletonSpell extends AbstractSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnKoboleton(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnCoralGolem(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
         }
 
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.KOBOLDETON_TIMER.get(),
+        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.CORAL_GOLEM_TIMER.get(),
                 summonTimer, 0, false, false, false);
         entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnKoboleton(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnCoralGolem(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.KOBOLDETON_TIMER.get(),
+        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.CORAL_GOLEM_TIMER.get(),
                 summonTimer, 0, false, false, false);
 
-        SummonedKoboleton koboleton = new SummonedKoboleton(level, caster);
+        SummonedCoralGolem coralGolem = new SummonedCoralGolem(level, caster);
 
-        koboleton.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(koboleton.getOnPos()),
+        coralGolem.finalizeSpawn((ServerLevelAccessor) level,
+                level.getCurrentDifficultyAt(coralGolem.getOnPos()),
                 MobSpawnType.MOB_SUMMONED, null, null);
 
-        koboleton.moveTo(x, y, z);
+        coralGolem.moveTo(x, y, z);
 
-        koboleton.addEffect(effect);
+        coralGolem.addEffect(effect);
 
-        level.addFreshEntity(koboleton);
+        level.addFreshEntity(coralGolem);
     }
 }

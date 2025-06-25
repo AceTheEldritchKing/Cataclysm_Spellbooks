@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.ice;
 
+import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
@@ -8,7 +9,10 @@ import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.network.chat.Component;
@@ -79,6 +83,11 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
     }
 
     @Override
+    public AnimationHolder getCastFinishAnimation() {
+        return AnimationHolder.pass();
+    }
+
+    @Override
     public Optional<SoundEvent> getCastStartSound() {
         return Optional.of(SoundEvents.WARDEN_HEARTBEAT);
     }
@@ -126,6 +135,8 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
         }
         //System.out.println("After cast");
+        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.ICE.get().getTargetingColor(), 6), entity.getX(), entity.getY() + 0.8F, entity.getZ(), 1, 0, 0, 0, 0, true);
+        ScreenShake_Entity.ScreenShake(level, entity.position(), 6.0F, 0.15F, 20, 20);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }

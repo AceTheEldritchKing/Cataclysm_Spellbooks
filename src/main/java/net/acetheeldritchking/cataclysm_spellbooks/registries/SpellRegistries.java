@@ -59,8 +59,10 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
 
     // Summon Coral Golem (Summons a few coral golem guys)
+    public static final RegistryObject<AbstractSpell> CONJURE_CORAL_GOLEM = registerSpell(new ConjureCoralGolemSpell());
 
     // Summon Corallusus (Summons a singular Corallusus for you to ride)
+    public static final RegistryObject<AbstractSpell> CONJURE_CORALSSUS = registerSpell(new ConjureCoralssusSpell());
 
     // Summon Lionfish Swarm (Summons a bunch of lionfish, can only be casted while in the water)
 
@@ -175,8 +177,10 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> TECTONIC_TREMBLE = registerSpell(new TectonicTrembleSpell());
 
     // Meteor Spew (Ejects Monstrosity big lava bomb)
+    public static final RegistryObject<AbstractSpell> METEOR_SPEW = registerSpell(new MeteorSpewSpell());
 
     // Comet Shower (Shoots out the Monstrosity little fire bombs)
+    public static final RegistryObject<AbstractSpell> COMET_SHOWER = registerSpell(new CometShowerSpell());
 
     // Avatar of Flame (Ignite yourself on fire, at half health you turn into soul fire and your fire spell power is increased but every other element is decreased. Prevents you from being placed on fire, all your attacks ignite opponents. Buffs to Ignis spells)
 
@@ -232,6 +236,12 @@ public class SpellRegistries {
 
     // Summon Amethyst Crab (Summons The Crab:tm:, can ride it)
     public static final RegistryObject<AbstractSpell> CONJURE_AMETHYST_CRAB = registerSpell(new ConjureAmethystCrabSpell());
+
+    // Pharaoh's Wrath (Every hit you take increases your wrath. At max wrath, all of your attacks inflict the Desert's Curse effect, and summons several sandstorms around you. You gain strong debuffs afterwards)
+
+    // Thoth's Witness (For less than a minute, summon the ghost of The Ancient Remnant to fight for you.)
+
+    // Diamond Storm (Rain down amethyst chunks around the caster. Radius scales with level)
 
 
     /***

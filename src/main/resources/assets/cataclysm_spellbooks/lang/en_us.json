@@ -281,6 +281,18 @@
     "spell.cataclysm_spellbooks.phantasmal_blade": "Phantasmal Blade",
     "spell.cataclysm_spellbooks.phantasmal_blade.guide": "Slam your weapon in the ground, shooting out phantom axe blades around you",
 
+    "spell.cataclysm_spellbooks.comet_shower": "Comet Shower",
+    "spell.cataclysm_spellbooks.comet_shower.guide": "Shower flare bombs from yourself, creating flare jets wherever they land",
+
+    "spell.cataclysm_spellbooks.meteor_spew": "Meteor Spew",
+    "spell.cataclysm_spellbooks.meteor_spew.guide": "Eject clumps of molten rock and lava in the direction you are looking in, spawning lava on impact",
+
+    "spell.cataclysm_spellbooks.conjure_coral_golem": "Conjure: Coral Golems",
+    "spell.cataclysm_spellbooks.conjure_coral_golem.guide": "Conjure a group of coral golems to fight by your side",
+
+    "spell.cataclysm_spellbooks.conjure_coralssus": "Conjure: Coralssus",
+    "spell.cataclysm_spellbooks.conjure_coralssus.guide": "Conjure a Coralssus to ride and fight by your side",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -325,6 +337,8 @@
     "ui.cataclysm_spellbooks.effect_percentage": "%d% Bonus To Overcharged stats",
     "ui.cataclysm_spellbooks.howitzer_crouching": "When crouching, summon Howitzers instead",
     "ui.cataclysm_spellbooks.phantom_blades": "%d Phantom Blades",
+    "ui.cataclysm_spellbooks.coral_golem_count": "%d Summons",
+    "ui.cataclysm_spellbooks.coralssus_count": "%d Summons",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -349,6 +363,8 @@
     "entity.cataclysm_spellbooks.surveillance_drone": "Surveillance Drone",
     "entity.cataclysm_spellbooks.disabling_swipe": "Disabling Swipe",
     "entity.cataclysm_spellbooks.no_man_zone_aoe": "No Man's Zone",
+    "entity.cataclysm_spellbooks.summoned_coral_golem": "Coral Golem",
+    "entity.cataclysm_spellbooks.summoned_coralssus": "Coralssus",
 
 
 

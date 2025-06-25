@@ -230,6 +230,24 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_amethyst_crab").toString()
                     ));
 
+    // Summoned Coral Golem
+    public static final RegistryObject<EntityType<SummonedCoralGolem>> SUMMONED_CORAL_GOLEM =
+            ENTITIES.register("summoned_coral_golem", () -> EntityType.Builder.<SummonedCoralGolem>of
+                            (SummonedCoralGolem::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_coral_golem").toString()
+                    ));
+
+    // Summoned Coralssus
+    public static final RegistryObject<EntityType<SummonedCoralssus>> SUMMONED_CORALSSUS =
+            ENTITIES.register("summoned_coralssus", () -> EntityType.Builder.<SummonedCoralssus>of
+                            (SummonedCoralssus::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_coralssus").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

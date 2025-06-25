@@ -26,5 +26,7 @@ public class ModSetup {
         event.put(CSEntityRegistry.SUMMONED_PROWLER.get(), SummonedProwler.the_prowler().build());
         event.put(CSEntityRegistry.SURVEILLANCE_DRONE.get(), SurveillanceDroneEntity.setAttributes());
         event.put(CSEntityRegistry.SUMMONED_AMETHYST_CRAB.get(), SummonedAmethystCrab.buildAttributes());
+        event.put(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), SummonedCoralGolem.buildAttributes());
+        event.put(CSEntityRegistry.SUMMONED_CORALSSUS.get(), SummonedCoralssus.buildAttributes());
     }
 }

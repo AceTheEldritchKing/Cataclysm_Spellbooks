@@ -83,6 +83,12 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> CRAB_TIMER  =
             MOB_EFFECTS.register("crab_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xfa87fa));
 
+    public static final RegistryObject<SummonTimer> CORAL_GOLEM_TIMER =
+            MOB_EFFECTS.register("coral_golem_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xf5ff76));
+
+    public static final RegistryObject<SummonTimer> CORALSSUS_TIMER =
+            MOB_EFFECTS.register("coralssus_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffea66));
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

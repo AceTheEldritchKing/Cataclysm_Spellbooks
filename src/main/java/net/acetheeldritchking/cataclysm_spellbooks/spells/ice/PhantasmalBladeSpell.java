@@ -138,7 +138,7 @@ public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
 
         for (int i = 0; i < spellLevel; i++)
         {
-            float angle = caster.yBodyRot + (i - ((float) spellLevel / 2)) * angleStep;
+            float angle = (caster.yBodyRot + (i - ((float) spellLevel / 2)) * angleStep);
 
             float rad = (float) Math.toRadians(angle);
             double dX = -Math.sin(rad);

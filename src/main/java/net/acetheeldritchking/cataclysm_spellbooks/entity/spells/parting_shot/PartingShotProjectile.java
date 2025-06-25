@@ -10,6 +10,7 @@ import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.NoManZoneAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.minecraft.core.BlockPos;
@@ -74,6 +75,11 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
     }
 
     @Override
+    public boolean isPushable() {
+        return false;
+    }
+
+    @Override
     public void tick() {
         Vec3 deltaMovement = getDeltaMovement();
         double distance = deltaMovement.horizontalDistance();
@@ -101,7 +107,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     @Override
     public float getSpeed() {
-        return 0.3F;
+        return 0.45F;
     }
 
     @Override
@@ -121,6 +127,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
         if (target instanceof LivingEntity livingTarget)
         {
             livingTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 0, true, true, true));
+            livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
         }
 
         if (!target.hurt(SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), this.getDamage()))
