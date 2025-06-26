@@ -10,6 +10,7 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
@@ -135,8 +136,18 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
         }
         //System.out.println("After cast");
+        EarthquakeAoe aoe = new EarthquakeAoe(level);
+        aoe.moveTo(entity.position());
+        aoe.setOwner(entity);
+        aoe.setCircular();
+        aoe.setRadius(6);
+        aoe.setDuration(20);
+        aoe.setDamage(0);
+        aoe.setSlownessAmplifier(0);
+
         MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.ICE.get().getTargetingColor(), 4), entity.getX(), entity.getY() + 0.8F, entity.getZ(), 1, 0, 0, 0, 0, true);
         ScreenShake_Entity.ScreenShake(level, entity.position(), 6.0F, 0.15F, 20, 20);
+        level.addFreshEntity(aoe);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }

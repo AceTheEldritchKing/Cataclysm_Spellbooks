@@ -79,7 +79,7 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.KOBOLDIATOR_TIMER.get());
+        this.onRemovedHelper(this, CSPotionEffectRegistry.REMNANT_TIMER.get());
         super.onRemovedFromWorld();
     }
 

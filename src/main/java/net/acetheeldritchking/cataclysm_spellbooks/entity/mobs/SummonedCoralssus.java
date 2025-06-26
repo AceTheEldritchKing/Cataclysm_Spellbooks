@@ -86,7 +86,7 @@ public class SummonedCoralssus extends Coralssus_Entity implements MagicSummon {
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.DRAUGUR_TIMER.get());
+        this.onRemovedHelper(this, CSPotionEffectRegistry.CORALSSUS_TIMER.get());
         super.onRemovedFromWorld();
     }
 

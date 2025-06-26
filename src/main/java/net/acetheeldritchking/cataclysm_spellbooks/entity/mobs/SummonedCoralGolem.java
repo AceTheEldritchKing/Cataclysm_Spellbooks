@@ -83,7 +83,7 @@ public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummo
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.DRAUGUR_TIMER.get());
+        this.onRemovedHelper(this, CSPotionEffectRegistry.CORAL_GOLEM_TIMER.get());
         super.onRemovedFromWorld();
     }
 

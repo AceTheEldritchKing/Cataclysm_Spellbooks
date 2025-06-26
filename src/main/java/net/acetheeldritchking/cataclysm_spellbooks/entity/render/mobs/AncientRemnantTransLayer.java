@@ -23,7 +23,7 @@ public class AncientRemnantTransLayer extends RenderLayer<Ancient_Remnant_Entity
     }
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Ancient_Remnant_Entity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        RenderType translucent = RenderType.entityTranslucent(LAYER_TEXTURES, false);
+        RenderType translucent = RenderType.entityTranslucentEmissive(LAYER_TEXTURES, false);
         VertexConsumer VertexConsumer = bufferIn.getBuffer(translucent);
         (this.getParentModel()).renderToBuffer(matrixStackIn, VertexConsumer, packedLightIn, OverlayTexture.NO_OVERLAY, 0.5F, 0.7F, 0.9F, 0.4F);
     }
