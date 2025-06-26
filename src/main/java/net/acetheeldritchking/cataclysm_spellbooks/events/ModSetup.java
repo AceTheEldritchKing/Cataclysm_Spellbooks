@@ -28,5 +28,6 @@ public class ModSetup {
         event.put(CSEntityRegistry.SUMMONED_AMETHYST_CRAB.get(), SummonedAmethystCrab.buildAttributes());
         event.put(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), SummonedCoralGolem.buildAttributes());
         event.put(CSEntityRegistry.SUMMONED_CORALSSUS.get(), SummonedCoralssus.buildAttributes());
+        event.put(CSEntityRegistry.PHANTOM_ANCIENT_REMNANT.get(), PhantomAncientRemnant.maledictus().build());
     }
 }

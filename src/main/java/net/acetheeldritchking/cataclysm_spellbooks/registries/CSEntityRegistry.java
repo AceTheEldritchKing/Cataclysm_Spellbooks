@@ -248,6 +248,15 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_coralssus").toString()
                     ));
 
+    // Phantom Ancient Remnant
+    public static final RegistryObject<EntityType<PhantomAncientRemnant>> PHANTOM_ANCIENT_REMNANT =
+            ENTITIES.register("phantom_ancient_remnant", () -> EntityType.Builder.<PhantomAncientRemnant>of
+                            (PhantomAncientRemnant::new, MobCategory.MONSTER).
+                    sized(5f, 5f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "phantom_ancient_remnant").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

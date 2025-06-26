@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 
 import com.github.L_Ender.cataclysm.client.render.entity.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.PhantomAncientRemnantRenderer;
 import net.acetheeldritchking.cataclysm_spellbooks.particle.TargetParticle;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSParticleRegistry;
@@ -32,6 +33,7 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_AMETHYST_CRAB.get(), Amethyst_Crab_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), Coral_Golem_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CORALSSUS.get(), Coralssus_Renderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.PHANTOM_ANCIENT_REMNANT.get(), PhantomAncientRemnantRenderer::new);
     }
 
     @SubscribeEvent

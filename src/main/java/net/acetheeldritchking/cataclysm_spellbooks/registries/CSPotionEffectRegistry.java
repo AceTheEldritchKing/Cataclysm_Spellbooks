@@ -89,6 +89,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> CORALSSUS_TIMER =
             MOB_EFFECTS.register("coralssus_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffea66));
 
+    public static final RegistryObject<SummonTimer> REMNANT_TIMER =
+            MOB_EFFECTS.register("remnant_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffcd31));
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

@@ -293,6 +293,9 @@
     "spell.cataclysm_spellbooks.conjure_coralssus": "Conjure: Coralssus",
     "spell.cataclysm_spellbooks.conjure_coralssus.guide": "Conjure a Coralssus to ride and fight by your side",
 
+    "spell.cataclysm_spellbooks.thoths_witness": "Thoth's Witness",
+    "spell.cataclysm_spellbooks.thoths_witness.guide": "With the blessing of Thoth, call forth the spirit of The Ancient Remnant to fight by your side briefly",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -339,6 +342,7 @@
     "ui.cataclysm_spellbooks.phantom_blades": "%d Phantom Blades",
     "ui.cataclysm_spellbooks.coral_golem_count": "%d Summons",
     "ui.cataclysm_spellbooks.coralssus_count": "%d Summons",
+    "ui.cataclysm_spellbooks.remnant_count": "%d Spirits of The Remnant",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -365,6 +369,7 @@
     "entity.cataclysm_spellbooks.no_man_zone_aoe": "No Man's Zone",
     "entity.cataclysm_spellbooks.summoned_coral_golem": "Coral Golem",
     "entity.cataclysm_spellbooks.summoned_coralssus": "Coralssus",
+    "entity.cataclysm_spellbooks.phantom_ancient_remnant": "Phantom Remnant",
 
 
 

@@ -12,6 +12,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.evocation.PilferSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.fire.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboldiatorSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ConjureKoboletonSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.holy.ThothsWitnessSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ice.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.nature.*;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.*;
@@ -143,6 +144,9 @@ public class SpellRegistries {
     // Summon Koboleton (Summon Koboletons)
     public static final RegistryObject<AbstractSpell> CONJURE_KOBOLETON = registerSpell(new ConjureKoboletonSpell());
 
+    // Thoth's Witness (For less than a minute, summon the ghost of The Ancient Remnant to fight for you.)
+    public static final RegistryObject<AbstractSpell> THOTHS_WITNESS = registerSpell(new ThothsWitnessSpell());
+
 
     /***
      * Fire
@@ -238,8 +242,6 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CONJURE_AMETHYST_CRAB = registerSpell(new ConjureAmethystCrabSpell());
 
     // Pharaoh's Wrath (Every hit you take increases your wrath. At max wrath, all of your attacks inflict the Desert's Curse effect, and summons several sandstorms around you. You gain strong debuffs afterwards)
-
-    // Thoth's Witness (For less than a minute, summon the ghost of The Ancient Remnant to fight for you.)
 
     // Diamond Storm (Rain down amethyst chunks around the caster. Radius scales with level)
 
