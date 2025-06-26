@@ -8,19 +8,24 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -28,6 +33,7 @@ import java.util.UUID;
 public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements MagicSummon {
     protected LivingEntity cachedSummoner;
     protected UUID summonerUUID;
+    protected int ticksToLive = 900;
 
     public PhantomAncientRemnant(EntityType entity, Level world) {
         super(entity, world);
@@ -119,16 +125,123 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
         }
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+
+        ticksToLive--;
+
+        //System.out.println("Ticks to live: " + ticksToLive);
+
+        if (ticksToLive <= 0)
+        {
+            this.kill();
+        }
+    }
+
+    // Rideable
+    @Override
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        if (pPlayer == getSummoner())
+        {
+            pPlayer.startRiding(this);
+            return InteractionResult.SUCCESS;
+        }
+        return super.mobInteract(pPlayer, pHand);
+    }
+
+    @Override
+    protected boolean canRide(Entity p_31508_) {
+        return true;
+    }
+
+    @Override
+    public boolean isVehicle() {
+        return true;
+    }
+
+    public boolean canBeControlledByRider()
+    {
+        return this.getControllingPassenger() instanceof LivingEntity;
+    }
+
+    @Override
+    public LivingEntity getControllingPassenger() {
+        return (LivingEntity) this.getFirstPassenger();
+    }
+
+    public void travel(Vec3 pTravelVector) {
+        if (this.isAlive()) {
+            if (this.isVehicle() && this.canBeControlledByRider()) {
+                LivingEntity livingentity = this.getControllingPassenger();
+                this.setYRot(livingentity.getYRot());
+                this.yRotO = this.getYRot();
+                this.setXRot(livingentity.getXRot() * 0.5F);
+                this.setRot(this.getYRot(), this.getXRot());
+                this.yBodyRot = this.getYRot();
+                this.yHeadRot = this.yBodyRot;
+                float f = livingentity.xxa * 0.5F;
+                float f1 = livingentity.zza;
+                if (f1 <= 0.0F) {
+                    f1 *= 0.25F;
+                }
+
+                if (this.isControlledByLocalInstance()) {
+                    this.setSpeed((float)this.getAttributeValue(Attributes.MOVEMENT_SPEED));
+                    super.travel(new Vec3(f, pTravelVector.y, f1));
+                } else if (livingentity instanceof Player) {
+                    this.setDeltaMovement(Vec3.ZERO);
+                }
+
+                this.tryCheckInsideBlocks();
+            } else {
+                super.travel(pTravelVector);
+            }
+        }
+    }
+
+    @Override
+    public Vec3 getDismountLocationForPassenger(LivingEntity pLivingEntity) {
+        Direction direction = this.getMotionDirection();
+        if (direction.getAxis() == Direction.Axis.Y) {
+            return super.getDismountLocationForPassenger(pLivingEntity);
+        } else {
+            int[][] aint = DismountHelper.offsetsForDirection(direction);
+            BlockPos blockpos = this.blockPosition();
+            BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+
+            for (Pose pose : pLivingEntity.getDismountPoses()) {
+                AABB axisalignedbb = pLivingEntity.getLocalBoundsForPose(pose);
+
+                for (int[] aint1 : aint) {
+                    blockpos$mutable.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
+                    double d0 = this.level.getBlockFloorHeight(blockpos$mutable);
+                    if (DismountHelper.isBlockFloorValid(d0)) {
+                        Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutable, d0);
+                        if (DismountHelper.canDismountTo(this.level, pLivingEntity, axisalignedbb.move(vec3))) {
+                            pLivingEntity.setPose(pose);
+                            return vec3;
+                        }
+                    }
+                }
+            }
+
+            return super.getDismountLocationForPassenger(pLivingEntity);
+        }
+    }
+
     // NBT
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
+        this.ticksToLive = pCompound.getInt("Ticks to live");
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         OwnerHelper.serializeOwner(pCompound, summonerUUID);
+        pCompound.putInt("Ticks to live", this.ticksToLive);
     }
 }

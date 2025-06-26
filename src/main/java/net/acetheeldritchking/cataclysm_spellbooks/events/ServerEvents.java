@@ -14,6 +14,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.*;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.PhantomAncientRemnant;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -301,6 +302,16 @@ public class ServerEvents {
                     });
                     //System.out.println("Poof!");
                 }
+            }
+        }
+
+        if (entity instanceof PhantomAncientRemnant phantomAncientRemnant)
+        {
+            if (effect instanceof RemnantTimerPotionEffect)
+            {
+                phantomAncientRemnant.onRemovedHelper(phantomAncientRemnant, CSPotionEffectRegistry.REMNANT_TIMER.get());
+
+                phantomAncientRemnant.kill();
             }
         }
     }

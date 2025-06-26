@@ -90,7 +90,7 @@ public class CSPotionEffectRegistry {
             MOB_EFFECTS.register("coralssus_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffea66));
 
     public static final RegistryObject<SummonTimer> REMNANT_TIMER =
-            MOB_EFFECTS.register("remnant_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffcd31));
+            MOB_EFFECTS.register("remnant_timer", RemnantTimerPotionEffect::new);
 
     public static void register(IEventBus eventBus)
     {

@@ -162,7 +162,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
             float particleRadius2 = 2.25f;
             for (int i = 0; i < count; i++) {
                 double x, z;
-                double theta = Math.toRadians((double) 360 / count) * i;
+                double theta = Math.toRadians((double) 360 / count2) * i;
                 x = Math.cos(theta) * particleRadius2;
                 z = Math.sin(theta) * particleRadius2;
                 MagicManager.spawnParticles(entity.level, ModParticle.SANDSTORM.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
@@ -173,7 +173,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
             float particleRadius3 = 3.25f;
             for (int i = 0; i < count; i++) {
                 double x, z;
-                double theta = Math.toRadians((double) 360 / count) * i;
+                double theta = Math.toRadians((double) 360 / count3) * i;
                 x = Math.cos(theta) * particleRadius3;
                 z = Math.sin(theta) * particleRadius3;
                 MagicManager.spawnParticles(entity.level, ModParticle.SANDSTORM.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
@@ -191,7 +191,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         // Only is around for 45 seconds
-        int summonTimer = 20 * 45;
+        int summonTimer = 900;
 
         Vec3 vec = entity.getEyePosition();
 
@@ -201,19 +201,23 @@ public class ThothsWitnessSpell extends AbstractSpell {
         summonPhantomRemnant(randomNearbyX, entity.getY(), randomNearbyZ, entity, level, summonTimer);
 
         MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.REMNANT_TIMER.get(),
-                summonTimer, 0, false, false, false);
+                summonTimer, 1, false, false, true);
         entity.addEffect(effect);
 
         MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 6), entity.getX(), entity.getY() + 0.8F, entity.getZ(), 1, 0, 0, 0, 0, true);
         ScreenShake_Entity.ScreenShake(level, entity.position(), 6.0F, 0.15F, 20, 20);
+
+        //System.out.println("Effect duration: " + effect.getDuration());
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
     private void summonPhantomRemnant(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
     {
+        int summonTimer2 = 20 * 5;
+
         MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.REMNANT_TIMER.get(),
-                summonTimer, 0, false, false, false);
+                summonTimer2, 1, false, false, true);
 
         PhantomAncientRemnant ancientRemnant = new PhantomAncientRemnant(level, caster);
 
@@ -224,8 +228,6 @@ public class ThothsWitnessSpell extends AbstractSpell {
         ancientRemnant.moveTo(x, y, z);
 
         ancientRemnant.setSleep(false);
-
-        ancientRemnant.addEffect(effect);
 
         // Just for visuals
         EarthquakeAoe aoe = new EarthquakeAoe(level);
@@ -240,5 +242,9 @@ public class ThothsWitnessSpell extends AbstractSpell {
         level.addFreshEntity(aoe);
 
         level.addFreshEntity(ancientRemnant);
+
+        ancientRemnant.addEffect(effect);
+
+        //System.out.println("Effect?" + ancientRemnant.getActiveEffects());
     }
 }
