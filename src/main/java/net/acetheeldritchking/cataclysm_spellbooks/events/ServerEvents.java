@@ -11,6 +11,8 @@ import io.redspace.ironsspellbooks.effect.ChargeEffect;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.capabilities.pharaohs_wrath.PlayerKingWrath;
+import net.acetheeldritchking.cataclysm_spellbooks.capabilities.pharaohs_wrath.PlayerKingWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.*;
@@ -152,6 +154,42 @@ public class ServerEvents {
                     float baseDamage = event.getAmount();
 
                     event.setAmount(baseDamage / 2);
+                }
+            }
+        }
+
+        // King's Wrath
+        if (entity instanceof LivingEntity attacker)
+        {
+            if (attacker.hasEffect(CSPotionEffectRegistry.KINGS_WRATH_EFFECT.get()))
+            {
+                if (attacker instanceof Player player)
+                {
+                    player.getCapability(PlayerKingWrathProvider.PLAYER_KINGS_WRATH).ifPresent(kings_wrath -> {
+                        //wrath.addWrath(1);
+
+                        float baseAmount = event.getAmount();
+                        float damageBonusPerLevel = WrathfulPotionEffect.ATTACK_DAMAGE_PER_WRATH * kings_wrath.getWrath();
+                        float bonusDamage = baseAmount * damageBonusPerLevel;
+                        float totalDamage = baseAmount + bonusDamage;
+
+                        //System.out.println("Wrath (on hit): " + kings_wrath.getWrath());
+                        event.setAmount(totalDamage);
+                        //System.out.println("Damage: " + totalDamage);
+
+                        if (target instanceof LivingEntity livingTarget)
+                        {
+                            livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTCURSE_OF_DESERT.get(), 100, 0, true, true, true));
+
+                            // Do this at max wrath
+                            if (kings_wrath.getWrath() == 4)
+                            {
+                                livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 60, 0, true, true, true));
+                            }
+                        }
+                    });
+
+                    player.level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.REMNANT_CHARGE_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
@@ -305,13 +343,24 @@ public class ServerEvents {
             }
         }
 
-        if (entity instanceof PhantomAncientRemnant phantomAncientRemnant)
+        // King's Wrath
+        if (entity instanceof LivingEntity livingEntity)
         {
-            if (effect instanceof RemnantTimerPotionEffect)
+            if (effect instanceof KingsWrathPotionEffect)
             {
-                phantomAncientRemnant.onRemovedHelper(phantomAncientRemnant, CSPotionEffectRegistry.REMNANT_TIMER.get());
+                if (livingEntity.hasEffect(effect) && livingEntity instanceof Player player)
+                {
+                    player.getCapability(PlayerKingWrathProvider.PLAYER_KINGS_WRATH).ifPresent(kings_wrath -> {
 
-                phantomAncientRemnant.kill();
+                        player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60, 1, false, false, false));
+                        player.addEffect(new MobEffectInstance(ModEffect.EFFECTCURSE_OF_DESERT.get(), 10*20, 1 + kings_wrath.getWrath(), false, true, true));
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10*20, 1 + kings_wrath.getWrath(), false, true, true));
+
+                        kings_wrath.resetWrath();
+                    });
+
+                    //System.out.println("Poof!");
+                }
             }
         }
     }
@@ -348,6 +397,24 @@ public class ServerEvents {
                 {
                     //System.out.println("Potion Effect!");
                     CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level, 5, 1);
+                }
+            }
+
+            // King's Wrath
+            if (effect instanceof KingsWrathPotionEffect)
+            {
+                if (livingEntity.hasEffect(effect) && livingEntity instanceof Player player)
+                {
+                    player.getCapability(PlayerKingWrathProvider.PLAYER_KINGS_WRATH).ifPresent(kings_wrath -> {
+
+                        player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60, 1, false, false, false));
+                        player.addEffect(new MobEffectInstance(ModEffect.EFFECTCURSE_OF_DESERT.get(), 10*20, 1 + kings_wrath.getWrath(), false, true, true));
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 10*20, 1 + kings_wrath.getWrath(), false, true, true));
+
+                        kings_wrath.resetWrath();
+                    });
+
+                    //System.out.println("Poof!");
                 }
             }
         }
@@ -394,6 +461,22 @@ public class ServerEvents {
             {
                 livingEntity.removeEffect(CSPotionEffectRegistry.HARDWARE_UPDATE_EFFECT.get());
                 livingEntity.removeEffect(CSPotionEffectRegistry.SOFTWARE_UPDATE_EFFECT.get());
+            }
+        }
+
+        if (effect instanceof WrathfulPotionEffect)
+        {
+            if (entity instanceof LivingEntity livingEntity)
+            {
+                livingEntity.removeEffect(CSPotionEffectRegistry.KINGS_WRATH_EFFECT.get());
+            }
+        }
+
+        if (effect instanceof KingsWrathPotionEffect)
+        {
+            if (entity instanceof LivingEntity livingEntity)
+            {
+                livingEntity.removeEffect(CSPotionEffectRegistry.WRATHFUL.get());
             }
         }
     }
@@ -477,6 +560,22 @@ public class ServerEvents {
                 }
             }
         }
+
+        // King's Wrath
+        if (entity instanceof LivingEntity livingTarget)
+        {
+            if (livingTarget.hasEffect(CSPotionEffectRegistry.KINGS_WRATH_EFFECT.get()))
+            {
+                if (livingTarget instanceof Player player)
+                {
+                    player.getCapability(PlayerKingWrathProvider.PLAYER_KINGS_WRATH).ifPresent(kings_wrath -> {
+
+                        kings_wrath.addWrath(1);
+                        //System.out.println("Wrath: " + kings_wrath.getWrath());
+                    });
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -554,6 +653,12 @@ public class ServerEvents {
             {
                 event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "wrath"), new PlayerWrathProvider());
             }
+
+            // King's Wrath
+            if (!event.getObject().getCapability(PlayerKingWrathProvider.PLAYER_KINGS_WRATH).isPresent())
+            {
+                event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "kings_wrath"), new PlayerKingWrathProvider());
+            }
         }
     }
 
@@ -561,5 +666,6 @@ public class ServerEvents {
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event)
     {
         event.register(PlayerWrath.class);
+        event.register(PlayerKingWrath.class);
     }
 }

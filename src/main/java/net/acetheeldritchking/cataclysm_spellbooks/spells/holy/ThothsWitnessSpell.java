@@ -12,21 +12,19 @@ import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
-import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.PhantomAncientRemnant;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedKoboldiator;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
-import net.minecraft.core.BlockPos;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
@@ -52,7 +50,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
             .setSchoolResource(SchoolRegistry.HOLY_RESOURCE)
             .setMaxLevel(1)
             // 600 secs
-            .setCooldownSeconds(5)
+            .setCooldownSeconds(600)
             .build();
 
     public ThothsWitnessSpell()
@@ -61,7 +59,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
         this.castTime = 100;
-        this.baseManaCost = 450;
+        this.baseManaCost = 650;
     }
 
     @Override
@@ -77,6 +75,24 @@ public class ThothsWitnessSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.LONG;
+    }
+
+    @Override
+    public CastResult canBeCastedBy(int spellLevel, CastSource castSource, MagicData playerMagicData, Player player) {
+        if (castSource == CastSource.SCROLL)
+        {
+            return new CastResult(CastResult.Type.FAILURE, Component.translatable("ui.cataclysm_spellbooks.thoths_witness_scroll_failure", new Object[]{this.getDisplayName(player)}).withStyle(ChatFormatting.RED));
+        }
+        if (
+                !player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistries.PHARAOH_MAGE_HELMET.get())
+                && !player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.PHARAOH_MAGE_CHESTPLATE.get())
+                && !player.getItemBySlot(EquipmentSlot.LEGS).is(ItemRegistries.PHARAOH_MAGE_LEGGINGS.get())
+                && !player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistries.PHARAOH_MAGE_BOOTS.get())
+        )
+        {
+            return new CastResult(CastResult.Type.FAILURE, Component.translatable("ui.cataclysm_spellbooks.thoths_witness_armor_failure", new Object[]{this.getDisplayName(player)}).withStyle(ChatFormatting.RED));
+        }
+        return super.canBeCastedBy(spellLevel, castSource, playerMagicData, player);
     }
 
     @Override
@@ -191,7 +207,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         // Only is around for 45 seconds
-        int summonTimer = 900;
+        int summonTimer = 1200;
 
         Vec3 vec = entity.getEyePosition();
 

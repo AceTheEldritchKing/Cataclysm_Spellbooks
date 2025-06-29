@@ -92,6 +92,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> REMNANT_TIMER =
             MOB_EFFECTS.register("remnant_timer", RemnantTimerPotionEffect::new);
 
+    public static final RegistryObject<MobEffect> KINGS_WRATH_EFFECT =
+            MOB_EFFECTS.register("kings_wrath", KingsWrathPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

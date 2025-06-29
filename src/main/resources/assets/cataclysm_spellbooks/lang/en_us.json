@@ -296,6 +296,9 @@
     "spell.cataclysm_spellbooks.thoths_witness": "Thoth's Witness",
     "spell.cataclysm_spellbooks.thoths_witness.guide": "With the blessing of Thoth, call forth the spirit of The Ancient Remnant to fight by your side briefly",
 
+    "spell.cataclysm_spellbooks.pharaohs_wrath": "Pharaoh's Wrath",
+    "spell.cataclysm_spellbooks.pharaohs_wrath.guide": "Fill yourself with a heated rage that increases your damage and spell power as you take hits. You are weakened afterwards once your wrath ends",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -322,7 +325,7 @@
     "ui.cataclysm_spellbooks.halberd_rings": "%d rings",
     "ui.cataclysm_spellbooks.halberd_amount": "%d halberds per ring",
     "ui.cataclysm_spellbooks.soul_render_damage": "Deals %d if Soul Render is held in the main hand",
-    "ui.cataclysm_spellbooks.forgone_rage_strikes": "Each consecutive strike increases damage by 20%, maxing out at four strikes ",
+    "ui.cataclysm_spellbooks.forgone_rage_strikes": "Each consecutive strike increases damage by 20%, maxing out at four strikes",
     "ui.cataclysm_spellbooks.pilfer_priority": "Prioritizes offhand items before mainhand items to be stolen",
     "ui.cataclysm_spellbooks.koboleton_count": "%d Summons",
     "ui.cataclysm_spellbooks.koboldiator_count": "%d Summons",
@@ -343,6 +346,10 @@
     "ui.cataclysm_spellbooks.coral_golem_count": "%d Summons",
     "ui.cataclysm_spellbooks.coralssus_count": "%d Summons",
     "ui.cataclysm_spellbooks.remnant_count": "%d Spirits of The Remnant",
+    "ui.cataclysm_spellbooks.kings_wrath_strikes": "Each consecutive hit taken increases damage by 20% and spell power by 5%, maxing out at four hits",
+    "ui.cataclysm_spellbooks.thoths_witness_scroll_failure": "Thoth will not allow you to cast this from a measly scroll",
+    "ui.cataclysm_spellbooks.thoths_witness_armor_failure": "You lack the required armory to receive Thoth's miracle; adorn yourself with the pharaoh's armor",
+    "ui.cataclysm_spellbooks.quake_damage": "%d Earthquake damage",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

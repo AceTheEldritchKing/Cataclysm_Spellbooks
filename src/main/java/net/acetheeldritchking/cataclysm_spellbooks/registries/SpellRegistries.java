@@ -242,6 +242,7 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> CONJURE_AMETHYST_CRAB = registerSpell(new ConjureAmethystCrabSpell());
 
     // Pharaoh's Wrath (Every hit you take increases your wrath. At max wrath, all of your attacks inflict the Desert's Curse effect, and summons several sandstorms around you. You gain strong debuffs afterwards)
+    public static final RegistryObject<AbstractSpell> PHARAOHS_WRATH = registerSpell(new PharaohsWrathSpell());
 
     // Diamond Storm (Rain down amethyst chunks around the caster. Radius scales with level)
 

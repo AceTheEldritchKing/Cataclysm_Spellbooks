@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.ice;
 
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
+import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
@@ -85,7 +86,7 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
 
     @Override
     public AnimationHolder getCastFinishAnimation() {
-        return AnimationHolder.pass();
+        return SpellAnimations.SPIT_FINISH_ANIMATION;
     }
 
     @Override
@@ -117,6 +118,47 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
         entity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, getCastTime(spellLevel), 1, false, false, false));
 
         super.onServerPreCast(level, spellLevel, entity, playerMagicData);
+    }
+
+    @Override
+    public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
+        if (entity.tickCount % 10 == 0)
+        {
+            // ring 1
+            int count = 16;
+            float particleRadius = 1.25f;
+            for (int i = 0; i < count; i++) {
+                double x, z;
+                double theta = Math.toRadians((double) 360 / count) * i;
+                x = Math.cos(theta) * particleRadius;
+                z = Math.sin(theta) * particleRadius;
+                MagicManager.spawnParticles(entity.level, ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+            }
+
+            // ring 2
+            int count2 = 16;
+            float particleRadius2 = 3.25f;
+            for (int i = 0; i < count; i++) {
+                double x, z;
+                double theta = Math.toRadians((double) 360 / count2) * i;
+                x = Math.cos(theta) * particleRadius2;
+                z = Math.sin(theta) * particleRadius2;
+                MagicManager.spawnParticles(entity.level, ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+            }
+
+            // ring 3
+            int count3 = 16;
+            float particleRadius3 = 5.25f;
+            for (int i = 0; i < count; i++) {
+                double x, z;
+                double theta = Math.toRadians((double) 360 / count3) * i;
+                x = Math.cos(theta) * particleRadius3;
+                z = Math.sin(theta) * particleRadius3;
+                MagicManager.spawnParticles(entity.level, ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+            }
+        }
+
+        super.onServerCastTick(level, spellLevel, entity, playerMagicData);
     }
 
     @Override

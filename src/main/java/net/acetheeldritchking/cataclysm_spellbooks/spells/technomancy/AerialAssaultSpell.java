@@ -1,6 +1,5 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
-import com.github.L_Ender.cataclysm.entity.projectile.Wither_Howitzer_Entity;
 import com.github.L_Ender.cataclysm.entity.projectile.Wither_Missile_Entity;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
@@ -30,7 +29,8 @@ public class AerialAssaultSpell extends AbstractSpell {
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
-        return List.of(Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
+        return List.of(
+                Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
                 Component.translatable("ui.irons_spellbooks.radius", Utils.stringTruncation(getRadius(spellLevel, caster), 1))
         );
     }
@@ -93,13 +93,13 @@ public class AerialAssaultSpell extends AbstractSpell {
         {
             if (playerMagicData.getAdditionalCastData() instanceof TargetAreaCastData targetAreaCastData)
             {
+                float radius = getRadius(spellLevel, entity);
+                Vec3 center = targetAreaCastData.getCenter();
+                Vec3 spawn = center.add(new Vec3(0, entity.getY(), entity.getRandom().nextFloat() * radius).yRot(entity.getRandom().nextInt(360)));
+                spawn = raiseWithCollision(spawn, 12, level);
+
                 for (int i = 0; i < spellLevel; i++)
                 {
-                    Vec3 center = targetAreaCastData.getCenter();
-                    float radius = getRadius(spellLevel, entity);
-                    Vec3 spawn = center.add(new Vec3(0, entity.getY(), entity.getRandom().nextFloat() * radius).yRot(entity.getRandom().nextInt(360)));
-                    spawn = raiseWithCollision(spawn, 12, level);
-
                     shootMissiles(level, entity, spellLevel, spawn);
                 }
             }
@@ -135,6 +135,11 @@ public class AerialAssaultSpell extends AbstractSpell {
     private float getDamage(int spellLevel, LivingEntity entity)
     {
         return getSpellPower(spellLevel, entity) * 0.5f;
+    }
+
+    private float getQuakeDamage(int spellLevel, LivingEntity entity)
+    {
+        return getSpellPower(spellLevel, entity) * 0.25f;
     }
 
     private float getRadius(int spellLevel, LivingEntity caster)

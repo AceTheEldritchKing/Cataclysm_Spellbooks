@@ -17,8 +17,9 @@ public class DesertSpellBook extends UniqueSpellBook {
                 new SpellDataRegistryHolder(SpellRegistries.MONOLITH_CRASH, 5),
                 new SpellDataRegistryHolder(SpellRegistries.DESERT_WINDS, 3),
                 new SpellDataRegistryHolder(SpellRegistries.SANDSTORM, 3),
-                new SpellDataRegistryHolder(SpellRegistries.THOTHS_WITNESS, 1)
-        ), 6, () -> {
+                new SpellDataRegistryHolder(SpellRegistries.THOTHS_WITNESS, 1),
+                new SpellDataRegistryHolder(SpellRegistries.PHARAOHS_WRATH, 3)
+        ), 5, () -> {
             ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
             // Nature Spell Power
             builder.put(AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 0.20D, AttributeModifier.Operation.MULTIPLY_BASE));

@@ -33,7 +33,7 @@ import java.util.UUID;
 public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements MagicSummon {
     protected LivingEntity cachedSummoner;
     protected UUID summonerUUID;
-    protected int ticksToLive = 900;
+    protected int ticksToLive = 1200;
 
     public PhantomAncientRemnant(EntityType entity, Level world) {
         super(entity, world);
