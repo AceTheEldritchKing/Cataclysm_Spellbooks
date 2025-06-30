@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "crc"
+  ],
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "cataclysm_spellbooks:technomancy_rune"
+    }
+  },
+  "result": {
+    "item": "cataclysm_spellbooks:engineer_hood",
+    "count": 1
+  }
+}

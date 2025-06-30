@@ -2,15 +2,15 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "cac",
-        " l ",
-        " l "
+        " s ",
+        " s "
     ],
     "key": {
         "c": {
             "item": "cataclysm:amethyst_crab_shell"
         },
-        "l": {
-            "item": "cataclysm:lionfish_spike"
+        "s": {
+            "item": "minecraft:stone"
         },
         "a": {
             "tag": "forge:gems/amethyst"

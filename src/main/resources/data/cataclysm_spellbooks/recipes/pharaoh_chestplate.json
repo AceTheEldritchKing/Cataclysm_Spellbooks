@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ara",
+    "bcb",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "irons_spellbooks:nature_rune"
+    },
+    "a": {
+      "item": "cataclysm:ancient_metal_ingot"
+    },
+    "b": {
+      "item": "cataclysm:koboleton_bone"
+    }
+  },
+  "result": {
+    "item": "cataclysm_spellbooks:pharaoh_chestplate",
+    "count": 1
+  }
+}

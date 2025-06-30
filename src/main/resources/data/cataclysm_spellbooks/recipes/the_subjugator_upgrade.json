@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "cataclysm_spellbooks:gauntlet_of_power"
+    },
+    "addition": {
+        "item": "cataclysm:laser_gatling"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:gauntlet_of_gattling"
+    }
+}

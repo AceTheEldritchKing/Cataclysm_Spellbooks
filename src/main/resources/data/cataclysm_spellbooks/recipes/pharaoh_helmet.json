@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "csc",
+    "crc"
+  ],
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "irons_spellbooks:nature_rune"
+    },
+    "s": {
+      "item": "cataclysm:kobolediator_skull"
+    }
+  },
+  "result": {
+    "item": "cataclysm_spellbooks:pharaoh_helmet",
+    "count": 1
+  }
+}

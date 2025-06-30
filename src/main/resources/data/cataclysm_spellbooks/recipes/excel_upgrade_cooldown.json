@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "sss",
+        "sus",
+        "sss"
+    ],
+    "key": {
+        "s": {
+            "item": "cataclysm_spellbooks:mechanical_scrap"
+        },
+        "u": {
+            "item": "irons_spellbooks:upgrade_orb_cooldown"
+        }
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:excel_upgrade_cooldown",
+        "count": 1
+    }
+}

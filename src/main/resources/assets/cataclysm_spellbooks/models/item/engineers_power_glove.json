@@ -1,0 +1,75 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made by Ace The Eldritch King",
+	"ambientocclusion": false,
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "cataclysm_spellbooks:item/engineers_power_glove",
+		"particle": "cataclysm_spellbooks:item/engineers_power_glove"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 4, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 0, 6]},
+			"faces": {
+				"north": {"uv": [1.25, 1, 2.25, 2], "texture": "#0"},
+				"east": {"uv": [2.25, 1, 3.25, 2], "texture": "#0"},
+				"south": {"uv": [1.25, 2, 2.25, 3], "texture": "#0"},
+				"west": {"uv": [0.25, 1, 1.25, 2], "texture": "#0"},
+				"up": {"uv": [1.25, 0, 2.25, 1], "texture": "#0"},
+				"down": {"uv": [1.25, 3, 2.25, 4], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5.75, -0.25, 5.75],
+			"to": [10.25, 4.25, 10.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 0, 6]},
+			"faces": {
+				"north": {"uv": [4.25, 1, 5.25, 2], "texture": "#0"},
+				"east": {"uv": [5.25, 1, 6.25, 2], "texture": "#0"},
+				"south": {"uv": [4.25, 2, 5.25, 3], "texture": "#0"},
+				"west": {"uv": [3.25, 1, 4.25, 2], "texture": "#0"},
+				"up": {"uv": [4.25, 0, 5.25, 1], "texture": "#0"},
+				"down": {"uv": [4.25, 3, 5.25, 4], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 5.25, 2],
+			"scale": [1.2, 1.2, 1.2]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 5.25, 2],
+			"scale": [1.2, 1.2, 1.2]
+		},
+		"firstperson_righthand": {
+			"rotation": [37.65, -12.05, -15.14],
+			"translation": [1.25, 7, 5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [37.65, -12.05, -15.14],
+			"translation": [1.25, 7, 5]
+		},
+		"ground": {
+			"translation": [0, 4.5, 0]
+		},
+		"gui": {
+			"rotation": [129.12, -40.47, 132.99],
+			"translation": [-4.75, 7.5, 0],
+			"scale": [1.5, 1.5, 1.5]
+		},
+		"fixed": {
+			"translation": [0, 6.25, -1.25]
+		}
+	},
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

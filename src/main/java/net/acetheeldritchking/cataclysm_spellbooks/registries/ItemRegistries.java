@@ -14,6 +14,8 @@ import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
+import net.acetheeldritchking.cataclysm_spellbooks.items.custom.BurningManuscriptItem;
+import net.acetheeldritchking.cataclysm_spellbooks.items.custom.FrozenTabletItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.CodexOfMaliceSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DiscDriverSpellbook;
@@ -129,6 +131,26 @@ public class ItemRegistries {
             ("gauntlet_of_gattling", () -> new GauntletOfGattlingItem((SpellDataRegistryHolder.of(
                     new SpellDataRegistryHolder(SpellRegistries.PARTING_SHOT, 1)))));
 
+    // Engineer's Power Glove
+    public static final RegistryObject<Item> ENGINEERS_POWER_GLOVE = ITEMS.register
+            ("engineers_power_glove", () -> new StaffItem
+                    (ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.UNCOMMON), 1.5, -1.7,
+                            Map.of(
+                                    CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .10, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .10, AttributeModifier.Operation.MULTIPLY_BASE)
+                            )));
+
+    // Soul Brazier Staff
+    public static final RegistryObject<Item> SOUL_BRAZIER_STAFF = ITEMS.register
+            ("soul_brazier", () -> new StaffItem
+                    (ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC), 4, -3,
+                            Map.of(
+                                    AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .15, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.MANA_REGEN.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .25, AttributeModifier.Operation.MULTIPLY_BASE),
+                                    AttributeRegistry.CAST_TIME_REDUCTION.get(), new AttributeModifier(UUID.fromString("667ad88f-901d-4691-b2a2-3664e42026d3"), "Weapon modifier", .10, AttributeModifier.Operation.MULTIPLY_BASE)
+                            )));
+
 
     /**
      * Curios
@@ -145,6 +167,30 @@ public class ItemRegistries {
 
     // Technomancy Rune
     public static final RegistryObject<Item> TECHNOMANCY_RUNE = ITEMS.register("technomancy_rune", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Mechanical Scrap
+    public static final RegistryObject<Item> MECHANICAL_SCRAP = ITEMS.register("mechanical_scrap", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Excel Mana Upgrade
+    public static final RegistryObject<Item> EXCEL_MANA_UPGRADE = ITEMS.register("excel_upgrade_mana", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Excel Res Upgrade
+    public static final RegistryObject<Item> EXCEL_SPELL_RES_UPGRADE = ITEMS.register("excel_upgrade_resistence", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Excel CD Upgrade
+    public static final RegistryObject<Item> EXCEL_COOLDOWN_UPGRADE = ITEMS.register("excel_upgrade_cooldown", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Burning Knowledge Fragment
+    public static final RegistryObject<Item> BURNING_KNOWLEDGE_FRAGMENT = ITEMS.register("burning_knowledge_fragment", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Burning Manuscript
+    public static final RegistryObject<Item> BURNING_MANUSCRIPT = ITEMS.register("burning_manuscript", BurningManuscriptItem::new);
+
+    // Frozen Knowledge Fragment
+    public static final RegistryObject<Item> FROZEN_KNOWLEDGE_FRAGMENT = ITEMS.register("frozen_knowledge_fragment", () -> new Item(ItemPropertiesHelper.material()));
+
+    // Frozen Tablet
+    public static final RegistryObject<Item> FROZEN_TABLET = ITEMS.register("frozen_tablet", FrozenTabletItem::new);
 
 
     /**

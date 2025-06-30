@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "cataclysm_spellbooks:engineers_glove"
+    },
+    "addition": {
+        "item": "cataclysm:witherite_ingot"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:gauntlet_of_power"
+    }
+}

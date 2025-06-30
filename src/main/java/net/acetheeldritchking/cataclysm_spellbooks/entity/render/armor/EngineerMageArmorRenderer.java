@@ -34,7 +34,6 @@ public class EngineerMageArmorRenderer extends AzArmorRenderer {
     public EngineerMageArmorRenderer() {
         super(
                 AzArmorRendererConfig.builder(GEO, TEX)
-                        .addRenderLayer(new AzAutoGlowingLayer<>())
                         .build()
         );
     }

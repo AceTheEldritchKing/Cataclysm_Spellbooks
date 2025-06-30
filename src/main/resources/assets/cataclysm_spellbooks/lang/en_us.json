@@ -55,11 +55,23 @@
     "item.cataclysm_spellbooks.spirit_sunderer": "Spirit Sunderer",
     "item.cataclysm_spellbooks.gauntlet_of_power": "The Ordeal",
     "item.cataclysm_spellbooks.gauntlet_of_gattling": "The Subjugator",
+    "item.cataclysm_spellbooks.engineers_power_glove": "Engineer's Power Glove",
+    "item.cataclysm_spellbooks.soul_brazier": "Soul Brazier",
 
     "item.cataclysm_spellbooks.monstrous_flamberge": "Monstrous Flamberge",
 
     "item.cataclysm_spellbooks.abyssal_rune": "Abyssal Rune",
     "item.cataclysm_spellbooks.technomancy_rune": "Technomancy Rune",
+    "item.cataclysm_spellbooks.mechanical_scrap": "Mechanical Scrap",
+    "item.cataclysm_spellbooks.excel_upgrade_mana": "Excelsius Upgrade: Mana",
+    "item.cataclysm_spellbooks.excel_upgrade_resistence": "Excelsius Upgrade: Spell Resistance",
+    "item.cataclysm_spellbooks.excel_upgrade_cooldown": "Excelsius Upgrade: Cooldown",
+    "item.cataclysm_spellbooks.burning_knowledge_fragment": "Burning Knowledge Fragment",
+    "item.cataclysm_spellbooks.burning_manuscript": "Burning Manuscript",
+    "item.cataclysm_spellbooks.burning_manuscript_description": "When in inventory, unlocks all Ignis spells",
+    "item.cataclysm_spellbooks.frozen_knowledge_fragment": "Frozen Knowledge Fragment",
+    "item.cataclysm_spellbooks.frozen_tablet": "Frozen Tablet",
+    "item.cataclysm_spellbooks.frozen_tablet_description": "When in inventory, unlocks all Maledictus spells",
 
     "item.cataclysm_spellbooks.ignis_helmet": "Ignis Mage Hat",
     "item.cataclysm_spellbooks.ignis_chestplate": "Ignis Mage Robes",

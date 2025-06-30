@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "l l",
+        "l l",
+        "ggg"
+    ],
+    "key": {
+        "l": {
+            "item": "minecraft:leather"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:engineers_power_glove",
+        "count": 1
+    }
+}

@@ -16,6 +16,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -232,7 +234,7 @@ public class CSUtils {
         }
     }
 
-    // Halberd spawning
+    // Flame Jet spawning
     public static void spawnFlameJetWindmill(int numofBranches, int particlesPerBranch, double initialRadius, double radiusIncrement, double curveFactor, int delay, LivingEntity caster, Level level, float damage)
     {
         float angleIncrement = (float) (2 * Math.PI / numofBranches);
@@ -267,5 +269,19 @@ public class CSUtils {
                 spawnFlameJets(level, spawnX, spawnZ, caster.getY() - 5, caster.getY() + 3, currentAngle, d1, caster, damage);
             }
         }
+    }
+
+    public static boolean isValidUnlockItemInInventory(Item item, Player player)
+    {
+        for (int i = 0; i < player.getInventory().getContainerSize(); ++i)
+        {
+            ItemStack itemStack = player.getInventory().getItem(i);
+            if (itemStack.getItem() == item)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

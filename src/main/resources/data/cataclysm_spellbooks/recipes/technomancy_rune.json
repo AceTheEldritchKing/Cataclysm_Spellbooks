@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "fff",
+        "frf",
+        "fff"
+    ],
+    "key": {
+        "f": {
+            "tag": "cataclysm_spellbooks:technomancy_focus"
+        },
+        "r": {
+            "item": "irons_spellbooks:blank_rune"
+        }
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:technomancy_rune",
+        "count": 1
+    }
+}

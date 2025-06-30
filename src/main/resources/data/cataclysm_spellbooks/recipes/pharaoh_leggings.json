@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "crc",
+    "b b"
+  ],
+  "key": {
+    "c": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "r": {
+      "item": "irons_spellbooks:nature_rune"
+    },
+    "b": {
+      "item": "cataclysm:koboleton_bone"
+    }
+  },
+  "result": {
+    "item": "cataclysm_spellbooks:pharaoh_leggings",
+    "count": 1
+  }
+}
