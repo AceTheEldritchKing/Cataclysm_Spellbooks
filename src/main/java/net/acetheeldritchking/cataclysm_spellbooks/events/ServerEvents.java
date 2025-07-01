@@ -511,6 +511,15 @@ public class ServerEvents {
                 event.setDistance(event.getDistance() * 0.3F);
             }
         }
+
+        if (entity instanceof LivingEntity livingEntity)
+        {
+            if (!livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&
+                    livingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemRegistries.EXCELSIUS_WARLOCK_LEGGINGS.get())
+            {
+                event.setCanceled(true);
+            }
+        }
     }
 
     @SubscribeEvent

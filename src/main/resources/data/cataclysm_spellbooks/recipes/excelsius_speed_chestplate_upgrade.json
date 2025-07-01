@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "addition": {
+        "item": "cataclysm_spellbooks:excel_upgrade_cooldown"
+    },
+    "base": {
+        "item": "cataclysm_spellbooks:engineer_suit"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:excelsius_speed_chestplate"
+    }
+}

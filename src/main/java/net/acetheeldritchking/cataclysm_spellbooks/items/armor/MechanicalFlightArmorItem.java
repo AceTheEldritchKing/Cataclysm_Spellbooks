@@ -216,7 +216,8 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                     player.level.addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
                 }
 
-                player.getCooldowns().addCooldown(ItemRegistries.EXCELSIUS_WARLOCK_BOOTS.get(), 100);
+                // 3 second cooldown, it's just jumping
+                player.getCooldowns().addCooldown(ItemRegistries.EXCELSIUS_WARLOCK_BOOTS.get(), 60);
             }
         }
     }

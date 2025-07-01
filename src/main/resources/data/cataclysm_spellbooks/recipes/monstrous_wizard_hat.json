@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "irons_spellbooks:netherite_mage_helmet"
+    },
+    "addition": {
+        "item": "cataclysm:monstrous_horn"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:monstrous_wizard_hat"
+    }
+}

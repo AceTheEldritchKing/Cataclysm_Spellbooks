@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "addition": {
+        "item": "cataclysm:amethyst_crab_shell"
+    },
+    "base": {
+        "item": "irons_spellbooks:plagued_leggings"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:bloom_stone_skirt"
+    }
+}

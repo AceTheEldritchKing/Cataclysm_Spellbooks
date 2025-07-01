@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "addition": {
+        "item": "cataclysm:witherite_ingot"
+    },
+    "base": {
+        "item": "cataclysm_spellbooks:engineer_leggings"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:excelsius_leggings"
+    }
+}
