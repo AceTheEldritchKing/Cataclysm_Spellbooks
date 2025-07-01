@@ -41,7 +41,7 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
             "textures/models/armor/excelsius_spell_power_overcharged.png"
     );
 
-    public static ResourceLocation TEXTURE()
+    /*public static ResourceLocation TEXTURE()
     {
         //ExcelsiusPowerArmorItem.IsOvercharged = true;
         ItemStack head = Objects.requireNonNull(MinecraftInstanceHelper.getPlayer()).getItemBySlot(EquipmentSlot.HEAD);
@@ -63,11 +63,11 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
         {
             return TEX;
         }
-    }
+    }*/
 
     public ExcelsiusPowerArmorRenderer() {
         super(
-                AzArmorRendererConfig.builder(GEO, TEXTURE())
+                AzArmorRendererConfig.builder(GEO, TEX)
                         //.setAnimatorProvider(CursiumMageElytraAnimator::new)
                         .addRenderLayer(new AzAutoGlowingLayer<>())
                         .build()

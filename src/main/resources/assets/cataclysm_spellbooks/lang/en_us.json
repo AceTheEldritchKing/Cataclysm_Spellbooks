@@ -36,6 +36,8 @@
     "effect.cataclysm_spellbooks.cooldown_overcharged_effect.description": "Decreased spell cooldown and increased Technomancy spell power.",
     "effect.cataclysm_spellbooks.base_overcharged_effect": "Overcharged",
     "effect.cataclysm_spellbooks.base_overcharged_effect.description": "Increased Technomancy spell power.",
+    "effect.cataclysm_spellbooks.sniper": "Sniper's Eye",
+    "effect.cataclysm_spellbooks.sniper.description": "Projectile damage is doubled.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -112,6 +114,15 @@
     "item.cataclysm_spellbooks.excelsius_resist_chestplate": "Excelsius Oppressor Chestplate",
     "item.cataclysm_spellbooks.excelsius_leggings": "Excelsius Propulsion Leggings",
     "item.cataclysm_spellbooks.excelsius_greaves": "Excelsius Propulsion Greaves",
+
+    "item.cataclysm_spellbooks.excelsius_helmet.desc": "Target Homing Sight",
+    "item.cataclysm_spellbooks.excelsius_helmet.desc2": "Press %s to give nearby entities the Guided effect and increasing your projectile damage by 2x",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc": "Infinite Flight",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc2": "Elytra flight capabilities without any limitations on fuel or boosts",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc": "Fall Immunity",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc2": "Any fall damage that would be taken is nullified",
+    "item.cataclysm_spellbooks.excelsius_boots.desc": "Jump Boost",
+    "item.cataclysm_spellbooks.excelsius_boots.desc2": "Press %s to get a jump boost, igniting nearby entities on fire",
 
     "item.cataclysm_spellbooks.engineer_hood": "Engineer's Hood",
     "item.cataclysm_spellbooks.engineer_suit": "Engineer's Suit",

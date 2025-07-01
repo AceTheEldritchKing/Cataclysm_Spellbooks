@@ -10,7 +10,7 @@
             "item": "cataclysm_spellbooks:mechanical_scrap"
         },
         "u": {
-            "item": "irons_spellbooks:upgrade_orb_protection"
+            "item": "irons_spellbooks:protection_upgrade_orb"
         }
     },
     "result": {

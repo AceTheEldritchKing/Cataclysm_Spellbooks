@@ -193,6 +193,22 @@ public class ServerEvents {
                 }
             }
         }
+
+        // Sniper Effect
+        if (entity instanceof LivingEntity attacker)
+        {
+            if (attacker.hasEffect(CSPotionEffectRegistry.SNIPER_EFFECT.get()))
+            {
+                if (event.getSource().isProjectile())
+                {
+                    //System.out.println("Old Amount: " + event.getAmount());
+                    float baseDamage = event.getAmount();
+
+                    event.setAmount(baseDamage * 2);
+                    //System.out.println("New Amount: " + event.getAmount());
+                }
+            }
+        }
     }
 
     @SubscribeEvent

@@ -20,6 +20,6 @@ public class BurningManuscriptItem extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(Component.translatable("item.cataclysm_spellbooks.burning_manuscript_description").
-                withStyle(ChatFormatting.DARK_GREEN));
+                withStyle(ChatFormatting.GOLD));
     }
 }

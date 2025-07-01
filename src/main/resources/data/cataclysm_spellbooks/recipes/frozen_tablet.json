@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "fff",
+        "frf",
+        "fff"
+    ],
+    "key": {
+        "f": {
+            "item": "cataclysm_spellbooks:frozen_knowledge_fragment"
+        },
+        "r": {
+            "item": "irons_spellbooks:ancient_knowledge_fragment"
+        }
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:frozen_tablet",
+        "count": 1
+    }
+}

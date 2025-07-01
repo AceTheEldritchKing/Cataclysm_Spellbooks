@@ -10,7 +10,7 @@
             "item": "cataclysm_spellbooks:mechanical_scrap"
         },
         "u": {
-            "item": "irons_spellbooks:upgrade_orb_mana"
+            "item": "irons_spellbooks:mana_upgrade_orb"
         }
     },
     "result": {

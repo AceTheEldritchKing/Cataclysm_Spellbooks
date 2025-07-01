@@ -10,7 +10,7 @@
             "item": "cataclysm_spellbooks:mechanical_scrap"
         },
         "u": {
-            "item": "irons_spellbooks:upgrade_orb_cooldown"
+            "item": "irons_spellbooks:cooldown_upgrade_orb"
         }
     },
     "result": {

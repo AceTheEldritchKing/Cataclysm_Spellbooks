@@ -95,6 +95,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> KINGS_WRATH_EFFECT =
             MOB_EFFECTS.register("kings_wrath", KingsWrathPotionEffect::new);
 
+        public static final RegistryObject<MobEffect> SNIPER_EFFECT =
+            MOB_EFFECTS.register("sniper", SniperPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);
