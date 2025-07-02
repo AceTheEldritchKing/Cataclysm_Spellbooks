@@ -1,0 +1,14 @@
+{
+    "conditions": [
+        {
+            "condition": "forge:loot_table_id",
+            "loot_table_id": "cataclysm:entities/maledictus"
+        },
+        {
+            "condition": "minecraft:random_chance",
+            "chance": 0.8
+        }
+    ],
+    "type": "cataclysm_spellbooks:add_to_table",
+    "loot_table": "cataclysm_spellbooks:entities/frozen_knowledge_fragments"
+}
