@@ -1,8 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Kobolediator_Entity;
-import com.github.L_Ender.cataclysm.init.ModParticle;
-import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
@@ -10,7 +8,10 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -93,13 +95,16 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
     public void onUnSummon() {
         if (!level.isClientSide)
         {
-            MagicManager.spawnParticles(level, ModParticle.SANDSTORM.get(),
+            ServerLevel serverLevel = (ServerLevel) level;
+            BlockParticleOption sandParticle = new BlockParticleOption(ParticleTypes.BLOCK, Blocks.SAND.defaultBlockState());
+            serverLevel.sendParticles(
+                    sandParticle,
                     getX(), getY(), getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
-                    0.1, false);
+                    0.2, 0.2, 0.2,
+                    0.05
+            );
+
             discard();
         }
     }
