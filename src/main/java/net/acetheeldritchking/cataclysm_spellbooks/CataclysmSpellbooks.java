@@ -79,7 +79,10 @@ public class CataclysmSpellbooks
                 ItemRegistries.IGNITIUM_WIZARD_CHESTPLATE_ELYTRA.get(),
                 ItemRegistries.CURSIUM_MAGE_CHESTPLATE_ELYTRA.get(),
                 ItemRegistries.DISC_DRIVER.get(),
-                ItemRegistries.GAUNTLET_OF_GATTLING.get()
+                ItemRegistries.GAUNTLET_OF_GATTLING.get(),
+                ItemRegistries.THE_NIGHTSTALKER.get(),
+                ItemRegistries.THE_BERSERKER.get(),
+                ItemRegistries.THE_COMBUSTER.get()
         );
     }
 
@@ -187,6 +190,9 @@ public class CataclysmSpellbooks
             AzItemRendererRegistry.register(SpiritSundererStaffRenderer::new, ItemRegistries.SPIRIT_SUNDERER_STAFF.get());
             AzItemRendererRegistry.register(GauntletOfPowerRenderer::new, ItemRegistries.GAUNTLET_OF_POWER.get());
             AzItemRendererRegistry.register(GauntletOfGattlingRenderer::new, ItemRegistries.GAUNTLET_OF_GATTLING.get());
+            AzItemRendererRegistry.register(TheNightStalkerRenderer::new, ItemRegistries.THE_NIGHTSTALKER.get());
+            AzItemRendererRegistry.register(TheBerserkerRenderer::new, ItemRegistries.THE_BERSERKER.get());
+            AzItemRendererRegistry.register(TheCombusterRenderer::new, ItemRegistries.THE_COMBUSTER.get());
         }
     }
 

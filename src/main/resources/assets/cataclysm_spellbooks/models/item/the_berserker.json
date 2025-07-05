@@ -1,0 +1,116 @@
+{
+  "credit": "Made by Ace The Eldritch King",
+  "parent": "builtin/entity",
+  "texture_size": [
+    64,
+    64
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        5.25,
+        0
+      ],
+      "scale": [
+        1.2,
+        1.2,
+        1.2
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        5.25,
+        0
+      ],
+      "scale": [
+        1.2,
+        1.2,
+        1.2
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        25.75,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        6.75,
+        1.25
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        25.75,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        6.75,
+        1.25
+      ]
+    },
+    "ground": {
+      "rotation": [
+        44.11999999999989,
+        -8.539999999999964,
+        10.0300000000002
+      ],
+      "translation": [
+        0,
+        5.5,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        105.23000000000002,
+        -50.61999999999989,
+        108.96000000000004
+      ],
+      "translation": [
+        -4.75,
+        5.25,
+        0
+      ],
+      "scale": [
+        1.2,
+        1.2,
+        1.2
+      ]
+    },
+    "head": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        9.5,
+        6.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "translation": [
+        8.5,
+        7.75,
+        -2.75
+      ],
+      "scale": [
+        1.2,
+        1.2,
+        1.2
+      ]
+    }
+  }
+}
