@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,5 +30,6 @@ public class ModSetup {
         event.put(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), SummonedCoralGolem.buildAttributes());
         event.put(CSEntityRegistry.SUMMONED_CORALSSUS.get(), SummonedCoralssus.buildAttributes());
         event.put(CSEntityRegistry.PHANTOM_ANCIENT_REMNANT.get(), PhantomAncientRemnant.maledictus().build());
+        event.put(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockEntity.createLivingAttributes().build());
     }
 }

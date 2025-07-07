@@ -42,7 +42,7 @@ public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.COMMON)
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
-            .setMaxLevel(12)
+            .setMaxLevel(4)
             .setCooldownSeconds(25)
             .build();
 
@@ -136,7 +136,7 @@ public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
         double vecZ = Math.sin(theta);
         float angleStep = 30.0F;
 
-        for (int i = 0; i < spellLevel; i++)
+        for (int i = 0; i < (spellLevel + 3); i++)
         {
             float angle = (caster.yBodyRot + (i - ((float) spellLevel / 2)) * angleStep);
 
@@ -175,7 +175,7 @@ public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 0.9F;
+        return getSpellPower(spellLevel, caster) * 1.2F;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)

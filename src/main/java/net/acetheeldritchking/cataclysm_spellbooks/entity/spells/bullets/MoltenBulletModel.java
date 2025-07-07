@@ -1,0 +1,22 @@
+package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets;
+
+import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
+
+public class MoltenBulletModel extends AnimatedGeoModel<MoltenBulletProjectile> {
+    @Override
+    public ResourceLocation getModelResource(MoltenBulletProjectile object) {
+        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/magic_bullet.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(MoltenBulletProjectile object) {
+        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/molten_bullet/molten_bullet.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(MoltenBulletProjectile animatable) {
+        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
+    }
+}

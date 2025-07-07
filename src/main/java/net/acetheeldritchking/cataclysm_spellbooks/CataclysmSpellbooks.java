@@ -124,6 +124,16 @@ public class CataclysmSpellbooks
             EntityRenderers.register(CSEntityRegistry.DISABLING_SWIPE.get(), DisablingSwipeAoERenderer::new);
             // No-Man's Zone AoE
             EntityRenderers.register(CSEntityRegistry.NO_MAN_ZONE_AOE.get(), NoopRenderer::new);
+            // Blood Crystal
+            EntityRenderers.register(CSEntityRegistry.BLOOD_CRYSTAL_PROJECTILE.get(), BloodCrystalRenderer::new);
+            // Molten Bullet
+            EntityRenderers.register(CSEntityRegistry.MOLTEN_BULLET_PROJECTILE.get(), MoltenBulletRenderer::new);
+            // Scorched Earth AoE
+            EntityRenderers.register(CSEntityRegistry.SCORCHED_EARTH_AOE.get(), NoopRenderer::new);
+            // Frozen Bullet
+            EntityRenderers.register(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), FrozenBulletRenderer::new);
+            // Glacial Block
+            EntityRenderers.register(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockRenderer::new);
 
 
             // Armor Rendering Registry

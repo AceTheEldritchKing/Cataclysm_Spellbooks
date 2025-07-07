@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -204,6 +205,7 @@ public class CSUtils {
         }
     }
 
+    // Circular Flame Jets
     public static void spawnCircularFlameJets(float vec3, float math, int vertex, int rune, double time, Level level, LivingEntity caster, float damage)
     {
         float cos = Mth.cos((float) (caster.yBodyRot + (Math.PI/180)));
@@ -271,6 +273,7 @@ public class CSUtils {
         }
     }
 
+    // For unlocking spells
     public static boolean isValidUnlockItemInInventory(Item item, Player player)
     {
         for (int i = 0; i < player.getInventory().getContainerSize(); ++i)

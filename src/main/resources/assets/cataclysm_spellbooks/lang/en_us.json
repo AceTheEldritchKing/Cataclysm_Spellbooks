@@ -38,6 +38,8 @@
     "effect.cataclysm_spellbooks.base_overcharged_effect.description": "Increased Technomancy spell power.",
     "effect.cataclysm_spellbooks.sniper": "Sniper's Eye",
     "effect.cataclysm_spellbooks.sniper.description": "Projectile damage is doubled.",
+    "effect.cataclysm_spellbooks.hemophilia": "Hemophilia",
+    "effect.cataclysm_spellbooks.hemophilia.description": "Incoming damage is increased by 2.5x.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -325,6 +327,15 @@
     "spell.cataclysm_spellbooks.pharaohs_wrath": "Pharaoh's Wrath",
     "spell.cataclysm_spellbooks.pharaohs_wrath.guide": "Fill yourself with a heated rage that increases your damage and spell power as you take hits. You are weakened afterwards once your wrath ends",
 
+    "spell.cataclysm_spellbooks.hemorrhaging_impact": "Hemorrhaging Impact",
+    "spell.cataclysm_spellbooks.hemorrhaging_impact.guide": "Charge up your weapon, unleashing a powerful blood spear and several blood needles. The blood spear inflicts Hemophilia on hit, and you gain 75% of damage dealt as healing",
+
+    "spell.cataclysm_spellbooks.scorched_earth": "Scorched Earth",
+    "spell.cataclysm_spellbooks.scorched_earth.guide": "Charge up your weapon, unleashing a barrage of molten bullets. Each bullet leaves an AoE which deals intense fire damage to entities caught within",
+
+    "spell.cataclysm_spellbooks.cryopiercer": "Cryopiercer",
+    "spell.cataclysm_spellbooks.cryopiercer.guide": "Charge up your weapon, unleashing a barrage of frozen bullets. On bullet impact with an entity, it encases them in ice",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -376,6 +387,7 @@
     "ui.cataclysm_spellbooks.thoths_witness_scroll_failure": "Thoth will not allow you to cast this from a measly scroll",
     "ui.cataclysm_spellbooks.thoths_witness_armor_failure": "You lack the required armory to receive Thoth's miracle; adorn yourself with the pharaoh's armor",
     "ui.cataclysm_spellbooks.quake_damage": "%d Earthquake damage",
+    "ui.cataclysm_spellbooks.needle_damage": "%d Blood needle damage",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

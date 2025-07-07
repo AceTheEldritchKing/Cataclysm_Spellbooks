@@ -154,17 +154,17 @@ public class ItemRegistries {
     // The Nightstalker
     public static final RegistryObject<Item> THE_NIGHTSTALKER = ITEMS.register
             ("the_nightstalker", () -> new TheNightStalkerItem((SpellDataRegistryHolder.of(
-                    new SpellDataRegistryHolder(SpellRegistries.PARTING_SHOT, 1)))));
+                    new SpellDataRegistryHolder(SpellRegistries.HEMORRHAGING_IMPACT, 1)))));
 
     // The Berserker
     public static final RegistryObject<Item> THE_BERSERKER = ITEMS.register
             ("the_berserker", () -> new TheBerserkerItem((SpellDataRegistryHolder.of(
-                    new SpellDataRegistryHolder(SpellRegistries.PHANTASMAL_BLADE, 12)))));
+                    new SpellDataRegistryHolder(SpellRegistries.CRYOPIERCER, 1)))));
 
     // The Combuster
     public static final RegistryObject<Item> THE_COMBUSTER = ITEMS.register
             ("the_combuster", () -> new TheCombusterItem((SpellDataRegistryHolder.of(
-                    new SpellDataRegistryHolder(SpellRegistries.COMET_SHOWER, 8)))));
+                    new SpellDataRegistryHolder(SpellRegistries.SCORCHED_EARTH, 1)))));
 
 
     /**

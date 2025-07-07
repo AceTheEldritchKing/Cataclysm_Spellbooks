@@ -2,7 +2,11 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.NoManZoneAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blood_crystal.BloodCrystalProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.FrozenBulletProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.MoltenBulletProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.no_man_zone.NoManZoneAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
@@ -11,6 +15,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang.Flas
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot.PartingShotProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.scorched_earth_aoe.ScorchedEarthAoE;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -255,6 +260,51 @@ public class CSEntityRegistry {
                     sized(5f, 5f)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "phantom_ancient_remnant").toString()
+                    ));
+
+    // Blood Crystal
+    public static final RegistryObject<EntityType<BloodCrystalProjectile>> BLOOD_CRYSTAL_PROJECTILE =
+            ENTITIES.register("blood_crystal", () -> EntityType.Builder.<BloodCrystalProjectile>of(BloodCrystalProjectile::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "blood_crystal").toString()
+                    ));
+
+    // Molten Bullet
+    public static final RegistryObject<EntityType<MoltenBulletProjectile>> MOLTEN_BULLET_PROJECTILE =
+            ENTITIES.register("molten_bullet", () -> EntityType.Builder.<MoltenBulletProjectile>of(MoltenBulletProjectile::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "molten_bullet").toString()
+                    ));
+
+    // Scorched Earth AoE
+    public static final RegistryObject<EntityType<ScorchedEarthAoE>> SCORCHED_EARTH_AOE =
+            ENTITIES.register("scorched_earth_aoe", () -> EntityType.Builder.<ScorchedEarthAoE>of(ScorchedEarthAoE::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "scorched_earth_aoe").toString()
+                    ));
+
+    // Frozen Bullet
+    public static final RegistryObject<EntityType<FrozenBulletProjectile>> FROZEN_BULLET_PROJECTILE =
+            ENTITIES.register("frozen_bullet", () -> EntityType.Builder.<FrozenBulletProjectile>of(FrozenBulletProjectile::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "frozen_bullet").toString()
+                    ));
+
+    // Glacial Block
+    public static final RegistryObject<EntityType<GlacialBlockEntity>> GLACIAL_BLOCK =
+            ENTITIES.register("glacial_block", () -> EntityType.Builder.<GlacialBlockEntity>of(GlacialBlockEntity::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "glacial_block").toString()
                     ));
 
 

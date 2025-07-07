@@ -1,18 +1,15 @@
-package net.acetheeldritchking.cataclysm_spellbooks.entity.spells;
+package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.scorched_earth_aoe;
 
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
-import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -20,16 +17,16 @@ import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
-public class NoManZoneAoE extends AoeEntity {
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe"));
+public class ScorchedEarthAoE extends AoeEntity {
+    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "scorched_earth_aoe"));
 
-    public NoManZoneAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+    public ScorchedEarthAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    public NoManZoneAoE(Level level)
+    public ScorchedEarthAoE(Level level)
     {
-        this(CSEntityRegistry.NO_MAN_ZONE_AOE.get(), level);
+        this(CSEntityRegistry.SCORCHED_EARTH_AOE.get(), level);
     }
 
     @Override
@@ -37,8 +34,9 @@ public class NoManZoneAoE extends AoeEntity {
         var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());
-        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
-        target.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 1, true, true, true));
+        target.setSecondsOnFire(25);
+        target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0));
+        target.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));
     }
 
     @Override
@@ -48,6 +46,6 @@ public class NoManZoneAoE extends AoeEntity {
 
     @Override
     public Optional<ParticleOptions> getParticle() {
-        return Optional.of(ParticleTypes.LARGE_SMOKE);
+        return Optional.of(ModParticle.FLAME_JET.get());
     }
 }

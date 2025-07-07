@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.blood.HemorrhagingImpactSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravitationPullSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkSpell;
@@ -109,6 +110,12 @@ public class SpellRegistries {
 
     // Tide Turn (Hold a defensive stance, increasing spell resistance and clearing negative effects. After the spell finishes, spell power is increased - Lacerator exclusive)
 
+    /***
+     * Blood
+     */
+    // Hemorrhaging Impact (Shoot out crystallized blood followed by several blood needles. The blood crystals, on impact, inflict bleeding & hemophilia)
+    public static final RegistryObject<AbstractSpell> HEMORRHAGING_IMPACT = registerSpell(new HemorrhagingImpactSpell());
+
 
     /***
      * Ender
@@ -190,6 +197,9 @@ public class SpellRegistries {
 
     // Infernal Inhalation (Absorb any lava blocks near you, healing you for how much lava is around you)
 
+    // Scorched Earth (Shoot out a barrage of molten bullets that combust on the ground, igniting entities caught within)
+    public static final RegistryObject<AbstractSpell> SCORCHED_EARTH = registerSpell(new ScorchedEarthSpell());
+
 
     /***
      * Lightning
@@ -221,6 +231,9 @@ public class SpellRegistries {
     // Phantasmal Slam (Summons either a custom winged entity or Maledictus to grab and slam the target)
 
     // Echoed Whirlwind/Snow Squall (Summons Wrath of The Desert sandstorms)
+
+    // Cryopiercer (Shoot a blast of freezing cold energy, spawning a circle of ice spikes on impact. Entities hit are encased in ice which shatters after a few seconds)
+    public static final RegistryObject<AbstractSpell> CRYOPIERCER = registerSpell(new CryopiercerSpell());
 
 
     /***

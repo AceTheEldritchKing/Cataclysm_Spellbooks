@@ -1,37 +1,35 @@
-package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot;
+package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets;
 
-import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
+import com.github.L_Ender.cataclysm.client.particle.LightTrailParticle;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
+import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
+import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.no_man_zone.NoManZoneAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.scorched_earth_aoe.ScorchedEarthAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
-import net.minecraft.core.BlockPos;
+import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -39,29 +37,37 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class PartingShotProjectile extends AbstractMagicProjectile implements IAnimatable {
+public class MoltenBulletProjectile extends AbstractMagicProjectile implements IAnimatable {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    public double prevDeltaMovementX;
+    public double prevDeltaMovementY;
+    public double prevDeltaMovementZ;
 
-    public PartingShotProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+    public MoltenBulletProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setNoGravity(true);
     }
 
-    public PartingShotProjectile(Level level, LivingEntity shooter) {
-        this(CSEntityRegistry.PARTING_SHOT_PROJECTILE.get(), level);
+    public MoltenBulletProjectile(Level level, LivingEntity shooter) {
+        this(CSEntityRegistry.MOLTEN_BULLET_PROJECTILE.get(), level);
         setOwner(shooter);
     }
 
     @Override
     public void trailParticles() {
-        Vec3 vec3 = this.position().subtract(getDeltaMovement());
-        level.addParticle(new TrackLightningParticle.OrbData(232, 59, 59), vec3.x, vec3.y, vec3.z, vec3.x, vec3.y, vec3.z);
+        for (int i = 0; i < 5; i++)
+        {
+            double x = getX() + (1.5F * (this.random.nextFloat() - 0.5F));
+            double y = getY() + (1.5F * (this.random.nextFloat() - 0.5F));
+            double z = getZ() + (1.5F * (this.random.nextFloat() - 0.5F));
+
+            this.level.addParticle(ParticleTypes.FLAME, x, y, z, -getDeltaMovement().x, -getDeltaMovement().y, -getDeltaMovement().z);
+        }
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
-        //MagicManager.spawnParticles
-                //(level, new TrackLightningParticle.OrbData(255, 6, 62), x, y, z, 3, 0, 0, 0, 0.5, true);
+        MagicManager.spawnParticles(level, ModParticle.FLARE_EXPLODE.get(), x, y, z, 10, .1, .1, .1, .18, true);
     }
 
     @Override
@@ -75,32 +81,27 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
     }
 
     @Override
-    public boolean isPushable() {
-        return false;
-    }
-
-    @Override
     public void tick() {
-        Vec3 deltaMovement = getDeltaMovement();
-        double distance = deltaMovement.horizontalDistance();
+        this.prevDeltaMovementX = getDeltaMovement().x;
+        this.prevDeltaMovementY = getDeltaMovement().y;
+        this.prevDeltaMovementZ = getDeltaMovement().z;
 
-        Vec3 arcVec;
+        setYRot(-((float) Mth.atan2(getDeltaMovement().x, getDeltaMovement().z)) * (180F / (float)Math.PI));
 
-        double x = deltaMovement.x;
-        double y = deltaMovement.y;
-        double z = deltaMovement.z;
+        if (this.level.isClientSide)
+        {
+            double x = getX() + 1.5F * (this.random.nextFloat() - 0.5F);
+            double y = getY() + 1.5F * (this.random.nextFloat() - 0.5F);
+            double z = getZ() + 1.5F * (this.random.nextFloat() - 0.5F);
 
-        setYRot((float) (Mth.atan2(x, z) * (180 / Math.PI)));
-        setXRot((float) (Mth.atan2(y, distance) * (180 / Math.PI)));
-        setXRot(lerpRotation(xRotO, getXRot()));
-        setYRot(lerpRotation(yRotO, getYRot()));
+            float random = 0.04F;
 
-        Vec3 center = this.position().add(deltaMovement);
-        arcVec = center.add(new Vec3((this.random.nextFloat() - 0.5F), (this.random.nextFloat() - 0.5F), (this.random.nextFloat() - 0.5F)));
+            float r = 195/255F + this.random.nextFloat() * random * 1.5F;
+            float g = 95/255F + this.random.nextFloat() * random;
+            float b = 3/255F + this.random.nextFloat() * random;
 
-        //this.level.addParticle(new TrackLightningParticle.OrbData(255, 6, 62), arcVec.x, arcVec.y, arcVec.z, 0, 0, 0);
-
-        this.level.addParticle(new TrackLightningParticle.OrbData(232, 59, 59), center.x, center.y, center.z, arcVec.x, arcVec.y, arcVec.z);
+            this.level.addParticle(new LightTrailParticle.OrbData(r, g, b, 0.1F, this.getBbHeight()/2, this.getId()), x, y, z, 0, 0, 0);
+        }
 
         super.tick();
     }
@@ -112,25 +113,27 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     @Override
     public Optional<SoundEvent> getImpactSound() {
-        return Optional.empty();
+        return Optional.of(SoundEvents.GENERIC_EXPLODE);
     }
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
         var target = pResult.getEntity();
         DamageSources.applyDamage(target, damage,
-                SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()));
+                SpellRegistries.SCORCHED_EARTH.get().getDamageSource(this, getOwner()));
+        // Ignore i-frames
+        pResult.getEntity().invulnerableTime = 0;
 
+        // More fire
         int i = target.getRemainingFireTicks();
-        target.setSecondsOnFire(5);
+        target.setSecondsOnFire(25);
 
         if (target instanceof LivingEntity livingTarget)
         {
-            livingTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 0, true, true, true));
             livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
         }
 
-        if (!target.hurt(SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), this.getDamage()))
+        if (!target.hurt(SpellRegistries.SCORCHED_EARTH.get().getDamageSource(this, getOwner()), this.getDamage()))
         {
             target.setRemainingFireTicks(i);
         }
@@ -140,36 +143,18 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
-        super.onHitBlock(pResult);
+       if (!this.level.isClientSide)
+       {
+           spawnXFlameJet(10, 2.0);
+       }
 
-        if (!this.level.isClientSide)
-        {
-            Entity entity = this.getOwner();
-            BlockPos pos;
-
-            if (CSConfig.doSpellGriefing.get())
-            {
-                pos = pResult.getBlockPos().relative(pResult.getDirection());
-                if (this.level.isEmptyBlock(pos))
-                {
-                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
-                }
-            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level, entity))
-            {
-                pos = pResult.getBlockPos().relative(pResult.getDirection());
-                if (this.level.isEmptyBlock(pos))
-                {
-                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
-                }
-            }
-        }
-
-        discard();
+       discard();
     }
 
     @Override
     protected void onHit(HitResult hitresult) {
         super.onHit(hitresult);
+
         if (!this.level.isClientSide)
         {
             float radius = getExplosionRadius();
@@ -186,23 +171,12 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     float damage = (float) (getDamage() * modifier);
 
-                    ScreenShake_Entity.ScreenShake(level, entity.position(), 5.0F, 0.15F, 20, 20);
+                    ScreenShake_Entity.ScreenShake(level, entity.position(), 2.0F, 0.15F, 20, 20);
 
-                    DamageSources.applyDamage(entity, damage, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()));
+                    DamageSources.applyDamage(entity, damage, SpellRegistries.SCORCHED_EARTH.get().getDamageSource(this, getOwner()));
                 }
             }
 
-            if (CSConfig.doSpellGriefing.get())
-            {
-                // EXPLOSION
-                Explosion explosion = new Explosion(level, null, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), null, this.getX(), this.getY(), this.getZ(), this.getExplosionRadius() / 2, true, Explosion.BlockInteraction.DESTROY);
-                if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(level, explosion)) {
-                    explosion.explode();
-                    explosion.finalizeExplosion(false);
-                }
-            }
-
-            // I just want red, man
             MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), this.getExplosionRadius() * 2),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
@@ -213,6 +187,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
             }
 
             createAoEField(hitresult.getLocation());
+            createQuakeAoEField(hitresult.getLocation());
 
             discard();
         }
@@ -222,20 +197,51 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
     {
         if (!level.isClientSide)
         {
-            NoManZoneAoE aoE = new NoManZoneAoE(level);
+            ScorchedEarthAoE aoE = new ScorchedEarthAoE(level);
             aoE.setOwner(getOwner());
             aoE.setDuration(200);
             aoE.setDamage(5.5F);
-            aoE.setRadius(6.0F);
+            aoE.setRadius(3.5F);
             aoE.setCircular();
             aoE.moveTo(location);
             level.addFreshEntity(aoE);
         }
     }
 
+    public void createQuakeAoEField(Vec3 location)
+    {
+        if (!level.isClientSide)
+        {
+            EarthquakeAoe aoE = new EarthquakeAoe(level);
+            aoE.setOwner(getOwner());
+            aoE.setDuration(50);
+            aoE.setDamage(0);
+            aoE.setRadius(1.5F);
+            aoE.setSlownessAmplifier(0);
+            aoE.setCircular();
+            aoE.moveTo(location);
+            level.addFreshEntity(aoE);
+        }
+    }
+
+    public void spawnXFlameJet(int rune, double time)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            float yawRadians = (float) Math.toRadians(45.0F + this.getYRot());
+            float throwAngle = (float) (yawRadians + i * Math.PI / 2.0F);
+
+            for(int k = 0; k < rune; ++k) {
+                double d2 = 0.8 * (k + 1);
+                int d3 = (int) (time * (k + 1));
+                CSUtils.spawnFlameJets(this.level, this.getX() + (double)Mth.cos(throwAngle) * 1.25 * d2, this.getZ() + (double)Mth.sin(throwAngle) * 1.25 * d2, this.getY() - 2.0, this.getY() + 2.0, throwAngle, d3, (LivingEntity) getOwner(), this.getDamage());
+            }
+        }
+    }
+
     @Override
     public void registerControllers(AnimationData data) {
-        // no animations
+        //
     }
 
     @Override

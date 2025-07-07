@@ -209,6 +209,17 @@ public class ServerEvents {
                 }
             }
         }
+
+        // Hemophilia
+        if (target instanceof LivingEntity livingTarget)
+        {
+            if (livingTarget.hasEffect(CSPotionEffectRegistry.HEMOPHILIA_EFFECT.get()))
+            {
+                float baseDamage = event.getAmount();
+
+                event.setAmount(baseDamage * 2.5F);
+            }
+        }
     }
 
     @SubscribeEvent
