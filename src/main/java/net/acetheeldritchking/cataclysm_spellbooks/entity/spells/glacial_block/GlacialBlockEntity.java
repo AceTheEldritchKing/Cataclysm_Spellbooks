@@ -112,7 +112,8 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
             }
             else
             {
-                if (tickCount > 20)
+                // Null check
+                if (tickCount > 20 && target != null)
                 {
                     DamageSources.applyDamage(target, 5,
                             SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
@@ -145,6 +146,13 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
             for (int i = 0; i < 5; i++) {
                 level.addParticle(ParticleHelper.SNOWFLAKE, getX() + Utils.getRandomScaled(.1f), getY() + Utils.getRandomScaled(.1f), getZ() + Utils.getRandomScaled(.1f), Utils.getRandomScaled(2f), -random.nextFloat() * .5f, Utils.getRandomScaled(2f));
             }
+        }
+        var entities = this.getPassengers();
+        for (Entity entity : entities)
+        {
+            // Hurt them when it breaks
+            DamageSources.applyDamage(entity, 15,
+                    SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
         }
         this.ejectPassengers();
         this.discard();

@@ -120,6 +120,8 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
         var target = pResult.getEntity();
         DamageSources.applyDamage(target, damage,
                 SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()));
+        // Ignore i-frames
+        pResult.getEntity().invulnerableTime = 0;
 
         int i = target.getRemainingFireTicks();
         target.setSecondsOnFire(5);

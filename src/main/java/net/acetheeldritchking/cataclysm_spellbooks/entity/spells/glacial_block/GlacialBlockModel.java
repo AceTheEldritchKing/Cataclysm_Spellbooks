@@ -12,7 +12,7 @@ public class GlacialBlockModel extends AnimatedGeoModel<GlacialBlockEntity> {
 
     @Override
     public ResourceLocation getTextureResource(GlacialBlockEntity object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/glacial_block/glacial_block.png");
+        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/glacial_block/glacial_block_snow.png");
     }
 
     @Override

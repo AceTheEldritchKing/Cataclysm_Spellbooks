@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockModel;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockRenderLayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -14,6 +15,7 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 public class GlacialBlockRenderer extends GeoEntityRenderer<GlacialBlockEntity> {
     public GlacialBlockRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new GlacialBlockModel());
+        addLayer(new GlacialBlockRenderLayer(this));
     }
 
     @Override
@@ -22,7 +24,8 @@ public class GlacialBlockRenderer extends GeoEntityRenderer<GlacialBlockEntity> 
 
         if (frozen != null)
         {
-            float scale = frozen.getBbWidth() / 0.6F;
+            // I'm reducing the scale since the ice block is already scaled to the player
+            float scale = frozen.getBbWidth() / 1.5F;
             poseStack.scale(scale, scale, scale);
         }
 

@@ -12,7 +12,6 @@ import io.redspace.ironsspellbooks.damage.ISpellDamageSource;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.FrozenBulletProjectile;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.MoltenBulletProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

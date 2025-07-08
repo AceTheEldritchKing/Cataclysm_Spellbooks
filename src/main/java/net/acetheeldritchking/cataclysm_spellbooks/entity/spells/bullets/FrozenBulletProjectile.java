@@ -131,12 +131,16 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
             livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
             livingTarget.addEffect(new MobEffectInstance(MobEffectRegistry.CHILLED.get(), 100, 1, true, true, true));
 
-            glacialBlock.setDuration(15 * 20);
-            glacialBlock.setTarget(livingTarget);
-            glacialBlock.moveTo(spawn);
-            level.addFreshEntity(glacialBlock);
-            target.stopRiding();
-            target.startRiding(glacialBlock, true);
+            // This should prevent double ice blocks from happening
+            if (!livingTarget.isPassenger())
+            {
+                glacialBlock.setDuration(15 * 20);
+                glacialBlock.setTarget(livingTarget);
+                glacialBlock.moveTo(spawn);
+                level.addFreshEntity(glacialBlock);
+                target.stopRiding();
+                target.startRiding(glacialBlock, true);
+            }
         }
 
         discard();
@@ -170,6 +174,11 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
                     ScreenShake_Entity.ScreenShake(level, entity.position(), 2.0F, 0.15F, 20, 20);
 
                     DamageSources.applyDamage(entity, damage, SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
+
+                    if (entity instanceof LivingEntity livingEntity)
+                    {
+                        livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.CHILLED.get(), 100, 1, true, true, true));
+                    }
                 }
             }
 
