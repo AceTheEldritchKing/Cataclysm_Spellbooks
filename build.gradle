@@ -6,7 +6,7 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = '1.2.0-1.19.2'
+version = '1.2.0-1.20.1'
 group = 'net.acetheeldritchking.cataclysm_spellbooks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'cataclysm_spellbooks'
 
@@ -28,7 +28,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'parchment', version: '2022.08.14-1.19.2'
+    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -142,14 +142,14 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.3.22'
 
     // ISS
     compileOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
     runtimeOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
 
     // Geckolib
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.39')
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${geckolib_version}")
 
     // Caelus
     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
@@ -165,16 +165,18 @@ dependencies {
     implementation "com.google.code.gson:gson:${gson_version}"
 
     // Lionfish
-    implementation fg.deobf("curse.maven:lionfish-api-1001614:5314835")
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
 
     // Cataclysm
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:6470672")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
 
     // AzureLib
-    implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.19.2:3.0.8")
+    implementation fg.deobf("curse.maven:azurelib-817423:6747998")
 
     // JEI
-    runtimeOnly(fg.deobf("curse.maven:Jei-238222:4712866"))
+    compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}")
 
     // Mixins
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"

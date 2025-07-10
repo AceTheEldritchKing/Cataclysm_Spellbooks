@@ -62,7 +62,7 @@ public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummo
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -89,14 +89,14 @@ public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummo
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ParticleTypes.BUBBLE,
+            MagicManager.spawnParticles(this.level(), ParticleTypes.BUBBLE,
                     getX(), getY() + 1.5, getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.009D,
+                    this.level().random.nextGaussian() * 0.007D,
                     0.1, false);
             discard();
         }

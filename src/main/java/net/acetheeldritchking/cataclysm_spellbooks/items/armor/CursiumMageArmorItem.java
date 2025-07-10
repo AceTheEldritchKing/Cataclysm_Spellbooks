@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class CursiumMageArmorItem extends ImbuableCataclysmArmor implements KeybindUsingArmor {
-    public CursiumMageArmorItem(EquipmentSlot slot, Properties settings) {
+    public CursiumMageArmorItem(Type slot, Properties settings) {
         super(CSArmorMaterials.CURSIUM_WARLOCK_ARMOR, slot, settings);
     }
 
@@ -42,21 +42,21 @@ public class CursiumMageArmorItem extends ImbuableCataclysmArmor implements Keyb
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (this.slot == EquipmentSlot.HEAD) {
+        if (this.type == Type.HELMET) {
             tooltip.add(Component.translatable("item.cataclysm.cursium_helmet.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_helmet.desc2", ModKeybind.HELMET_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
         }
-        if (this.slot == EquipmentSlot.CHEST) {
+        if (this.type == Type.CHESTPLATE) {
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc2").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc3").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.cursium_chestplate.desc4").withStyle(ChatFormatting.DARK_GREEN));
         }
-        if (this.slot == EquipmentSlot.LEGS) {
+        if (this.type == Type.LEGGINGS) {
             tooltip.add(Component.translatable("item.cataclysm.cursium_leggings.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_leggings.desc2").withStyle(ChatFormatting.DARK_GREEN));
         }
-        if (this.slot ==  EquipmentSlot.FEET) {
+        if (this.type == Type.BOOTS) {
             tooltip.add(Component.translatable("item.cataclysm.cursium_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_boots.desc2",ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
         }
@@ -101,7 +101,7 @@ public class CursiumMageArmorItem extends ImbuableCataclysmArmor implements Keyb
             if (player != null && !player.getCooldowns().isOnCooldown(ItemRegistries.CURSIUM_MAGE_HELMET.get()))
             {
                 boolean flag = false;
-                List<Entity> list = player.level.getEntities(player, player.getBoundingBox().inflate(24));
+                List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(24));
                 for (Entity entities : list)
                 {
                     if (entities instanceof LivingEntity livingEntity)

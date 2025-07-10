@@ -2,9 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.minecraft.client.renderer.LightTexture;
@@ -14,6 +12,8 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 public class DisablingSwipeAoERenderer extends EntityRenderer<DisablingSwipeAoE> {
     private static final ResourceLocation[] TEXTURES = {
@@ -32,8 +32,8 @@ public class DisablingSwipeAoERenderer extends EntityRenderer<DisablingSwipeAoE>
         pPoseStack.pushPose();
 
         PoseStack.Pose pose = pPoseStack.last();
-        pPoseStack.mulPose(Vector3f.YP.rotationDegrees(90 - pEntity.getYRot()));
-        pPoseStack.mulPose(Vector3f.XP.rotationDegrees(-pEntity.getXRot()));
+        pPoseStack.mulPose(Axis.YP.rotationDegrees(90 - pEntity.getYRot()));
+        pPoseStack.mulPose(Axis.XP.rotationDegrees(-pEntity.getXRot()));
 
         drawSlash(pose, pEntity, pBuffer, pEntity.getBbWidth() * 1.5F, pEntity.isMirrored());
 

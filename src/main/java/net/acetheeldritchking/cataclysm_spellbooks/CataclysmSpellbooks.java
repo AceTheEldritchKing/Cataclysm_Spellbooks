@@ -8,15 +8,10 @@ import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import mod.azure.azurelib.rewrite.render.item.AzItemRendererRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.*;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SummonedAbyssalGnawersRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SurveillanceDroneRenderer;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.*;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
 import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -108,11 +103,9 @@ public class CataclysmSpellbooks
                 ItemRegistries.getCSItems().stream().filter(item -> item.get() instanceof SpellBook).forEach((item) -> CuriosRendererRegistry.register(item.get(), SpellBookCurioRenderer::new));
             });
 
-            // Entity Rendering
-            // Abyssal Gnawers
-            EntityRenderers.register(CSEntityRegistry.ABYSSAL_GNAWERS.get(), SummonedAbyssalGnawersRenderer::new);
+            // Entity Rendering - MOVING THIS
             // Infernal Blade
-            EntityRenderers.register(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), InfernalBladeRenderer::new);
+            /*EntityRenderers.register(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), InfernalBladeRenderer::new);
             // Hellish Blade
             EntityRenderers.register(CSEntityRegistry.HELLISH_BLADE_PROJECTILE.get(), HellishBladeRenderer::new);
             // Blazing AoE
@@ -136,7 +129,7 @@ public class CataclysmSpellbooks
             // Frozen Bullet
             EntityRenderers.register(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), FrozenBulletRenderer::new);
             // Glacial Block
-            EntityRenderers.register(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockRenderer::new);
+            EntityRenderers.register(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockRenderer::new);*/
 
 
             // Armor Rendering Registry

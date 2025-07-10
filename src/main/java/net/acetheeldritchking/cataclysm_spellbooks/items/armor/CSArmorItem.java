@@ -28,15 +28,15 @@ public class CSArmorItem extends ArmorItem {
 
     public final CSItemDispatcher dispatcher;
 
-    public CSArmorItem(CSArmorMaterials materialIn, EquipmentSlot slot, Properties settings) {
+    public CSArmorItem(CSArmorMaterials materialIn, Type slot, Properties settings) {
         super(materialIn, slot, settings);
         this.dispatcher = new CSItemDispatcher();
 
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        float defense = materialIn.getDefenseForSlot(slot);
+        float defense = materialIn.getDefenseForType(slot);
         float toughness = materialIn.getToughness();
         float knockbackResistance = materialIn.getKnockbackResistance();
-        UUID uuid = ARMOR_ATTRIBUTE_UUID_PER_SLOT[slot.getIndex()];
+        UUID uuid = ARMOR_ATTRIBUTE_UUID_PER_SLOT[type.getSlot().getIndex()];
         builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier",
                 defense, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness",
@@ -57,7 +57,7 @@ public class CSArmorItem extends ArmorItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        if (pEquipmentSlot == this.slot)
+        if (pEquipmentSlot == this.type.getSlot())
         {
             return ARMOR_ATTRIBUTES;
         }

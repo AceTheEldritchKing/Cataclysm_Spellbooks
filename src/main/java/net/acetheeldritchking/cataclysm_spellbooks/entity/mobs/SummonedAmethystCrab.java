@@ -67,7 +67,7 @@ public class SummonedAmethystCrab extends Amethyst_Crab_Entity implements MagicS
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -94,14 +94,14 @@ public class SummonedAmethystCrab extends Amethyst_Crab_Entity implements MagicS
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ParticleTypes.ENCHANT,
+            MagicManager.spawnParticles(this.level(), ParticleTypes.ENCHANT,
                     getX(), getY(), getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.009D,
+                    this.level().random.nextGaussian() * 0.007D,
                     0.1, false);
             discard();
         }
@@ -166,8 +166,8 @@ public class SummonedAmethystCrab extends Amethyst_Crab_Entity implements MagicS
     }
 
     @Override
-    public @org.jetbrains.annotations.Nullable Entity getControllingPassenger() {
-        return this.getFirstPassenger();
+    public LivingEntity getControllingPassenger() {
+        return (LivingEntity) this.getFirstPassenger();
     }
 
     public void travel(Vec3 pTravelVector) {
@@ -215,10 +215,10 @@ public class SummonedAmethystCrab extends Amethyst_Crab_Entity implements MagicS
 
                 for (int[] aint1 : aint) {
                     blockpos$mutable.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
-                    double d0 = this.level.getBlockFloorHeight(blockpos$mutable);
+                    double d0 = this.level().getBlockFloorHeight(blockpos$mutable);
                     if (DismountHelper.isBlockFloorValid(d0)) {
                         Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutable, d0);
-                        if (DismountHelper.canDismountTo(this.level, pLivingEntity, axisalignedbb.move(vec3))) {
+                        if (DismountHelper.canDismountTo(this.level(), pLivingEntity, axisalignedbb.move(vec3))) {
                             pLivingEntity.setPose(pose);
                             return vec3;
                         }

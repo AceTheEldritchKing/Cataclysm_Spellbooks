@@ -7,24 +7,25 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
-import software.bernie.geckolib3.renderers.geo.GeoLayerRenderer;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-public class GlacialBlockRenderLayer extends GeoLayerRenderer<GlacialBlockEntity> {
+public class GlacialBlockRenderLayer extends GeoRenderLayer<GlacialBlockEntity> {
     private static final ResourceLocation LAYER = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/glacial_block/glacial_block.png");
     private static final ResourceLocation MODEL = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/glacial_block.geo.json");
 
-    public GlacialBlockRenderLayer(GeoEntityRenderer entityRendererIn) {
-        super(entityRendererIn);
+    public GlacialBlockRenderLayer(GeoEntityRenderer renderer) {
+        super(renderer);
     }
 
     @Override
-    public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, GlacialBlockEntity entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(PoseStack poseStack, GlacialBlockEntity animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         RenderType translucent = RenderType.entityTranslucentEmissive(LAYER, true);
-        var model = getEntityModel().getModel(MODEL);
-        VertexConsumer VertexConsumer = bufferIn.getBuffer(translucent);
-        this.getRenderer().render(
-                model, entityLivingBaseIn, partialTicks, translucent, matrixStackIn, bufferIn, VertexConsumer, 15728640, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 0.5f
+        BakedGeoModel model = this.getGeoModel().getBakedModel(MODEL);
+        VertexConsumer VertexConsumer = bufferSource.getBuffer(translucent);
+        this.getRenderer().actuallyRender(
+                poseStack, animatable, model, renderType, bufferSource, VertexConsumer, true, partialTick, 15728880, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 0.5f
         );
     }
 }

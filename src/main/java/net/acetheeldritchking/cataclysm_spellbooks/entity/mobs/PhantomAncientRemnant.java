@@ -64,7 +64,7 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -91,14 +91,14 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ModParticle.SANDSTORM.get(),
+            MagicManager.spawnParticles(this.level(), ModParticle.SANDSTORM.get(),
                     getX(), getY(), getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.009D,
+                    this.level().random.nextGaussian() * 0.007D,
                     0.1, false);
             discard();
         }
@@ -215,10 +215,10 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
                 for (int[] aint1 : aint) {
                     blockpos$mutable.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
-                    double d0 = this.level.getBlockFloorHeight(blockpos$mutable);
+                    double d0 = this.level().getBlockFloorHeight(blockpos$mutable);
                     if (DismountHelper.isBlockFloorValid(d0)) {
                         Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutable, d0);
-                        if (DismountHelper.canDismountTo(this.level, pLivingEntity, axisalignedbb.move(vec3))) {
+                        if (DismountHelper.canDismountTo(this.level(), pLivingEntity, axisalignedbb.move(vec3))) {
                             pLivingEntity.setPose(pose);
                             return vec3;
                         }

@@ -7,7 +7,6 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
-import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
@@ -26,15 +25,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class HellishBladeProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class HellishBladeProjectile extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Boolean> SOUL;
 
     static {
@@ -55,13 +54,13 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
     @Override
     public void trailParticles() {
         Vec3 vec3 = this.position().subtract(getDeltaMovement());
-        level.addParticle(ModParticle.TRAP_FLAME.get(), vec3.x, vec3.y, vec3.z, 0, 0, 0);
+        this.level().addParticle(ModParticle.TRAP_FLAME.get(), vec3.x, vec3.y, vec3.z, 0, 0, 0);
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
         MagicManager.spawnParticles
-                (level, ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
+                (this.level(), ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
 
     @Override
     protected void doImpactSound(SoundEvent sound) {
-        level.playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 1.0f);
+        this.level().playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 1.0f);
     }
 
     @Override
@@ -95,7 +94,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
                 playerTarget.disableShield(true);
             }
 
-            ScreenShake_Entity.ScreenShake(level, livingTarget.position(), 20, 0.1F, 20, 40);
+            ScreenShake_Entity.ScreenShake(this.level(), livingTarget.position(), 20, 0.1F, 20, 40);
         }
         discard();
     }
@@ -110,16 +109,16 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
 
     public void createAoEField(Vec3 location)
     {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            BlazingAoE aoE = new BlazingAoE(level);
+            BlazingAoE aoE = new BlazingAoE(this.level());
             aoE.setOwner(getOwner());
             aoE.setDuration(100);
             aoE.setDamage(0.5F);
             aoE.setRadius(3.0F);
             aoE.setCircular();
             aoE.moveTo(location);
-            level.addFreshEntity(aoE);
+            this.level().addFreshEntity(aoE);
         }
     }
 
@@ -133,14 +132,15 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements I
         this.entityData.set(SOUL, soul);
     }
 
+    // Geckolib
     @Override
-    public void registerControllers(AnimationData data) {
-        // No animations
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 
     // NBT

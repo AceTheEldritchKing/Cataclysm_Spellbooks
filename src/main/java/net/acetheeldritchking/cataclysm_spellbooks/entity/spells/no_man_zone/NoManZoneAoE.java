@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.no_man_zone;
 
 import io.redspace.ironsspellbooks.damage.DamageSources;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
@@ -18,7 +19,9 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 public class NoManZoneAoE extends AoeEntity {
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe"));
+    //public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe"));
+
+    private DamageSource damageSource;
 
     public NoManZoneAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -31,7 +34,10 @@ public class NoManZoneAoE extends AoeEntity {
 
     @Override
     public void applyEffect(LivingEntity target) {
-        var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
+        if (damageSource == null) {
+            // Temp ISS stuff
+            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, ISSDamageTypes.FIRE_FIELD), this, getOwner());
+        }
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());
         target.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));

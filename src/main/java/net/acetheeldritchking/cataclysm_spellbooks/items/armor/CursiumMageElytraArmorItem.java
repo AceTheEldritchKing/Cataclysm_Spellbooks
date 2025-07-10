@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
 
-    public CursiumMageElytraArmorItem(EquipmentSlot slot, Properties settings) {
+    public CursiumMageElytraArmorItem(Type slot, Properties settings) {
         super(CSArmorMaterials.CURSIUM_WARLOCK_ARMOR, slot, settings);
     }
 
@@ -34,7 +34,7 @@ public class CursiumMageElytraArmorItem extends ImbuableCataclysmArmor {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (this.slot == EquipmentSlot.CHEST) {
+        if (this.type == Type.CHESTPLATE) {
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc2").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc3").withStyle(ChatFormatting.DARK_GREEN));

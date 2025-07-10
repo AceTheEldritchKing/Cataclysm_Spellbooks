@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 
 public class AbyssalWarlockMaskItem extends ImbuableCataclysmArmor {
-    public AbyssalWarlockMaskItem(EquipmentSlot slot, Properties settings) {
+    public AbyssalWarlockMaskItem(Type slot, Properties settings) {
         super(CSArmorMaterials.ABYSSAL_WARLOCK_ARMOR, slot, settings);
     }
 

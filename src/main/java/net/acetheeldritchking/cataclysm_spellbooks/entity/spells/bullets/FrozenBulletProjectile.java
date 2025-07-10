@@ -29,15 +29,15 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class FrozenBulletProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class FrozenBulletProjectile extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     public double prevDeltaMovementX;
     public double prevDeltaMovementY;
     public double prevDeltaMovementZ;
@@ -59,13 +59,13 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
             double y = getY() + (1.5F * (this.random.nextFloat() - 0.5F));
             double z = getZ() + (1.5F * (this.random.nextFloat() - 0.5F));
 
-            this.level.addParticle(ParticleTypes.SNOWFLAKE, x, y, z, -getDeltaMovement().x, -getDeltaMovement().y, -getDeltaMovement().z);
+            this.level().addParticle(ParticleTypes.SNOWFLAKE, x, y, z, -getDeltaMovement().x, -getDeltaMovement().y, -getDeltaMovement().z);
         }
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
-        MagicManager.spawnParticles(level, ParticleTypes.SNOWFLAKE, x, y, z, 10, .1, .1, .1, .18, true);
+        MagicManager.spawnParticles(this.level(), ParticleTypes.SNOWFLAKE, x, y, z, 10, .1, .1, .1, .18, true);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
 
         setYRot(-((float) Mth.atan2(getDeltaMovement().x, getDeltaMovement().z)) * (180F / (float)Math.PI));
 
-        if (this.level.isClientSide)
+        if (this.level().isClientSide)
         {
             double x = getX() + 1.5F * (this.random.nextFloat() - 0.5F);
             double y = getY() + 1.5F * (this.random.nextFloat() - 0.5F);
@@ -98,7 +98,7 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
             float g = 236/255F + this.random.nextFloat() * random;
             float b = 248/255F + this.random.nextFloat() * random;
 
-            this.level.addParticle(new LightTrailParticle.OrbData(r, g, b, 0.1F, this.getBbHeight()/2, this.getId()), x, y, z, 0, 0, 0);
+            this.level().addParticle(new LightTrailParticle.OrbData(r, g, b, 0.1F, this.getBbHeight()/2, this.getId()), x, y, z, 0, 0, 0);
         }
 
         super.tick();
@@ -124,7 +124,7 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
 
         Vec3 spawn = target.position();
 
-        GlacialBlockEntity glacialBlock = new GlacialBlockEntity(this.level, (LivingEntity) this.getOwner());
+        GlacialBlockEntity glacialBlock = new GlacialBlockEntity(this.level(), (LivingEntity) this.getOwner());
 
         if (target instanceof LivingEntity livingTarget)
         {
@@ -137,7 +137,7 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
                 glacialBlock.setDuration(15 * 20);
                 glacialBlock.setTarget(livingTarget);
                 glacialBlock.moveTo(spawn);
-                level.addFreshEntity(glacialBlock);
+                this.level().addFreshEntity(glacialBlock);
                 target.stopRiding();
                 target.startRiding(glacialBlock, true);
             }
@@ -155,23 +155,23 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
     protected void onHit(HitResult hitresult) {
         super.onHit(hitresult);
 
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             float radius = getExplosionRadius();
             var radiusSqr = radius * radius;
-            var entities = level.getEntities(this, this.getBoundingBox().inflate(radius));
-            Vec3 losPoint = Utils.raycastForBlock(level, this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+            var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
+            Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
             for (Entity entity : entities)
             {
                 double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
                 {
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     float damage = (float) (getDamage() * modifier);
 
-                    ScreenShake_Entity.ScreenShake(level, entity.position(), 2.0F, 0.15F, 20, 20);
+                    ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 2.0F, 0.15F, 20, 20);
 
                     DamageSources.applyDamage(entity, damage, SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
 
@@ -182,7 +182,7 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
                 }
             }
 
-            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.ICE.get().getTargetingColor(), this.getExplosionRadius() * 2),
+            MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(SchoolRegistry.ICE.get().getTargetingColor(), this.getExplosionRadius() * 2),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
 
@@ -195,13 +195,14 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements I
         }
     }
 
+    // Geckolib
     @Override
-    public void registerControllers(AnimationData data) {
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }

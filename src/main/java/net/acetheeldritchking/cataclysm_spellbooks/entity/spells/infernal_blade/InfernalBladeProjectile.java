@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.init.ModSounds;
+import com.github.L_Ender.lionfishapi.server.event.AnimationEvent;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
@@ -25,20 +26,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class InfernalBladeProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class InfernalBladeProjectile extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Boolean> SOUL;
 
     static {
@@ -85,13 +82,13 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     @Override
     public void trailParticles() {
         Vec3 vec3 = this.position().subtract(getDeltaMovement());
-        level.addParticle(ParticleHelper.EMBERS, vec3.x, vec3.y, vec3.z, 0, 0, 0);
+        this.level().addParticle(ParticleHelper.EMBERS, vec3.x, vec3.y, vec3.z, 0, 0, 0);
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
         MagicManager.spawnParticles
-                (level, ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
+                (this.level(), ModParticle.TRAP_FLAME.get(), x, y, z, 5, 0, 0, 0, 1, true);
     }
 
     @Override
@@ -106,7 +103,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
 
     @Override
     protected void doImpactSound(SoundEvent sound) {
-        level.playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 0.5f);
+        this.level().playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 0.5f);
     }
 
     @Override
@@ -138,25 +135,24 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     }
 
     // Geckolib
-    @Override
-    public void registerControllers(AnimationData data) {
-        AnimationController<InfernalBladeProjectile> controller = new AnimationController<>(this, "controller", 0, this::predicate);
+    private final AnimationController<InfernalBladeProjectile> animationController = new AnimationController<>(this, "controller", 0, this::predicate);
 
-        data.addAnimationController(controller);
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(animationController);
     }
 
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event)
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
+    }
+
+    private PlayState predicate(AnimationState<InfernalBladeProjectile> event)
     {
-        AnimationBuilder builder = new AnimationBuilder();
-        builder.addAnimation("animation.infernal_blade_small.idle", ILoopType.EDefaultLoopTypes.LOOP);
-        event.getController().setAnimation(builder);
+        // Sounds pretty cool!
+        event.getController().setAnimation(RawAnimation.begin().then("animation.infernal_blade_small.idle", Animation.LoopType.LOOP));
 
         return PlayState.CONTINUE;
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return factory;
     }
 
     // NBT

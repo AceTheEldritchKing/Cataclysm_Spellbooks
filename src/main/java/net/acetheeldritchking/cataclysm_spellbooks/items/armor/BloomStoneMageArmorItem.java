@@ -5,7 +5,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
 public class BloomStoneMageArmorItem extends ImbuableCataclysmArmor {
-    public BloomStoneMageArmorItem(EquipmentSlot slot, Properties settings) {
+    public BloomStoneMageArmorItem(Type slot, Properties settings) {
         super(CSArmorMaterials.BOULDER_BLOSSOM_ARMOR, slot, settings);
     }
 

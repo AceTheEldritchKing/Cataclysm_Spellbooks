@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
@@ -25,21 +26,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAnimatable {
-    AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class SurveillanceDroneEntity extends Monster implements MagicSummon, GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     protected LivingEntity cachedSummoner;
     protected UUID summonerUUID;
     protected int healingAmount;
@@ -86,7 +83,7 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAn
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -105,7 +102,7 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAn
 
         Vec3 healingCenter = this.position().add(this.getForward().multiply(distance, 3.5F, distance));
 
-        var entities = level.getEntities(this, AABB.ofSize(healingCenter, radius * 2, radius, radius * 2));
+        var entities = this.level().getEntities(this, AABB.ofSize(healingCenter, radius * 2, radius, radius * 2));
 
         // Every forty-five seconds, heal
         if (tickCount % 20 * 45 == 0)
@@ -117,7 +114,7 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAn
                     if (getSummoner() != null && livingEntity.isAlliedTo(getSummoner()) && this.isPassenger())
                     {
                         //MagicManager.spawnParticles(this.level, new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), radius * 2), entity.getX(), entity.getY(), entity.getZ(), 1, 0, 0, 0, 0, true);
-                        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), radius * 2),
+                        MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), radius * 2),
                                 getX(), getY(), getZ(),
                                 1, 0, 0, 0, 0, false);
                         livingEntity.heal(getHealingAmount());
@@ -156,9 +153,9 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAn
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ParticleTypes.POOF,
+            MagicManager.spawnParticles(this.level(), ParticleTypes.POOF,
                     getX(), getY(), getZ(),
                     25, 0.4, 0.8, 0.4, 0.03, false);
             discard();
@@ -171,24 +168,23 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, IAn
     }
 
     // GECKOLIB STUFF
+    private final AnimationController<SurveillanceDroneEntity> animationController = new AnimationController<>(this, "controller", 0, this::predicate);
+
     @Override
-    public void registerControllers(AnimationData data) {
-        AnimationController<SurveillanceDroneEntity> controller = new AnimationController<>(this, "controller", 0, this::predicate);
-        data.addAnimationController(controller);
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(animationController);
     }
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        AnimationBuilder builder = new AnimationBuilder();
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
+    }
 
-        builder.addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP);
+    private PlayState predicate(AnimationState<SurveillanceDroneEntity> event)
+    {
+        event.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
 
-        event.getController().setAnimation(builder);
         return PlayState.CONTINUE;
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return factory;
     }
 
     // NBT

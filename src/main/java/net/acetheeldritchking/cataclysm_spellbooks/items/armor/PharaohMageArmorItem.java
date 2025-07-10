@@ -5,7 +5,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
 public class PharaohMageArmorItem extends ImbuableCataclysmArmor {
-    public PharaohMageArmorItem(EquipmentSlot slot, Properties settings) {
+    public PharaohMageArmorItem(Type slot, Properties settings) {
         super(CSArmorMaterials.PHARAOH_MAGE_ARMOR, slot, settings);
     }
 

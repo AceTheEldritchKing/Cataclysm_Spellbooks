@@ -36,7 +36,7 @@ public class ExtendedLaserBeamEntity extends Laser_Beam_Entity {
     protected void onHitEntity(EntityHitResult hitResult) {
         super.onHitEntity(hitResult);
 
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             Entity entity = hitResult.getEntity();
             LivingEntity owner = (LivingEntity) this.getOwner();
@@ -59,7 +59,7 @@ public class ExtendedLaserBeamEntity extends Laser_Beam_Entity {
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
 
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             Entity entity = this.getOwner();
             BlockPos pos;
@@ -67,16 +67,16 @@ public class ExtendedLaserBeamEntity extends Laser_Beam_Entity {
             if (CSConfig.doSpellGriefing.get())
             {
                 pos = pResult.getBlockPos().relative(pResult.getDirection());
-                if (this.level.isEmptyBlock(pos))
+                if (this.level().isEmptyBlock(pos))
                 {
-                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                    this.level().setBlockAndUpdate(pos, BaseFireBlock.getState(this.level(), pos));
                 }
-            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level, entity))
+            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level(), entity))
             {
                 pos = pResult.getBlockPos().relative(pResult.getDirection());
-                if (this.level.isEmptyBlock(pos))
+                if (this.level().isEmptyBlock(pos))
                 {
-                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                    this.level().setBlockAndUpdate(pos, BaseFireBlock.getState(this.level(), pos));
                 }
             }
         }

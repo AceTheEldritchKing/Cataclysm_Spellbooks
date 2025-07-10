@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SurveillanceDroneModel extends AnimatedGeoModel<SurveillanceDroneEntity> {
+public class SurveillanceDroneModel extends GeoModel<SurveillanceDroneEntity> {
     @Override
     public ResourceLocation getModelResource(SurveillanceDroneEntity object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/surveillance_drone.geo.json");

@@ -32,15 +32,15 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class PartingShotProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class PartingShotProjectile extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
     public PartingShotProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -55,7 +55,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
     @Override
     public void trailParticles() {
         Vec3 vec3 = this.position().subtract(getDeltaMovement());
-        level.addParticle(new TrackLightningParticle.OrbData(232, 59, 59), vec3.x, vec3.y, vec3.z, vec3.x, vec3.y, vec3.z);
+        this.level().addParticle(new TrackLightningParticle.OrbData(232, 59, 59), vec3.x, vec3.y, vec3.z, vec3.x, vec3.y, vec3.z);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
         //this.level.addParticle(new TrackLightningParticle.OrbData(255, 6, 62), arcVec.x, arcVec.y, arcVec.z, 0, 0, 0);
 
-        this.level.addParticle(new TrackLightningParticle.OrbData(232, 59, 59), center.x, center.y, center.z, arcVec.x, arcVec.y, arcVec.z);
+        this.level().addParticle(new TrackLightningParticle.OrbData(232, 59, 59), center.x, center.y, center.z, arcVec.x, arcVec.y, arcVec.z);
 
         super.tick();
     }
@@ -144,7 +144,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
 
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             Entity entity = this.getOwner();
             BlockPos pos;
@@ -152,16 +152,16 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
             if (CSConfig.doSpellGriefing.get())
             {
                 pos = pResult.getBlockPos().relative(pResult.getDirection());
-                if (this.level.isEmptyBlock(pos))
+                if (this.level().isEmptyBlock(pos))
                 {
-                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                    this.level().setBlockAndUpdate(pos, BaseFireBlock.getState(this.level(), pos));
                 }
-            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level, entity))
+            } else if (!(entity instanceof Mob) || ForgeEventFactory.getMobGriefingEvent(this.level(), entity))
             {
                 pos = pResult.getBlockPos().relative(pResult.getDirection());
-                if (this.level.isEmptyBlock(pos))
+                if (this.level().isEmptyBlock(pos))
                 {
-                    this.level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
+                    this.level().setBlockAndUpdate(pos, BaseFireBlock.getState(this.level(), pos));
                 }
             }
         }
@@ -172,23 +172,23 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
     @Override
     protected void onHit(HitResult hitresult) {
         super.onHit(hitresult);
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             float radius = getExplosionRadius();
             var radiusSqr = radius * radius;
-            var entities = level.getEntities(this, this.getBoundingBox().inflate(radius));
-            Vec3 losPoint = Utils.raycastForBlock(level, this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+            var entities = level().getEntities(this, this.getBoundingBox().inflate(radius));
+            Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
             for (Entity entity : entities)
             {
                 double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
                 {
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     float damage = (float) (getDamage() * modifier);
 
-                    ScreenShake_Entity.ScreenShake(level, entity.position(), 5.0F, 0.15F, 20, 20);
+                    ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 5.0F, 0.15F, 20, 20);
 
                     DamageSources.applyDamage(entity, damage, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()));
                 }
@@ -197,15 +197,15 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
             if (CSConfig.doSpellGriefing.get())
             {
                 // EXPLOSION
-                Explosion explosion = new Explosion(level, null, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), null, this.getX(), this.getY(), this.getZ(), this.getExplosionRadius() / 2, true, Explosion.BlockInteraction.DESTROY);
-                if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(level, explosion)) {
+                Explosion explosion = new Explosion(this.level(), null, SpellRegistries.PARTING_SHOT.get().getDamageSource(this, getOwner()), null, this.getX(), this.getY(), this.getZ(), this.getExplosionRadius() / 2, true, Explosion.BlockInteraction.DESTROY);
+                if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(this.level(), explosion)) {
                     explosion.explode();
                     explosion.finalizeExplosion(false);
                 }
             }
 
             // I just want red, man
-            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), this.getExplosionRadius() * 2),
+            MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), this.getExplosionRadius() * 2),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
 
@@ -222,26 +222,26 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements IA
 
     public void createAoEField(Vec3 location)
     {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            NoManZoneAoE aoE = new NoManZoneAoE(level);
+            NoManZoneAoE aoE = new NoManZoneAoE(this.level());
             aoE.setOwner(getOwner());
             aoE.setDuration(200);
             aoE.setDamage(5.5F);
             aoE.setRadius(6.0F);
             aoE.setCircular();
             aoE.moveTo(location);
-            level.addFreshEntity(aoE);
+            this.level().addFreshEntity(aoE);
         }
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        // no animations
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }

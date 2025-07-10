@@ -11,25 +11,29 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidType;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import net.minecraftforge.network.NetworkHooks;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.UUID;
 
-public class GlacialBlockEntity extends LivingEntity implements IAnimatable, PreventDismount, AntiMagicSusceptible {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class GlacialBlockEntity extends LivingEntity implements GeoEntity, PreventDismount, AntiMagicSusceptible {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     @Nullable
     private LivingEntity owner;
 
@@ -62,11 +66,6 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
     }
 
     @Override
-    public boolean rideableUnderWater() {
-        return true;
-    }
-
-    @Override
     public boolean shouldRiderSit() {
         return false;
     }
@@ -79,6 +78,11 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
     @Override
     public boolean shouldRiderFaceForward(Player player) {
         return true;
+    }
+
+    @Override
+    public boolean dismountsUnderwater() {
+        return false;
     }
 
     @Override
@@ -104,7 +108,7 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
             playSound = false;
         }
 
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
             if (tickCount > duration || (target != null && target.isDeadOrDying()) || !isVehicle())
             {
@@ -129,9 +133,9 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
 
     @Nullable
     public LivingEntity getOwner() {
-        if (this.owner == null && this.ownerUUID != null && this.level instanceof ServerLevel)
+        if (this.owner == null && this.ownerUUID != null && this.level() instanceof ServerLevel)
         {
-            Entity entity = ((ServerLevel)this.level).getEntity(this.ownerUUID);
+            Entity entity = ((ServerLevel)this.level()).getEntity(this.ownerUUID);
             if (entity instanceof LivingEntity)
             {
                 this.owner = (LivingEntity) entity;
@@ -142,9 +146,9 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
     }
 
     public void removeGlacialBlock() {
-        if (level.isClientSide) {
+        if (this.level().isClientSide) {
             for (int i = 0; i < 5; i++) {
-                level.addParticle(ParticleHelper.SNOWFLAKE, getX() + Utils.getRandomScaled(.1f), getY() + Utils.getRandomScaled(.1f), getZ() + Utils.getRandomScaled(.1f), Utils.getRandomScaled(2f), -random.nextFloat() * .5f, Utils.getRandomScaled(2f));
+                this.level().addParticle(ParticleHelper.SNOWFLAKE, getX() + Utils.getRandomScaled(.1f), getY() + Utils.getRandomScaled(.1f), getZ() + Utils.getRandomScaled(.1f), Utils.getRandomScaled(2f), -random.nextFloat() * .5f, Utils.getRandomScaled(2f));
             }
         }
         var entities = this.getPassengers();
@@ -198,7 +202,7 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
     }
 
     @Override
-    public void positionRider(Entity pPassenger) {
+    protected void positionRider(Entity pPassenger, MoveFunction pCallback) {
         int x = (int) (this.getX() - pPassenger.getX());
         int y = (int) (this.getY() - pPassenger.getY());
         int z = (int) (this.getZ() - pPassenger.getZ());
@@ -233,8 +237,7 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if (pSource.isBypassInvul())
-        {
+        if (pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             this.removeGlacialBlock();
             return true;
         }
@@ -257,8 +260,8 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     // NBT
@@ -284,13 +287,14 @@ public class GlacialBlockEntity extends LivingEntity implements IAnimatable, Pre
         this.duration = pCompound.getInt("Duration");
     }
 
+    // Geckolib
     @Override
-    public void registerControllers(AnimationData data) {
-
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }

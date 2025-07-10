@@ -57,9 +57,6 @@ public class SpellRegistries {
     // Tidal Claw (Summons Tidal Claw that grabs target) - Requires Tidal Claw
     public static final RegistryObject<AbstractSpell> TIDAL_GRAB = registerSpell(new TidalGrabSpell());
 
-    // Conjure Abyssal Gnawers (Summon a swarm of Abyssal Gnawer fish)
-    public static final RegistryObject<AbstractSpell> CONJURE_ABYSSAL_GNAWERS = registerSpell(new ConjureAbyssalGnawerSpell());
-
     // Summon Coral Golem (Summons a few coral golem guys)
     public static final RegistryObject<AbstractSpell> CONJURE_CORAL_GOLEM = registerSpell(new ConjureCoralGolemSpell());
 

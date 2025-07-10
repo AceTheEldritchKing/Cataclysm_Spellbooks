@@ -78,7 +78,7 @@ public class SummonedWatcher extends The_Watcher_Entity implements MagicSummon {
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -105,7 +105,7 @@ public class SummonedWatcher extends The_Watcher_Entity implements MagicSummon {
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
             spawnParticles(this);
             discard();
@@ -114,7 +114,7 @@ public class SummonedWatcher extends The_Watcher_Entity implements MagicSummon {
 
     private void spawnParticles(LivingEntity entity)
     {
-        ServerLevel level = (ServerLevel) entity.level;
+        ServerLevel level = (ServerLevel) entity.level();
         level.sendParticles(ModParticle.EM_PULSE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 

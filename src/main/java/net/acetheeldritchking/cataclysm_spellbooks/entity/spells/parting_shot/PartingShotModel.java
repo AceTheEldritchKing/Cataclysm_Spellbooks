@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class PartingShotModel extends AnimatedGeoModel<PartingShotProjectile> {
+public class PartingShotModel extends GeoModel<PartingShotProjectile> {
     @Override
     public ResourceLocation getModelResource(PartingShotProjectile object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/parting_shot.geo.json");

@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blood_crystal;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class BloodCrystalModel extends AnimatedGeoModel<BloodCrystalProjectile> {
+public class BloodCrystalModel extends GeoModel<BloodCrystalProjectile> {
     @Override
     public ResourceLocation getModelResource(BloodCrystalProjectile object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/blood_spear.geo.json");

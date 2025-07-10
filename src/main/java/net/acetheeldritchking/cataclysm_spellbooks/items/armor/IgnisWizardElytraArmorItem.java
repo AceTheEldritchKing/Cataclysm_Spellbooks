@@ -16,7 +16,7 @@ import java.util.List;
 
 public class IgnisWizardElytraArmorItem extends ImbuableCataclysmArmor {
 
-    public IgnisWizardElytraArmorItem(EquipmentSlot slot, Properties settings) {
+    public IgnisWizardElytraArmorItem(Type slot, Properties settings) {
         super(CSArmorMaterials.IGNITIUM_WIZARD_ARMOR, slot, settings);
     }
 
@@ -36,15 +36,15 @@ public class IgnisWizardElytraArmorItem extends ImbuableCataclysmArmor {
     // Using the same stuff as Cataclysm for tooltips
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
-        if (this.slot == EquipmentSlot.HEAD) {
+        if (this.type == Type.HELMET) {
             pTooltipComponents.add(Component.translatable("item.cataclysm.ignitium_helmet.desc").withStyle(ChatFormatting.DARK_GREEN));
         }
 
-        if (this.slot == EquipmentSlot.LEGS) {
+        if (this.type == Type.LEGGINGS) {
             pTooltipComponents.add(Component.translatable("item.cataclysm.ignitium_leggings.desc").withStyle(ChatFormatting.DARK_GREEN));
         }
 
-        if (this.slot == EquipmentSlot.FEET) {
+        if (this.type == Type.BOOTS) {
             pTooltipComponents.add(Component.translatable("item.cataclysm.ignitium_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
         }
     }

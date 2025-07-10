@@ -58,9 +58,9 @@ public class ExtendedDeathLaserBeamEntity extends Death_Laser_Beam_Entity {
             Vec3 laserVec3 = new Vec3(this.getX(), this.getY(), this.getZ());
             Vec3 endPosVec3 = new Vec3(this.endPosX, this.endPosY, this.endPosZ);
 
-            List<LivingEntity> hit = this.extendedLaserbeamHitResult(this.level, laserVec3, endPosVec3, false, true, true).entities;
+            List<LivingEntity> hit = this.extendedLaserbeamHitResult(this.level(), laserVec3, endPosVec3, false, true, true).entities;
 
-            if (!this.level.isClientSide)
+            if (!this.level().isClientSide)
             {
                 for (LivingEntity entity : hit)
                 {
@@ -82,7 +82,7 @@ public class ExtendedDeathLaserBeamEntity extends Death_Laser_Beam_Entity {
     }
 
     private void calculateEndPos() {
-        if (this.level.isClientSide()) {
+        if (this.level().isClientSide()) {
             this.endPosX = this.getX() + 30.0 * Math.cos(this.renderYaw) * Math.cos(this.renderPitch);
             this.endPosZ = this.getZ() + 30.0 * Math.sin(this.renderYaw) * Math.cos(this.renderPitch);
             this.endPosY = this.getY() + 30.0 * Math.sin(this.renderPitch);

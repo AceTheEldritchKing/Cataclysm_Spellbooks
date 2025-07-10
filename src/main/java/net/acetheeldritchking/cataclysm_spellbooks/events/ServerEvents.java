@@ -32,6 +32,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -129,7 +130,7 @@ public class ServerEvents {
                         //System.out.println("Damage: " + totalDamage);
                     });
 
-                    player.level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
@@ -149,7 +150,7 @@ public class ServerEvents {
         {
             if (livingTarget.hasEffect(CSPotionEffectRegistry.IPS_POTION_EFFECT.get()))
             {
-                if (event.getSource().isProjectile())
+                if (event.getSource().is(DamageTypeTags.IS_PROJECTILE))
                 {
                     float baseDamage = event.getAmount();
 
@@ -189,7 +190,7 @@ public class ServerEvents {
                         }
                     });
 
-                    player.level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.REMNANT_CHARGE_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.REMNANT_CHARGE_ROAR.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
@@ -199,7 +200,7 @@ public class ServerEvents {
         {
             if (attacker.hasEffect(CSPotionEffectRegistry.SNIPER_EFFECT.get()))
             {
-                if (event.getSource().isProjectile())
+                if (event.getSource().is(DamageTypeTags.IS_PROJECTILE))
                 {
                     //System.out.println("Old Amount: " + event.getAmount());
                     float baseDamage = event.getAmount();
@@ -226,7 +227,7 @@ public class ServerEvents {
     public static void onLivingTickEvent(LivingEvent.LivingTickEvent event)
     {
         Entity entity = event.getEntity();
-        Level level = entity.level;
+        Level level = entity.level();
         if (!level.isClientSide)
         {
             if (entity instanceof LivingEntity livingEntity)
@@ -254,7 +255,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public static void handleResistanceAttributeSpawn(LivingSpawnEvent.SpecialSpawn event)
+    public static void handleResistanceAttributeSpawn(MobSpawnEvent.FinalizeSpawn event)
     {
         var mob = event.getEntity();
 
@@ -420,10 +421,10 @@ public class ServerEvents {
             // Cursed Frenzy
             if (effect instanceof CursedFrenzyEffect)
             {
-                if (!entity.level.isClientSide())
+                if (!entity.level().isClientSide())
                 {
                     //System.out.println("Potion Effect!");
-                    CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level, 5, 1);
+                    CSUtils.spawnHalberdWindmill(5, 5, 1.0F, 0.5F, 0.5F, 1, (LivingEntity) entity, entity.level(), 5, 1);
                 }
             }
 
@@ -542,9 +543,9 @@ public class ServerEvents {
         // Cursium Chestplate
         if (entity instanceof LivingEntity livingEntity)
         {
-            if (!livingEntity.level.isClientSide())
+            if (!livingEntity.level().isClientSide())
             {
-                if (!damageSource.isBypassInvul())
+                if (!damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY))
                 {
                     if (CSUtils.tryCurisumChestplateRebirth(livingEntity))
                     {
@@ -566,13 +567,13 @@ public class ServerEvents {
             if (!livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&
                     livingEntity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemRegistries.CURSIUM_MAGE_LEGGINGS.get())
             {
-                if (event.getSource().isBypassInvul())
+                if (event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY))
                 {
                     if (livingEntity.getRandom().nextFloat() < 0.15F)
                     {
                         event.setCanceled(true);
                     }
-                } else if (!event.getSource().isBypassInvul())
+                } else if (!event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY))
                 {
                     if (livingEntity.getRandom().nextFloat() < 0.08F)
                     {
@@ -589,7 +590,7 @@ public class ServerEvents {
             {
                 if (livingTarget.hasEffect(CSPotionEffectRegistry.IPS_POTION_EFFECT.get()))
                 {
-                    if (event.getSource().isProjectile())
+                    if (event.getSource().is(DamageTypeTags.IS_PROJECTILE))
                     {
                         event.setCanceled(true);
                     }
@@ -637,7 +638,7 @@ public class ServerEvents {
 
         if (CSConfig.shutdownSpellCasting.get())
         {
-            if (entity instanceof ServerPlayer player && !player.level.isClientSide)
+            if (entity instanceof ServerPlayer player && !player.level().isClientSide)
             {
                 if (hasSilenceEffect)
                 {
@@ -648,7 +649,7 @@ public class ServerEvents {
                     String formattedTime = convertTicksToTime(time);
                     // display a message to the player
                     player.connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("ui.irons_spellbooks.spell_target_success_self", formattedTime).withStyle(ChatFormatting.GREEN)));
-                    player.level.playSound(null , player.getX() , player.getY() , player.getZ() ,
+                    player.level().playSound(null , player.getX() , player.getY() , player.getZ() ,
                             SoundEvents.FIRE_EXTINGUISH , SoundSource.PLAYERS , 0.5f , 1f);
                 }
             }

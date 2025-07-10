@@ -17,36 +17,27 @@ import java.util.function.Supplier;
 
 public class AddToLootTableModifier extends LootModifier {
     public static final Supplier<Codec<AddToLootTableModifier>> CODEC = Suppliers.memoize(()
-            -> RecordCodecBuilder.create(inst -> codecStart(inst).
-            and(ResourceLocation.CODEC.fieldOf("loot_table").
-                    forGetter(m -> m.lootTable)).apply(inst, AddToLootTableModifier::new)));
+            -> RecordCodecBuilder.create(inst -> codecStart(inst).and(ResourceLocation.CODEC
+            .fieldOf("loot_table").forGetter(m -> m.loot_table)).apply(inst, AddToLootTableModifier::new)));
+    private final ResourceLocation loot_table;
 
-    public ResourceLocation lootTable;
-
-    /**
-     * Constructs a LootModifier.
-     *
-     * @param conditionsIn the ILootConditions that need to be matched before the loot is modified.
-     */
-    protected AddToLootTableModifier(LootItemCondition[] conditionsIn, ResourceLocation lootTable)
-    {
+    public AddToLootTableModifier(LootItemCondition[] conditionsIn, ResourceLocation item) {
         super(conditionsIn);
-        this.lootTable = lootTable;
+        this.loot_table = item;
     }
 
     @Override
-    protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context)
-    {
-        LootTable table = context.getLootTable(this.lootTable);
+    protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+        LootTable addedLootTable = context.getResolver().getLootTable(this.loot_table);
+        addedLootTable.getRandomItemsRaw(context, LootTable.createStackSplitter(context.getLevel(), generatedLoot::add));
 
-        table.getRandomItems(context, generatedLoot::add);
+        //generatedLoot.add(new ItemStack(this.item));
 
         return generatedLoot;
     }
 
     @Override
-    public Codec<? extends IGlobalLootModifier> codec()
-    {
+    public Codec<? extends IGlobalLootModifier> codec() {
         return CODEC.get();
     }
 }

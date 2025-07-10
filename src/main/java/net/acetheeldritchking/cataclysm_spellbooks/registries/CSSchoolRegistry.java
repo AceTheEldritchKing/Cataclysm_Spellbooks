@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSTags;
@@ -36,7 +37,8 @@ public class CSSchoolRegistry extends SchoolRegistry {
                     Component.translatable("school.cataclysm_spellbooks.abyssal").withStyle(Style.EMPTY.withColor(0x36156c)),
                     LazyOptional.of(CSAttributeRegistry.ABYSSAL_MAGIC_POWER::get),
                     LazyOptional.of(CSAttributeRegistry.ABYSSAL_MAGIC_RESIST::get),
-                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get)
+                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get),
+                    CSDamageTypes.ABYSSAL_MAGIC
             ));
 
     // Technomancy
@@ -49,6 +51,7 @@ public class CSSchoolRegistry extends SchoolRegistry {
                     Component.translatable("school.cataclysm_spellbooks.technomancy").withStyle(Style.EMPTY.withColor(0xb3bec5)),
                     LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER::get),
                     LazyOptional.of(CSAttributeRegistry.TECHNOMANCY_MAGIC_RESIST::get),
-                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get)
+                    LazyOptional.of(SoundRegistry.EVOCATION_CAST::get),
+                    CSDamageTypes.TECHNOMANCY_MAGIC
             ));
 }

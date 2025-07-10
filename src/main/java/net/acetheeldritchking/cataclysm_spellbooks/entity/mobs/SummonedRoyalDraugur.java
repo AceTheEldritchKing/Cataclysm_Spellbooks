@@ -58,7 +58,7 @@ public class SummonedRoyalDraugur extends Royal_Draugr_Entity implements MagicSu
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -85,14 +85,14 @@ public class SummonedRoyalDraugur extends Royal_Draugr_Entity implements MagicSu
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            MagicManager.spawnParticles(level, ModParticle.CURSED_FLAME.get(),
+            MagicManager.spawnParticles(this.level(), ModParticle.CURSED_FLAME.get(),
                     getX(), getY(), getZ(),
                     25,
-                    level.random.nextGaussian() * 0.007D,
-                    level.random.nextGaussian() * 0.009D,
-                    level.random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.007D,
+                    this.level().random.nextGaussian() * 0.009D,
+                    this.level().random.nextGaussian() * 0.007D,
                     0.1, false);
             discard();
         }

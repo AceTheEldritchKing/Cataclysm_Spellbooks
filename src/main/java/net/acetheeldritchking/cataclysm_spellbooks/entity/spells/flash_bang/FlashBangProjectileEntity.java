@@ -1,10 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang;
 
-import com.github.L_Ender.cataclysm.init.ModParticle;
-import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.config.ServerConfigs;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
@@ -12,7 +9,6 @@ import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
@@ -25,19 +21,18 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class FlashBangProjectileEntity extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class FlashBangProjectileEntity extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     protected int effectDuration;
 
     public FlashBangProjectileEntity(EntityType<? extends Projectile> pEntityType, Level pLevel) {
@@ -68,15 +63,15 @@ public class FlashBangProjectileEntity extends AbstractMagicProjectile implement
             var x = Mth.lerp(f, d0, this.getX());
             var y = Mth.lerp(f, d1, this.getY());
             var z = Mth.lerp(f, d2, this.getZ());
-            this.level.addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-            this.level.addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+            this.level().addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+            this.level().addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
         }
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
         MagicManager.spawnParticles
-                (level, ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y, z, 15, 0, 0, 0, 1, true);
+                (this.level(), ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y, z, 15, 0, 0, 0, 1, true);
     }
 
     @Override
@@ -92,20 +87,20 @@ public class FlashBangProjectileEntity extends AbstractMagicProjectile implement
     @Override
     protected void onHit(HitResult hitresult) {
         super.onHit(hitresult);
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             impactParticles(xOld, yOld, zOld);
 
             float radius = getExplosionRadius();
             var radiusSqr = radius * radius;
-            var entities = level.getEntities(this, this.getBoundingBox().inflate(radius));
-            Vec3 losPoint = Utils.raycastForBlock(level, this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+            var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
+            Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
             for (Entity entity : entities)
             {
                 double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
                 {
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     int duration = (int) (getEffectDuration() * modifier);
@@ -122,10 +117,10 @@ public class FlashBangProjectileEntity extends AbstractMagicProjectile implement
                 }
             }
 
-            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), radius * 2),
+            MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(CSSchoolRegistry.TECHNOMANCY.get().getTargetingColor(), radius * 2),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
-            playSound(SoundEvents.GENERIC_EXPLODE, 4.0F, (1.0F + (this.level.random.nextFloat() - this.level.random.nextFloat()) * 0.2F) * 0.7F);
+            playSound(SoundEvents.GENERIC_EXPLODE, 4.0F, (1.0F + (this.level().random.nextFloat() - this.level().random.nextFloat()) * 0.2F) * 0.7F);
             this.discard();
         }
     }
@@ -141,13 +136,13 @@ public class FlashBangProjectileEntity extends AbstractMagicProjectile implement
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 
     @Override

@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.damage.DamageSources;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
@@ -17,7 +18,9 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 public class BlazingAoE extends AoeEntity {
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "blazing_aoe"));
+    //public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "blazing_aoe"));
+
+    private DamageSource damageSource;
 
     public BlazingAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -30,7 +33,10 @@ public class BlazingAoE extends AoeEntity {
 
     @Override
     public void applyEffect(LivingEntity target) {
-        var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
+        if (damageSource == null) {
+            // Temp ISS stuff
+            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, ISSDamageTypes.FIRE_FIELD), this, getOwner());
+        }
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());
         target.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));

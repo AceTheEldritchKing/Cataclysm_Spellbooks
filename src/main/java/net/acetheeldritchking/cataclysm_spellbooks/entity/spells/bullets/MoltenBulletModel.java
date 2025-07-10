@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class MoltenBulletModel extends AnimatedGeoModel<MoltenBulletProjectile> {
+public class MoltenBulletModel extends GeoModel<MoltenBulletProjectile> {
     @Override
     public ResourceLocation getModelResource(MoltenBulletProjectile object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/magic_bullet.geo.json");

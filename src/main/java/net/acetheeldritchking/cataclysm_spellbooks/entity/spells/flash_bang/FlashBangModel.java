@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class FlashBangModel extends AnimatedGeoModel<FlashBangProjectileEntity> {
+public class FlashBangModel extends GeoModel<FlashBangProjectileEntity> {
     @Override
     public ResourceLocation getModelResource(FlashBangProjectileEntity object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/flash_bang.geo.json");

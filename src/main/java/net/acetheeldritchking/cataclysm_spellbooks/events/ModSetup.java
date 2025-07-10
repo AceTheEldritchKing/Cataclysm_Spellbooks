@@ -13,7 +13,6 @@ public class ModSetup {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event)
     {
-        event.put(CSEntityRegistry.ABYSSAL_GNAWERS.get(), SummonedAbyssalGnawer.setAttributes());
         event.put(CSEntityRegistry.SUMMONED_IGNITED_REVENANT.get(), SummonedIgnitedRevenant.ignited_revenant().build());
         event.put(CSEntityRegistry.SUMMONED_IGNITED_BERSERKER.get(), SummonedIgnitedBerserker.ignited_berserker().build());
         event.put(CSEntityRegistry.SUMMONED_KOBOLDIATOR.get(), SummonedKoboldiator.kobolediator().build());

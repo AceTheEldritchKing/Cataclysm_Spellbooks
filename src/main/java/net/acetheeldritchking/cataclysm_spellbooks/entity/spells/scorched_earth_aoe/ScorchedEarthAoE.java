@@ -3,9 +3,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.scorched_earth
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.damage.DamageSources;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import io.redspace.ironsspellbooks.registries.ParticleRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.particles.ParticleOptions;
@@ -19,7 +19,9 @@ import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 public class ScorchedEarthAoE extends AoeEntity {
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "scorched_earth_aoe"));
+    //public static final DamageSource DAMAGE_SOURCE = new DamageSource(String.format("%s.%s", CataclysmSpellbooks.MOD_ID, "scorched_earth_aoe"));
+
+    private DamageSource damageSource;
 
     public ScorchedEarthAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -32,7 +34,10 @@ public class ScorchedEarthAoE extends AoeEntity {
 
     @Override
     public void applyEffect(LivingEntity target) {
-        var damageSource = DamageSources.indirectDamageSource(DAMAGE_SOURCE, this, getOwner());
+        if (damageSource == null) {
+            // Temp ISS stuff
+            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, ISSDamageTypes.FIRE_FIELD), this, getOwner());
+        }
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());
         target.setSecondsOnFire(25);

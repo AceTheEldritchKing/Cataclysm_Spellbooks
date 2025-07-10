@@ -38,6 +38,6 @@ public class ClientSetup {
 
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.register(CSParticleRegistry.TARGET_PARTICLE.get(), TargetParticle.Provider::new);
+        event.registerSpriteSet(CSParticleRegistry.TARGET_PARTICLE.get(), TargetParticle.Provider::new);
     }
 }

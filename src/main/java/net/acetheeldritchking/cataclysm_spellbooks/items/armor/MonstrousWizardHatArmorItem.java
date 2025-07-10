@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class MonstrousWizardHatArmorItem extends ImbuableCataclysmArmor {
-    public MonstrousWizardHatArmorItem(EquipmentSlot slot, Properties settings) {
+    public MonstrousWizardHatArmorItem(Type slot, Properties settings) {
         super(CSArmorMaterials.MONSTROUS_WIZARD_ARMOR, slot, settings);
     }
 

@@ -117,8 +117,8 @@ public class SummonedCounterspellWatcher extends The_Watcher_Entity implements M
             }
         }
 
-        Explosion explosion = new Explosion(level, null, SpellRegistries.DOS_SWARM.get().getDamageSource(this, getSummoner()), null, this.getX(), this.getY(), this.getZ(), 2, false, Explosion.BlockInteraction.NONE);
-        if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(level, explosion)) {
+        Explosion explosion = new Explosion(this.level(), null, SpellRegistries.DOS_SWARM.get().getDamageSource(this, getSummoner()), null, this.getX(), this.getY(), this.getZ(), 2, false, Explosion.BlockInteraction.KEEP);
+        if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(this.level(), explosion)) {
             explosion.explode();
             explosion.finalizeExplosion(true);
         }
@@ -132,19 +132,19 @@ public class SummonedCounterspellWatcher extends The_Watcher_Entity implements M
     public void tick() {
         super.tick();
 
-        if (!this.level.isClientSide())
+        if (!this.level().isClientSide())
         {
             if (tickCount % 20 == 0)
             {
-                MagicManager.spawnParticles(this.level, ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                MagicManager.spawnParticles(this.level(), ParticleTypes.CAMPFIRE_COSY_SMOKE,
                         getX(), getY(), getZ(),
                         1, 0.1, 0.2, 0.1, 0.01, true);
 
-                MagicManager.spawnParticles(this.level, ParticleTypes.LARGE_SMOKE,
+                MagicManager.spawnParticles(this.level(), ParticleTypes.LARGE_SMOKE,
                         getX(), getY(), getZ(),
                         5, 0.1, 0.4, 0.1, 0.01, true);
 
-                MagicManager.spawnParticles(this.level, ParticleTypes.FLAME,
+                MagicManager.spawnParticles(this.level(), ParticleTypes.FLAME,
                         getX(), getY(), getZ(),
                         15, 0.4, 0.8, 0.4, 0.04, true);
             }
@@ -153,7 +153,7 @@ public class SummonedCounterspellWatcher extends The_Watcher_Entity implements M
 
     @Override
     public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(level, cachedSummoner, summonerUUID);
+        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
     }
 
     public void setSummoner(@Nullable LivingEntity owner)
@@ -180,7 +180,7 @@ public class SummonedCounterspellWatcher extends The_Watcher_Entity implements M
 
     @Override
     public void onUnSummon() {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
             spawnParticles(this);
             discard();
@@ -189,7 +189,7 @@ public class SummonedCounterspellWatcher extends The_Watcher_Entity implements M
 
     private void spawnParticles(LivingEntity entity)
     {
-        ServerLevel level = (ServerLevel) entity.level;
+        ServerLevel level = (ServerLevel) entity.level();
         level.sendParticles(ModParticle.EM_PULSE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 

@@ -2,9 +2,9 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class GlacialBlockModel extends AnimatedGeoModel<GlacialBlockEntity> {
+public class GlacialBlockModel extends GeoModel<GlacialBlockEntity> {
     @Override
     public ResourceLocation getModelResource(GlacialBlockEntity object) {
         return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/glacial_block.geo.json");

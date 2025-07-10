@@ -30,15 +30,15 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class MoltenBulletProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class MoltenBulletProjectile extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     public double prevDeltaMovementX;
     public double prevDeltaMovementY;
     public double prevDeltaMovementZ;
@@ -61,13 +61,13 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
             double y = getY() + (1.5F * (this.random.nextFloat() - 0.5F));
             double z = getZ() + (1.5F * (this.random.nextFloat() - 0.5F));
 
-            this.level.addParticle(ParticleTypes.FLAME, x, y, z, -getDeltaMovement().x, -getDeltaMovement().y, -getDeltaMovement().z);
+            this.level().addParticle(ParticleTypes.FLAME, x, y, z, -getDeltaMovement().x, -getDeltaMovement().y, -getDeltaMovement().z);
         }
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
-        MagicManager.spawnParticles(level, ModParticle.FLARE_EXPLODE.get(), x, y, z, 10, .1, .1, .1, .18, true);
+        MagicManager.spawnParticles(this.level(), ModParticle.FLARE_EXPLODE.get(), x, y, z, 10, .1, .1, .1, .18, true);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
 
         setYRot(-((float) Mth.atan2(getDeltaMovement().x, getDeltaMovement().z)) * (180F / (float)Math.PI));
 
-        if (this.level.isClientSide)
+        if (this.level().isClientSide)
         {
             double x = getX() + 1.5F * (this.random.nextFloat() - 0.5F);
             double y = getY() + 1.5F * (this.random.nextFloat() - 0.5F);
@@ -100,7 +100,7 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
             float g = 95/255F + this.random.nextFloat() * random;
             float b = 3/255F + this.random.nextFloat() * random;
 
-            this.level.addParticle(new LightTrailParticle.OrbData(r, g, b, 0.1F, this.getBbHeight()/2, this.getId()), x, y, z, 0, 0, 0);
+            this.level().addParticle(new LightTrailParticle.OrbData(r, g, b, 0.1F, this.getBbHeight()/2, this.getId()), x, y, z, 0, 0, 0);
         }
 
         super.tick();
@@ -143,7 +143,7 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
-       if (!this.level.isClientSide)
+       if (!this.level().isClientSide)
        {
            spawnXFlameJet(10, 2.0);
        }
@@ -155,29 +155,29 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
     protected void onHit(HitResult hitresult) {
         super.onHit(hitresult);
 
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             float radius = getExplosionRadius();
             var radiusSqr = radius * radius;
-            var entities = level.getEntities(this, this.getBoundingBox().inflate(radius));
-            Vec3 losPoint = Utils.raycastForBlock(level, this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+            var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
+            Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
             for (Entity entity : entities)
             {
                 double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
                 {
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     float damage = (float) (getDamage() * modifier);
 
-                    ScreenShake_Entity.ScreenShake(level, entity.position(), 2.0F, 0.15F, 20, 20);
+                    ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 2.0F, 0.15F, 20, 20);
 
                     DamageSources.applyDamage(entity, damage, SpellRegistries.SCORCHED_EARTH.get().getDamageSource(this, getOwner()));
                 }
             }
 
-            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), this.getExplosionRadius() * 2),
+            MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(SchoolRegistry.FIRE.get().getTargetingColor(), this.getExplosionRadius() * 2),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
 
@@ -195,24 +195,24 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
 
     public void createAoEField(Vec3 location)
     {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            ScorchedEarthAoE aoE = new ScorchedEarthAoE(level);
+            ScorchedEarthAoE aoE = new ScorchedEarthAoE(this.level());
             aoE.setOwner(getOwner());
             aoE.setDuration(200);
             aoE.setDamage(5.5F);
             aoE.setRadius(3.5F);
             aoE.setCircular();
             aoE.moveTo(location);
-            level.addFreshEntity(aoE);
+            this.level().addFreshEntity(aoE);
         }
     }
 
     public void createQuakeAoEField(Vec3 location)
     {
-        if (!level.isClientSide)
+        if (!this.level().isClientSide)
         {
-            EarthquakeAoe aoE = new EarthquakeAoe(level);
+            EarthquakeAoe aoE = new EarthquakeAoe(this.level());
             aoE.setOwner(getOwner());
             aoE.setDuration(50);
             aoE.setDamage(0);
@@ -220,7 +220,7 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
             aoE.setSlownessAmplifier(0);
             aoE.setCircular();
             aoE.moveTo(location);
-            level.addFreshEntity(aoE);
+            this.level().addFreshEntity(aoE);
         }
     }
 
@@ -234,18 +234,18 @@ public class MoltenBulletProjectile extends AbstractMagicProjectile implements I
             for(int k = 0; k < rune; ++k) {
                 double d2 = 0.8 * (k + 1);
                 int d3 = (int) (time * (k + 1));
-                CSUtils.spawnFlameJets(this.level, this.getX() + (double)Mth.cos(throwAngle) * 1.25 * d2, this.getZ() + (double)Mth.sin(throwAngle) * 1.25 * d2, this.getY() - 2.0, this.getY() + 2.0, throwAngle, d3, (LivingEntity) getOwner(), this.getDamage());
+                CSUtils.spawnFlameJets(this.level(), this.getX() + (double)Mth.cos(throwAngle) * 1.25 * d2, this.getZ() + (double)Mth.sin(throwAngle) * 1.25 * d2, this.getY() - 2.0, this.getY() + 2.0, throwAngle, d3, (LivingEntity) getOwner(), this.getDamage());
             }
         }
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }

@@ -32,7 +32,7 @@ import java.util.List;
 import static com.github.L_Ender.cataclysm.entity.projectile.Eye_Of_Dungeon_Entity.lerpRotation;
 
 public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements KeybindUsingArmor {
-    public MechanicalFlightArmorItem(CSArmorMaterials materialIn, EquipmentSlot slot, Properties settings) {
+    public MechanicalFlightArmorItem(CSArmorMaterials materialIn, Type slot, Properties settings) {
         super(materialIn, slot, settings);
     }
 
@@ -52,7 +52,7 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
     // Elytra
     @Override
     public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-        if (this.slot == EquipmentSlot.CHEST)
+        if (this.type == Type.CHESTPLATE)
         {
             return true;
         }
@@ -64,7 +64,7 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
 
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        if (this.slot == EquipmentSlot.CHEST)
+        if (this.type == Type.CHESTPLATE)
         {
             return ElytraItem.isFlyEnabled(stack);
         }
@@ -76,19 +76,19 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (this.slot == EquipmentSlot.HEAD) {
+        if (this.type == Type.HELMET) {
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_helmet.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_helmet.desc2", ModKeybind.HELMET_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
         }
-        if (this.slot == EquipmentSlot.CHEST) {
+        if (this.type == Type.CHESTPLATE) {
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_chestplate.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_chestplate.desc2").withStyle(ChatFormatting.DARK_GREEN));
         }
-        if (this.slot == EquipmentSlot.LEGS) {
+        if (this.type == Type.LEGGINGS) {
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_leggings.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_leggings.desc2").withStyle(ChatFormatting.DARK_GREEN));
         }
-        if (this.slot ==  EquipmentSlot.FEET) {
+        if (this.type == Type.BOOTS) {
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc2", ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
         }
@@ -102,9 +102,9 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
         {
             // Flight
             if (
-                    this.slot == EquipmentSlot.CHEST && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_SPEED_CHESTPLATE.get()) && player.isFallFlying() ||
-                    this.slot == EquipmentSlot.CHEST && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()) && player.isFallFlying() ||
-                    this.slot == EquipmentSlot.CHEST && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()) && player.isFallFlying()
+                    this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_SPEED_CHESTPLATE.get()) && player.isFallFlying() ||
+                    this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()) && player.isFallFlying() ||
+                    this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()) && player.isFallFlying()
             )
             {
                 Vec3 playerMotion = player.getDeltaMovement().add(player.getLookAngle()).normalize();
@@ -140,8 +140,8 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                             var y = Mth.lerp(f, d1, player.getY());
                             var z = Mth.lerp(f, d2, player.getZ());
 
-                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.6) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.6) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x + 0.6) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x - 0.6) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
                         }
                     }
 
@@ -160,12 +160,12 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                             var z = Mth.lerp(f, d2, player.getZ());
 
                             // Top jets
-                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.5) - random.x, (y + 0.2) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.5) - random.x, (y + 0.2) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x + 0.5) - random.x, (y + 0.2) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x - 0.5) - random.x, (y + 0.2) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
 
                             // Bottom jets
-                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.5) - random.x, (y - 0.5) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.5) - random.x, (y - 0.5) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x + 0.5) - random.x, (y - 0.5) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x - 0.5) - random.x, (y - 0.5) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
                         }
                     }
 
@@ -183,9 +183,9 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                             var y = Mth.lerp(f, d1, player.getY());
                             var z = Mth.lerp(f, d2, player.getZ());
 
-                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.7) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.7) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                            player.level.addParticle(ParticleHelper.FIRE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x + 0.7) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, (x - 0.7) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.FIRE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
                         }
                     }
                 }
@@ -234,7 +234,7 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
             )
             {
                 boolean flag = false;
-                List<Entity> list = player.level.getEntities(player, player.getBoundingBox().inflate(24));
+                List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(24));
                 for (Entity entities : list)
                 {
                     if (entities instanceof LivingEntity livingEntity)
@@ -260,7 +260,7 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
             if (player != null && !player.getCooldowns().isOnCooldown(ItemRegistries.EXCELSIUS_WARLOCK_BOOTS.get()))
             {
                 // Jump up into the air, burning nearby entities
-                List<Entity> list = player.level.getEntities(player, player.getBoundingBox().inflate(5));
+                List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(5));
                 for (Entity entities : list)
                 {
                     if (entities instanceof LivingEntity livingEntity)
@@ -284,8 +284,8 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                     var x = Mth.lerp(f, d0, player.getX());
                     var y = Mth.lerp(f, d1, player.getY());
                     var z = Mth.lerp(f, d2, player.getZ());
-                    player.level.addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                    player.level.addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                    player.level().addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                    player.level().addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
                 }
 
                 // 3 second cooldown, it's just jumping

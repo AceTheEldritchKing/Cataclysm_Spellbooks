@@ -23,15 +23,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class BloodCrystalProjectile extends AbstractMagicProjectile implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class BloodCrystalProjectile extends AbstractMagicProjectile implements GeoEntity {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
     public BloodCrystalProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -52,13 +52,13 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements I
             double y = Utils.random.nextDouble() * 2 * speed - speed;
             double z = Utils.random.nextDouble() * 2 * speed - speed;
 
-            level.addParticle(ParticleHelper.BLOOD, this.getX() + x, this.getY() + y, this.getZ() + z, x, y ,z);
+            this.level().addParticle(ParticleHelper.BLOOD, this.getX() + x, this.getY() + y, this.getZ() + z, x, y ,z);
         }
     }
 
     @Override
     public void impactParticles(double x, double y, double z) {
-        MagicManager.spawnParticles(level, ParticleHelper.BLOOD, x, y, z, 15, .1, .1, .1, .18, true);
+        MagicManager.spawnParticles(this.level(), ParticleHelper.BLOOD, x, y, z, 15, .1, .1, .1, .18, true);
     }
 
     @Override
@@ -105,23 +105,23 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements I
             onHitEntity(entityHitResult);
         }
 
-        if (!this.level.isClientSide)
+        if (!this.level().isClientSide)
         {
             float radius = getExplosionRadius();
             var radiusSqr = radius * radius;
-            var entities = level.getEntities(this, this.getBoundingBox().inflate(radius));
-            Vec3 losPoint = Utils.raycastForBlock(level, this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+            var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
+            Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
             for (Entity entity : entities)
             {
                 double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(level, losPoint, entity.getBoundingBox().getCenter(), true))
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
                 {
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     float damage = (float) (getDamage() * modifier);
 
-                    ScreenShake_Entity.ScreenShake(level, entity.position(), 5.0F, 0.15F, 20, 20);
+                    ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 5.0F, 0.15F, 20, 20);
 
                     if (entity instanceof LivingEntity livingTarget)
                     {
@@ -132,7 +132,7 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements I
                 }
             }
 
-            MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.BLOOD.get().getTargetingColor(), 4),
+            MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(SchoolRegistry.BLOOD.get().getTargetingColor(), 4),
                     getX(), getY(), getZ(),
                     1, 0, 0, 0, 0, false);
         }
@@ -141,12 +141,12 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements I
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        // Nada
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        //
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }

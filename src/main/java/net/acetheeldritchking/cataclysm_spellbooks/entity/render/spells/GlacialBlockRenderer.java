@@ -10,16 +10,17 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class GlacialBlockRenderer extends GeoEntityRenderer<GlacialBlockEntity> {
     public GlacialBlockRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new GlacialBlockModel());
-        addLayer(new GlacialBlockRenderLayer(this));
+        this.addRenderLayer(new GlacialBlockRenderLayer(this));
     }
 
     @Override
-    public void renderEarly(GlacialBlockEntity animatable, PoseStack poseStack, float partialTick, MultiBufferSource bufferSource, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float partialTicks) {
+    public void preRender(PoseStack poseStack, GlacialBlockEntity animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         var frozen = animatable.getFirstPassenger();
 
         if (frozen != null)
@@ -29,11 +30,11 @@ public class GlacialBlockRenderer extends GeoEntityRenderer<GlacialBlockEntity> 
             poseStack.scale(scale, scale, scale);
         }
 
-        super.renderEarly(animatable, poseStack, partialTick, bufferSource, buffer, packedLight, packedOverlay, red, green, blue, partialTicks);
+        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     @Override
-    public RenderType getRenderType(GlacialBlockEntity animatable, float partialTick, PoseStack poseStack, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, int packedLight, ResourceLocation texture) {
+    public RenderType getRenderType(GlacialBlockEntity animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return RenderType.entityTranslucentEmissive(texture);
     }
 }
