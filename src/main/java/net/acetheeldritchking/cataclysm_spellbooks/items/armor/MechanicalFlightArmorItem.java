@@ -1,12 +1,12 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.github.L_Ender.cataclysm.Cataclysm;
+import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
 import com.github.L_Ender.cataclysm.config.CMConfig;
 import com.github.L_Ender.cataclysm.init.ModKeybind;
 import com.github.L_Ender.cataclysm.items.KeybindUsingArmor;
 import com.github.L_Ender.cataclysm.message.MessageArmorKey;
 import io.redspace.ironsspellbooks.api.util.Utils;
-import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -28,6 +28,8 @@ import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static com.github.L_Ender.cataclysm.entity.projectile.Eye_Of_Dungeon_Entity.lerpRotation;
 
 public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements KeybindUsingArmor {
     public MechanicalFlightArmorItem(CSArmorMaterials materialIn, EquipmentSlot slot, Properties settings) {
@@ -118,6 +120,75 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                         playerRotation.y * speed + (playerRotation.y * 1.5D - playerVelocity.y) * speed,
                         playerRotation.z * speed + (playerRotation.z * 1.5D - playerVelocity.z) * speed
                 ).normalize());
+
+
+                // Particle effects per armor set
+                // Don't play this every tick
+                if (player.tickCount % 3 == 0)
+                {
+                    if (player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()))
+                    {
+                        Vec3 vec3 = player.getDeltaMovement();
+                        double d0 = player.getX() - vec3.x;
+                        double d1 = player.getY() - vec3.y;
+                        double d2 = player.getZ() - vec3.z;
+                        var count = Mth.clamp((int) (vec3.lengthSqr() * 4), 1, 4);
+                        for (int j = 0; j < count; j++) {
+                            Vec3 random = Utils.getRandomVec3(.25);
+                            var f = j / ((float) count);
+                            var x = Mth.lerp(f, d0, player.getX());
+                            var y = Mth.lerp(f, d1, player.getY());
+                            var z = Mth.lerp(f, d2, player.getZ());
+
+                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.6) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.6) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                        }
+                    }
+
+                    if (player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_SPEED_CHESTPLATE.get()))
+                    {
+                        Vec3 vec3 = player.getDeltaMovement();
+                        double d0 = player.getX() - vec3.x;
+                        double d1 = player.getY() - vec3.y;
+                        double d2 = player.getZ() - vec3.z;
+                        var count = Mth.clamp((int) (vec3.lengthSqr() * 4), 1, 4);
+                        for (int j = 0; j < count; j++) {
+                            Vec3 random = Utils.getRandomVec3(.25);
+                            var f = j / ((float) count);
+                            var x = Mth.lerp(f, d0, player.getX());
+                            var y = Mth.lerp(f, d1, player.getY());
+                            var z = Mth.lerp(f, d2, player.getZ());
+
+                            // Top jets
+                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.5) - random.x, (y + 0.2) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.5) - random.x, (y + 0.2) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+
+                            // Bottom jets
+                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.5) - random.x, (y - 0.5) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.5) - random.x, (y - 0.5) + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                        }
+                    }
+
+                    if (player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()))
+                    {
+                        Vec3 vec3 = player.getDeltaMovement();
+                        double d0 = player.getX() - vec3.x;
+                        double d1 = player.getY() - vec3.y;
+                        double d2 = player.getZ() - vec3.z;
+                        var count = Mth.clamp((int) (vec3.lengthSqr() * 4), 1, 4);
+                        for (int j = 0; j < count; j++) {
+                            Vec3 random = Utils.getRandomVec3(.25);
+                            var f = j / ((float) count);
+                            var x = Mth.lerp(f, d0, player.getX());
+                            var y = Mth.lerp(f, d1, player.getY());
+                            var z = Mth.lerp(f, d2, player.getZ());
+
+                            player.level.addParticle(ParticleHelper.FIRE, (x + 0.7) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level.addParticle(ParticleHelper.FIRE, (x - 0.7) - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level.addParticle(ParticleHelper.FIRE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                        }
+                    }
+                }
             }
 
             // Keybind abilities
@@ -169,8 +240,9 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
                     if (entities instanceof LivingEntity livingEntity)
                     {
                         flag = true;
-                        livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.GUIDING_BOLT.get(), 160));
-                        player.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SNIPER_EFFECT.get(), 160));
+                        // 10 glowing, 15 for sniper
+                        livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.GUIDING_BOLT.get(), 200));
+                        player.addEffect(new MobEffectInstance(CSPotionEffectRegistry.SNIPER_EFFECT.get(), 300));
                     }
                 }
 

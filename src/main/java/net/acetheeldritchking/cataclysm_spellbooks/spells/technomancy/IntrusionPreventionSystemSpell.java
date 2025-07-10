@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @AutoSpellConfig
-public class IntrusionPreventionSystemSpell extends AbstractSpell {
+public class IntrusionPreventionSystemSpell extends AbstractHarbingerSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "intrusion_prevention_system");
     private static final int MAX_TARGETS = 8;
 

@@ -1,0 +1,38 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"loop": true
+		},
+		"flying": {
+			"loop": true,
+			"animation_length": 0.7083,
+			"bones": {
+				"middle": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.375": {
+							"vector": [1.011, 1.011, 1.011]
+						},
+						"0.7083": {
+							"vector": [1, 1, 1]
+						}
+					}
+				},
+				"right": {
+					"rotation": {
+						"vector": ["5.7529+math.sin(query.anim_time*250)*4", "-7.9527+math.sin(query.anim_time*250)*-7", 3.22954]
+					}
+				},
+				"left": {
+					"rotation": {
+						"vector": ["5.8308+math.sin(query.anim_time*250)*4", "8.3838+math.sin(query.anim_time*250)*7", -3.1434]
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

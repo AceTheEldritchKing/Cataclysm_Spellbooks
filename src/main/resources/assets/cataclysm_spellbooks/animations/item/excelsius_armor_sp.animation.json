@@ -1,0 +1,25 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"loop": true
+		},
+		"flying": {
+			"loop": true,
+			"animation_length": 0.7083,
+			"bones": {
+				"left": {
+					"rotation": {
+						"vector": ["6.0845+math.sin(query.anim_time*250)*4", "8.6858+math.sin(query.anim_time*250)*7", -10.02978]
+					}
+				},
+				"right": {
+					"rotation": {
+						"vector": ["6.0845+math.sin(query.anim_time*250)*4", "-8.6858+math.sin(query.anim_time*250)*-7", 10.02978]
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

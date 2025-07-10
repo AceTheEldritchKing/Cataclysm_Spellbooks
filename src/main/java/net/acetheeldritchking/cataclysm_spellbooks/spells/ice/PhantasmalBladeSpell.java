@@ -33,7 +33,7 @@ public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.cataclysm_spellbooks.phantom_blades", spellLevel),
+                Component.translatable("ui.cataclysm_spellbooks.phantom_blades", spellLevel + 3),
                 Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1)),
                 Component.translatable("ui.cataclysm_spellbooks.maledictus_armory_bonus", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
         );
@@ -42,7 +42,7 @@ public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.COMMON)
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
-            .setMaxLevel(4)
+            .setMaxLevel(10)
             .setCooldownSeconds(25)
             .build();
 

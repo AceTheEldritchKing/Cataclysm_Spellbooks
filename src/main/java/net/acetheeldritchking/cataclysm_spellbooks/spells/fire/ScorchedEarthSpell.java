@@ -42,7 +42,7 @@ public class ScorchedEarthSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(120)
+            .setCooldownSeconds(90)
             .build();
 
     public ScorchedEarthSpell()
@@ -118,7 +118,7 @@ public class ScorchedEarthSpell extends AbstractSpell {
         MoltenBulletProjectile bullet = new MoltenBulletProjectile(level, entity);
 
         bullet.setPos(entity.position().add(0, entity.getEyeHeight() - bullet.getBoundingBox().getYsize() * .5f, 0));
-        bullet.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 1, 1);
+        bullet.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 2, 1);
 
         float damage = getDamage(spellLevel, entity);
 
@@ -139,6 +139,6 @@ public class ScorchedEarthSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 1.2f;
+        return getSpellPower(spellLevel, caster) / 2.5f;
     }
 }

@@ -16,6 +16,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.BurningManuscriptItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.FrozenTabletItem;
+import net.acetheeldritchking.cataclysm_spellbooks.items.custom.StrangeDiscItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.CodexOfMaliceSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellBook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DiscDriverSpellbook;
@@ -206,6 +207,9 @@ public class ItemRegistries {
 
     // Frozen Tablet
     public static final RegistryObject<Item> FROZEN_TABLET = ITEMS.register("frozen_tablet", FrozenTabletItem::new);
+
+    // Strange Disc
+    public static final RegistryObject<Item> STRANGE_DISC = ITEMS.register("strange_disc", StrangeDiscItem::new);
 
 
     /**

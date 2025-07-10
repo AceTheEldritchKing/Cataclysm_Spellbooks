@@ -6,12 +6,18 @@ import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import mod.azure.azurelib.AzureLib;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.CSItemDispatcher;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class DiscDriverSpellbook extends SimpleAttributeSpellBook {
     public final CSItemDispatcher dispatcher;
@@ -30,5 +36,12 @@ public class DiscDriverSpellbook extends SimpleAttributeSpellBook {
                 dispatcher.idle(player, stack);
             }
         }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable("item.cataclysm_spellbooks.disc_driver_description").
+                withStyle(ChatFormatting.GOLD));
     }
 }

@@ -4,6 +4,7 @@ import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
+import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -46,6 +47,6 @@ public class ScorchedEarthAoE extends AoeEntity {
 
     @Override
     public Optional<ParticleOptions> getParticle() {
-        return Optional.of(ModParticle.FLAME_JET.get());
+        return Optional.of(ParticleRegistry.FIRE_PARTICLE.get());
     }
 }

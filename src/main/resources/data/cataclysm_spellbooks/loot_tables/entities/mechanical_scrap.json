@@ -3,7 +3,7 @@
   "pools": [
     {
       "name": "cataclysm_spellbooks_the_harbinger_extended",
-      "rolls": 1,
+      "rolls": 2,
       "entries": [
         {
           "type": "minecraft:item",
@@ -17,6 +17,19 @@
             }
           ],
           "name": "cataclysm_spellbooks:mechanical_scrap"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "name": "cataclysm_spellbooks:strange_disc"
         }
       ]
     }

@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.PacketDistributor;
+import top.theillusivec4.curios.api.CuriosApi;
 
 public class CSUtils {
     // Get caster eye height, pretty much what it says
@@ -286,5 +287,11 @@ public class CSUtils {
         }
 
         return false;
+    }
+
+    // Gets equipped curio on the player
+    public static boolean hasCurio(Player player, Item item)
+    {
+        return CuriosApi.getCuriosHelper().findEquippedCurio(item, player).isPresent();
     }
 }

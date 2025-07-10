@@ -14,6 +14,7 @@ import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneProvider;
 import mod.azure.azurelib.rewrite.render.layer.AzAutoGlowingLayer;
 import mod.azure.azurelib.util.RenderUtils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.ExcelsiusCooldownAnimator;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.resources.ResourceLocation;
@@ -34,7 +35,7 @@ public class ExcelsiusCooldownArmorRenderer extends AzArmorRenderer {
     public ExcelsiusCooldownArmorRenderer() {
         super(
                 AzArmorRendererConfig.builder(GEO, TEX)
-                        //.setAnimatorProvider(CursiumMageElytraAnimator::new)
+                        .setAnimatorProvider(ExcelsiusCooldownAnimator::new)
                         .addRenderLayer(new AzAutoGlowingLayer<>())
                         .build()
         );

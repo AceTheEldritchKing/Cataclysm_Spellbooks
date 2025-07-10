@@ -22,7 +22,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 @AutoSpellConfig
-public class ConstructWatchersSpell extends AbstractSpell {
+public class ConstructWatchersSpell extends AbstractHarbingerSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "construct_watchers");
 
     @Override

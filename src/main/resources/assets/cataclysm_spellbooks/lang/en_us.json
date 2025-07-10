@@ -51,6 +51,7 @@
     "item.cataclysm_spellbooks.ignis_spell_book": "Ignis Spellbook",
     "item.cataclysm_spellbooks.codex_of_malice_spell_book": "Codex of Malice",
     "item.cataclysm_spellbooks.disc_driver": "Disc Driver",
+    "item.cataclysm_spellbooks.disc_driver_description": "Unlocks Harbinger spells when equipped",
 
     "item.cataclysm_spellbooks.bloom_stone_staff": "Bloom Stone Staff",
     "item.cataclysm_spellbooks.coral_staff": "Coral Staff",
@@ -79,6 +80,8 @@
     "item.cataclysm_spellbooks.frozen_knowledge_fragment": "Frozen Knowledge Fragment",
     "item.cataclysm_spellbooks.frozen_tablet": "Frozen Tablet",
     "item.cataclysm_spellbooks.frozen_tablet_description": "When in inventory, unlocks all Maledictus spells",
+    "item.cataclysm_spellbooks.strange_disc": "Strange Disc",
+    "item.cataclysm_spellbooks.strange_disc_description": "When in inventory, unlocks all Harbinger spells",
 
     "item.cataclysm_spellbooks.ignis_helmet": "Ignis Mage Hat",
     "item.cataclysm_spellbooks.ignis_chestplate": "Ignis Mage Robes",
@@ -415,6 +418,11 @@
     "entity.cataclysm_spellbooks.summoned_coral_golem": "Coral Golem",
     "entity.cataclysm_spellbooks.summoned_coralssus": "Coralssus",
     "entity.cataclysm_spellbooks.phantom_ancient_remnant": "Phantom Remnant",
+    "entity.cataclysm_spellbooks.blood_crystal": "Crystallized Blood Spear",
+    "entity.cataclysm_spellbooks.molten_bullet": "Molten Bullet",
+    "entity.cataclysm_spellbooks.scorched_earth_aoe": "Scorched Earth AoE",
+    "entity.cataclysm_spellbooks.frozen_bullet": "Cryo-Bullet",
+    "entity.cataclysm_spellbooks.glacial_block": "Glacial Block",
 
 
 
@@ -435,9 +443,15 @@
     "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s was somehow killed by %2$s's passive surveillance drone",
     "death.attack.cataclysm_spellbooks.disabling_swipe": "%1$s had their hardwire torn by %2$s's disabling swipe",
     "death.attack.cataclysm_spellbooks.no_man_zone_aoe": "%1$s was reduced to nothing in %2$s's No Man's Zone",
+    "death.attack.cataclysm_spellbooks.blood_crystal": "%1$s was impaled by %2$s's crystallized blood spear",
+    "death.attack.cataclysm_spellbooks.molten_bullet": "%1$s was scorched by %2$s's molten bullet",
+    "death.attack.cataclysm_spellbooks.scorched_earth_aoe": "%1$s was incinerated by %2$s's scorched earth",
+    "death.attack.cataclysm_spellbooks.frozen_bullet": "%1$s was frozen to death by %2$s's cryo-bullet",
+    "death.attack.cataclysm_spellbooks.glacial_block": "%1$s froze to death in %2$s's glacial block",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
     "death.attack.no_man_zone_aoe.item": "%1$s was reduced to nothing in %2$s's No Man's Zone while using %3$s",
+    "death.attack.cataclysm_spellbooks.scorched_earth_aoe.item": "%1$s was incinerated by %2$s's scorched earth while using %3$s",
 
     "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$s was lacerated by %2$s's gnawers using %3$s",
     "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s was gored by %2$s's hellish blade using %3$s",
@@ -446,5 +460,9 @@
     "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s was cleaved by %2$s's ignited berserkers using %3$s",
     "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s was atomized by %2$s's parted shot while using %3$s",
     "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s was somehow killed by %2$s's passive surveillance drone using %3$s",
-    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s"
+    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s had their hardwire torn by %2$s's disabling swipe using %3$s",
+    "death.attack.cataclysm_spellbooks.blood_crystal.item": "%1$s was impaled by %2$s's crystallized blood spear while using %3$s",
+    "death.attack.cataclysm_spellbooks.molten_bullet.item": "%1$s was scorched by %2$s's molten bullet using %3$s",
+    "death.attack.cataclysm_spellbooks.frozen_bullet.item": "%1$s was frozen to death by %2$s's cryo-bullet using %3$s",
+    "death.attack.cataclysm_spellbooks.glacial_block.item": "%1$s froze to death in %2$s's glacial block while using %3$s"
 }

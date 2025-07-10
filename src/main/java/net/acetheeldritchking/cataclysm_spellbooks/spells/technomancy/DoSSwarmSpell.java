@@ -23,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 @AutoSpellConfig
-public class DoSSwarmSpell extends AbstractSpell {
+public class DoSSwarmSpell extends AbstractHarbingerSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "dos_swarm");
 
     @Override

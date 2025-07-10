@@ -82,7 +82,10 @@ public class CataclysmSpellbooks
                 ItemRegistries.GAUNTLET_OF_GATTLING.get(),
                 ItemRegistries.THE_NIGHTSTALKER.get(),
                 ItemRegistries.THE_BERSERKER.get(),
-                ItemRegistries.THE_COMBUSTER.get()
+                ItemRegistries.THE_COMBUSTER.get(),
+                ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get(),
+                ItemRegistries.EXCELSIUS_SPEED_CHESTPLATE.get(),
+                ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()
         );
     }
 

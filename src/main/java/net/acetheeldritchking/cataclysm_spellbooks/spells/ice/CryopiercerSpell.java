@@ -41,7 +41,7 @@ public class CryopiercerSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(120)
+            .setCooldownSeconds(90)
             .build();
 
     public CryopiercerSpell()
@@ -102,7 +102,7 @@ public class CryopiercerSpell extends AbstractSpell {
         FrozenBulletProjectile bullet = new FrozenBulletProjectile(level, entity);
 
         bullet.setPos(entity.position().add(0, entity.getEyeHeight() - bullet.getBoundingBox().getYsize() * .5f, 0));
-        bullet.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 1, 1);
+        bullet.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0, 2, 1);
 
         float damage = getDamage(spellLevel, entity);
 
@@ -123,6 +123,6 @@ public class CryopiercerSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) / 5f;
+        return getSpellPower(spellLevel, caster) / 2.5f;
     }
 }

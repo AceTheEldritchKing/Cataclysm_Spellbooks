@@ -1,0 +1,48 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"loop": true
+		},
+		"flying": {
+			"loop": true,
+			"animation_length": 0.7083,
+			"bones": {
+				"tl": {
+					"rotation": {
+						"vector": ["7.5+math.sin(query.anim_time*250)*4", "7.5+math.sin(query.anim_time*250)*7", 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"bl": {
+					"rotation": {
+						"vector": ["9.5992+math.sin(query.anim_time*250)*4", "13.8048+math.sin(query.anim_time*250)*7", 8.66474]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"tr": {
+					"rotation": {
+						"vector": ["7.5+math.sin(query.anim_time*250)*4", "-7.5+math.sin(query.anim_time*250)*-7", 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"br": {
+					"rotation": {
+						"vector": ["9.5992+math.sin(query.anim_time*250)*4", "-13.8048+math.sin(query.anim_time*250)*-7", -8.66474]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			},
+			"particle_effects": {}
+		}
+	},
+	"azurelib_format_version": 2
+}

@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 @AutoSpellConfig
-public class AerialAssaultSpell extends AbstractSpell {
+public class AerialAssaultSpell extends AbstractHarbingerSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "aerial_assault");
 
     @Override

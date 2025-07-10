@@ -1,6 +1,5 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
-import io.redspace.ironsspellbooks.util.MinecraftInstanceHelper;
 import mod.azure.azurelib.rewrite.model.AzBakedModel;
 import mod.azure.azurelib.rewrite.model.AzBone;
 import mod.azure.azurelib.rewrite.render.AzRendererConfig;
@@ -15,10 +14,9 @@ import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneProvider;
 import mod.azure.azurelib.rewrite.render.layer.AzAutoGlowingLayer;
 import mod.azure.azurelib.util.RenderUtils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.items.armor.ExcelsiusPowerArmorItem;
+import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.ExcelsiusPowerAnimator;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -68,7 +66,7 @@ public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
     public ExcelsiusPowerArmorRenderer() {
         super(
                 AzArmorRendererConfig.builder(GEO, TEX)
-                        //.setAnimatorProvider(CursiumMageElytraAnimator::new)
+                        .setAnimatorProvider(ExcelsiusPowerAnimator::new)
                         .addRenderLayer(new AzAutoGlowingLayer<>())
                         .build()
         );
