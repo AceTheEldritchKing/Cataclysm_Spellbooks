@@ -170,7 +170,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
                 double theta = Math.toRadians((double) 360 / count) * i;
                 x = Math.cos(theta) * particleRadius;
                 z = Math.sin(theta) * particleRadius;
-                MagicManager.spawnParticles(entity.level(), ModParticle.SANDSTORM.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+                MagicManager.spawnParticles(entity.level(), ModParticle.DESERT_GLYPH.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
             }
 
             // ring 2
@@ -181,7 +181,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
                 double theta = Math.toRadians((double) 360 / count2) * i;
                 x = Math.cos(theta) * particleRadius2;
                 z = Math.sin(theta) * particleRadius2;
-                MagicManager.spawnParticles(entity.level(), ModParticle.SANDSTORM.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+                MagicManager.spawnParticles(entity.level(), ModParticle.DESERT_GLYPH.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
             }
 
             // ring 3
@@ -192,7 +192,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
                 double theta = Math.toRadians((double) 360 / count3) * i;
                 x = Math.cos(theta) * particleRadius3;
                 z = Math.sin(theta) * particleRadius3;
-                MagicManager.spawnParticles(entity.level(), ModParticle.SANDSTORM.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+                MagicManager.spawnParticles(entity.level(), ModParticle.DESERT_GLYPH.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
             }
         }
 

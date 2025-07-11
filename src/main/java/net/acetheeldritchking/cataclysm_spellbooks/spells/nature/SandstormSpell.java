@@ -83,7 +83,7 @@ public class SandstormSpell extends AbstractSpell {
 
             Sandstorm_Entity sandstorm = new Sandstorm_Entity(level, stormX, casterY, stormZ, (int) getLifespan(spellLevel, caster), angle, caster);
 
-            ((IExtendedCataclysmProjectileInterface)sandstorm).setFromSpell(true);
+            //((IExtendedCataclysmProjectileInterface)sandstorm).setFromSpell(true);
 
             level.addFreshEntity(sandstorm);
         }

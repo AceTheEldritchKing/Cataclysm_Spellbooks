@@ -93,7 +93,7 @@ public class SummonedKoboldiator extends Kobolediator_Entity implements MagicSum
     public void onUnSummon() {
         if (!this.level().isClientSide)
         {
-            MagicManager.spawnParticles(this.level(), ModParticle.SANDSTORM.get(),
+            MagicManager.spawnParticles(this.level(), ModParticle.DESERT_GLYPH.get(),
                     getX(), getY(), getZ(),
                     25,
                     this.level().random.nextGaussian() * 0.007D,

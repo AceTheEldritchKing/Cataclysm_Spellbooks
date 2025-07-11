@@ -14,7 +14,7 @@
 				{
 					"name": "body",
 					"pivot": [0, -1, 0],
-					"rotation": [90, 180, -90]
+					"rotation": [-90, 0, 180]
 				},
 				{
 					"name": "blade",

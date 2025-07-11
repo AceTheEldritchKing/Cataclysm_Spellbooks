@@ -6,7 +6,6 @@ import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
-import io.redspace.ironsspellbooks.item.armor.UpgradeTypes;
 import io.redspace.ironsspellbooks.item.curios.CurioBaseItem;
 import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
@@ -22,8 +21,6 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellB
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DiscDriverSpellbook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.weapons.MonstrousFlambergeItem;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ArmorItem;
