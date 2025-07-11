@@ -3,8 +3,11 @@
   "values": [
     "cataclysm_spellbooks:ignis_chestplate_elytra",
     "cataclysm_spellbooks:cursium_mage_elytra",
+    "cataclysm_spellbooks:excelsius_speed_visors",
     "cataclysm_spellbooks:excelsius_speed_chestplate",
+    "cataclysm_spellbooks:excelsius_power_visors",
     "cataclysm_spellbooks:excelsius_power_chestplate",
+    "cataclysm_spellbooks:excelsius_resist_visors",
     "cataclysm_spellbooks:excelsius_resist_chestplate"
   ]
 }

@@ -70,17 +70,22 @@ public class CSArmorItem extends ArmorItem {
     // Azurelib
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        if (!level.isClientSide && entity instanceof Player player ) {
+        if (!level.isClientSide && entity instanceof Player player)
+        {
             if (stack.getOrCreateTag().contains(AzureLib.ITEM_UUID_TAG))
             {
                 player.getArmorSlots().forEach(wornArmor -> {
                     // Doing this through tags rather than listing everything in an or condition
                     if (wornArmor != null) {
                         //dispatcher.idle(player, wornArmor);
-                        if (player.isFallFlying() && wornArmor.is(CSTags.ARMORS_FOR_FLIGHT))
+                        if (player.isFallFlying()
+                                && wornArmor.is(CSTags.ARMORS_FOR_FLIGHT)
+                        )
                         {
                             dispatcher.flight(player, wornArmor);
-                        } else if (!player.isFallFlying() && wornArmor.is(CSTags.ARMORS_FOR_IDLE))
+                        } else if (!player.isFallFlying()
+                                && wornArmor.is(CSTags.ARMORS_FOR_IDLE)
+                        )
                         {
                             dispatcher.idle(player, wornArmor);
                         }
