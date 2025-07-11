@@ -1,4 +1,7 @@
 {
+    "cs_items_tab": "Cataclysm: Spellbooks",
+    "creative_tab.cataclysm_spellbooks.items": "Cataclysm: Spellbooks",
+
     "attribute.cataclysm_spellbooks.abyssal_magic_resist": "Abyssal Magic Resist",
     "attribute.cataclysm_spellbooks.abyssal_spell_power": "Abyssal Spell Power",
 
