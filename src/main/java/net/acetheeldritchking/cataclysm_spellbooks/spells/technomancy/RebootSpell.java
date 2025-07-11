@@ -111,7 +111,7 @@ public class RebootSpell extends AbstractSpell {
             double theta = Math.toRadians((double) 360 / count) * i;
             x = Math.cos(theta) * particleRadius;
             z = Math.sin(theta) * particleRadius;
-            MagicManager.spawnParticles(entity.level, ParticleHelper.ELECTRICITY, entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+            MagicManager.spawnParticles(entity.level(), ParticleHelper.ELECTRICITY, entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
         }
     }
 }

@@ -111,7 +111,7 @@ public class EMPSpell extends AbstractHarbingerSpell {
 
         for (Entity target : entities)
         {
-            target.hurt(CMDamageTypes.EMP, getDamage(spellLevel, entity));
+            target.hurt(CMDamageTypes.getDamageSource(level, CMDamageTypes.EMP), getDamage(spellLevel, entity));
 
             if (target instanceof LivingEntity livingTarget)
             {
@@ -131,7 +131,7 @@ public class EMPSpell extends AbstractHarbingerSpell {
 
     private void spawnParticles(LivingEntity entity)
     {
-        ServerLevel level = (ServerLevel) entity.level;
+        ServerLevel level = (ServerLevel) entity.level();
         level.sendParticles(ModParticle.EM_PULSE.get(), entity.getX(), entity.getY() + 1, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 

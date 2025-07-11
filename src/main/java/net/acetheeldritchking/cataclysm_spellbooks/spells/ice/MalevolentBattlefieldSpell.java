@@ -11,6 +11,7 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
@@ -25,6 +26,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -132,7 +134,7 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
                 double theta = Math.toRadians((double) 360 / count) * i;
                 x = Math.cos(theta) * particleRadius;
                 z = Math.sin(theta) * particleRadius;
-                MagicManager.spawnParticles(entity.level, ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+                MagicManager.spawnParticles(entity.level(), ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
             }
 
             // ring 2
@@ -143,7 +145,7 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
                 double theta = Math.toRadians((double) 360 / count2) * i;
                 x = Math.cos(theta) * particleRadius2;
                 z = Math.sin(theta) * particleRadius2;
-                MagicManager.spawnParticles(entity.level, ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+                MagicManager.spawnParticles(entity.level(), ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
             }
 
             // ring 3
@@ -154,7 +156,7 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
                 double theta = Math.toRadians((double) 360 / count3) * i;
                 x = Math.cos(theta) * particleRadius3;
                 z = Math.sin(theta) * particleRadius3;
-                MagicManager.spawnParticles(entity.level, ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
+                MagicManager.spawnParticles(entity.level(), ModParticle.PHANTOM_WING_FLAME.get(), entity.position().x + x, entity.position().y, entity.position().z + z, 1, 0, 0, 0, 0.1, false);
             }
         }
 
@@ -192,6 +194,11 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
         level.addFreshEntity(aoe);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
+    }
+
+    @Override
+    public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
+        return super.getDamageSource(projectile, attacker).setIFrames(0).setFreezeTicks(200);
     }
 
     private int getHalberdsPerBranch(int spellLevel, LivingEntity caster)

@@ -17,7 +17,7 @@ public class CursedFrenzyEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        List<Entity> entitiesNearby = pLivingEntity.level.getEntities(pLivingEntity, pLivingEntity.getBoundingBox().inflate(0.25, 0.5, 0.25));
+        List<Entity> entitiesNearby = pLivingEntity.level().getEntities(pLivingEntity, pLivingEntity.getBoundingBox().inflate(0.25, 0.5, 0.25));
 
         if (!entitiesNearby.isEmpty())
         {
@@ -36,7 +36,7 @@ public class CursedFrenzyEffect extends MobEffect {
         }
         pLivingEntity.fallDistance = 0;
 
-        if (pLivingEntity.level.isClientSide)
+        if (pLivingEntity.level().isClientSide)
         {
             // Should be every 2 seconds
             if (pLivingEntity.tickCount % 3 == 0)
@@ -48,8 +48,8 @@ public class CursedFrenzyEffect extends MobEffect {
                 float yaw = (float) Math.toRadians(-pLivingEntity.getYRot());
                 float yaw2 = (float) Math.toRadians(-pLivingEntity.getYRot() + 180);
                 float pitch = (float) Math.toRadians(-pLivingEntity.getXRot());
-                pLivingEntity.level.addParticle(new RingParticle.RingData(yaw, pitch, 40, 0.337f, 0.925f, 0.8f, 1.0f, 50f, false, RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), x, y, z, 0, 0, 0);
-                pLivingEntity.level.addParticle(new RingParticle.RingData(yaw2, pitch, 40, 0.337f, 0.925f, 0.8f, 1.0f, 50f, false, RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), x, y, z, 0, 0, 0);
+                pLivingEntity.level().addParticle(new RingParticle.RingData(yaw, pitch, 40, 0.337f, 0.925f, 0.8f, 1.0f, 50f, false, RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), x, y, z, 0, 0, 0);
+                pLivingEntity.level().addParticle(new RingParticle.RingData(yaw2, pitch, 40, 0.337f, 0.925f, 0.8f, 1.0f, 50f, false, RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), x, y, z, 0, 0, 0);
             }
         }
     }

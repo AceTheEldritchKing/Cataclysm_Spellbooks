@@ -11,7 +11,7 @@ import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
-import io.redspace.ironsspellbooks.damage.ISpellDamageSource;
+import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
@@ -143,8 +143,8 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
     }
 
     @Override
-    public DamageSource getDamageSource(@Nullable Entity projectile, @Nullable Entity attacker) {
-        return ((ISpellDamageSource) super.getDamageSource(projectile, attacker)).get();
+    public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
+        return super.getDamageSource(projectile, attacker);
     }
 
     private float getDamage(int spellLevel, LivingEntity caster)

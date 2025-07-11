@@ -14,9 +14,16 @@ public class CSDamageTypes {
         return ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(CataclysmSpellbooks.MOD_ID, name));
     }
 
+    // Magic
     public static final ResourceKey<DamageType> ABYSSAL_MAGIC = register("abyssal_magic");
     public static final ResourceKey<DamageType> TECHNOMANCY_MAGIC = register("technomancy_magic");
 
+    // AoEs
+    public static final ResourceKey<DamageType> BLAZING_AOE = register("blazing_aoe");
+    public static final ResourceKey<DamageType> NO_MANS_ZONE = register("no_man_zone_aoe");
+    public static final ResourceKey<DamageType> SCORCHED_EARTH = register("scorched_earth_aoe");
+
+    // Do we actually need this?
     public static void bootstrap(BootstapContext<DamageType> context)
     {
         context.register(ABYSSAL_MAGIC, new DamageType(ABYSSAL_MAGIC.location().getPath(), DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0F));

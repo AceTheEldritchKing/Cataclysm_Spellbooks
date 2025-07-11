@@ -115,7 +115,7 @@ public class PharaohsWrathSpell extends AbstractSpell {
             double stormX = casterX + (Mth.cos(angle) * 4.0F);
             double stormZ = casterZ + (Mth.sin(angle) * 4.0F);
 
-            Sandstorm_Entity sandstorm = new Sandstorm_Entity(level, stormX, casterY, stormZ, (int) (getSpellPower(spellLevel, entity) * 40), angle, entity.getUUID());
+            Sandstorm_Entity sandstorm = new Sandstorm_Entity(level, stormX, casterY, stormZ, (int) (getSpellPower(spellLevel, entity) * 40), angle, entity);
 
             ((IExtendedCataclysmProjectileInterface)sandstorm).setFromSpell(true);
 

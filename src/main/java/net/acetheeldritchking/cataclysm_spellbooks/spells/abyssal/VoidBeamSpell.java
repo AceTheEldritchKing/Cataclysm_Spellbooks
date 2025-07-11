@@ -103,9 +103,9 @@ public class VoidBeamSpell extends AbstractAbyssalSpell {
                 double casterX = entity.getX();
                 double casterY = entity.getY();
                 double casterZ = entity.getZ();
-                Abyss_Mark_Entity mark = new Abyss_Mark_Entity(entity.level, casterX, casterY, casterZ,
+                Abyss_Mark_Entity mark = new Abyss_Mark_Entity(entity.level(), casterX, casterY, casterZ,
                         80, getDamage(spellLevel, entity), getHPDamage(spellLevel), entity.getUUID(), targetEntity);
-                entity.level.addFreshEntity(mark);
+                entity.level().addFreshEntity(mark);
             }
         }
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

@@ -11,7 +11,7 @@ import io.redspace.ironsspellbooks.capabilities.magic.MultiTargetEntityCastData;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import io.redspace.ironsspellbooks.damage.DamageSources;
-import io.redspace.ironsspellbooks.damage.ISpellDamageSource;
+import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
@@ -125,15 +125,15 @@ public class DisablingSwipeSpell extends AbstractSpell {
         float radius = 3.25F;
         float distance = 1.65F;
         Vec3 hitLocation = serverPlayer.position().add(0, serverPlayer.getBbHeight() * 0.3F, 0).add(serverPlayer.getForward().multiply(distance, 0.35F, distance));
-        var entities = serverPlayer.level.getEntities(serverPlayer, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));
+        var entities = serverPlayer.level().getEntities(serverPlayer, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));
 
         for (Entity target : entities)
         {
-            if (serverPlayer.isPickable() && serverPlayer.distanceToSqr(target) < radius * radius && Utils.hasLineOfSight(serverPlayer.level, serverPlayer.getEyePosition(), target.getBoundingBox().getCenter(), true))
+            if (serverPlayer.isPickable() && serverPlayer.distanceToSqr(target) < radius * radius && Utils.hasLineOfSight(serverPlayer.level(), serverPlayer.getEyePosition(), target.getBoundingBox().getCenter(), true))
             {
                 if (DamageSources.applyDamage(target, getDamage(recastInstance.getSpellLevel(), serverPlayer) + getBonusDamage(recastInstance.getSpellLevel(), serverPlayer), this.getDamageSource(serverPlayer)))
                 {
-                    MagicManager.spawnParticles(serverPlayer.level, ParticleHelper.ELECTRIC_SPARKS, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
+                    MagicManager.spawnParticles(serverPlayer.level(), ParticleHelper.ELECTRIC_SPARKS, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
                     EnchantmentHelper.doPostDamageEffects(serverPlayer, target);
                 }
             }
@@ -146,17 +146,17 @@ public class DisablingSwipeSpell extends AbstractSpell {
             mirrored = selection.slot.equals(SpellSelectionManager.OFFHAND);
         }
 
-        DisablingSwipeAoE swipe = new DisablingSwipeAoE(serverPlayer.level, mirrored);
+        DisablingSwipeAoE swipe = new DisablingSwipeAoE(serverPlayer.level(), mirrored);
         swipe.moveTo(hitLocation);
         swipe.setYRot(serverPlayer.getYRot());
         swipe.setEffectDuration(getEffectDuration(recastInstance.getSpellLevel(), serverPlayer));
         swipe.setEffectAmplifier(recastInstance.getSpellLevel());
-        serverPlayer.level.addFreshEntity(swipe);
+        serverPlayer.level().addFreshEntity(swipe);
     }
 
     @Override
-    public DamageSource getDamageSource(@Nullable Entity projectile, @Nullable Entity attacker) {
-        return ((ISpellDamageSource) super.getDamageSource(projectile, attacker)).get();
+    public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
+        return super.getDamageSource(projectile, attacker);
     }
 
     private float getDamage(int spellLevel, LivingEntity entity)

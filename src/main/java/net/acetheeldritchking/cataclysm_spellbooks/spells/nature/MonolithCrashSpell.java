@@ -98,7 +98,7 @@ public class MonolithCrashSpell extends AbstractSpell {
 
     private void spawnMonoliths(double x, double y, double z, float rotation, int delay, LivingEntity caster, Level level, float damage)
     {
-        BlockPos pos = new BlockPos(x, y, z);
+        BlockPos pos = new BlockPos((int) x, (int) y, (int) z);
         double d0 = 0.0D;
 
         do {

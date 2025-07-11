@@ -118,7 +118,7 @@ public class LockOnSpell extends AbstractSpell {
 
     private void spawnParticles(LivingEntity entity)
     {
-        ServerLevel level = (ServerLevel) entity.level;
+        ServerLevel level = (ServerLevel) entity.level();
         level.sendParticles(CSParticleRegistry.TARGET_PARTICLE.get(), entity.getX(), entity.getY() + 2.5, entity.getZ(), 1, 0, 0, 0, 0.0);
     }
 }

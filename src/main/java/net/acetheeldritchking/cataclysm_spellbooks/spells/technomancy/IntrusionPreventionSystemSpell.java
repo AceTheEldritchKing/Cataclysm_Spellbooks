@@ -100,7 +100,7 @@ public class IntrusionPreventionSystemSpell extends AbstractHarbingerSpell {
                 float radius = getRadius(spellLevel, entity);
                 AtomicInteger targets = new AtomicInteger(0);
 
-                targetEntity.level.getEntitiesOfClass(LivingEntity.class, targetEntity.getBoundingBox().inflate(radius)).forEach((victim) ->
+                targetEntity.level().getEntitiesOfClass(LivingEntity.class, targetEntity.getBoundingBox().inflate(radius)).forEach((victim) ->
                 {
                     if (targets.get() < MAX_TARGETS && victim instanceof MagicSummon && victim.distanceToSqr(targetEntity) < radius * radius)
                     {

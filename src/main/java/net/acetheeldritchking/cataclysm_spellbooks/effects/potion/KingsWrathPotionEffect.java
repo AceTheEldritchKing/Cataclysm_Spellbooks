@@ -38,9 +38,9 @@ public class KingsWrathPotionEffect extends MagicMobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int pAmplifier) {
-        if (!entity.level.isClientSide)
+        if (!entity.level().isClientSide)
         {
-            ServerLevel world = (ServerLevel) entity.level;
+            ServerLevel world = (ServerLevel) entity.level();
 
             float random = 0.04F;
 

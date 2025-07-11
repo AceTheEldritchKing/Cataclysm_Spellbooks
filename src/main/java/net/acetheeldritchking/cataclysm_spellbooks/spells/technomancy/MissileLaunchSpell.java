@@ -118,7 +118,7 @@ public class MissileLaunchSpell extends AbstractSpell {
             int delay = missileDelay * recastInstance.getSpellLevel();
 
             targetingData.getTargets().forEach(uuid -> {
-                var target = (LivingEntity) ((ServerLevel) serverPlayer.level).getEntity(uuid);
+                var target = (LivingEntity) ((ServerLevel) serverPlayer.level()).getEntity(uuid);
 
                 if (target != null)
                 {
@@ -164,9 +164,9 @@ public class MissileLaunchSpell extends AbstractSpell {
         double y = caster.getY() + yDiff;
         double z = caster.getZ() + 0.5 * vecZ + (f1 * math);
 
-        Wither_Homing_Missile_Entity homingMissile = new Wither_Homing_Missile_Entity(caster.level, caster, target);
+        Wither_Homing_Missile_Entity homingMissile = new Wither_Homing_Missile_Entity(caster.level(), caster);
         homingMissile.setPosRaw(x, y, z);
-        caster.level.addFreshEntity(homingMissile);
+        caster.level().addFreshEntity(homingMissile);
 
         /*Timer missileTimer = new Timer();
         int missileDelay = 150;

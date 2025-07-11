@@ -3,9 +3,12 @@ package net.acetheeldritchking.cataclysm_spellbooks.events;
 import com.github.L_Ender.cataclysm.client.render.entity.*;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.PhantomAncientRemnantRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.mobs.SurveillanceDroneRenderer;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.render.spells.*;
 import net.acetheeldritchking.cataclysm_spellbooks.particle.TargetParticle;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSParticleRegistry;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -34,6 +37,20 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), Coral_Golem_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CORALSSUS.get(), Coralssus_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.PHANTOM_ANCIENT_REMNANT.get(), PhantomAncientRemnantRenderer::new);
+
+        event.registerEntityRenderer(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), InfernalBladeRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.HELLISH_BLADE_PROJECTILE.get(), HellishBladeRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.BLAZING_AOE_ENTITY.get(), NoopRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.PARTING_SHOT_PROJECTILE.get(), PartingShotRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SURVEILLANCE_DRONE.get(), SurveillanceDroneRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.FLASH_BANG_PROJECTILE.get(), FlashBangRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.DISABLING_SWIPE.get(), DisablingSwipeAoERenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.NO_MAN_ZONE_AOE.get(), NoopRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.BLOOD_CRYSTAL_PROJECTILE.get(), BloodCrystalRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.MOLTEN_BULLET_PROJECTILE.get(), MoltenBulletRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SCORCHED_EARTH_AOE.get(), NoopRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), FrozenBulletRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockRenderer::new);
     }
 
     @SubscribeEvent

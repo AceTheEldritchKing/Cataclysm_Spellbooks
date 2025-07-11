@@ -99,7 +99,7 @@ public class AbyssFireballSpell extends AbstractIgnisSpell {
     public void onRecastFinished(ServerPlayer serverPlayer, RecastInstance recastInstance, RecastResult recastResult, ICastDataSerializable castDataSerializable) {
         if (recastResult == RecastResult.USED_ALL_RECASTS)
         {
-            var level = serverPlayer.level;
+            var level = serverPlayer.level();
 
             shootAbyssFireball(serverPlayer, level);
         }

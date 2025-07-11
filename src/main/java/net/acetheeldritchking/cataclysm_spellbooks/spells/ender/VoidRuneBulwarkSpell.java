@@ -72,7 +72,7 @@ public class VoidRuneBulwarkSpell extends AbstractSpell {
 
     private void spawnVoidRune(Level level, double x, double z, double minY, double maxY, double rotation, int delay, LivingEntity caster, int spellLevel)
     {
-        BlockPos blockPos = new BlockPos(x, maxY, z);
+        BlockPos blockPos = new BlockPos((int) x, (int) maxY, (int) z);
         boolean flag = false;
         double d0 = 0.0D;
 

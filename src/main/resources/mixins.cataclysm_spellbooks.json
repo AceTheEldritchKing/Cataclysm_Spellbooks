@@ -1,15 +1,16 @@
 {
   "required": true,
   "package": "net.acetheeldritchking.cataclysm_spellbooks.mixins",
-  "minVersion": "0.8",
+  "refmap": "cataclysm_spellbooks.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "client.MouseMixin",
-    "entities.MagicSummonMixin",
-    "entities.SandstormEntityMixin"
+    "entities.MagicSummonMixin"
+  ],
+  "client": [
+    "client.MouseMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
-  "refmap": "cataclysm_spellbooks.refmap.json"
+  "minVersion": "0.8"
 }

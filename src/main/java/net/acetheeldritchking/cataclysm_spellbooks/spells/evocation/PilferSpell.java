@@ -130,13 +130,13 @@ public class PilferSpell extends AbstractSpell {
         if (itemStack.isEmpty())
         {
             return null;
-        } else if (target.level.isClientSide)
+        } else if (target.level().isClientSide)
         {
             return null;
         } else
         {
             double d0 = target.getEyeY() - 0.3F;
-            ItemEntity itemEntity = new ItemEntity(target.level, target.getX(), d0, target.getZ(), itemStack);
+            ItemEntity itemEntity = new ItemEntity(target.level(), target.getX(), d0, target.getZ(), itemStack);
             itemEntity.setDefaultPickUpDelay();
             itemEntity.setExtendedLifetime();
 
@@ -150,9 +150,9 @@ public class PilferSpell extends AbstractSpell {
 
             itemEntity.setDeltaMovement(
                     (double)(-targetSinY * targetCosX * 0.3F) + Math.cos(f5) * (double)f6,
-                    (double)(-targetSinX * 0.3F + 0.1F + (target.getRandom().nextFloat() - target.getRandom().nextFloat()) * 0.1F),
+                    (-targetSinX * 0.3F + 0.1F + (target.getRandom().nextFloat() - target.getRandom().nextFloat()) * 0.1F),
                     (double)(targetCosY * targetCosX * 0.3F) + Math.sin(f5) * (double)f6);
-            target.level.addFreshEntity(itemEntity);
+            target.level().addFreshEntity(itemEntity);
             return itemEntity;
         }
     }

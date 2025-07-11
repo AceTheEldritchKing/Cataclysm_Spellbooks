@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import io.redspace.ironsspellbooks.registries.ParticleRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSDamageTypes;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.particles.ParticleOptions;
@@ -36,7 +37,7 @@ public class ScorchedEarthAoE extends AoeEntity {
     public void applyEffect(LivingEntity target) {
         if (damageSource == null) {
             // Temp ISS stuff
-            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, ISSDamageTypes.FIRE_FIELD), this, getOwner());
+            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, CSDamageTypes.SCORCHED_EARTH), this, getOwner());
         }
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());

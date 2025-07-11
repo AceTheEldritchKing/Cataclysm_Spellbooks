@@ -81,7 +81,7 @@ public class SandstormSpell extends AbstractSpell {
             double stormX = casterX + (Mth.cos(angle) * 4.0F);
             double stormZ = casterZ + (Mth.sin(angle) * 4.0F);
 
-            Sandstorm_Entity sandstorm = new Sandstorm_Entity(level, stormX, casterY, stormZ, (int) getLifespan(spellLevel, caster), angle, caster.getUUID());
+            Sandstorm_Entity sandstorm = new Sandstorm_Entity(level, stormX, casterY, stormZ, (int) getLifespan(spellLevel, caster), angle, caster);
 
             ((IExtendedCataclysmProjectileInterface)sandstorm).setFromSpell(true);
 

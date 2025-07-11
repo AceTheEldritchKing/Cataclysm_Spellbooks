@@ -6,6 +6,7 @@ import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSDamageTypes;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.damagesource.DamageSource;
@@ -35,7 +36,7 @@ public class BlazingAoE extends AoeEntity {
     public void applyEffect(LivingEntity target) {
         if (damageSource == null) {
             // Temp ISS stuff
-            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, ISSDamageTypes.FIRE_FIELD), this, getOwner());
+            damageSource = new DamageSource(DamageSources.getHolderFromResource(target, CSDamageTypes.BLAZING_AOE), this, getOwner());
         }
         DamageSources.ignoreNextKnockback(target);
         target.hurt(damageSource, getDamage());

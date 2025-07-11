@@ -85,7 +85,7 @@ public class GravityStormSpell extends AbstractSpell {
         HitResult result = Utils.raycastForEntity(level, entity, getRangeForSpell(spellLevel), true);
         Vec3 gravityStormLocation = result.getLocation();
 
-        Level casterLevel = entity.level;
+        Level casterLevel = entity.level();
 
         Void_Vortex_Entity voidVortex = new Void_Vortex_Entity(casterLevel, casterX, casterEye, casterZ, 0, entity, 10);
 
