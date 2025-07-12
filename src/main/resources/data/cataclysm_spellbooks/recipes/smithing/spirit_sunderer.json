@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "cataclysm:cursium_ingot"
+    },
+    "base": {
+        "item": "irons_spellbooks:ice_staff"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:spirit_sunderer"
+    },
+    "template": {
+        "item": "cataclysm:cursium_upgrade_smithing_template"
+    }
+}

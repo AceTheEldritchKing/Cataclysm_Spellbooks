@@ -1,12 +1,15 @@
 {
-    "type": "minecraft:smithing",
+    "type": "minecraft:smithing_transform",
     "addition": {
-        "item": "cataclysm:amethyst_crab_shell"
+        "item": "minecraft:amethyst_shard"
     },
     "base": {
         "item": "irons_spellbooks:plagued_helmet"
     },
     "result": {
         "item": "cataclysm_spellbooks:bloom_stone_hat"
+    },
+    "template": {
+        "item": "cataclysm:amethyst_crab_shell"
     }
 }

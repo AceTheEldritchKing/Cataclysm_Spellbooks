@@ -1,12 +1,15 @@
 {
-    "type": "minecraft:smithing",
+    "type": "minecraft:smithing_transform",
     "addition": {
-        "item": "cataclysm_spellbooks:excel_upgrade_resistence"
+        "item": "cataclysm:witherite_ingot"
     },
     "base": {
         "item": "cataclysm_spellbooks:engineer_suit"
     },
     "result": {
         "item": "cataclysm_spellbooks:excelsius_resist_chestplate"
+    },
+    "template": {
+        "item": "cataclysm_spellbooks:excel_upgrade_resistence"
     }
 }

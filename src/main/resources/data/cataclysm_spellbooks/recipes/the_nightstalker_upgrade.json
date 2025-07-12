@@ -1,0 +1,12 @@
+{
+    "type": "cataclysm:weapon_fusion",
+    "base": {
+        "item": "cataclysm_spellbooks:gauntlet_of_gattling"
+    },
+    "addition": {
+        "item": "irons_spellbooks:blood_vial"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:the_nightstalker"
+    }
+}

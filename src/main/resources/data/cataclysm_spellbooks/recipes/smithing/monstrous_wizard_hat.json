@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "cataclysm:monstrous_horn"
+    },
+    "base": {
+        "item": "irons_spellbooks:netherite_mage_helmet"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:monstrous_wizard_hat"
+    },
+    "template": {
+        "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+}

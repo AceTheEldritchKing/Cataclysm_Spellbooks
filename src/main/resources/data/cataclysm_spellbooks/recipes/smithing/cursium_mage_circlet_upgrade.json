@@ -1,5 +1,5 @@
 {
-    "type": "minecraft:smithing",
+    "type": "minecraft:smithing_transform",
     "addition": {
         "item": "cataclysm:cursium_ingot"
     },
@@ -8,5 +8,8 @@
     },
     "result": {
         "item": "cataclysm_spellbooks:cursium_mage_circlet"
+    },
+    "template": {
+        "item": "cataclysm:cursium_upgrade_smithing_template"
     }
 }

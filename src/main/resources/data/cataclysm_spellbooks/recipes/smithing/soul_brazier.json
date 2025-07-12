@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "cataclysm_spellbooks:frozen_knowledge_fragment"
+    },
+    "base": {
+        "item": "irons_spellbooks:ice_staff"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:soul_brazier"
+    },
+    "template": {
+        "item": "cataclysm:cursium_upgrade_smithing_template"
+    }
+}

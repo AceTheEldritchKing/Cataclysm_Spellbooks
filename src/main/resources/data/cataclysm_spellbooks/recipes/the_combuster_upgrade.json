@@ -1,12 +1,12 @@
 {
     "type": "cataclysm:weapon_fusion",
     "base": {
-        "item": "irons_spellbooks:blaze_spell_book"
+        "item": "cataclysm_spellbooks:gauntlet_of_gattling"
     },
     "addition": {
         "item": "cataclysm:ignitium_ingot"
     },
     "result": {
-        "item": "cataclysm_spellbooks:ignis_spell_book"
+        "item": "cataclysm_spellbooks:the_combuster"
     }
 }

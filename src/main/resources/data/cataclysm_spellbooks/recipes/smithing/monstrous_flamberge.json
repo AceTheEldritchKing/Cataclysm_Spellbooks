@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "cataclysm:monstrous_horn"
+    },
+    "base": {
+        "item": "irons_spellbooks:keeper_flamberge"
+    },
+    "result": {
+        "item": "cataclysm_spellbooks:monstrous_flamberge"
+    },
+    "template": {
+        "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+}
