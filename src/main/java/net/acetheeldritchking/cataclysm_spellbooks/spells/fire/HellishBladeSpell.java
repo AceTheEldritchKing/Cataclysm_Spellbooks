@@ -20,13 +20,11 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,19 +43,19 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.EPIC)
+            .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
             .setMaxLevel(5)
-            .setCooldownSeconds(60)
+            .setCooldownSeconds(90)
             .build();
 
     public HellishBladeSpell()
     {
-        this.manaCostPerLevel = 10;
+        this.manaCostPerLevel = 15;
         this.baseSpellPower = 15;
         this.spellPowerPerLevel = 2;
         this.castTime = 20;
-        this.baseManaCost = 100;
+        this.baseManaCost = 150;
     }
 
     @Override
@@ -149,13 +147,13 @@ public class HellishBladeSpell extends AbstractIgnisSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 5.0f;
+        return getSpellPower(spellLevel, caster) * 2.0f;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)
     {
         float baseDamage = getDamage(spellLevel, caster);
-        int bonusAmount = (int) (3.5 + spellLevel);
+        int bonusAmount = (int) (1.5 + spellLevel);
 
         return baseDamage + bonusAmount;
     }

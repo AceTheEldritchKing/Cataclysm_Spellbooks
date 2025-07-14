@@ -171,12 +171,12 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
 
         if (entity.getMainHandItem().is(soulRenderer) || entity.getMainHandItem().is(annihilator))
         {
-            CSUtils.spawnHalberdWindmill(spellLevel * 4, getHalberdsPerBranch(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
+            CSUtils.spawnHalberdWindmill(spellLevel * 6, getHalberdsPerBranch(spellLevel, entity), 1.5, 1.95, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getBonusDamage(spellLevel, entity), spellLevel);
         }
         else
         {
-            CSUtils.spawnHalberdWindmill(spellLevel * 4, getHalberdsPerBranch(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
+            CSUtils.spawnHalberdWindmill(spellLevel * 6, getHalberdsPerBranch(spellLevel, entity), 1.5, 1.95, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
             //spawnHalberdField(spellLevel * 4, (int) getSpellPower(spellLevel, entity), 1.5, 0.75, 0.2, 1, entity, level, getDamage(spellLevel, entity), spellLevel);
         }
         //System.out.println("After cast");
@@ -203,7 +203,7 @@ public class MalevolentBattlefieldSpell extends AbstractMaledictusSpell {
 
     private int getHalberdsPerBranch(int spellLevel, LivingEntity caster)
     {
-        return (int) Mth.clamp(getSpellPower(spellLevel, caster), 1, 5);
+        return (int) Mth.clamp(getSpellPower(spellLevel, caster), 1, 3);
     }
 
     private float getDamage(int spellLevel, LivingEntity caster)

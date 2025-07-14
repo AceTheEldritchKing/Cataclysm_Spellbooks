@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
 import com.github.L_Ender.cataclysm.entity.projectile.Wither_Homing_Missile_Entity;
+import com.github.L_Ender.cataclysm.init.ModEntities;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
@@ -20,11 +21,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 @AutoSpellConfig
 public class MissileLaunchSpell extends AbstractSpell {
@@ -33,7 +34,8 @@ public class MissileLaunchSpell extends AbstractSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.irons_spellbooks.projectile_count", (getRecastCount(spellLevel, caster)))
+                Component.translatable("ui.irons_spellbooks.projectile_count", (getRecastCount(spellLevel, caster))),
+                Component.translatable("ui.irons_spellbooks.damage", (getDamage(spellLevel, caster)))
         );
     }
 
@@ -122,9 +124,9 @@ public class MissileLaunchSpell extends AbstractSpell {
 
                 if (target != null)
                 {
-                    launchMissiles(1.5F, 1.5F, serverPlayer, target);
+                    launchMissiles(1.5F, 1.5F, recastInstance.getSpellLevel(), serverPlayer, target);
 
-                    launchMissiles(1.5F, -1.5F, serverPlayer, target);
+                    launchMissiles(1.5F, -1.5F, recastInstance.getSpellLevel(), serverPlayer, target);
                 }
 
                 /*missileTimer.schedule(new TimerTask() {
@@ -149,7 +151,7 @@ public class MissileLaunchSpell extends AbstractSpell {
         }
     }
 
-    private void launchMissiles(float yDiff, float math, LivingEntity caster, LivingEntity target)
+    private void launchMissiles(float yDiff, float math, int spellLevel, LivingEntity caster, LivingEntity target)
     {
         float f = (float) Math.cos(caster.yBodyRot * (Math.PI / 180));
         float f1 = (float) Math.sin(caster.yBodyRot * (Math.PI / 180));
@@ -164,7 +166,13 @@ public class MissileLaunchSpell extends AbstractSpell {
         double y = caster.getY() + yDiff;
         double z = caster.getZ() + 0.5 * vecZ + (f1 * math);
 
-        Wither_Homing_Missile_Entity homingMissile = new Wither_Homing_Missile_Entity(caster.level(), caster);
+        double tX = target.getX() - x;
+        double tY = target.getY() - y;
+        double tZ = target.getZ() - z;
+
+        Vec3 targetVec = new Vec3(tX, tY, tZ);
+
+        Wither_Homing_Missile_Entity homingMissile = new Wither_Homing_Missile_Entity(caster, targetVec.normalize(), caster.level(), getDamage(spellLevel, caster), target);
         homingMissile.setPosRaw(x, y, z);
         caster.level().addFreshEntity(homingMissile);
 
@@ -191,7 +199,7 @@ public class MissileLaunchSpell extends AbstractSpell {
     }
 
     private float getDamage(int spellLevel, LivingEntity caster) {
-        return getSpellPower(spellLevel, caster);
+        return getSpellPower(spellLevel, caster) * 0.65F;
     }
 
     @Override

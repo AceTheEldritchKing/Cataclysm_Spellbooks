@@ -17,12 +17,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,19 +39,19 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.RARE)
+            .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
             .setMaxLevel(8)
-            .setCooldownSeconds(1)
+            .setCooldownSeconds(20)
             .build();
 
     public InfernalStrikeSpell()
     {
-        this.manaCostPerLevel = 2;
-        this.baseSpellPower = 5;
+        this.manaCostPerLevel = 10;
+        this.baseSpellPower = 2;
         this.spellPowerPerLevel = 2;
         this.castTime = 0;
-        this.baseManaCost = 15;
+        this.baseManaCost = 110;
     }
 
     @Override
@@ -121,7 +119,7 @@ public class InfernalStrikeSpell extends AbstractIgnisSpell {
 
     private float getDamage(int spellLevel, LivingEntity caster)
     {
-        return getSpellPower(spellLevel, caster) * 2.0f;
+        return getSpellPower(spellLevel, caster) * 1.5f;
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)
