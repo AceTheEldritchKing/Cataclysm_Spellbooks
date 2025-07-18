@@ -1,0 +1,490 @@
+{
+    "cs_items_tab": "Cataclysm: Spellbooks",
+    "creative_tab.cataclysm_spellbooks.items": "Cataclysm: Spellbooks",
+
+    "attribute.cataclysm_spellbooks.abyssal_magic_resist": "深淵魔法耐性",
+    "attribute.cataclysm_spellbooks.abyssal_spell_power": "深淵魔法の力",
+
+    "attribute.cataclysm_spellbooks.technomancy_magic_resist": "テクノマンシー魔法耐性",
+    "attribute.cataclysm_spellbooks.technomancy_spell_power": "テクノマンシーの呪文の力",
+
+
+"effect.cataclysm_spellbooks.abyssal_predator_effect": "深淵の捕食者",
+"effect.cataclysm_spellbooks.abyssal_predator_effect.description": "水中や雨天時に移動速度、泳ぎ速度、与えるダメージが増加する。",
+"effect.cataclysm_spellbooks.incapacitated_effect": "行動不能",
+"effect.cataclysm_spellbooks.incapacitated_effect.description": "頭を動かすことができず、移動速度も低下する。",
+"effect.cataclysm_spellbooks.abyssal_gnawer_timer": "召喚された深淵の齧歯獣",
+"effect.cataclysm_spellbooks.abyssal_gnawer_timer.description": "深淵の齧歯獣が世界に留まる時間。",
+"effect.cataclysm_spellbooks.wrathful_effect": "憤怒",
+"effect.cataclysm_spellbooks.wrathful_effect.description": "怒りに満ち、攻撃ごとのダメージが増加する。",
+"effect.cataclysm_spellbooks.crab_timer": "召喚されたアメジストガニ",
+"effect.cataclysm_spellbooks.crab_timer.description": "召喚されたアメジストガニが世界に留まる時間。",
+"effect.cataclysm_spellbooks.shutdown_effect": "機能停止",
+"effect.cataclysm_spellbooks.shutdown_effect.description": "アイテムの使用や攻撃ができず、その過程でダメージを受ける。",
+"effect.cataclysm_spellbooks.rewired_effect": "再配線",
+"effect.cataclysm_spellbooks.rewired_effect.description": "ダメージと移動速度が上昇するが、防具と防具耐久が逆に低下する。",
+"effect.cataclysm_spellbooks.hardware_update_effect": "ハードウェア更新",
+"effect.cataclysm_spellbooks.hardware_update_effect.description": "ダメージと防御力が上昇する。",
+"effect.cataclysm_spellbooks.software_update_effect": "ソフトウェア更新",
+"effect.cataclysm_spellbooks.software_update_effect.description": "移動速度が上昇し、呪文のクールダウンが短縮される。",
+"effect.cataclysm_spellbooks.intrusion_defense_system_software": "IPSソフトウェア",
+"effect.cataclysm_spellbooks.intrusion_defense_system_software.description": "飛び道具によるダメージを軽減し、召喚が打ち消されるのを防ぐ。",
+"effect.cataclysm_spellbooks.disabled_effect": "ハードウェア無効化",
+"effect.cataclysm_spellbooks.disabled_effect.description": "あらゆる種類の回復を無効化する。",
+"effect.cataclysm_spellbooks.mana_overcharged_effect": "マナ過充電",
+"effect.cataclysm_spellbooks.mana_overcharged_effect.description": "マナ量とテクノマンサーの呪文威力が増加する。",
+"effect.cataclysm_spellbooks.spell_res_overcharged_effect": "耐性過充電",
+"effect.cataclysm_spellbooks.spell_res_overcharged_effect.description": "呪文耐性とテクノマンサーの呪文威力が増加する。",
+"effect.cataclysm_spellbooks.cooldown_overcharged_effect": "クールダウン過充電",
+"effect.cataclysm_spellbooks.cooldown_overcharged_effect.description": "呪文のクールダウンが短縮され、テクノマンサーの呪文威力が増加する。",
+"effect.cataclysm_spellbooks.base_overcharged_effect": "過充電",
+"effect.cataclysm_spellbooks.base_overcharged_effect.description": "テクノマンサーの呪文威力が増加する。",
+"effect.cataclysm_spellbooks.sniper": "狙撃者の眼",
+"effect.cataclysm_spellbooks.sniper.description": "飛び道具のダメージが2倍になる。",
+"effect.cataclysm_spellbooks.hemophilia": "血友病",
+"effect.cataclysm_spellbooks.hemophilia.description": "受けるダメージが2.5倍になる。",
+"effect.cataclysm_spellbooks.ignited_timer": "召喚された燃え上がる援軍",
+"effect.cataclysm_spellbooks.ignited_timer.description": "燃え上がる存在が世界に留まる時間。",
+"effect.cataclysm_spellbooks.koboldiator_timer": "召喚された古の重戦士の骸のタイマー",
+"effect.cataclysm_spellbooks.koboldiator_timer.description": "古の重戦士の骸が世界に留まる時間。",
+"effect.cataclysm_spellbooks.koboleton_timer": "召喚された爬虫類の骸骨のタイマー",
+"effect.cataclysm_spellbooks.koboleton_timer.description": "爬虫類の骸骨が世界に留まる時間。",
+"effect.cataclysm_spellbooks.draugur_timer": "召喚されたドラウグル軍",
+"effect.cataclysm_spellbooks.draugur_timer.description": "ドラウグル軍が世界に留まる時間。",
+"effect.cataclysm_spellbooks.watcher_timer": "召喚された監視者のタイマー",
+"effect.cataclysm_spellbooks.watcher_timer.description": "監視者またはDoSスウォーマーが世界に留まる時間。",
+"effect.cataclysm_spellbooks.prowler_timer": "召喚された徘徊者のタイマー",
+"effect.cataclysm_spellbooks.prowler_timer.description": "徘徊者が世界に留まる時間。",
+"effect.cataclysm_spellbooks.coral_golem_timer": "召喚されたサンゴゴーレムのタイマー",
+"effect.cataclysm_spellbooks.coral_golem_timer.description": "サンゴゴーレムが世界に留まる時間。",
+"effect.cataclysm_spellbooks.coralssus_timer": "召喚されたサンゴの怪物のタイマー",
+"effect.cataclysm_spellbooks.coralssus_timer.description": "サンゴの怪物が世界に留まる時間。",
+"effect.cataclysm_spellbooks.remnant_timer": "召喚された幻影の残滓のタイマー",
+"effect.cataclysm_spellbooks.remnant_timer.description": "幻影の残滓が世界に留まる時間。",
+
+
+    "school.cataclysm_spellbooks.abyssal": "深淵",
+    "school.cataclysm_spellbooks.technomancy": "テクノマンシー",
+
+
+    "item.cataclysm_spellbooks.abyss_spell_book": "ルルイエの書",
+    "item.cataclysm_spellbooks.desert_spell_book": "砂漠の呪文書",
+    "item.cataclysm_spellbooks.ignis_spell_book": "業火の呪文書",
+    "item.cataclysm_spellbooks.codex_of_malice_spell_book": "悪意の法典",
+    "item.cataclysm_spellbooks.disc_driver": "ディスクドライバー",
+    "item.cataclysm_spellbooks.disc_driver_description": "装備するとハービンジャー呪文がアンロックされます",
+
+    "item.cataclysm_spellbooks.bloom_stone_staff": "ブルームストーンの杖",
+    "item.cataclysm_spellbooks.coral_staff": "サンゴの杖",
+    "item.cataclysm_spellbooks.fake_wudjets_staff": "古の杖",
+    "item.cataclysm_spellbooks.void_staff": "虚空の杖",
+    "item.cataclysm_spellbooks.spirit_sunderer": "スピリットサンダラー",
+    "item.cataclysm_spellbooks.gauntlet_of_power": "オアディール",
+    "item.cataclysm_spellbooks.gauntlet_of_gattling": "サブジャガーター",
+    "item.cataclysm_spellbooks.engineers_power_glove": "エンジニアのパワーグローブ",
+    "item.cataclysm_spellbooks.soul_brazier": "ソウルブレイラー",
+    "item.cataclysm_spellbooks.the_nightstalker": "ナイトストーカー",
+    "item.cataclysm_spellbooks.the_berserker": "バーサーカー",
+    "item.cataclysm_spellbooks.the_combuster": "コンバスター",
+
+    "item.cataclysm_spellbooks.monstrous_flamberge": "怪物のフランベルジュ",
+
+    "item.cataclysm_spellbooks.abyssal_rune": "深淵のルーン",
+    "item.cataclysm_spellbooks.technomancy_rune": "テクモマンシーのルーン",
+    "item.cataclysm_spellbooks.mechanical_scrap": "機械スクラップ",
+    "item.cataclysm_spellbooks.excel_upgrade_mana": "エクセルシウスアップグレード：マナ",
+    "item.cataclysm_spellbooks.excel_upgrade_resistence": "エクセルシウスアップグレード：呪文耐性",
+    "item.cataclysm_spellbooks.excel_upgrade_cooldown": "エクセルシウスアップグレード：クールダウン",
+    "item.cataclysm_spellbooks.burning_knowledge_fragment": "燃える知識の断片",
+    "item.cataclysm_spellbooks.burning_manuscript": "燃える原稿",
+    "item.cataclysm_spellbooks.burning_manuscript_description": "インベントリにあるとき、すべてのイグニス呪文のロックを解除します",
+    "item.cataclysm_spellbooks.frozen_knowledge_fragment": "凍った知識の断片",
+    "item.cataclysm_spellbooks.frozen_tablet": "冷凍錠剤",
+    "item.cataclysm_spellbooks.frozen_tablet_description": "インベントリにあるとき、すべてのマレディクタス呪文のロックを解除します",
+    "item.cataclysm_spellbooks.strange_disc": "奇妙なディスク",
+    "item.cataclysm_spellbooks.strange_disc_description": "インベントリにあるとき、すべてのハービンジャー呪文のロックを解除します",
+
+    "item.cataclysm_spellbooks.ignis_helmet": "イグニスメイジの帽子",
+    "item.cataclysm_spellbooks.ignis_chestplate": "イグニスメイジのローブ",
+    "item.cataclysm_spellbooks.ignis_chestplate_elytra": "エリトラ付きイグニスメイジのローブ",
+    "item.cataclysm_spellbooks.ignis_leggings": "イグニスメイジのレギンス",
+    "item.cataclysm_spellbooks.ignis_boots": "イグニスメイジのグリーブス",
+
+    "item.cataclysm_spellbooks.abyssal_warlock_helmet": "深淵の魔術師のフード",
+    "item.cataclysm_spellbooks.abyssal_warlock_mask": "深淵の魔術師のマスク",
+    "item.cataclysm_spellbooks.abyssal_warlock_chestplate": "深淵の魔術師のRローブ",
+    "item.cataclysm_spellbooks.abyssal_warlock_leggings": "深淵の魔術師のレギンス",
+    "item.cataclysm_spellbooks.abyssal_warlock_boots": "深淵の魔術師のグリープス",
+
+    "item.cataclysm_spellbooks.cursium_mage_circlet": "カーシウムメイジのサークレット",
+    "item.cataclysm_spellbooks.cursium_mage_chestplate": "カーシウムメイジのブレストプレート",
+    "item.cataclysm_spellbooks.cursium_mage_elytra": "エリトラ付きカーシウムメイジのブレストプレート",
+    "item.cataclysm_spellbooks.cursium_mage_skirt": "カーシウムメイジのスカート",
+    "item.cataclysm_spellbooks.cursium_mage_boots": "カーシウムメイジのグリープス",
+    "item.cataclysm_spellbooks.cursium_chestplate.desc4": "エリトラと合成可能",
+
+    "item.cataclysm_spellbooks.pharaoh_helmet": "ファラオ・セイクリッドのヘッドドレス",
+    "item.cataclysm_spellbooks.pharaoh_chestplate": "ファラオ・セイクリッドのホーバーク",
+    "item.cataclysm_spellbooks.pharaoh_leggings": "ファラオ・セイクリッドのスカート",
+    "item.cataclysm_spellbooks.pharaoh_greaves": "ファラオ・セイクリッドのグリープス",
+
+    "item.cataclysm_spellbooks.bloom_stone_hat": "ブルームストーンの帽子",
+    "item.cataclysm_spellbooks.bloom_stone_chestplate": "ブルームストーンのチェストプレート",
+    "item.cataclysm_spellbooks.bloom_stone_skirt": "ブルームストーンのスカート",
+    "item.cataclysm_spellbooks.bloom_stone_greaves": "ブルームストーンのグリープス",
+
+    "item.cataclysm_spellbooks.monstrous_wizard_hat": "怪物の魔術帽子",
+
+    "item.cataclysm_spellbooks.excelsius_speed_visors": "エクセルシウスベロシティのバイザー",
+    "item.cataclysm_spellbooks.excelsius_speed_chestplate": "エクセルシウスベロシティのチェストプレート",
+    "item.cataclysm_spellbooks.excelsius_power_visors": "エクセルシウスアドヴァーサリィのバイザー",
+    "item.cataclysm_spellbooks.excelsius_power_chestplate": "エクセルシウスアドヴァーサリィのチェストプレート",
+    "item.cataclysm_spellbooks.excelsius_resist_visors": "エクセルシウスオプレッサーのバイザー",
+    "item.cataclysm_spellbooks.excelsius_resist_chestplate": "エクセルシウスオプレッサーのチェストプレート",
+    "item.cataclysm_spellbooks.excelsius_leggings": "エクセルシウスプロパルジョンのレギンス",
+    "item.cataclysm_spellbooks.excelsius_greaves": "エクセルシウスプロパルジョンのグリーブス",
+
+    "item.cataclysm_spellbooks.excelsius_helmet.desc": "ターゲットホーミングサイト",
+    "item.cataclysm_spellbooks.excelsius_helmet.desc2": "%s を押すと近くのエンティティに誘導効果を与え、発射物のダメージが2倍になる。",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc": "無限飛行",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc2": "燃料やブーストに制限のないエリトラ飛行能力",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc": "落下無効",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc2": "落下ダメージは無効化される",
+    "item.cataclysm_spellbooks.excelsius_boots.desc": "ジャンプブースト",
+    "item.cataclysm_spellbooks.excelsius_boots.desc2": "%s を押すとジャンプ力が上がり、近くのエンティティに火がつく",
+
+    "item.cataclysm_spellbooks.engineer_hood": "エンジニアの帽子",
+    "item.cataclysm_spellbooks.engineer_suit": "エンジニアのスーツ",
+    "item.cataclysm_spellbooks.engineer_leggings": "エンジニアのパンツ",
+    "item.cataclysm_spellbooks.engineer_boots": "エンジニアのブーツ",
+
+    "item.cataclysm_spellbooks.leviathans_blessing": "リヴァイアサンの祝福",
+    "item.cataclysm_spellbooks.leviathans_blessing.desc": "深淵効果に対して耐性",
+
+    "item.cataclysm_spellbooks.abyssal_upgrade_orb": "深淵のアップグレードオーブ",
+    "item.cataclysm_spellbooks.technomancy_upgrade_orb": "テクノマンシーのアップグレードオーブ",
+
+
+    "spell.cataclysm_spellbooks.void_beam": "深淵の光線",
+    "spell.cataclysm_spellbooks.void_beam.guide": "選んだ対象に深淵の光線を放ちます",
+
+    "spell.cataclysm_spellbooks.void_rune": "召喚：虚無のルーン",
+    "spell.cataclysm_spellbooks.void_rune.guide": "選んだ対象に虚無のルーンを放ちます",
+
+    "spell.cataclysm_spellbooks.dimensional_rift": "次元の裂け目",
+    "spell.cataclysm_spellbooks.dimensional_rift.guide": "次元の裂け目を発生させます",
+
+    "spell.cataclysm_spellbooks.abyssal_slash": "潮裂き",
+    "spell.cataclysm_spellbooks.abyssal_slash.guide": "対象を斬りつけて近接ダメージを与えます",
+
+    "spell.cataclysm_spellbooks.abyssal_blast": "深淵の爆発",
+    "spell.cataclysm_spellbooks.abyssal_blast.guide": "ブロックを破壊し、深淵の灼熱を与える破壊的な爆発を放ちます",
+
+    "spell.cataclysm_spellbooks.abyssal_predator": "深淵の捕食者",
+    "spell.cataclysm_spellbooks.abyssal_predator.guide": "泳ぐ速度、攻撃力、攻撃速度を上昇させる呪文を唱えます。水中ではさらにダメージが増加します",
+
+    "spell.cataclysm_spellbooks.depth_charge": "水深爆雷",
+    "spell.cataclysm_spellbooks.depth_charge.guide": "周囲に複数の水深爆雷を召喚します",
+
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer": "召喚：深淵の噛みつき手",
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer.guide": "異次元から深淵の噛みつき手の群れを呼び寄せます",
+
+    "spell.cataclysm_spellbooks.tidal_grab": "触手の裂傷",
+    "spell.cataclysm_spellbooks.tidal_grab.guide": "触手を伸ばして対象にダメージを与えます",
+
+    "spell.cataclysm_spellbooks.infernal_strike": "地獄の一撃",
+    "spell.cataclysm_spellbooks.infernal_strike.guide": "小型の焼却装置を発射し、対象にダメージと灼熱の刻印を与えます",
+
+    "spell.cataclysm_spellbooks.incineration": "焼却",
+    "spell.cataclysm_spellbooks.incineration.guide": "前方に一直線に炎の打撃を召喚します",
+
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement": "召喚：燃え上がる援軍",
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement.guide": "燃え盛る霊魂と戦魂を召喚ます",
+
+    "spell.cataclysm_spellbooks.ashen_breath": "灰の吐息",
+    "spell.cataclysm_spellbooks.ashen_breath.guide": "敵に向かって灰の吐息を吐きかけます",
+
+    "spell.cataclysm_spellbooks.bone_storm": "骨の嵐",
+    "spell.cataclysm_spellbooks.bone_storm.guide": "自分から骨の嵐を巻き起こします。速度が速いほど広範囲に広がります",
+
+    "spell.cataclysm_spellbooks.piercing_bone": "貫通する骨",
+    "spell.cataclysm_spellbooks.piercing_bone.guide": "燃え上がる骨を敵に向かって発射し、その後3本の骨が小さく拡散します",
+
+    "spell.cataclysm_spellbooks.hellish_blade": "地獄の刃",
+    "spell.cataclysm_spellbooks.hellish_blade.guide": "敵の上空に焼却装置の複製を召喚し、攻撃とスタン、炎の刻印を与えます",
+
+    "spell.cataclysm_spellbooks.abyss_fireball": "燃え盛る閃光",
+    "spell.cataclysm_spellbooks.abyss_fireball.guide": "跳ね回る火球の奔流を召喚し、体力に応じて変化し、命中時に炎の刻印を与えます",
+
+    "spell.cataclysm_spellbooks.amethyst_puncture": "アメジストの穿刺",
+    "spell.cataclysm_spellbooks.amethyst_puncture.guide": "敵に向かってアメジストの塊を発射します",
+
+    "spell.cataclysm_spellbooks.gravity_storm": "重力嵐",
+    "spell.cataclysm_spellbooks.gravity_storm.guide": "見ている方向に虚無の渦を召喚し、対象を壊滅させます",
+
+    "spell.cataclysm_spellbooks.void_bulwark": "虚無の防壁",
+    "spell.cataclysm_spellbooks.void_bulwark.guide": "周囲に虚無のルーンを召喚し、範囲内の攻撃者にダメージを与えます",
+
+    "spell.cataclysm_spellbooks.gravitation_pull": "重力引き寄せ",
+    "spell.cataclysm_spellbooks.gravitation_pull.guide": "周囲の重力を操って対象を自分の方へ引き寄せます",
+
+    "spell.cataclysm_spellbooks.sandstorm": "砂嵐",
+    "spell.cataclysm_spellbooks.sandstorm.guide": "自分の周囲に砂嵐を召喚します",
+
+    "spell.cataclysm_spellbooks.desert_winds": "砂漠の風",
+    "spell.cataclysm_spellbooks.desert_winds.guide": "前方の敵にダメージを与える小規模な砂嵐を召喚します",
+
+    "spell.cataclysm_spellbooks.monolith_crash": "巨石の崩落",
+    "spell.cataclysm_spellbooks.monolith_crash.guide": "頭上に複数の巨石を召喚し、自分と敵の周囲に落下させます",
+
+    "spell.cataclysm_spellbooks.malevolent_battlefield": "邪悪なる戦場",
+    "spell.cataclysm_spellbooks.malevolent_battlefield.guide": "自分の周囲に複数の幻影のハルバードを召喚し、近くの敵に大ダメージを与えます",
+
+    "spell.cataclysm_spellbooks.forgone_rage": "失われし怒り",
+    "spell.cataclysm_spellbooks.forgone_rage.guide": "冷たい怒りに満たされ、攻撃するほどダメージが増加します。怒りが収まると弱体化します",
+
+    "spell.cataclysm_spellbooks.conjure_koboldiator": "召喚：古の重戦士の骸",
+    "spell.cataclysm_spellbooks.conjure_koboldiator.guide": "強力な古の重戦士の骸を召喚します",
+
+    "spell.cataclysm_spellbooks.pilfer": "強奪",
+    "spell.cataclysm_spellbooks.pilfer.guide": "対象の手に持っているアイテムを奪い取る呪文を唱えます",
+
+    "spell.cataclysm_spellbooks.summon_koboleton": "召喚：爬虫類の骸骨",
+    "spell.cataclysm_spellbooks.summon_koboleton.guide": "爬虫類の骸骨の集団を召喚して共に戦わせます",
+
+    "spell.cataclysm_spellbooks.cursed_rush": "呪われた突進",
+    "spell.cataclysm_spellbooks.cursed_rush.guide": "見ている方向に突進し、元の位置と新たな位置に幻影のハルバードを召喚。進路上の敵にダメージを与えます",
+
+    "spell.cataclysm_spellbooks.conjure_thralls": "召喚：アンデッドのしもべ",
+    "spell.cataclysm_spellbooks.conjure_thralls.guide": "アンデッドのドラウグルを召喚して共に戦わせます",
+
+    "spell.cataclysm_spellbooks.tectonic_tremble": "地殻震動",
+    "spell.cataclysm_spellbooks.tectonic_tremble.guide": "大地を揺るがし、周囲の存在を炎上させて吹き飛ばすします",
+
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab": "召喚：アメジストガニ",
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab.guide": "神話のアメジストガニを召喚して共に戦わせます",
+
+    "spell.cataclysm_spellbooks.laserbolt": "レーザーボルト",
+    "spell.cataclysm_spellbooks.laserbolt.guide": "対象を狙い、小型のレーザーボルトを発射します",
+
+    "spell.cataclysm_spellbooks.atomic_laser": "アトミックレーザー",
+    "spell.cataclysm_spellbooks.atomic_laser.guide": "見ている方向に破壊的なレーザーを発射し、自身を行動不能にします",
+
+    "spell.cataclysm_spellbooks.emp_blast": "EMP",
+    "spell.cataclysm_spellbooks.emp_blast.guide": "自身からEMPパルスを放ち、周囲のモブをスタンさせます",
+
+    "spell.cataclysm_spellbooks.lock_on": "ロックオン",
+    "spell.cataclysm_spellbooks.lock_on.guide": "対象を狙い、頭上にターゲットを表示して短時間スタンさせます",
+
+    "spell.cataclysm_spellbooks.construct_watchers": "構築：ウォッチャー",
+    "spell.cataclysm_spellbooks.construct_watchers.guide": "戦闘支援のためウォッチャーの集団を構築します",
+
+    "spell.cataclysm_spellbooks.construct_prowler": "構築：プロウラー",
+    "spell.cataclysm_spellbooks.construct_prowler.guide": "戦闘支援のためプロウラーを構築します",
+
+    "spell.cataclysm_spellbooks.ddos": "分散型サービス妨害",
+    "spell.cataclysm_spellbooks.ddos.guide": "周囲のサービスを妨害し、召喚を解除し、近くの存在から魔法効果を除去します",
+
+    "spell.cataclysm_spellbooks.dos_swarm": "DoS群体",
+    "spell.cataclysm_spellbooks.dos_swarm.guide": "ウォッチャーの群れを召喚し、近くのモブを即座に攻撃し、魔法効果を解除して爆発します",
+
+    "spell.cataclysm_spellbooks.shutdown": "シャットダウン",
+    "spell.cataclysm_spellbooks.shutdown.guide": "対象のプロセスを停止させ、攻撃やアイテム使用を不能にします",
+
+    "spell.cataclysm_spellbooks.rewire": "再配線",
+    "spell.cataclysm_spellbooks.rewire.guide": "召喚体の能力を再配線し、速度とダメージを増加させるが、防御力と耐久力を低下させます",
+
+    "spell.cataclysm_spellbooks.hardware_update": "ハードウェア更新",
+    "spell.cataclysm_spellbooks.hardware_update.guide": "内部ハードウェアを更新し、防御力と攻撃力を上昇させます。チャージ、ヘイスト、ソフトウェア更新とは重複しません",
+
+    "spell.cataclysm_spellbooks.software_update": "ソフトウェア更新",
+    "spell.cataclysm_spellbooks.software_update.guide": "内部ソフトウェアを更新し、速度を上昇させ、呪文のクールダウンを短縮させます。チャージ、ヘイスト、ハードウェア更新とは重複しません",
+
+    "spell.cataclysm_spellbooks.missile_launch": "ミサイル連射",
+    "spell.cataclysm_spellbooks.missile_launch.guide": "対象を狙い、追尾するウィザーミサイルの連射を浴びせます",
+
+    "spell.cataclysm_spellbooks.aerial_assault": "空中強襲",
+    "spell.cataclysm_spellbooks.aerial_assault.guide": "周囲にウィザーミサイルによる空中攻撃を仕掛けます",
+
+    "spell.cataclysm_spellbooks.intrusion_prevention_system": "侵入防止システム",
+    "spell.cataclysm_spellbooks.intrusion_prevention_system.guide": "自身と近くの召喚体にIPSを付与し、飛び道具のダメージを防ぎ、召喚体が反魔法を受けないようにします",
+
+    "spell.cataclysm_spellbooks.overcharged": "過充電",
+    "spell.cataclysm_spellbooks.overcharged.guide": "システムを過充電し、能力を限界以上に強化します。特定のアイテムと独自の相互作用を持ちます",
+
+    "spell.cataclysm_spellbooks.parting_shot": "別れの一撃",
+    "spell.cataclysm_spellbooks.parting_shot.guide": "武器をチャージし、ウィザー効果を与える強力なレーザーを2発放ちます",
+
+    "spell.cataclysm_spellbooks.surveillance_drone": "構築：監視ドローン",
+    "spell.cataclysm_spellbooks.surveillance_drone.guide": "召喚体の上に監視ドローンを構築し、自身と周囲の召喚体を回復します",
+
+    "spell.cataclysm_spellbooks.flash_bang": "閃光弾",
+    "spell.cataclysm_spellbooks.flash_bang.guide": "非致死性の閃光弾を投げ、周囲の存在を目くらましにします",
+
+    "spell.cataclysm_spellbooks.disabling_swipe": "機能停止の一撃",
+    "spell.cataclysm_spellbooks.disabling_swipe.guide": "対象のハードウェアを攻撃し、命中時に一時的に回復を無効化します",
+
+    "spell.cataclysm_spellbooks.gear_shift": "ギアシフト",
+    "spell.cataclysm_spellbooks.gear_shift.guide": "立っていると前方に短距離ダッシュし、しゃがんでいると上方にダッシュします",
+
+    "spell.cataclysm_spellbooks.reboot": "再起動",
+    "spell.cataclysm_spellbooks.reboot.guide": "システムを再起動し、自身と周囲の味方を回復します",
+
+    "spell.cataclysm_spellbooks.phantasmal_blade": "幻影の刃",
+    "spell.cataclysm_spellbooks.phantasmal_blade.guide": "武器を地面に叩きつけ、周囲に幻影の斧刃を放ちます",
+
+    "spell.cataclysm_spellbooks.comet_shower": "彗星の雨",
+    "spell.cataclysm_spellbooks.comet_shower.guide": "自身から照明弾を降らせ、着弾地点に照明ジェットを発生させます",
+
+    "spell.cataclysm_spellbooks.meteor_spew": "メテオ噴出",
+    "spell.cataclysm_spellbooks.meteor_spew.guide": "見ている方向に溶岩と岩の塊を噴出し、着弾地点に溶岩を生成させます",
+
+    "spell.cataclysm_spellbooks.conjure_coral_golem": "召喚：サンゴゴーレム",
+    "spell.cataclysm_spellbooks.conjure_coral_golem.guide": "珊瑚ゴーレムの集団を召喚して共に戦わせます",
+
+    "spell.cataclysm_spellbooks.conjure_coralssus": "召喚：サンゴの怪物",
+    "spell.cataclysm_spellbooks.conjure_coralssus.guide": "騎乗可能なサンゴの怪物を召喚して共に戦わせます",
+
+    "spell.cataclysm_spellbooks.thoths_witness": "トートの証人",
+    "spell.cataclysm_spellbooks.thoths_witness.guide": "トートの加護により、古代の残影の霊を一時的に召喚して共に戦せます",
+
+    "spell.cataclysm_spellbooks.pharaohs_wrath": "ファラオの怒り",
+    "spell.cataclysm_spellbooks.pharaohs_wrath.guide": "熱き怒りに満たされ、被弾するほどダメージと呪文威力が上昇します。",
+
+    "spell.cataclysm_spellbooks.hemorrhaging_impact": "出血の影響",
+    "spell.cataclysm_spellbooks.hemorrhaging_impact.guide": "武器をチャージし、強力な血の槍と複数の血の針を放ちます。血の槍は命中時に血友病を付与し、与えたダメージの75%を回復します。",
+
+    "spell.cataclysm_spellbooks.scorched_earth": "焦土作戦",
+    "spell.cataclysm_spellbooks.scorched_earth.guide": "武器をチャージし、溶けた弾丸の雨を降らせます。弾丸は範囲攻撃を行い、範囲内に捕らえられた敵に強烈な火炎ダメージを与えます。",
+
+    "spell.cataclysm_spellbooks.cryopiercer": "クライオピアサー",
+    "spell.cataclysm_spellbooks.cryopiercer.guide": "武器をチャージし、凍った弾丸の雨を降らせます。弾丸が対象に当たると、氷で包みます。",
+
+
+    "ui.cataclysm_spellbooks.void_beam": "ディープリングの魔術師に似た深淵のビームを召喚する",
+"ui.cataclysm_spellbooks.void_rune": "対象の位置に虚無のルーンを召喚する",
+"ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "%d秒間持続する次元の裂け目を召喚する",
+"ui.cataclysm_spellbooks.gnawer_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.range": "呪文の射程: %d",
+"ui.cataclysm_spellbooks.incinerator_damage": "メインハンドに焼却器を持っている場合、%dのダメージを与える",
+"ui.cataclysm_spellbooks.incineration_duration": "効果時間: %d秒",
+"ui.cataclysm_spellbooks.ignited_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.bone_speed_1": "投射速度: %d",
+"ui.cataclysm_spellbooks.bone_speed_2": "投射速度: %d",
+"ui.cataclysm_spellbooks.bone_speed_3": "投射速度: %d",
+"ui.cataclysm_spellbooks.blazing_bone_speed": "投射速度: %d",
+"ui.cataclysm_spellbooks.fireball_details": "体力が半分以下で魂の炎に、30%以下で深淵の火球に変化する",
+"ui.cataclysm_spellbooks.recast_count": "クールダウン前に最大%d回連続で詠唱可能",
+"ui.cataclysm_spellbooks.amethyst_speed": "アメジストの塊を投射速度%dで発射する",
+"ui.cataclysm_spellbooks.gravity_storm.lifespan": "%d秒間持続する虚無の渦を召喚する",
+"ui.cataclysm_spellbooks.difference": "%dの速度で対象に影響を与える",
+"ui.cataclysm_spellbooks.gravitation": "立っているときは対象を引き寄せ、しゃがんでいるときは押し出す",
+"ui.cataclysm_spellbooks.sandstorm.lifespan": "%d秒間持続する砂嵐を召喚する",
+"ui.cataclysm_spellbooks.sandstorm_amount": "プレイヤーの周囲に%d個の砂嵐を召喚する",
+"ui.cataclysm_spellbooks.windmill_rings": "リング数: %d",
+"ui.cataclysm_spellbooks.windmill_amount": "1リングあたりのモノリス数: %d",
+"ui.cataclysm_spellbooks.halberd_rings": "リング数: %d",
+"ui.cataclysm_spellbooks.halberd_amount": "1リングあたりのハルバード数: %d",
+"ui.cataclysm_spellbooks.soul_render_damage": "メインハンドに魂の刃を持っている場合、%dのダメージを与える",
+"ui.cataclysm_spellbooks.forgone_rage_strikes": "連続攻撃ごとにダメージが20%増加し、最大4回まで累積する",
+"ui.cataclysm_spellbooks.pilfer_priority": "盗む際はオフハンドのアイテムを優先する",
+"ui.cataclysm_spellbooks.koboleton_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.koboldiator_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.thrall_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.halberd_rush": "開始地点と時折終了地点にハルバードを出現させる",
+"ui.cataclysm_spellbooks.maledictus_armory_bonus": "メインハンドに魂の刃または殲滅者を持っている場合、%dのダメージを与える",
+"ui.cataclysm_spellbooks.crab_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.underwater_damage_bonus": "水中または雨天時に追加ダメージを与える",
+"ui.cataclysm_spellbooks.watcher_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.prowler_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.forward_acceleration": "前方加速: %d",
+"ui.cataclysm_spellbooks.upward_acceleration": "上昇加速: %d",
+"ui.cataclysm_spellbooks.summon_healing": "味方回復量: %d",
+"ui.cataclysm_spellbooks.recast_bonus_damage": "追加ダメージ: %d（再詠唱ごとに+1）",
+"ui.cataclysm_spellbooks.effect_percentage": "オーバーチャージ状態のステータスに%d%%のボーナス",
+"ui.cataclysm_spellbooks.howitzer_crouching": "しゃがんでいるときは榴弾砲を召喚する",
+"ui.cataclysm_spellbooks.phantom_blades": "幻影の刃: %d本",
+"ui.cataclysm_spellbooks.coral_golem_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.coralssus_count": "召喚数: %d体",
+"ui.cataclysm_spellbooks.remnant_count": "残影の精霊: %d体",
+"ui.cataclysm_spellbooks.kings_wrath_strikes": "被弾ごとにダメージが20%、呪文威力が5%増加し、最大4回まで累積する",
+"ui.cataclysm_spellbooks.thoths_witness_scroll_failure": "トートは粗末な巻物からの詠唱を許さない",
+"ui.cataclysm_spellbooks.thoths_witness_armor_failure": "トートの奇跡を受けるには必要な装備が不足している。ファラオの鎧を身にまとえ",
+"ui.cataclysm_spellbooks.quake_damage": "地震ダメージ: %d",
+"ui.cataclysm_spellbooks.needle_damage": "血の針ダメージ: %d",
+
+
+
+    "entity.cataclysm_spellbooks.abyssal_gnawers": "アビサル・グナー",
+    "entity.cataclysm_spellbooks.infernal_blade": "地獄の刃",
+    "entity.cataclysm_spellbooks.hellish_blade": "地獄の刃",
+    "entity.cataclysm_spellbooks.blazing_aoe": "燃える範囲",
+    "entity.cataclysm_spellbooks.summoned_ignited_revenant": "燃え盛る霊魂",
+    "entity.cataclysm_spellbooks.summoned_ignited_berserker": "燃え盛る戦魂",
+    "entity.cataclysm_spellbooks.summoned_koboldiator": "古の重戦士の骸",
+    "entity.cataclysm_spellbooks.summoned_koboleton": "爬虫類の骸骨",
+    "entity.cataclysm_spellbooks.summoned_draugur": "ドラウグル",
+    "entity.cataclysm_spellbooks.summoned_royal_draugur": "ロイヤルドラウグル",
+    "entity.cataclysm_spellbooks.summoned_elite_draugur": "エリートドラウグル",
+    "entity.cataclysm_spellbooks.summoned_aptrgangr": "アプトルガングル",
+    "entity.cataclysm_spellbooks.summoned_amethyst_crab": "アメジストガニ",
+    "entity.cataclysm_spellbooks.extended_laser_beam": "レーザービーム",
+    "entity.cataclysm_spellbooks.summoned_watcher": "ウォッチャー",
+    "entity.cataclysm_spellbooks.summoned_prowler": "プラウラー",
+    "entity.cataclysm_spellbooks.summoned_counterspell_watcher": "DoSウォッチャー",
+    "entity.cataclysm_spellbooks.parting_shot": "別れのショット",
+    "entity.cataclysm_spellbooks.flash_bang": "フラッシュバング",
+    "entity.cataclysm_spellbooks.surveillance_drone": "監視ドローン",
+    "entity.cataclysm_spellbooks.disabling_swipe": "スワイプを無効にする",
+    "entity.cataclysm_spellbooks.no_man_zone_aoe": "無人地帯",
+    "entity.cataclysm_spellbooks.summoned_coral_golem": "サンゴゴーレム",
+    "entity.cataclysm_spellbooks.summoned_coralssus": "サンゴの怪物",
+    "entity.cataclysm_spellbooks.phantom_ancient_remnant": "幻影の魔獣の骸",
+    "entity.cataclysm_spellbooks.blood_crystal": "結晶化した血の槍",
+    "entity.cataclysm_spellbooks.molten_bullet": "溶けた弾丸",
+    "entity.cataclysm_spellbooks.scorched_earth_aoe": "焦土作戦範囲",
+    "entity.cataclysm_spellbooks.frozen_bullet": "クライオバレット",
+    "entity.cataclysm_spellbooks.glacial_block": "氷河ブロック",
+
+
+
+"death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$sは%2$sのグナーに切り裂かれた",
+"death.attack.cataclysm_spellbooks.blazing_aoe": "%1$sは%2$sの灼熱の領域で焼かれた",
+"death.attack.cataclysm_spellbooks.hellish_blade": "%1$sは%2$sの地獄の刃に貫かれた",
+"death.attack.cataclysm_spellbooks.infernal_strike": "%1$sは%2$sの煉獄の刃に刺された",
+"death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$sは%2$sの燃え盛る霊魂に殴り倒された",
+"death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$sは%2$sの燃え盛戦魂に斬り裂かれた",
+"death.attack.cataclysm_spellbooks.summoned_koboldiator": "%1$sは%2$sの古の重戦士の骸に押し潰された",
+"death.attack.cataclysm_spellbooks.summoned_koboleton": "%1$sは%2$sの爬虫類の骸骨に斬り殺された",
+"death.attack.cataclysm_spellbooks.summoned_draugur": "%1$sは%2$sのドラウグルに群がられて倒れた",
+"death.attack.cataclysm_spellbooks.summoned_royal_draugur": "%1$sは%2$sのドラウグルに群がられて倒れた",
+"death.attack.cataclysm_spellbooks.summoned_elite_draugur": "%1$sは%2$sのドラウグルに群がられて倒れた",
+"death.attack.cataclysm_spellbooks.summoned_aptrgangr": "%1$sは%2$sのアプトルガングルに真っ二つにされた",
+"death.attack.cataclysm_spellbooks.summoned_amethyst_crab": "%1$sは%2$sのアメジストガニの爪に挟まれて砕かれた",
+"death.attack.cataclysm_spellbooks.parting_shot": "%1$sは%2$sの別れの一撃で消滅した",
+"death.attack.cataclysm_spellbooks.surveillance_drone": "%1$sは%2$sの監視ドローンによって何故か命を落とした",
+"death.attack.cataclysm_spellbooks.disabling_swipe": "%1$sは%2$sの機能停止の一撃で回路を引き裂かれた",
+"death.attack.cataclysm_spellbooks.no_man_zone_aoe": "%1$sは%2$sの無人地帯で消し飛ばされた",
+"death.attack.cataclysm_spellbooks.blood_crystal": "%1$sは%2$sの血晶の槍に貫かれた",
+"death.attack.cataclysm_spellbooks.molten_bullet": "%1$sは%2$sの溶岩弾で焼かれた",
+"death.attack.cataclysm_spellbooks.scorched_earth_aoe": "%1$sは%2$sの焦土によって焼き尽くされた",
+"death.attack.cataclysm_spellbooks.frozen_bullet": "%1$sは%2$sの冷気弾で凍死した",
+"death.attack.cataclysm_spellbooks.glacial_block": "%1$sは%2$sの氷塊の中で凍死した",
+
+"death.attack.blazing_aoe.item": "%1$sは%2$sの灼熱の領域で%3$sを使いながら焼かれた",
+"death.attack.no_man_zone_aoe.item": "%1$sは%2$sの無人地帯で%3$sを使いながら消し飛ばされた",
+"death.attack.cataclysm_spellbooks.scorched_earth_aoe.item": "%1$sは%2$sの焦土によって%3$sを使いながら焼き尽くされた",
+
+"death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$sは%2$sのグナーに%3$sを使って切り裂かれた",
+"death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$sは%2$sの地獄の刃に%3$sを使って貫かれた",
+"death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$sは%2$sの煉獄の刃に%3$sを使って刺された",
+"death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$sは%2$sの燃え盛る霊魂%3$sを使って殴り倒された",
+"death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$sは%2$sの燃え盛る戦魂に%3$sを使って斬り裂かれた",
+"death.attack.cataclysm_spellbooks.parting_shot.item": "%1$sは%2$sの別れの一撃で%3$sを使いながら消滅した",
+"death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$sは%2$sの監視ドローンによって%3$sを使って何故か命を落とした",
+"death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$sは%2$sの機能停止の一撃で%3$sを使って回路を引き裂かれた",
+"death.attack.cataclysm_spellbooks.blood_crystal.item": "%1$sは%2$sの血晶の槍に%3$sを使いながら貫かれた",
+"death.attack.cataclysm_spellbooks.molten_bullet.item": "%1$sは%2$sの溶岩弾で%3$sを使って焼かれた",
+"death.attack.cataclysm_spellbooks.frozen_bullet.item": "%1$sは%2$sの冷気弾で%3$sを使って凍死した",
+"death.attack.cataclysm_spellbooks.glacial_block.item": "%1$sは%2$sの氷塊の中で%3$sを使いながら凍死した"
+}
