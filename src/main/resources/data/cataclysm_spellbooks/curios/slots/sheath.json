@@ -1,0 +1,9 @@
+{
+  "order": 6,
+  "size": 1,
+  "icon": "cataclysm_spellbooks:slot/sheath",
+  "add_cosmetic": false,
+  "operation": "SET",
+  "render_toggle": true,
+  "drop_rule": "DEFAULT"
+}

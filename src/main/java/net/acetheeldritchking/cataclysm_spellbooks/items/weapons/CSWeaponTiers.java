@@ -12,10 +12,11 @@ public enum CSWeaponTiers implements Tier {
     // Monstrous Flamberge (Flamberge + Monstrous horn)
     MONSTROUS_FLAMBERGE(3, 1561, -2.7f, 10, 15, () -> Ingredient.of(Items.NETHERITE_SCRAP)),
     // Spellstealer (Khopesh + Spellbreaker)
-    SPELLSTEALER(3, 1000, -2.6f, 5, 15, () -> Ingredient.of(ModItems.ANCIENT_METAL_INGOT.get()))
+    SPELLSTEALER(3, 1000, -2.6f, 5, 15, () -> Ingredient.of(ModItems.ANCIENT_METAL_INGOT.get())),
     // Lacerator (Incinerator + Tidal Claw)
     // Apparition Maw (Cursed Bow + Tidal Claw)
-
+    // Murasama
+    MURASAMA(3, 1681, -1.3f, 14.5F, 15, () -> Ingredient.of(ModItems.WITHERITE_INGOT.get())),
     ;
 
     private final int level;

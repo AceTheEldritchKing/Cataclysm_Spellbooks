@@ -38,6 +38,7 @@ public class CSCreativeTabRegistry {
                         output.accept(ItemRegistries.STRANGE_DISC.get());
                         // Curios
                         output.accept(ItemRegistries.LEVIATHANS_BLESSING.get());
+                        output.accept(ItemRegistries.BURST_SHEATH.get());
                         // Spellbooks
                         output.accept(ItemRegistries.ABYSS_SPELL_BOOK.get());
                         output.accept(ItemRegistries.IGNIS_SPELL_BOOK.get());
@@ -59,6 +60,7 @@ public class CSCreativeTabRegistry {
                         output.accept(ItemRegistries.THE_COMBUSTER.get());
                         // Weapons
                         output.accept(ItemRegistries.MONSTROUS_FLAMBERGE.get());
+                        output.accept(ItemRegistries.MURASAMA.get());
                         // Armor
                         output.accept(ItemRegistries.IGNITIUM_WIZARD_HELMET.get());
                         output.accept(ItemRegistries.IGNITIUM_WIZARD_CHESTPLATE.get());

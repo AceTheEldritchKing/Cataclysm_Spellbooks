@@ -51,6 +51,7 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SCORCHED_EARTH_AOE.get(), NoopRenderer::new);
         event.registerEntityRenderer(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), FrozenBulletRenderer::new);
         event.registerEntityRenderer(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.QUICK_STRIKE.get(), QuickStrikeAoERenderer::new);
     }
 
     @SubscribeEvent

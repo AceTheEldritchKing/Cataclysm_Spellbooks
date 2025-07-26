@@ -331,6 +331,16 @@ public class SpellRegistries {
     public static final RegistryObject<AbstractSpell> SURVEILLANCE_DRONE = registerSpell(new SurveillanceDroneSpell());
 
 
+    /***
+     * Calamity - WIP
+     */
+
+    // Quick Strike (Unleash X amount of strikes with the damage incrementing per recast. Ignores i-frames)
+    public static final RegistryObject<AbstractSpell> QUICK_STRIKE = registerSpell(new QuickStrikeSpell());
+
+    // Final Rend (Charge up a devastating slash. This slash deals damage based on health and inflicts strong lifesteal. Ignores i-frames & protection. Caster is given a grace period while charging. Inflicts Disabled and Severed)
+
+
     public static void register(IEventBus eventBus)
     {
         SPELLS.register(eventBus);

@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "cataclysm_spellbooks:item/burst_sheath_handheld"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "cataclysm_spellbooks:item/burst_sheath_handheld"
+    },
+    "fixed":
+    {
+      "parent": "cataclysm_spellbooks:item/burst_sheath_fixed"
+    }
+  }
+}

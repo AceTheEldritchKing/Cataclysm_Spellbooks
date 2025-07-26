@@ -15,6 +15,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang.Flas
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot.PartingShotProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike.QuickStrikeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.scorched_earth_aoe.ScorchedEarthAoE;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -297,6 +298,17 @@ public class CSEntityRegistry {
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "glacial_block").toString()
                     ));
+
+    // Quick Strike
+    public static final RegistryObject<EntityType<QuickStrikeAoE>> QUICK_STRIKE =
+            ENTITIES.register("quick_strike", () -> EntityType.Builder.<QuickStrikeAoE>of(QuickStrikeAoE::new, MobCategory.MISC)
+                    .sized(5f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "quick_strike").toString()
+                    ));
+
+    // Final Rend
 
 
     public static void register(IEventBus eventBus)

@@ -12,6 +12,7 @@ import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
+import net.acetheeldritchking.cataclysm_spellbooks.items.curios.BurstSheathCurio;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.BurningManuscriptItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.FrozenTabletItem;
@@ -21,6 +22,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DesertSpellB
 import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.DiscDriverSpellbook;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.weapons.MonstrousFlambergeItem;
+import net.acetheeldritchking.cataclysm_spellbooks.items.weapons.MurasamaBladeItem;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ArmorItem;
@@ -172,6 +174,9 @@ public class ItemRegistries {
     // Leviathan's Blessing Ring
     public static final RegistryObject<CurioBaseItem> LEVIATHANS_BLESSING = ITEMS.register("leviathans_blessing", LeviathansBlessingRing::new);
 
+    // Burst Sheath
+    public static final RegistryObject<CurioBaseItem> BURST_SHEATH = ITEMS.register("burst_sheath", BurstSheathCurio::new);
+
 
     /**
      * Items
@@ -218,6 +223,12 @@ public class ItemRegistries {
             new SpellDataRegistryHolder(SpellRegistries.TECTONIC_TREMBLE, 1))));
 
     // Spellstealer - Only planned for 1.21.1
+
+    // Murasama
+    public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama_blade", () -> new MurasamaBladeItem(SpellDataRegistryHolder.of(
+            new SpellDataRegistryHolder(SpellRegistries.QUICK_STRIKE, 5),
+            new SpellDataRegistryHolder(SpellRegistries.GEAR_SHIFT, 5)
+            )));
 
 
     /***

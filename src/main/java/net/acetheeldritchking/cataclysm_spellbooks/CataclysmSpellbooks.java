@@ -9,6 +9,8 @@ import mod.azure.azurelib.rewrite.render.item.AzItemRendererRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.*;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
+import net.acetheeldritchking.cataclysm_spellbooks.items.curios.BurstSheathCurio;
+import net.acetheeldritchking.cataclysm_spellbooks.items.curios.SheathCurioItem;
 import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
@@ -106,35 +108,8 @@ public class CataclysmSpellbooks
             // curios
             event.enqueueWork(() -> {
                 ItemRegistries.getCSItems().stream().filter(item -> item.get() instanceof SpellBook).forEach((item) -> CuriosRendererRegistry.register(item.get(), SpellBookCurioRenderer::new));
+                ItemRegistries.getCSItems().stream().filter(item -> item.get() instanceof SheathCurioItem).forEach((item) -> CuriosRendererRegistry.register(item.get(), SheathCurioRenderer::new));
             });
-
-            // Entity Rendering - MOVING THIS
-            // Infernal Blade
-            /*EntityRenderers.register(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), InfernalBladeRenderer::new);
-            // Hellish Blade
-            EntityRenderers.register(CSEntityRegistry.HELLISH_BLADE_PROJECTILE.get(), HellishBladeRenderer::new);
-            // Blazing AoE
-            EntityRenderers.register(CSEntityRegistry.BLAZING_AOE_ENTITY.get(), NoopRenderer::new);
-            // Parting Shot
-            EntityRenderers.register(CSEntityRegistry.PARTING_SHOT_PROJECTILE.get(), PartingShotRenderer::new);
-            // Surveillance Drone
-            EntityRenderers.register(CSEntityRegistry.SURVEILLANCE_DRONE.get(), SurveillanceDroneRenderer::new);
-            // Flash Bang
-            EntityRenderers.register(CSEntityRegistry.FLASH_BANG_PROJECTILE.get(), FlashBangRenderer::new);
-            // Disabling Swipe
-            EntityRenderers.register(CSEntityRegistry.DISABLING_SWIPE.get(), DisablingSwipeAoERenderer::new);
-            // No-Man's Zone AoE
-            EntityRenderers.register(CSEntityRegistry.NO_MAN_ZONE_AOE.get(), NoopRenderer::new);
-            // Blood Crystal
-            EntityRenderers.register(CSEntityRegistry.BLOOD_CRYSTAL_PROJECTILE.get(), BloodCrystalRenderer::new);
-            // Molten Bullet
-            EntityRenderers.register(CSEntityRegistry.MOLTEN_BULLET_PROJECTILE.get(), MoltenBulletRenderer::new);
-            // Scorched Earth AoE
-            EntityRenderers.register(CSEntityRegistry.SCORCHED_EARTH_AOE.get(), NoopRenderer::new);
-            // Frozen Bullet
-            EntityRenderers.register(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), FrozenBulletRenderer::new);
-            // Glacial Block
-            EntityRenderers.register(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockRenderer::new);*/
 
 
             // Armor Rendering Registry
@@ -204,6 +179,8 @@ public class CataclysmSpellbooks
             AzItemRendererRegistry.register(TheNightStalkerRenderer::new, ItemRegistries.THE_NIGHTSTALKER.get());
             AzItemRendererRegistry.register(TheBerserkerRenderer::new, ItemRegistries.THE_BERSERKER.get());
             AzItemRendererRegistry.register(TheCombusterRenderer::new, ItemRegistries.THE_COMBUSTER.get());
+            AzItemRendererRegistry.register(MurasamaBladeRenderer::new, ItemRegistries.MURASAMA.get());
+            AzItemRendererRegistry.register(BurstSheathRenderer::new, ItemRegistries.BURST_SHEATH.get());
         }
     }
 
