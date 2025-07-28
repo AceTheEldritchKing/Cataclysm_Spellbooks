@@ -36,9 +36,9 @@ public class QuickStrikeSpell extends AbstractSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.irons_spellbooks.damage", getDamageText(spellLevel, caster)),
-                Component.translatable("ui.irons_spellbooks.effect_length", getEffectDuration(spellLevel, caster)),
-                Component.translatable("ui.cataclysm_spellbooks.recast_bonus_damage", getBonusDamage(spellLevel, caster))
+                Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 1)),
+                Component.translatable("ui.irons_spellbooks.effect_length", Utils.stringTruncation(getEffectDuration(spellLevel, caster), 1)),
+                Component.translatable("ui.cataclysm_spellbooks.recast_bonus_damage", Utils.stringTruncation(getBonusDamage(spellLevel, caster), 1))
         );
     }
 
@@ -124,7 +124,7 @@ public class QuickStrikeSpell extends AbstractSpell {
         }
 
         float radius = 3.25F;
-        float distance = 1.65F;
+        float distance = 2.2F;
         Vec3 hitLocation = entity.position().add(0, entity.getBbHeight() * 0.3F, 0).add(entity.getForward().multiply(distance, 0.35F, distance));
         var entities = entity.level().getEntities(entity, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));
 
@@ -164,7 +164,7 @@ public class QuickStrikeSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity entity)
     {
-        return (getSpellPower(spellLevel, entity) / 3.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
+        return (getSpellPower(spellLevel, entity) / 1.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)

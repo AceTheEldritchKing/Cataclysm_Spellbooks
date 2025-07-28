@@ -15,6 +15,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
 import java.util.Optional;
@@ -78,6 +79,13 @@ public class QuickStrikeAoE extends AoeEntity {
         {
             discard();
         }
+    }
+
+    @Override
+    protected void onHitEntity(EntityHitResult pResult) {
+        super.onHitEntity(pResult);
+        // We want to make sure this bypasses i-frames
+        pResult.getEntity().invulnerableTime = 0;
     }
 
     @Override
