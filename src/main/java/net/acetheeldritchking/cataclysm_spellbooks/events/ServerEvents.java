@@ -25,6 +25,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
@@ -140,7 +141,7 @@ public class ServerEvents {
         {
             if (attacker.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()))
             {
-                attacker.hurt(SpellRegistries.SHUTDOWN.get().getDamageSource(null), 1);
+                attacker.hurt(SpellRegistries.SHUTDOWN.get().getDamageSource(target), 1);
                 event.setCanceled(true);
             }
         }
@@ -625,7 +626,7 @@ public class ServerEvents {
         {
             if (attacker.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()))
             {
-                attacker.hurt(SpellRegistries.SHUTDOWN.get().getDamageSource(null), 1);
+                attacker.hurt(new DamageSource(attacker.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolder(SpellRegistries.SHUTDOWN.get().getSchoolType().getDamageType()).get()), 1);
                 event.setCanceled(true);
             }
         }
