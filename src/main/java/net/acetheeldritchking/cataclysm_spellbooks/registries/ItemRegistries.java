@@ -227,7 +227,7 @@ public class ItemRegistries {
     // Murasama
     public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama_blade", () -> new MurasamaBladeItem(SpellDataRegistryHolder.of(
             new SpellDataRegistryHolder(SpellRegistries.QUICK_STRIKE, 5),
-            new SpellDataRegistryHolder(SpellRegistries.GEAR_SHIFT, 5)
+            new SpellDataRegistryHolder(SpellRegistries.FINAL_REND, 1)
             )));
 
 

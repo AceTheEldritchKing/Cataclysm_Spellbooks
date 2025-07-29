@@ -367,7 +367,10 @@
     "spell.cataclysm_spellbooks.cryopiercer.guide": "Charge up your weapon, unleashing a barrage of frozen bullets. On bullet impact with an entity, it encases them in ice",
 
     "spell.cataclysm_spellbooks.quick_strike": "Quick Strike",
-    "spell.cataclysm_spellbooks.quick_strike.guide": "Slash at your target multiple times, inflicting Disabled and Severed on hit",
+    "spell.cataclysm_spellbooks.quick_strike.guide": "Slash at your target multiple times, inflicting Disabled and Severed on hit, and heals you for 50% of the damage dealt",
+
+    "spell.cataclysm_spellbooks.final_rend": "Final Rend",
+    "spell.cataclysm_spellbooks.final_rend.guide": "Charge up a powerful slash obliterating nearby entities caught within. Inflicts Disabled and Severed on hit, and healing you for all damage dealt.",
 
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",

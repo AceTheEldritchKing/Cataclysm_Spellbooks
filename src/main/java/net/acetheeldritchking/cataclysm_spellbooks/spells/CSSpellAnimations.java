@@ -23,7 +23,9 @@ public class CSSpellAnimations {
 
     public static final AnimationHolder ANIMATION_WRATH_ROAR = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":wrathful_roar", true);
 
-    public static final AnimationHolder DEFENSIVE_SWORD_STANCE_START = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":sword_stance_start", true);
+    public static final AnimationHolder ANIMATION_DEFENSIVE_SWORD_STANCE_START = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":sword_stance_start", true);
 
-    public static final AnimationHolder DEFENSIVE_SWORD_STANCE_FINISH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":sword_stance_finish", true);
+    public static final AnimationHolder ANIMATION_DEFENSIVE_SWORD_STANCE_FINISH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":sword_stance_finish", true);
+
+    public static final AnimationHolder ANIMATION_POWERFUL_SWORD_SLASH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":powerful_sword_slash", true);
 }

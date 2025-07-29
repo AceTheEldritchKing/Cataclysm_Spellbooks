@@ -5,6 +5,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blood_crystal.BloodCrystalProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.FrozenBulletProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.MoltenBulletProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.no_man_zone.NoManZoneAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
@@ -309,6 +310,13 @@ public class CSEntityRegistry {
                     ));
 
     // Final Rend
+    public static final RegistryObject<EntityType<FinalRendAoE>> FINAL_REND =
+            ENTITIES.register("final_rend", () -> EntityType.Builder.<FinalRendAoE>of(FinalRendAoE::new, MobCategory.MISC)
+                    .sized(7f, 1f)
+                    .clientTrackingRange(64)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "final_rend").toString()
+                    ));
 
 
     public static void register(IEventBus eventBus)

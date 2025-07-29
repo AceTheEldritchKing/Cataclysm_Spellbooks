@@ -1,4 +1,4 @@
-package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike;
+package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend;
 
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
@@ -7,6 +7,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegi
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -20,8 +21,8 @@ import net.minecraftforge.network.NetworkHooks;
 
 import java.util.Optional;
 
-public class QuickStrikeAoE extends AoeEntity {
-    private static final EntityDataAccessor<Boolean> DATA_IS_MIRRORED = SynchedEntityData.defineId(QuickStrikeAoE.class, EntityDataSerializers.BOOLEAN);
+public class FinalRendAoE extends AoeEntity {
+    private static final EntityDataAccessor<Boolean> DATA_IS_MIRRORED = SynchedEntityData.defineId(FinalRendAoE.class, EntityDataSerializers.BOOLEAN);
     protected int effectAmplifier;
     protected float effectDuration;
 
@@ -30,13 +31,13 @@ public class QuickStrikeAoE extends AoeEntity {
     public final int ticksPerFrame = 2;
     public final int deathTime = ticksPerFrame * 4;
 
-    public QuickStrikeAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+    public FinalRendAoE(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    public QuickStrikeAoE(Level level, boolean mirrored)
+    public FinalRendAoE(Level level, boolean mirrored)
     {
-        this(CSEntityRegistry.QUICK_STRIKE.get(), level);
+        this(CSEntityRegistry.FINAL_REND.get(), level);
         if (mirrored)
         {
             this.getEntityData().set(DATA_IS_MIRRORED, true);
@@ -117,5 +118,12 @@ public class QuickStrikeAoE extends AoeEntity {
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    @Override
+    public void recreateFromPacket(ClientboundAddEntityPacket pPacket) {
+        super.recreateFromPacket(pPacket);
+        this.xRotO = this.getXRot();
+        this.yRotO = this.getYRot();
     }
 }

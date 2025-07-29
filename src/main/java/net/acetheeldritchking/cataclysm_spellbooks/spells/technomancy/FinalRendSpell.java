@@ -7,14 +7,14 @@ import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike.QuickStrikeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -31,8 +31,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 @AutoSpellConfig
-public class QuickStrikeSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "quick_strike");
+public class FinalRendSpell extends AbstractSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "final_rend");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -46,17 +46,17 @@ public class QuickStrikeSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.BLOOD_RESOURCE)
-            .setMaxLevel(5)
-            .setCooldownSeconds(25)
+            .setMaxLevel(1)
+            .setCooldownSeconds(45)
             .build();
 
-    public QuickStrikeSpell()
+    public FinalRendSpell()
     {
         this.manaCostPerLevel = 15;
-        this.baseSpellPower = 5;
-        this.spellPowerPerLevel = 3;
-        this.castTime = 10;
-        this.baseManaCost = 50;
+        this.baseSpellPower = 25;
+        this.spellPowerPerLevel = 1;
+        this.castTime = 70;
+        this.baseManaCost = 150;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class QuickStrikeSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.ONE_HANDED_HORIZONTAL_SWING_ANIMATION;
+        return CSSpellAnimations.ANIMATION_POWERFUL_SWORD_SLASH;
     }
 
     @Override
@@ -110,20 +110,7 @@ public class QuickStrikeSpell extends AbstractSpell {
     }
 
     @Override
-    public int getRecastCount(int spellLevel, @Nullable LivingEntity entity) {
-        return spellLevel;
-    }
-
-    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        // Recasts
-        if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId()))
-        {
-            playerMagicData.getPlayerRecasts().addRecast
-                    (new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity),
-                            15*20, castSource, null), playerMagicData);
-        }
-
         float radius = 3.25F;
         float distance = 2.2F;
         Vec3 hitLocation = entity.position().add(0, entity.getBbHeight() * 0.3F, 0).add(entity.getForward().multiply(distance, 0.35F, distance));
@@ -148,7 +135,7 @@ public class QuickStrikeSpell extends AbstractSpell {
             mirrored = selection.slot.equals(SpellSelectionManager.OFFHAND);
         }
 
-        QuickStrikeAoE swipe = new QuickStrikeAoE(level, mirrored);
+        FinalRendAoE swipe = new FinalRendAoE(level, mirrored);
         swipe.moveTo(hitLocation);
         swipe.setYRot(entity.getYRot());
         swipe.setEffectDuration(getEffectDuration(spellLevel, entity));
@@ -160,12 +147,12 @@ public class QuickStrikeSpell extends AbstractSpell {
 
     @Override
     public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
-        return super.getDamageSource(projectile, attacker).setIFrames(0).setLifestealPercent(0.50F);
+        return super.getDamageSource(projectile, attacker).setIFrames(0).setLifestealPercent(1.0F);
     }
 
     private float getDamage(int spellLevel, LivingEntity entity)
     {
-        return (getSpellPower(spellLevel, entity) / 1.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
+        return (getSpellPower(spellLevel, entity) * 1.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)
