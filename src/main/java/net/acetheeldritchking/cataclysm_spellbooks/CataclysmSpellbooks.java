@@ -61,6 +61,8 @@ public class CataclysmSpellbooks
         SpellRegistries.register(modEventBus);
         // Particles
         CSParticleRegistry.register(modEventBus);
+        // Sounds
+        CSSoundRegistry.register(modEventBus);
 
         // Config
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CSConfig.SPEC, "cataclysm_spellbooks_config.toml");

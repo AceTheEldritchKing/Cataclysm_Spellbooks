@@ -6,9 +6,12 @@ import com.github.L_Ender.cataclysm.entity.projectile.Phantom_Halberd_Entity;
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.message.MessageParticle;
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -17,6 +20,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -293,5 +297,15 @@ public class CSUtils {
     public static boolean hasCurio(Player player, Item item)
     {
         return CuriosApi.getCuriosHelper().findEquippedCurio(item, player).isPresent();
+    }
+
+    // Backported from Ace's Spell Utils
+    public static float getDamageForAttributes(AbstractSpell spell, LivingEntity entity, int spellLevel, Attribute attr1, float modifier)
+    {
+        double attrValue1 = entity.getAttributeValue(attr1);
+
+        float damage = (float) (modifier * (spell.getSpellPower(spellLevel, entity) + attrValue1));
+
+        return damage;
     }
 }

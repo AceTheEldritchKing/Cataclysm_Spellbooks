@@ -15,6 +15,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
+import java.util.Random;
+
 public class QuickStrikeAoERenderer extends EntityRenderer<QuickStrikeAoE> {
     private static final ResourceLocation[] TEXTURES = {
             CataclysmSpellbooks.id("textures/entity/quick_strike/quick_strike_1.png"),
@@ -33,7 +35,9 @@ public class QuickStrikeAoERenderer extends EntityRenderer<QuickStrikeAoE> {
 
         PoseStack.Pose pose = pPoseStack.last();
         pPoseStack.mulPose(Axis.YP.rotationDegrees(90 - pEntity.getYRot()));
-        pPoseStack.mulPose(Axis.XP.rotationDegrees(-pEntity.getXRot()));
+        pPoseStack.mulPose(Axis.ZP.rotationDegrees(pEntity.getXRot()));
+        float randomZ = new Random(31L * pEntity.getId()).nextInt(-5, 5);
+        pPoseStack.mulPose(Axis.XP.rotationDegrees(randomZ));
 
         drawSlash(pose, pEntity, pBuffer, pEntity.getBbWidth() * 1.5F, pEntity.isMirrored());
 

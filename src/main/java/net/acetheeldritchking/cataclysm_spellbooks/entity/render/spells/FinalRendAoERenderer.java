@@ -36,7 +36,7 @@ public class FinalRendAoERenderer extends EntityRenderer<FinalRendAoE> {
         PoseStack.Pose pose = pPoseStack.last();
         pPoseStack.mulPose(Axis.YP.rotationDegrees(90 - pEntity.getYRot()));
         pPoseStack.mulPose(Axis.ZP.rotationDegrees(pEntity.getXRot()));
-        float randomZ = new Random(31L * pEntity.getId()).nextInt(-8, 8);
+        float randomZ = new Random(31L * pEntity.getId()).nextInt(-10, 10);
         pPoseStack.mulPose(Axis.XP.rotationDegrees(randomZ));
 
         drawSlash(pose, pEntity, pBuffer, pEntity.getBbWidth() * 1.5F, pEntity.isMirrored());

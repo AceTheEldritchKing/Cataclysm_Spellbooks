@@ -9,6 +9,7 @@ import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.effect.ChargeEffect;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
+import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.pharaohs_wrath.PlayerKingWrath;
@@ -22,6 +23,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistr
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy.FinalRendSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.ChatFormatting;
@@ -49,6 +51,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class ServerEvents {
@@ -610,6 +614,19 @@ public class ServerEvents {
                         kings_wrath.addWrath(1);
                         //System.out.println("Wrath: " + kings_wrath.getWrath());
                     });
+                }
+            }
+        }
+
+        // Final Rend Spellcasting
+        if (CSConfig.finalRendDamageImmunity.get())
+        {
+            if (entity instanceof LivingEntity attacker)
+            {
+                FinalRendSpell spell = new FinalRendSpell();
+                if (Objects.equals(ClientMagicData.getSyncedSpellData(attacker).getCastingSpellId(), spell.getSpellId()) && ClientMagicData.getSyncedSpellData(attacker).isCasting())
+                {
+                    event.setCanceled(true);
                 }
             }
         }

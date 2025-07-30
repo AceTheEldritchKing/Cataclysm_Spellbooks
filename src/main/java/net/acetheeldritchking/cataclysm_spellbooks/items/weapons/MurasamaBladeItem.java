@@ -17,7 +17,8 @@ public class MurasamaBladeItem extends MagicSwordItem {
                 spellDataRegistryHolders,
                 Map.of(
                         CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("8de758f0-bfbf-4ff9-a2eb-b14da9ed1309"), "Technomancy Spell Power", 0.20f, AttributeModifier.Operation.MULTIPLY_TOTAL),
-                        AttributeRegistry.BLOOD_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("c0af0076-6028-4521-a9f5-66f7501cc758"), "Blood Spell Power", 0.15f, AttributeModifier.Operation.MULTIPLY_TOTAL)
+                        AttributeRegistry.BLOOD_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("c0af0076-6028-4521-a9f5-66f7501cc758"), "Blood Spell Power", 0.15f, AttributeModifier.Operation.MULTIPLY_TOTAL),
+                        AttributeRegistry.COOLDOWN_REDUCTION.get(), new AttributeModifier(UUID.fromString("fc7c1cba-586a-4ebc-a189-f5378747ab1b"), "Cooldown Reduction", 0.10f, AttributeModifier.Operation.MULTIPLY_TOTAL)
                 ), ItemPropertiesHelper.equipment(1).rarity(Rarity.EPIC));
     }
 }

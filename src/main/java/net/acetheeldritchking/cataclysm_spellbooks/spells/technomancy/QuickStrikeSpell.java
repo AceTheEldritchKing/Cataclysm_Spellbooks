@@ -10,14 +10,17 @@ import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.SpellDamageSource;
+import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike.QuickStrikeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSoundRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
@@ -29,6 +32,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 @AutoSpellConfig
 public class QuickStrikeSpell extends AbstractSpell {
@@ -46,7 +50,7 @@ public class QuickStrikeSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.BLOOD_RESOURCE)
-            .setMaxLevel(5)
+            .setMaxLevel(6)
             .setCooldownSeconds(25)
             .build();
 
@@ -115,6 +119,16 @@ public class QuickStrikeSpell extends AbstractSpell {
     }
 
     @Override
+    public Optional<SoundEvent> getCastStartSound() {
+        return Optional.of(SoundRegistry.DIVINE_SMITE_WINDUP.get());
+    }
+
+    @Override
+    public Optional<SoundEvent> getCastFinishSound() {
+        return Optional.of(CSSoundRegistry.ELECTRIC_SWORD_SWING.get());
+    }
+
+    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         // Recasts
         if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId()))
@@ -135,17 +149,20 @@ public class QuickStrikeSpell extends AbstractSpell {
             {
                 if (DamageSources.applyDamage(target, getDamage(spellLevel, entity) + getBonusDamage(spellLevel, entity), this.getDamageSource(entity)))
                 {
-                    MagicManager.spawnParticles(level, ParticleHelper.ELECTRIC_SPARKS, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
+                    MagicManager.spawnParticles(level, ParticleHelper.BLOOD, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
                     EnchantmentHelper.doPostDamageEffects(entity, target);
                 }
             }
         }
-        boolean mirrored = false;
-        var selection = new SpellSelectionManager((Player) entity).getSelection();
-        new SpellSelectionManager((Player) entity).getSelection();
-        if (selection != null)
+
+        boolean mirrored;
+
+        if (playerMagicData.getPlayerRecasts().getRemainingRecastsForSpell(getSpellId()) % 2 == 0)
         {
-            mirrored = selection.slot.equals(SpellSelectionManager.OFFHAND);
+            mirrored = true;
+        } else
+        {
+            mirrored = false;
         }
 
         QuickStrikeAoE swipe = new QuickStrikeAoE(level, mirrored);
