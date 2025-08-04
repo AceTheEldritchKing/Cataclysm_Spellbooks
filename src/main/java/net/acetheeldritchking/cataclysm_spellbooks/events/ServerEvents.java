@@ -141,7 +141,7 @@ public class ServerEvents {
         {
             if (attacker.hasEffect(CSPotionEffectRegistry.SHUTDOWN_EFFECT.get()))
             {
-                attacker.hurt(SpellRegistries.SHUTDOWN.get().getDamageSource(target), 1);
+                attacker.hurt(new DamageSource(attacker.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolder(SpellRegistries.SHUTDOWN.get().getSchoolType().getDamageType()).get()), 1);
                 event.setCanceled(true);
             }
         }
