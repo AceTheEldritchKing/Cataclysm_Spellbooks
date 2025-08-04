@@ -176,7 +176,7 @@ public class QuickStrikeSpell extends AbstractSpell {
 
     @Override
     public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
-        return super.getDamageSource(projectile, attacker).setIFrames(0).setLifestealPercent(0.50F);
+        return super.getDamageSource(projectile, attacker).setIFrames(0).setLifestealPercent(0.35F);
     }
 
     private float getDamage(int spellLevel, LivingEntity entity)

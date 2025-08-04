@@ -6,12 +6,18 @@ import com.github.L_Ender.cataclysm.init.ModSounds;
 import com.github.L_Ender.lionfishapi.server.event.StandOnFluidEvent;
 import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
+import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.effect.ChargeEffect;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
+import io.redspace.ironsspellbooks.network.ClientboundSyncMana;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
+import io.redspace.ironsspellbooks.setup.Messages;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
+import net.acetheeldritchking.cataclysm_spellbooks.capabilities.murasama_combo.PlayerMurasamaCombo;
+import net.acetheeldritchking.cataclysm_spellbooks.capabilities.murasama_combo.PlayerMurasamaComboProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.pharaohs_wrath.PlayerKingWrath;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.pharaohs_wrath.PlayerKingWrathProvider;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.wrath.PlayerWrath;
@@ -25,6 +31,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.spells.blood.FinalRendSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -220,6 +227,58 @@ public class ServerEvents {
                 float baseDamage = event.getAmount();
 
                 event.setAmount(baseDamage * 2.5F);
+            }
+        }
+
+        // Murasama abilities
+        if (entity instanceof LivingEntity attacker)
+        {
+            if (attacker instanceof Player player && player.getMainHandItem().is(ItemRegistries.MURASAMA.get()))
+            {
+                // Increment here
+                player.getCapability(PlayerMurasamaComboProvider.PLAYER_MURASAMA_COMBO).ifPresent(murasamaCombo -> {
+
+                    murasamaCombo.addMuraCombo(1);
+                    System.out.println("Combo: " + murasamaCombo.getMuraCombo());
+
+                    // Make sure we only eval if either is enabled
+                    if (murasamaCombo.getMuraCombo() >= 5 && (CSConfig.enableMurasamaLifesteal.get() || CSConfig.enableMurasamaManasteal.get()))
+                    {
+                        // Lifesteal
+                        if (CSConfig.enableMurasamaLifesteal.get())
+                        {
+                            // Base health, constant
+                            final float BASE_HEALTH = player.getMaxHealth();
+                            // Percentage of health to be gained for lifesteal
+                            double lifesteal = BASE_HEALTH * CSConfig.murasamaLifestealAmount.get();
+
+                            player.heal((float) lifesteal);
+
+                            System.out.println("Healed for: " + lifesteal);
+
+                            murasamaCombo.resetMuraCombo();
+                        }
+
+                        // Manasteal
+                        if (CSConfig.enableMurasamaManasteal.get() && player instanceof ServerPlayer serverPlayer)
+                        {
+                            int maxAttackerMana = (int) serverPlayer.getAttributeValue(AttributeRegistry.MAX_MANA.get());
+                            var attackerPlayerMagicData = MagicData.getPlayerMagicData(serverPlayer);
+
+                            // Basically, we're getting a percentage of the damage dealt as a bonus, added the bonus to the original amount and adding that for mana steal
+                            int addMana = (int) Math.min((CSConfig.murasamaManastealAmount.get() * event.getAmount()) + event.getAmount(), 100);
+                            int newMana = (int) Math.min(addMana + attackerPlayerMagicData.getMana(), maxAttackerMana);
+
+                            //Returns mana "stolen"
+                            attackerPlayerMagicData.setMana(newMana);
+                            Messages.sendToPlayer(new ClientboundSyncMana(attackerPlayerMagicData), serverPlayer);
+
+                            System.out.println("Mana gained for: " + addMana);
+
+                            murasamaCombo.resetMuraCombo();
+                        }
+                    }
+                });
             }
         }
     }
@@ -710,6 +769,12 @@ public class ServerEvents {
             {
                 event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "kings_wrath"), new PlayerKingWrathProvider());
             }
+
+            // Murasama Combo
+            if (!event.getObject().getCapability(PlayerMurasamaComboProvider.PLAYER_MURASAMA_COMBO).isPresent())
+            {
+                event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "murasama_combo"), new PlayerMurasamaComboProvider());
+            }
         }
     }
 
@@ -718,5 +783,6 @@ public class ServerEvents {
     {
         event.register(PlayerWrath.class);
         event.register(PlayerKingWrath.class);
+        event.register(PlayerMurasamaCombo.class);
     }
 }

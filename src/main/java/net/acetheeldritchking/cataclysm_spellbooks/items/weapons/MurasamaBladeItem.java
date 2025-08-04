@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.weapons;
 
+import com.github.L_Ender.cataclysm.config.CMConfig;
 import io.redspace.ironsspellbooks.api.item.weapons.MagicSwordItem;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
@@ -32,5 +33,18 @@ public class MurasamaBladeItem extends MagicSwordItem {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> tooltip, TooltipFlag pIsAdvanced) {
         tooltip.add(Component.translatable("item.cataclysm_spellbooks.murasama_blade.desc").withStyle(ChatFormatting.DARK_RED).withStyle(ChatFormatting.ITALIC));
+    }
+
+    // Durability - We don't want this breaking, now do we?
+    @Override
+    public void setDamage(ItemStack stack, int damage) {
+        if (CMConfig.Armor_Infinity_Durability)
+        {
+            super.setDamage(stack, 0);
+        }
+        else
+        {
+            super.setDamage(stack, damage);
+        }
     }
 }
