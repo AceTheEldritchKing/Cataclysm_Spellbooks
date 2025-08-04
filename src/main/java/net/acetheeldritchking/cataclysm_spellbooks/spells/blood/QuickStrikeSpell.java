@@ -1,23 +1,25 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.blood;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.SpellDamageSource;
+import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike.QuickStrikeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
@@ -29,10 +31,12 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 @AutoSpellConfig
-public class FinalRendSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "final_rend");
+public class QuickStrikeSpell extends AbstractSpell {
+    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "quick_strike");
+    private Boolean mirrored;
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -46,17 +50,17 @@ public class FinalRendSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.BLOOD_RESOURCE)
-            .setMaxLevel(1)
-            .setCooldownSeconds(45)
+            .setMaxLevel(6)
+            .setCooldownSeconds(25)
             .build();
 
-    public FinalRendSpell()
+    public QuickStrikeSpell()
     {
         this.manaCostPerLevel = 15;
-        this.baseSpellPower = 25;
-        this.spellPowerPerLevel = 1;
-        this.castTime = 70;
-        this.baseManaCost = 150;
+        this.baseSpellPower = 5;
+        this.spellPowerPerLevel = 3;
+        this.castTime = 6;
+        this.baseManaCost = 50;
     }
 
     @Override
@@ -101,7 +105,13 @@ public class FinalRendSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return CSSpellAnimations.ANIMATION_POWERFUL_SWORD_SLASH;
+        if (mirrored)
+        {
+            return CSSpellAnimations.ANIMATION_LEFT_HORIZONTAL_SLASH;
+        } else
+        {
+            return CSSpellAnimations.ANIMATION_RIGHT_HORIZONTAL_SLASH;
+        }
     }
 
     @Override
@@ -110,7 +120,30 @@ public class FinalRendSpell extends AbstractSpell {
     }
 
     @Override
+    public int getRecastCount(int spellLevel, @Nullable LivingEntity entity) {
+        return spellLevel;
+    }
+
+    @Override
+    public Optional<SoundEvent> getCastStartSound() {
+        return Optional.of(SoundRegistry.DIVINE_SMITE_WINDUP.get());
+    }
+
+    @Override
+    public Optional<SoundEvent> getCastFinishSound() {
+        return Optional.of(CSSoundRegistry.ELECTRIC_SWORD_SWING.get());
+    }
+
+    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        // Recasts
+        if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId()))
+        {
+            playerMagicData.getPlayerRecasts().addRecast
+                    (new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity),
+                            15*20, castSource, null), playerMagicData);
+        }
+
         float radius = 3.25F;
         float distance = 2.2F;
         Vec3 hitLocation = entity.position().add(0, entity.getBbHeight() * 0.3F, 0).add(entity.getForward().multiply(distance, 0.35F, distance));
@@ -122,20 +155,16 @@ public class FinalRendSpell extends AbstractSpell {
             {
                 if (DamageSources.applyDamage(target, getDamage(spellLevel, entity) + getBonusDamage(spellLevel, entity), this.getDamageSource(entity)))
                 {
-                    MagicManager.spawnParticles(level, ParticleHelper.ELECTRIC_SPARKS, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
+                    MagicManager.spawnParticles(level, ParticleHelper.BLOOD, target.getX(), target.getY() + target.getBbHeight() * .5f, target.getZ(), 50, target.getBbWidth() * .5f, target.getBbHeight() * .5f, target.getBbWidth() * .5f, .03, false);
                     EnchantmentHelper.doPostDamageEffects(entity, target);
                 }
             }
         }
-        boolean mirrored = false;
-        var selection = new SpellSelectionManager((Player) entity).getSelection();
-        new SpellSelectionManager((Player) entity).getSelection();
-        if (selection != null)
-        {
-            mirrored = selection.slot.equals(SpellSelectionManager.OFFHAND);
-        }
 
-        FinalRendAoE swipe = new FinalRendAoE(level, mirrored);
+        System.out.println("Recasts remaining: " + playerMagicData.getPlayerRecasts().getRemainingRecastsForSpell(spellId.toString()));
+        mirrored = playerMagicData.getPlayerRecasts().getRemainingRecastsForSpell(spellId.toString()) % 2 == 0;
+
+        QuickStrikeAoE swipe = new QuickStrikeAoE(level, mirrored);
         swipe.moveTo(hitLocation);
         swipe.setYRot(entity.getYRot());
         swipe.setEffectDuration(getEffectDuration(spellLevel, entity));
@@ -147,12 +176,12 @@ public class FinalRendSpell extends AbstractSpell {
 
     @Override
     public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
-        return super.getDamageSource(projectile, attacker).setIFrames(0).setLifestealPercent(1.0F);
+        return super.getDamageSource(projectile, attacker).setIFrames(0).setLifestealPercent(0.35F);
     }
 
     private float getDamage(int spellLevel, LivingEntity entity)
     {
-        return (getSpellPower(spellLevel, entity) * 1.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
+        return (getSpellPower(spellLevel, entity) / 1.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
     }
 
     private float getBonusDamage(int spellLevel, LivingEntity caster)

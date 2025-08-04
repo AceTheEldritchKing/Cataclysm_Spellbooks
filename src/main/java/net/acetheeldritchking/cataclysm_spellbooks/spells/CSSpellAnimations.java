@@ -28,4 +28,8 @@ public class CSSpellAnimations {
     public static final AnimationHolder ANIMATION_DEFENSIVE_SWORD_STANCE_FINISH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":sword_stance_finish", true);
 
     public static final AnimationHolder ANIMATION_POWERFUL_SWORD_SLASH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":powerful_sword_slash", true);
+
+    public static final AnimationHolder ANIMATION_RIGHT_HORIZONTAL_SLASH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":right_horizontal_slash_one_handed", true);
+
+    public static final AnimationHolder ANIMATION_LEFT_HORIZONTAL_SLASH = new AnimationHolder(CataclysmSpellbooks.MOD_ID + ":left_horizontal_slash_one_handed", true);
 }

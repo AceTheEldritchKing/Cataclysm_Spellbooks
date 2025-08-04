@@ -92,6 +92,7 @@
 
     "item.cataclysm_spellbooks.monstrous_flamberge": "Monstrous Flamberge",
     "item.cataclysm_spellbooks.murasama_blade": "Murasama",
+    "item.cataclysm_spellbooks.murasama_blade.desc": "Do you deny your weapon it's purpose?",
 
     "item.cataclysm_spellbooks.abyssal_rune": "Abyssal Rune",
     "item.cataclysm_spellbooks.technomancy_rune": "Technomancy Rune",
@@ -366,8 +367,8 @@
     "spell.cataclysm_spellbooks.cryopiercer": "Cryopiercer",
     "spell.cataclysm_spellbooks.cryopiercer.guide": "Charge up your weapon, unleashing a barrage of frozen bullets. On bullet impact with an entity, it encases them in ice",
 
-    "spell.cataclysm_spellbooks.quick_strike": "Quick Strike",
-    "spell.cataclysm_spellbooks.quick_strike.guide": "Slash at your target multiple times, inflicting Disabled and Severed on hit, and heals you for 50% of the damage dealt",
+    "spell.cataclysm_spellbooks.quick_strike": "Burst Strike",
+    "spell.cataclysm_spellbooks.quick_strike.guide": "Slash at your target multiple times, inflicting Disabled and Severed on hit, and heals you for 35% of the damage dealt",
 
     "spell.cataclysm_spellbooks.final_rend": "Final Rend",
     "spell.cataclysm_spellbooks.final_rend.guide": "Charge up a powerful slash obliterating nearby entities caught within. Inflicts Disabled and Severed on hit, and healing you for all damage dealt.",

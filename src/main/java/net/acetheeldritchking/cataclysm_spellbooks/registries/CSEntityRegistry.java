@@ -312,7 +312,7 @@ public class CSEntityRegistry {
     // Final Rend
     public static final RegistryObject<EntityType<FinalRendAoE>> FINAL_REND =
             ENTITIES.register("final_rend", () -> EntityType.Builder.<FinalRendAoE>of(FinalRendAoE::new, MobCategory.MISC)
-                    .sized(7f, 1f)
+                    .sized(12f, 1f)
                     .clientTrackingRange(64)
                     .build(
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "final_rend").toString()
