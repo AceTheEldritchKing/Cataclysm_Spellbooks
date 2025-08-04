@@ -4,7 +4,9 @@ import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.abyssal.*;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.blood.FinalRendSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.blood.HemorrhagingImpactSpell;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.blood.QuickStrikeSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravitationPullSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.GravityStormSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.ender.VoidRuneBulwarkSpell;
@@ -112,6 +114,12 @@ public class SpellRegistries {
      */
     // Hemorrhaging Impact (Shoot out crystallized blood followed by several blood needles. The blood crystals, on impact, inflict bleeding & hemophilia)
     public static final RegistryObject<AbstractSpell> HEMORRHAGING_IMPACT = registerSpell(new HemorrhagingImpactSpell());
+
+    // Quick Strike (Unleash X amount of strikes with the damage incrementing per recast. Ignores i-frames)
+    public static final RegistryObject<AbstractSpell> QUICK_STRIKE = registerSpell(new QuickStrikeSpell());
+
+    // Final Rend (Charge up a devastating slash. This slash deals damage based on health and inflicts strong lifesteal. Ignores i-frames & protection. Caster is given a grace period while charging. Inflicts Disabled and Severed)
+    public static final RegistryObject<AbstractSpell> FINAL_REND = registerSpell(new FinalRendSpell());
 
 
     /***
@@ -334,12 +342,6 @@ public class SpellRegistries {
     /***
      * Calamity - WIP
      */
-
-    // Quick Strike (Unleash X amount of strikes with the damage incrementing per recast. Ignores i-frames)
-    public static final RegistryObject<AbstractSpell> QUICK_STRIKE = registerSpell(new QuickStrikeSpell());
-
-    // Final Rend (Charge up a devastating slash. This slash deals damage based on health and inflicts strong lifesteal. Ignores i-frames & protection. Caster is given a grace period while charging. Inflicts Disabled and Severed)
-    public static final RegistryObject<AbstractSpell> FINAL_REND = registerSpell(new FinalRendSpell());
 
 
     public static void register(IEventBus eventBus)

@@ -1,8 +1,7 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.blood;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
@@ -13,10 +12,10 @@ import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike.QuickStrikeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSoundRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -37,6 +36,7 @@ import java.util.Optional;
 @AutoSpellConfig
 public class QuickStrikeSpell extends AbstractSpell {
     private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "quick_strike");
+    private Boolean mirrored;
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -59,7 +59,7 @@ public class QuickStrikeSpell extends AbstractSpell {
         this.manaCostPerLevel = 15;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 3;
-        this.castTime = 10;
+        this.castTime = 6;
         this.baseManaCost = 50;
     }
 
@@ -105,7 +105,13 @@ public class QuickStrikeSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.ONE_HANDED_HORIZONTAL_SWING_ANIMATION;
+        if (mirrored)
+        {
+            return CSSpellAnimations.ANIMATION_LEFT_HORIZONTAL_SLASH;
+        } else
+        {
+            return CSSpellAnimations.ANIMATION_RIGHT_HORIZONTAL_SLASH;
+        }
     }
 
     @Override
@@ -155,15 +161,8 @@ public class QuickStrikeSpell extends AbstractSpell {
             }
         }
 
-        boolean mirrored;
-
-        if (playerMagicData.getPlayerRecasts().getRemainingRecastsForSpell(getSpellId()) % 2 == 0)
-        {
-            mirrored = true;
-        } else
-        {
-            mirrored = false;
-        }
+        System.out.println("Recasts remaining: " + playerMagicData.getPlayerRecasts().getRemainingRecastsForSpell(spellId.toString()));
+        mirrored = playerMagicData.getPlayerRecasts().getRemainingRecastsForSpell(spellId.toString()) % 2 == 0;
 
         QuickStrikeAoE swipe = new QuickStrikeAoE(level, mirrored);
         swipe.moveTo(hitLocation);

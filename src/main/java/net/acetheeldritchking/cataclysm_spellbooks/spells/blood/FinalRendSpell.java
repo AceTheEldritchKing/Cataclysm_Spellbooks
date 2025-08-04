@@ -1,22 +1,21 @@
-package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
+package net.acetheeldritchking.cataclysm_spellbooks.spells.blood;
 
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
-import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.damage.SpellDamageSource;
-import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
@@ -212,7 +211,7 @@ public class FinalRendSpell extends AbstractSpell {
 
     private float getDamage(int spellLevel, LivingEntity entity)
     {
-        float damage = CSUtils.getDamageForAttributes(this, entity, spellLevel, AttributeRegistry.BLOOD_SPELL_POWER.get(), 1);
+        float damage = CSUtils.getDamageForAttributes(this, entity, spellLevel, CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), 1);
         return (damage * 1.5F) + Utils.getWeaponDamage(entity, MobType.UNDEFINED);
     }
 
