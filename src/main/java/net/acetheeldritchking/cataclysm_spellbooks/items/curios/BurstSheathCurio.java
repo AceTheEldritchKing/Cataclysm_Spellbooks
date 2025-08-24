@@ -22,7 +22,9 @@ public class BurstSheathCurio extends SheathCurioItem {
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> attr = LinkedHashMultimap.create();
         attr.put(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(),
-                new AttributeModifier(uuid, "Technomancy Spell Power", 0.15, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                new AttributeModifier(uuid, "Technomancy Spell Power", 0.10, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        attr.put(AttributeRegistry.BLOOD_SPELL_POWER.get(),
+                new AttributeModifier(uuid, "Blood Spell Power", 0.15, AttributeModifier.Operation.MULTIPLY_TOTAL));
         attr.put(AttributeRegistry.SPELL_POWER.get(),
                 new AttributeModifier(uuid, "Spell Power", 0.05, AttributeModifier.Operation.MULTIPLY_TOTAL));
         attr.put(AttributeRegistry.COOLDOWN_REDUCTION.get(),

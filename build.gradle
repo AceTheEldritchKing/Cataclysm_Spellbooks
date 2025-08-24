@@ -142,7 +142,7 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.20.1-47.3.22'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.6'
 
     // ISS
     compileOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
@@ -168,10 +168,10 @@ dependencies {
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
 
     // Cataclysm
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6906993")
 
     // AzureLib
-    implementation fg.deobf("curse.maven:azurelib-817423:6747998")
+    implementation fg.deobf("curse.maven:azurelib-817423:6849107")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")

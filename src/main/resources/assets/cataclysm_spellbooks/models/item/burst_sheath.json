@@ -6,7 +6,7 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "cataclysm_spellbooks:item/burst_sheath_handheld"
+      "parent": "cataclysm_spellbooks:item/burst_sheath_gui"
     },
     "fixed":
     {

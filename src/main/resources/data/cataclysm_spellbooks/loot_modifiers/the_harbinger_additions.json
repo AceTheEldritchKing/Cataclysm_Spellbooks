@@ -6,7 +6,7 @@
         },
         {
             "condition": "minecraft:random_chance",
-            "chance": 0.8
+            "chance": 0.95
         }
     ],
     "type": "cataclysm_spellbooks:add_to_table",

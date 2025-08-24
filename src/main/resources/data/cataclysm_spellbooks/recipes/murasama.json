@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  s",
+    " m ",
+    "w  "
+  ],
+  "key": {
+    "w": {
+      "item": "cataclysm:witherite_ingot"
+    },
+    "m": {
+      "item": "cataclysm_spellbooks:mechanical_weapon_parts"
+    },
+    "s": {
+      "item": "cataclysm_spellbooks:mechanical_scrap"
+    }
+  },
+  "result": {
+    "item": "cataclysm_spellbooks:murasama_blade",
+    "count": 1
+  }
+}

@@ -36,6 +36,7 @@ public class CSCreativeTabRegistry {
                         output.accept(ItemRegistries.FROZEN_KNOWLEDGE_FRAGMENT.get());
                         output.accept(ItemRegistries.FROZEN_TABLET.get());
                         output.accept(ItemRegistries.STRANGE_DISC.get());
+                        output.accept(ItemRegistries.MECHANICAL_WEAPON_PARTS.get());
                         // Curios
                         output.accept(ItemRegistries.LEVIATHANS_BLESSING.get());
                         output.accept(ItemRegistries.BURST_SHEATH.get());

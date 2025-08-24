@@ -214,6 +214,9 @@ public class ItemRegistries {
     // Strange Disc
     public static final RegistryObject<Item> STRANGE_DISC = ITEMS.register("strange_disc", StrangeDiscItem::new);
 
+    // Mechanical Weapon Parts
+    public static final RegistryObject<Item> MECHANICAL_WEAPON_PARTS = ITEMS.register("mechanical_weapon_parts", () -> new Item(ItemPropertiesHelper.material()));
+
 
     /**
      * Weapons

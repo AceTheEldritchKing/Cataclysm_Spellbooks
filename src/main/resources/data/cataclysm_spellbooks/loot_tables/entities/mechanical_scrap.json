@@ -3,7 +3,7 @@
   "pools": [
     {
       "name": "cataclysm_spellbooks_the_harbinger_extended",
-      "rolls": 2,
+      "rolls": 5,
       "entries": [
         {
           "type": "minecraft:item",
@@ -30,6 +30,32 @@
             }
           ],
           "name": "cataclysm_spellbooks:strange_disc"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ],
+          "name": "cataclysm_spellbooks:mechanical_weapon_parts"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "name": "cataclysm_spellbooks:burst_sheath"
         }
       ]
     }

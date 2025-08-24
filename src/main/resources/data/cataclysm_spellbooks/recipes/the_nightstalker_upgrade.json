@@ -1,11 +1,16 @@
 {
-    "type": "cataclysm:weapon_fusion",
-    "base": {
-        "item": "cataclysm_spellbooks:gauntlet_of_gattling"
-    },
-    "addition": {
-        "item": "irons_spellbooks:blood_vial"
-    },
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "cataclysm_spellbooks:gauntlet_of_gattling"
+        },
+        {
+            "item": "irons_spellbooks:blood_vial"
+        },
+        {
+            "item": "cataclysm_spellbooks:mechanical_weapon_parts"
+        }
+    ],
     "result": {
         "item": "cataclysm_spellbooks:the_nightstalker"
     }

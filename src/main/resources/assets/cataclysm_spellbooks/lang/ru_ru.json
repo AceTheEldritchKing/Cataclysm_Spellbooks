@@ -1,0 +1,462 @@
+{
+    "cs_items_tab": "Cataclysm: Книги Заклинаний",
+    "creative_tab.cataclysm_spellbooks.items": "Cataclysm: Книги Заклинаний",
+
+    "attribute.cataclysm_spellbooks.abyssal_magic_resist": "Сопротивление бездонной Магии",
+    "attribute.cataclysm_spellbooks.abyssal_spell_power": "Сила бездонных заклинаний",
+    "attribute.cataclysm_spellbooks.technomancy_magic_resist": "Сопротивление техномантии",
+    "attribute.cataclysm_spellbooks.technomancy_spell_power": "Сила техномантических Заклинаний",
+
+    "effect.cataclysm_spellbooks.abyssal_predator_effect": "Бездонный Хищник",
+    "effect.cataclysm_spellbooks.abyssal_predator_effect.description": "Увеличивает скорость, скорость плавания и урон в воде или под дождем.",
+    "effect.cataclysm_spellbooks.incapacitated_effect": "Обездвижен",
+    "effect.cataclysm_spellbooks.incapacitated_effect.description": "Игрок не может поворачивать голову, а также имеет замедленное движение.",
+    "effect.cataclysm_spellbooks.abyssal_gnawer_timer": "Призванный Бездонный Грызун",
+    "effect.cataclysm_spellbooks.abyssal_gnawer_timer.description": "Время, в течение которого Бездонный Грызун остается в мире.",
+    "effect.cataclysm_spellbooks.wrathful_effect": "Озлобленный",
+    "effect.cataclysm_spellbooks.wrathful_effect.description": "Игрок наполнен гневом, который увеличивает урон за каждый удар.",
+    "effect.cataclysm_spellbooks.crab_timer": "Призванный Аметистовый Краб",
+    "effect.cataclysm_spellbooks.crab_timer.description": "Время, в течение которого призванный Аметистовый Краб остается в мире.",
+    "effect.cataclysm_spellbooks.shutdown_effect": "Отключение",
+    "effect.cataclysm_spellbooks.shutdown_effect.description": "Игрок не может использовать предметы или атаковать, получая урон в процессе.",
+    "effect.cataclysm_spellbooks.rewired_effect": "Перепрограммирован",
+    "effect.cataclysm_spellbooks.rewired_effect.description": "Увеличивает урон и скорость движения, но обратно пропорционально снижает броню и прочность брони.",
+    "effect.cataclysm_spellbooks.hardware_update_effect": "Обновление Hardware",
+    "effect.cataclysm_spellbooks.hardware_update_effect.description": "Увеличивает урон и броню.",
+    "effect.cataclysm_spellbooks.software_update_effect": "Обновление Software",
+    "effect.cataclysm_spellbooks.software_update_effect.description": "Увеличивает скорость и снижает перезарядку заклинаний.",
+    "effect.cataclysm_spellbooks.intrusion_defense_system_software": "IPS Software",
+    "effect.cataclysm_spellbooks.intrusion_defense_system_software.description": "Снижает урон от снарядов и предотвращает противозаклинание призывов.",
+    "effect.cataclysm_spellbooks.disabled_effect": "Выключение Hardware ",
+    "effect.cataclysm_spellbooks.disabled_effect.description": "Предотвращает любое исцеление.",
+    "effect.cataclysm_spellbooks.mana_overcharged_effect": "Заряженная Мана",
+    "effect.cataclysm_spellbooks.mana_overcharged_effect.description": "Увеличенная мана и сила техномантических заклинаний.",
+    "effect.cataclysm_spellbooks.spell_res_overcharged_effect": "Заряженное Сопротивление",
+    "effect.cataclysm_spellbooks.spell_res_overcharged_effect.description": "Увеличенное сопротивление заклинаниям и сила техномантических заклинаний.",
+    "effect.cataclysm_spellbooks.cooldown_overcharged_effect": "Заряженная Перезарядка",
+    "effect.cataclysm_spellbooks.cooldown_overcharged_effect.description": "Сниженная перезарядка заклинаний и увеличенная сила техномантических заклинаний.",
+    "effect.cataclysm_spellbooks.base_overcharged_effect": "Перезаряжен",
+    "effect.cataclysm_spellbooks.base_overcharged_effect.description": "Увеличенная сила техномантических заклинаний.",
+    "effect.cataclysm_spellbooks.sniper": "Глаз Снайпера",
+    "effect.cataclysm_spellbooks.sniper.description": "Урон от снарядов x2.",
+    "effect.cataclysm_spellbooks.hemophilia": "Гемофилия",
+    "effect.cataclysm_spellbooks.hemophilia.description": "Выходящий урон увеличивается в x2.5.",
+
+    "school.cataclysm_spellbooks.abyssal": "Бездна",
+    "school.cataclysm_spellbooks.technomancy": "Техномантия",
+
+    "item.cataclysm_spellbooks.abyss_spell_book": "Фолиант Р'льеха",
+    "item.cataclysm_spellbooks.desert_spell_book": "Пустынный том заклинаний",
+    "item.cataclysm_spellbooks.ignis_spell_book": "Фолиант заклинаний Игниса",
+    "item.cataclysm_spellbooks.codex_of_malice_spell_book": "Кодекс злобы",
+    "item.cataclysm_spellbooks.disc_driver": "Флешка 12gb",
+    "item.cataclysm_spellbooks.disc_driver_description": "Разблокирует заклинания Вестника при экипировке",
+
+    "item.cataclysm_spellbooks.bloom_stone_staff": "Посох Цветущего Камня",
+    "item.cataclysm_spellbooks.coral_staff": "Коралловый Посох",
+    "item.cataclysm_spellbooks.fake_wudjets_staff": "Поддельный посох уаджета",
+    "item.cataclysm_spellbooks.void_staff": "Посох Пустоты",
+    "item.cataclysm_spellbooks.spirit_sunderer": "Разрушитель душ",
+    "item.cataclysm_spellbooks.gauntlet_of_power": "Испытание",
+    "item.cataclysm_spellbooks.gauntlet_of_gattling": "Покоритель",
+    "item.cataclysm_spellbooks.engineers_power_glove": "Силовая перчатка",
+    "item.cataclysm_spellbooks.soul_brazier": "Жаровня душ",
+    "item.cataclysm_spellbooks.the_nightstalker": "Ночной охотник",
+    "item.cataclysm_spellbooks.the_berserker": "Холодная сталь",
+    "item.cataclysm_spellbooks.the_combuster": "Уничтожитель миров",
+
+    "item.cataclysm_spellbooks.monstrous_flamberge": "Тектонический фламберг",
+
+    "item.cataclysm_spellbooks.abyssal_rune": "Бездонная руна",
+    "item.cataclysm_spellbooks.technomancy_rune": "Руна техномантии",
+    "item.cataclysm_spellbooks.mechanical_scrap": "Механический лом",
+    "item.cataclysm_spellbooks.excel_upgrade_mana": "Руна апгрейд: Мана",
+    "item.cataclysm_spellbooks.excel_upgrade_resistence": "Руна апгрейд: Сопротивление Заклинаниям",
+    "item.cataclysm_spellbooks.excel_upgrade_cooldown": "Руна апгрейд: Перезарядка",
+    "item.cataclysm_spellbooks.burning_knowledge_fragment": "Фрагмент горящих знаний",
+    "item.cataclysm_spellbooks.burning_manuscript": "Горящая рукопись",
+    "item.cataclysm_spellbooks.burning_manuscript_description": "При нахождении в инвентаре разблокирует все заклинания Игниса",
+    "item.cataclysm_spellbooks.frozen_knowledge_fragment": "Фрагмент замерзших знаний",
+    "item.cataclysm_spellbooks.frozen_tablet": "Замерзшая скрижаль",
+    "item.cataclysm_spellbooks.frozen_tablet_description": "При нахождении в инвентаре разблокирует все заклинания Маледиктуса",
+    "item.cataclysm_spellbooks.strange_disc": "Странный диск",
+    "item.cataclysm_spellbooks.strange_disc_description": "При нахождении в инвентаре разблокирует все заклинания Вестника",
+
+    "item.cataclysm_spellbooks.ignis_helmet": "Шляпа боевого мага из Игниса",
+    "item.cataclysm_spellbooks.ignis_chestplate": "Робы боевого мага из Игниса",
+    "item.cataclysm_spellbooks.ignis_chestplate_elytra": "Крылья боевого мага из Игниса",
+    "item.cataclysm_spellbooks.ignis_leggings": "Поножи боевого мага из Игниса",
+    "item.cataclysm_spellbooks.ignis_boots": "Сапоги боевого мага из Игниса",
+
+    "item.cataclysm_spellbooks.abyssal_warlock_helmet": "Капюшон чернокнижника",
+    "item.cataclysm_spellbooks.abyssal_warlock_mask": "Маска чернокнижника",
+    "item.cataclysm_spellbooks.abyssal_warlock_chestplate": "Робы чернокнижника",
+    "item.cataclysm_spellbooks.abyssal_warlock_leggings": "Поножи чернокнижника",
+    "item.cataclysm_spellbooks.abyssal_warlock_boots": "Сапоги чернокнижника",
+
+    "item.cataclysm_spellbooks.cursium_mage_circlet": "Венец курсиума",
+    "item.cataclysm_spellbooks.cursium_mage_chestplate": "Нагрудник курсиума",
+    "item.cataclysm_spellbooks.cursium_mage_elytra": "Крылья курсиума",
+    "item.cataclysm_spellbooks.cursium_mage_skirt": "Штаны курсиума",
+    "item.cataclysm_spellbooks.cursium_mage_boots": "Сапоги курсиума",
+    "item.cataclysm_spellbooks.cursium_chestplate.desc4": "Может быть объединен с элитрами",
+
+    "item.cataclysm_spellbooks.pharaoh_helmet": "Священный головной убор Фараона",
+    "item.cataclysm_spellbooks.pharaoh_chestplate": "Священная кираса Фараона",
+    "item.cataclysm_spellbooks.pharaoh_leggings": "Священные поножи Фараона",
+    "item.cataclysm_spellbooks.pharaoh_greaves": "Священная ботинки Фараона",
+
+    "item.cataclysm_spellbooks.bloom_stone_hat": "Шляпа из Аметистов",
+    "item.cataclysm_spellbooks.bloom_stone_chestplate": "Нагрудник из Аметистов",
+    "item.cataclysm_spellbooks.bloom_stone_skirt": "Штаны из Аметиста",
+    "item.cataclysm_spellbooks.bloom_stone_greaves": "Ботинки из Аметиста",
+
+    "item.cataclysm_spellbooks.monstrous_wizard_hat": "Шляпа Чудовищного Волшебника",
+
+    "item.cataclysm_spellbooks.excelsius_speed_visors": "Визер-шлем: Скорость",
+    "item.cataclysm_spellbooks.excelsius_speed_chestplate": "Нагрудник «Скорости»",
+    "item.cataclysm_spellbooks.excelsius_power_visors": "Визер-шлем: Противник",
+    "item.cataclysm_spellbooks.excelsius_power_chestplate": "Нагрудник «Противник»",
+    "item.cataclysm_spellbooks.excelsius_resist_visors": "Визер-шлем: Угнетатель",
+    "item.cataclysm_spellbooks.excelsius_resist_chestplate": "Нагрудник «Угнетатель»",
+    "item.cataclysm_spellbooks.excelsius_leggings": "Поножи Движение",
+    "item.cataclysm_spellbooks.excelsius_greaves": "Сапоги «Движение»",
+
+    "item.cataclysm_spellbooks.excelsius_helmet.desc": "Система наведения Целей",
+    "item.cataclysm_spellbooks.excelsius_helmet.desc2": "Нажмите &f %s &a чтобы дать ближайшим существам эффект наведения и увеличить урон от снарядов в 2 раза",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc": "Бесконечный Полет",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc2": "Возможности полета с элитрами без ограничений на топливо или ускорение",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc": "Иммунитет к Падению",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc2": "Любой урон от падения, который мог бы быть получен, аннулируется",
+    "item.cataclysm_spellbooks.excelsius_boots.desc": "Ускорение Прыжка",
+    "item.cataclysm_spellbooks.excelsius_boots.desc2": "Нажмите &f %s &a чтобы получить ускорение прыжка, поджигая ближайших существ",
+
+    "item.cataclysm_spellbooks.engineer_hood": "Шлем инженера",
+    "item.cataclysm_spellbooks.engineer_suit": "Костюм инженера",
+    "item.cataclysm_spellbooks.engineer_leggings": "Брюки инженера",
+    "item.cataclysm_spellbooks.engineer_boots": "Сапоги инженера",
+
+    "item.cataclysm_spellbooks.leviathans_blessing": "Благословение Левиафана",
+    "item.cataclysm_spellbooks.leviathans_blessing.desc": "Обеспечивает иммунитет к бездонным эффектам",
+
+    "item.cataclysm_spellbooks.abyssal_upgrade_orb": "Сфера обновления: Бездна",
+    "item.cataclysm_spellbooks.technomancy_upgrade_orb": "Сфера обновления: Техномантии",
+
+    "spell.cataclysm_spellbooks.void_beam": "Бездонный луч",
+    "spell.cataclysm_spellbooks.void_beam.guide": "Направьте бездонный луч на выбранную цель",
+
+    "spell.cataclysm_spellbooks.void_rune": "Призыв: Руны Пустоты",
+    "spell.cataclysm_spellbooks.void_rune.guide": "Создайте руны пустоты на выбранной цели",
+
+    "spell.cataclysm_spellbooks.dimensional_rift": "Разлом измерений",
+    "spell.cataclysm_spellbooks.dimensional_rift.guide": "Создайте разлом измерений",
+
+    "spell.cataclysm_spellbooks.abyssal_slash": "Приливный разрез",
+    "spell.cataclysm_spellbooks.abyssal_slash.guide": "Нанесите ближний урон по цели",
+
+    "spell.cataclysm_spellbooks.abyssal_blast": "Бездонный взрыв",
+    "spell.cataclysm_spellbooks.abyssal_blast.guide": "Выпустите разрушительный взрыв, который повреждает блоки и наносит бездонный ожог",
+
+    "spell.cataclysm_spellbooks.abyssal_predator": "Бездонный хищник",
+    "spell.cataclysm_spellbooks.abyssal_predator.guide": "Примените заклинание, которое увеличивает скорость плавания, урон атаки и скорость атаки. Вы получаете больше урона под водой",
+
+    "spell.cataclysm_spellbooks.depth_charge": "Глубинная бомба",
+    "spell.cataclysm_spellbooks.depth_charge.guide": "Призовите различные глубинные мины в радиусе вокруг вас",
+
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer": "Призыв: Бездонный Грызун",
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer.guide": "Призовите стаю Бездонных Грызунов из другого измерения на помощь",
+
+    "spell.cataclysm_spellbooks.tidal_grab": "Щупальцевое рассечение",
+    "spell.cataclysm_spellbooks.tidal_grab.guide": "Выпустите тентакли ))) для повреждееения целей",
+
+    "spell.cataclysm_spellbooks.infernal_strike": "Адский удар",
+    "spell.cataclysm_spellbooks.infernal_strike.guide": "Выпустите миниатюрный Сжигатель для повреждения целей и наложения Пылающего Клейма на них",
+
+    "spell.cataclysm_spellbooks.incineration": "Сожжение",
+    "spell.cataclysm_spellbooks.incineration.guide": "Призовите огненные удары по прямой линии перед заклинателем",
+
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement": "Пылающее подкрепление",
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement.guide": "Призовите Пылающих Ревенантов и Берсерков на помощь",
+
+    "spell.cataclysm_spellbooks.ashen_breath": "Кашель дракона",
+    "spell.cataclysm_spellbooks.ashen_breath.guide": "Кашляните как бы это сделал дракон. На противников",
+
+    "spell.cataclysm_spellbooks.bone_storm": "Костяная буря",
+    "spell.cataclysm_spellbooks.bone_storm.guide": "Запустите вращающуюся костяную бурю вокруг от себя",
+
+    "spell.cataclysm_spellbooks.piercing_bone": "Пронзающая кость",
+    "spell.cataclysm_spellbooks.piercing_bone.guide": "Запустите пылающую кость в противника, а затем небольшой взрыв из 3 костей распространится от вас",
+
+    "spell.cataclysm_spellbooks.hellish_blade": "Адский клинок",
+    "spell.cataclysm_spellbooks.hellish_blade.guide": "Призовите копию Сжигателя над противником, поражая их и применяя оглушение и Пылающее Клеймо при попадании",
+
+    "spell.cataclysm_spellbooks.abyss_fireball": "Разворачивающееся сияние",
+    "spell.cataclysm_spellbooks.abyss_fireball.guide": "Призовите поток отскакивающих огненных шаров, которые меняются в зависимости от вашего здоровья, нанося Пылающее Клеймо при попадании",
+
+    "spell.cataclysm_spellbooks.amethyst_puncture": "Аметистовый Прокол",
+    "spell.cataclysm_spellbooks.amethyst_puncture.guide": "Запустите аметистовый кластер в противника",
+
+    "spell.cataclysm_spellbooks.gravity_storm": "Гравитационная Буря",
+    "spell.cataclysm_spellbooks.gravity_storm.guide": "Создайте пустотный вихрь там, куда вы смотрите",
+
+    "spell.cataclysm_spellbooks.void_bulwark": "Пустотный Бастион",
+    "spell.cataclysm_spellbooks.void_bulwark.guide": "Создайте пустотные руны вокруг себя",
+
+    "spell.cataclysm_spellbooks.gravitation_pull": "Гравитационное притяжение",
+    "spell.cataclysm_spellbooks.gravitation_pull.guide": "Притягивайте существ к себе, манипулируя гравитацией вокруг себя",
+
+    "spell.cataclysm_spellbooks.sandstorm": "Песчаная буря",
+    "spell.cataclysm_spellbooks.sandstorm.guide": "Призовите песчаные бури, которые окружают вас",
+
+    "spell.cataclysm_spellbooks.desert_winds": "Пустынные ветры",
+    "spell.cataclysm_spellbooks.desert_winds.guide": "Призовите меньшую песчаную бурю, которая повреждает мобов перед вами",
+
+    "spell.cataclysm_spellbooks.monolith_crash": "Возведение монолита",
+    "spell.cataclysm_spellbooks.monolith_crash.guide": "Создайте несколько монолитов над собой, которые обрушиваются вокруг вас и ваших врагов",
+
+    "spell.cataclysm_spellbooks.malevolent_battlefield": "Алебарды смерти",
+    "spell.cataclysm_spellbooks.malevolent_battlefield.guide": "Создайте несколько фантомных алебард вокруг себя, нанося огромное количество урона существам поблизости",
+
+    "spell.cataclysm_spellbooks.forgone_rage": "Холодная Ярость",
+    "spell.cataclysm_spellbooks.forgone_rage.guide": "Наполните себя ледяной яростью, которая увеличивает ваш урон по мере атаки существ. Вы ослаблены после того, как ваша ярость заканчивается",
+
+    "spell.cataclysm_spellbooks.conjure_koboldiator": "Призыв: Кобольдиатор",
+    "spell.cataclysm_spellbooks.conjure_koboldiator.guide": "Призовите могущественного Кобольдиатора на помощь",
+
+    "spell.cataclysm_spellbooks.pilfer": "Кража",
+    "spell.cataclysm_spellbooks.pilfer.guide": "Примените заклинание, которое вырывает предмет, удерживаемый в руке цели",
+
+    "spell.cataclysm_spellbooks.summon_koboleton": "Призыв: Коболетон",
+    "spell.cataclysm_spellbooks.summon_koboleton.guide": "Призовите группу Коболетонов для сражения на вашей стороне",
+
+    "spell.cataclysm_spellbooks.cursed_rush": "Рывок из Алебард",
+    "spell.cataclysm_spellbooks.cursed_rush.guide": "Рывок в направлении, куда вы смотрите, создавая фантомные алебарды как в исходном, так и в новом месте назначения. Любое существо на вашем пути будет повреждено",
+
+    "spell.cataclysm_spellbooks.conjure_thralls": "Призыв: Нежить Рабы",
+    "spell.cataclysm_spellbooks.conjure_thralls.guide": "Призовите группу нежити драугур для сражения на вашей стороне",
+
+    "spell.cataclysm_spellbooks.tectonic_tremble": "Тектоническая дрожь",
+    "spell.cataclysm_spellbooks.tectonic_tremble.guide": "Потрясите землю, поджигая ближайших существ и отбрасывая их назад",
+
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab": "Призыв: Аметистовый Краб",
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab.guide": "Призовите мифического Аметистового Краба для сражения на вашей стороне",
+
+    "spell.cataclysm_spellbooks.laserbolt": "Лазерная молния",
+    "spell.cataclysm_spellbooks.laserbolt.guide": "Нацельтесь на существо и выпустите небольшую лазерную молнию в их направлении",
+
+    "spell.cataclysm_spellbooks.atomic_laser": "Атомный лазер",
+    "spell.cataclysm_spellbooks.atomic_laser.guide": "Выпустите разрушительный лазер в направлении, куда вы смотрите, обездвиживая вас",
+
+    "spell.cataclysm_spellbooks.emp_blast": "ЭМИ",
+    "spell.cataclysm_spellbooks.emp_blast.guide": "Испустите ЭМИ импульс от себя, оглушая ближайших мобов",
+
+    "spell.cataclysm_spellbooks.lock_on": "Захват цели",
+    "spell.cataclysm_spellbooks.lock_on.guide": "Нацельтесь на существо, отображая цель над их головой и оглушая их на короткий период времени",
+
+    "spell.cataclysm_spellbooks.construct_watchers": "Создание: Наблюдатели",
+    "spell.cataclysm_spellbooks.construct_watchers.guide": "Создайте группу Наблюдателей для помощи в бою",
+
+    "spell.cataclysm_spellbooks.construct_prowler": "Создание: Бродяга",
+    "spell.cataclysm_spellbooks.construct_prowler.guide": "Создайте Бродягу для помощи в бою",
+
+    "spell.cataclysm_spellbooks.ddos": "DDOS Атака",
+    "spell.cataclysm_spellbooks.ddos.guide": "Нарушите службы вокруг вас, рассеивая призывы и удаляя магические эффекты с ближайших существ",
+
+    "spell.cataclysm_spellbooks.dos_swarm": "Рой DoS",
+    "spell.cataclysm_spellbooks.dos_swarm.guide": "Призовите группу Наблюдателей, которые атакуют любых ближайших существ, рассеивая любые магические свойства цели.",
+
+    "spell.cataclysm_spellbooks.shutdown": "Отключение",
+    "spell.cataclysm_spellbooks.shutdown.guide": "Отключите процессы цели, предотвращая ее атаки или использование предметов",
+
+    "spell.cataclysm_spellbooks.rewire": "Перепрограммирование",
+    "spell.cataclysm_spellbooks.rewire.guide": "Перепрограммируйте возможности ваших призывов, увеличивая их скорость и урон, но обратно пропорционально уменьшая их броню и хп",
+
+    "spell.cataclysm_spellbooks.hardware_update": "Обновление Hardware",
+    "spell.cataclysm_spellbooks.hardware_update.guide": "Обновите ваши внутренности новым оборудованием, увеличивая броню и урон атаки. Не складывается с Зарядом, Ускорением или Обновлением Программного Обеспечения",
+
+    "spell.cataclysm_spellbooks.software_update": "Обновление Software",
+    "spell.cataclysm_spellbooks.software_update.guide": "Обновите ваши внутренности новым программным обеспечением, увеличивая скорость и снижая перезарядку заклинаний. Не складывается с Зарядом, Ускорением или Обновлением Оборудования",
+
+    "spell.cataclysm_spellbooks.missile_launch": "Ракетный Залп",
+    "spell.cataclysm_spellbooks.missile_launch.guide": "Нацельтесь на существо и запустите залп самонаводящихся Ракет в них",
+
+    "spell.cataclysm_spellbooks.aerial_assault": "Воздушная Атака",
+    "spell.cataclysm_spellbooks.aerial_assault.guide": "Запустите воздушную атаку Ракет в области кастования",
+
+    "spell.cataclysm_spellbooks.intrusion_prevention_system": "Система предотвращения вторжений",
+    "spell.cataclysm_spellbooks.intrusion_prevention_system.guide": "Усильте себя и ваших ближайших призывов, предотвращая урон от снарядов и предотвращая противозаклинание ваших призывов",
+
+    "spell.cataclysm_spellbooks.overcharged": "Перезаряжен",
+    "spell.cataclysm_spellbooks.overcharged.guide": "Перезарядите ваши системы, повышая ваши возможности за пределы нормальных ограничений. Имеет уникальные взаимодействия с определенными предметами",
+
+    "spell.cataclysm_spellbooks.parting_shot": "Прощальный выстрел",
+    "spell.cataclysm_spellbooks.parting_shot.guide": "Зарядите ваше оружие, выпуская два мощных лазера, которые наносят Увядание при попадании",
+
+    "spell.cataclysm_spellbooks.surveillance_drone": "Создание: Дрон Наблюдения",
+    "spell.cataclysm_spellbooks.surveillance_drone.guide": "Создайте дрон наблюдения поверх ваших призывов, исцеляя вас и ближайших призывов",
+
+    "spell.cataclysm_spellbooks.flash_bang": "Световая граната",
+    "spell.cataclysm_spellbooks.flash_bang.guide": "Бросьте световую гранату, ослепляя ближайших существ",
+
+    "spell.cataclysm_spellbooks.disabling_swipe": "Обездвиживающий взмах",
+    "spell.cataclysm_spellbooks.disabling_swipe.guide": "Взмахните по оборудованию цели, кратковременно предотвращая любое входящее исцеление при попадании",
+
+    "spell.cataclysm_spellbooks.gear_shift": "Переключение передач",
+    "spell.cataclysm_spellbooks.gear_shift.guide": "Вы можете сделать дальний рывок!",
+
+    "spell.cataclysm_spellbooks.reboot": "Перезагрузка",
+    "spell.cataclysm_spellbooks.reboot.guide": "Перезагрузите вашей системы, исцеляя себя и ближайших союзников",
+
+    "spell.cataclysm_spellbooks.phantasmal_blade": "Фантомный клинок",
+    "spell.cataclysm_spellbooks.phantasmal_blade.guide": "Ударьте оружием по земле, выпуская фантомные лезвия вокруг вас",
+
+    "spell.cataclysm_spellbooks.comet_shower": "Дождь из комет",
+    "spell.cataclysm_spellbooks.comet_shower.guide": "Извергните осветительные бомбы от себя, создавая струи света везде, где они приземляются",
+
+    "spell.cataclysm_spellbooks.meteor_spew": "Извержение метеоров",
+    "spell.cataclysm_spellbooks.meteor_spew.guide": "Извергните комки расплавленной породы и лавы в направлении, куда вы смотрите, создавая лаву при попадании",
+
+    "spell.cataclysm_spellbooks.conjure_coral_golem": "Призыв: Коралловые Големы",
+    "spell.cataclysm_spellbooks.conjure_coral_golem.guide": "Призовите группу коралловых големов для сражения на вашей стороне",
+
+    "spell.cataclysm_spellbooks.conjure_coralssus": "Призыв: Коралссус",
+    "spell.cataclysm_spellbooks.conjure_coralssus.guide": "Призовите Коралссуса для езды и сражения на вашей стороне",
+
+    "spell.cataclysm_spellbooks.thoths_witness": "Свидетельство Тота",
+    "spell.cataclysm_spellbooks.thoths_witness.guide": "С благословением Тота, призовите дух Древнего Остатка на вашей стороне",
+
+    "spell.cataclysm_spellbooks.pharaohs_wrath": "Гнев фараона",
+    "spell.cataclysm_spellbooks.pharaohs_wrath.guide": "Наполните себя горячей яростью, которая увеличивает ваш урон и силу заклинаний по мере получения ударов. Вы ослаблены после того, как ваша ярость заканчивается",
+
+    "spell.cataclysm_spellbooks.hemorrhaging_impact": "Кровоточащий удар",
+    "spell.cataclysm_spellbooks.hemorrhaging_impact.guide": "Выпустите мощное копье крови и несколько кровяных игл. Копье крови наносит Гемофилию при попадании, и вы получаете 75% нанесенного урона как исцеление",
+
+    "spell.cataclysm_spellbooks.scorched_earth": "Выжженная земля",
+    "spell.cataclysm_spellbooks.scorched_earth.guide": "Выпустите залп расплавленных пуль. Каждая пуля оставляет область действия, которая наносит интенсивный огненный урон существам, попавшим в нее",
+
+    "spell.cataclysm_spellbooks.cryopiercer": "Криопробиватель",
+    "spell.cataclysm_spellbooks.cryopiercer.guide": "Выпустите залп замерзших пуль. При попадании пули в существо, оно замораживается в лед",
+
+    "ui.cataclysm_spellbooks.void_beam": "Призовите бездонный луч",
+    "ui.cataclysm_spellbooks.void_rune": "Призовите руны пустоты в месте вашей цели",
+    "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Призовите разлом измерений, который длится %d секунд",
+    "ui.cataclysm_spellbooks.gnawer_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.range": "%d дальность применения заклинания",
+    "ui.cataclysm_spellbooks.incinerator_damage": "Наносит %d если Сжигатель держится в основной руке",
+    "ui.cataclysm_spellbooks.incineration_duration": "Длится %d секунд",
+    "ui.cataclysm_spellbooks.ignited_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.bone_speed_1": "%d Скорость снаряда",
+    "ui.cataclysm_spellbooks.bone_speed_2": "%d Скорость снаряда",
+    "ui.cataclysm_spellbooks.bone_speed_3": "%d Скорость снаряда",
+    "ui.cataclysm_spellbooks.blazing_bone_speed": "%d Скорость снаряда",
+    "ui.cataclysm_spellbooks.fireball_details": "Ниже половины здоровья превращает огненный шар в душевный огонь, ниже 30% здоровья в бездонный огненный шар",
+    "ui.cataclysm_spellbooks.recast_count": "Можно применить это заклинание %d раз подряд перед перезарядкой",
+    "ui.cataclysm_spellbooks.amethyst_speed": "Запускает Аметистовые Кластеры со скоростью снаряда %d",
+    "ui.cataclysm_spellbooks.gravity_storm.lifespan": "Призовите пустотный вихрь, который длится %d секунд",
+    "ui.cataclysm_spellbooks.difference": "Влияет на существ со скоростью %d",
+    "ui.cataclysm_spellbooks.gravitation": "Стоя, притягивайте существ. Приседая, отталкивайте существ",
+    "ui.cataclysm_spellbooks.sandstorm.lifespan": "Призовите песчаную бурю, которая длится %d секунд",
+    "ui.cataclysm_spellbooks.sandstorm_amount": "Призывает %d песчаных бурь, которые кружат вокруг пользователя",
+    "ui.cataclysm_spellbooks.windmill_rings": "%d колец",
+    "ui.cataclysm_spellbooks.windmill_amount": "%d монолитов на кольцо",
+    "ui.cataclysm_spellbooks.halberd_rings": "%d колец",
+    "ui.cataclysm_spellbooks.halberd_amount": "%d алебард на кольцо",
+    "ui.cataclysm_spellbooks.soul_render_damage": "Наносит %d если Разрушитель Душ держится в основной руке",
+    "ui.cataclysm_spellbooks.forgone_rage_strikes": "Каждый последовательный удар увеличивает урон на 20%, максимум на четыре удара",
+    "ui.cataclysm_spellbooks.pilfer_priority": "Приоритет отдается предметам в дополнительной руке перед предметами в основной руке для кражи",
+    "ui.cataclysm_spellbooks.koboleton_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.koboldiator_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.thrall_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.halberd_rush": "Создает алебарды в начальной локации и иногда в конечной локации",
+    "ui.cataclysm_spellbooks.maledictus_armory_bonus": "Наносит %d если Разрушитель Душ или Уничтожитель держится в основной руке",
+    "ui.cataclysm_spellbooks.crab_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.underwater_damage_bonus": "Наносит дополнительный урон под водой или под дождем",
+    "ui.cataclysm_spellbooks.watcher_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.prowler_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.forward_acceleration": "%d Ускорение вперед",
+    "ui.cataclysm_spellbooks.upward_acceleration": "%d Ускорение вверх",
+    "ui.cataclysm_spellbooks.summon_healing": "%d Исцеление союзников",
+    "ui.cataclysm_spellbooks.recast_bonus_damage": "%d Дополнительный урон (+1 урон за повторное применение)",
+    "ui.cataclysm_spellbooks.effect_percentage": "%d% Бонус к перезаряженным характеристикам",
+    "ui.cataclysm_spellbooks.howitzer_crouching": "При приседании призывает Гаубицы вместо",
+    "ui.cataclysm_spellbooks.phantom_blades": "%d Фантомных Лезвий",
+    "ui.cataclysm_spellbooks.coral_golem_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.coralssus_count": "%d Призывов",
+    "ui.cataclysm_spellbooks.remnant_count": "%d Духов остатка",
+    "ui.cataclysm_spellbooks.kings_wrath_strikes": "Каждый последовательный полученный удар увеличивает урон на 20% и силу заклинаний на 5%, макс. - 5",
+    "ui.cataclysm_spellbooks.thoths_witness_scroll_failure": "Тот не позволит вам применить это заклинание с жалкого свитка",
+    "ui.cataclysm_spellbooks.thoths_witness_armor_failure": "Вам не хватает необходимого арсенала для призыва. Украсьте себя броней фараона",
+    "ui.cataclysm_spellbooks.quake_damage": "%d Урон от землетрясения",
+    "ui.cataclysm_spellbooks.needle_damage": "%d Урон от кровяных игл",
+
+    "entity.cataclysm_spellbooks.abyssal_gnawers": "Бездонный Грызун",
+    "entity.cataclysm_spellbooks.infernal_blade": "Адский Клинок",
+    "entity.cataclysm_spellbooks.hellish_blade": "Адский Клинок",
+    "entity.cataclysm_spellbooks.blazing_aoe": "Пылающая Область Действия",
+    "entity.cataclysm_spellbooks.summoned_ignited_revenant": "Пылающий Ревенант",
+    "entity.cataclysm_spellbooks.summoned_ignited_berserker": "Пылающий Берсерк",
+    "entity.cataclysm_spellbooks.summoned_koboldiator": "Кобольдиатор",
+    "entity.cataclysm_spellbooks.summoned_koboleton": "Коболетон",
+    "entity.cataclysm_spellbooks.summoned_draugur": "Драугур",
+    "entity.cataclysm_spellbooks.summoned_royal_draugur": "Королевский Драугур",
+    "entity.cataclysm_spellbooks.summoned_elite_draugur": "Элитный Драугур",
+    "entity.cataclysm_spellbooks.summoned_aptrgangr": "Аптргангр",
+    "entity.cataclysm_spellbooks.summoned_amethyst_crab": "Аметистовый Краб",
+    "entity.cataclysm_spellbooks.extended_laser_beam": "Лазерный Луч",
+    "entity.cataclysm_spellbooks.summoned_watcher": "Наблюдатель",
+    "entity.cataclysm_spellbooks.summoned_prowler": "Бродяга",
+    "entity.cataclysm_spellbooks.summoned_counterspell_watcher": "DoS Наблюдатель",
+    "entity.cataclysm_spellbooks.parting_shot": "Разделенный Выстрел",
+    "entity.cataclysm_spellbooks.flash_bang": "Световая Граната",
+    "entity.cataclysm_spellbooks.surveillance_drone": "Дрон Наблюдения",
+    "entity.cataclysm_spellbooks.disabling_swipe": "Обездвиживающий Взмах",
+    "entity.cataclysm_spellbooks.no_man_zone_aoe": "Зона Ничьей Земли",
+    "entity.cataclysm_spellbooks.summoned_coral_golem": "Коралловый Голем",
+    "entity.cataclysm_spellbooks.summoned_coralssus": "Коралссус",
+    "entity.cataclysm_spellbooks.phantom_ancient_remnant": "Фантомный Остаток",
+    "entity.cataclysm_spellbooks.blood_crystal": "Кристаллизованное Копье Крови",
+    "entity.cataclysm_spellbooks.molten_bullet": "Расплавленная Пуля",
+    "entity.cataclysm_spellbooks.scorched_earth_aoe": "Выжженная Земля Область Действия",
+    "entity.cataclysm_spellbooks.frozen_bullet": "Крио-Пуля",
+    "entity.cataclysm_spellbooks.glacial_block": "Ледяной Блок",
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$s был разорван грызунами %2$s",
+    "death.attack.cataclysm_spellbooks.blazing_aoe": "%1$s был сожжен в пылающем поле %2$s",
+    "death.attack.cataclysm_spellbooks.hellish_blade": "%1$s был проткнут адским клинком %2$s",
+    "death.attack.cataclysm_spellbooks.infernal_strike": "%1$s был пронзен адским клинком %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$s был разбит пылающими ревенантами %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s был разрублен пылающими берсерками %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_koboldiator": "%1$s был раздавлен Кобольдиатором %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_koboleton": "%1$s был зарублен насмерть Коболетоном %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_draugur": "%1$s был окружен драугурами %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_royal_draugur": "%1$s был окружен драугурами %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_elite_draugur": "%1$s был окружен драугурами %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_aptrgangr": "%1$s был разрублен пополам Аптргангром %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_amethyst_crab": "%1$s был раздавлен клешнями Аметистового Краба %2$s",
+    "death.attack.cataclysm_spellbooks.parting_shot": "%1$s был атомизирован разделенным выстрелом %2$s",
+    "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s был каким-то блять образом убит пассивным дроном наблюдения %2$s",
+    "death.attack.cataclysm_spellbooks.disabling_swipe": "%1$s получил разорванную проводку от обездвиживающего взмаха %2$s",
+    "death.attack.cataclysm_spellbooks.no_man_zone_aoe": "%1$s был сведен к ничто в Зоне Ничьей Земли %2$s",
+    "death.attack.cataclysm_spellbooks.blood_crystal": "%1$s был проткнут кристаллизованным копьем крови %2$s",
+    "death.attack.cataclysm_spellbooks.molten_bullet": "%1$s был опален расплавленной пулей %2$s",
+    "death.attack.cataclysm_spellbooks.scorched_earth_aoe": "%1$s был сожжен выжженной землей %2$s",
+    "death.attack.cataclysm_spellbooks.frozen_bullet": "%1$s замерз насмерть от крио-пули %2$s",
+    "death.attack.cataclysm_spellbooks.glacial_block": "%1$s замерз насмерть в ледяном блоке %2$s",
+
+    "death.attack.blazing_aoe.item": "%1$s был сожжен в пылающем поле %2$s, используя %3$s",
+    "death.attack.no_man_zone_aoe.item": "%1$s был сведен к ничто в Зоне Ничьей Земли %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.scorched_earth_aoe.item": "%1$s был сожжен выжженной землей %2$s, используя %3$s",
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$s был разорван грызунами %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s был проткнут адским клинком %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s был пронзен адским клинком %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$s был разбит пылающими ревенантами %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s был разрублен пылающими берсерками %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s был атомизирован разделенным выстрелом %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s был каким-то блять образом убит пассивным дроном наблюдения %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s получил разорванную проводку от обездвиживающего взмаха %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.blood_crystal.item": "%1$s был проткнут кристаллизованным копьем крови %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.molten_bullet.item": "%1$s был опален расплавленной пулей %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.frozen_bullet.item": "%1$s замерз насмерть от крио-пули %2$s, используя %3$s",
+    "death.attack.cataclysm_spellbooks.glacial_block.item": "%1$s замерз насмерть в ледяном блоке %2$s, используя %3$s"
+}
