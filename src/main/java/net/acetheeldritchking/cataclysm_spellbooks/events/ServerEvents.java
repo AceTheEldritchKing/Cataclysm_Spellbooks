@@ -254,7 +254,7 @@ public class ServerEvents {
 
                             player.heal((float) lifesteal);
 
-                            System.out.println("Healed for: " + lifesteal);
+                            CataclysmSpellbooks.LOGGER.debug("Healed for: " + lifesteal);
 
                             murasamaCombo.resetMuraCombo();
                         }
@@ -273,7 +273,7 @@ public class ServerEvents {
                             attackerPlayerMagicData.setMana(newMana);
                             Messages.sendToPlayer(new ClientboundSyncMana(attackerPlayerMagicData), serverPlayer);
 
-                            System.out.println("Mana gained for: " + addMana);
+                            CataclysmSpellbooks.LOGGER.debug("Mana gained for: " + addMana);
 
                             murasamaCombo.resetMuraCombo();
                         }
@@ -681,6 +681,20 @@ public class ServerEvents {
             {
                 FinalRendSpell spell = new FinalRendSpell();
                 if (Objects.equals(ClientMagicData.getSyncedSpellData(attacker).getCastingSpellId(), spell.getSpellId()) && ClientMagicData.getSyncedSpellData(attacker).isCasting())
+                {
+                    event.setCanceled(true);
+                }
+            }
+        }
+
+        // King's Wrath
+        if (entity instanceof LivingEntity livingTarget)
+        {
+            if (!livingTarget.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&
+                    livingTarget.getItemBySlot(EquipmentSlot.LEGS).getItem() == ItemRegistries.EXCELSIUS_WARLOCK_LEGGINGS.get())
+            {
+                // We want to stop kinetic damage when flying
+                if (livingTarget.horizontalCollision && !livingTarget.level().isClientSide())
                 {
                     event.setCanceled(true);
                 }

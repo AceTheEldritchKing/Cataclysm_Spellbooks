@@ -156,8 +156,11 @@
     "item.cataclysm_spellbooks.excelsius_chestplate.desc2": "Elytra flight capabilities without any limitations on fuel or boosts",
     "item.cataclysm_spellbooks.excelsius_leggings.desc": "Fall Immunity",
     "item.cataclysm_spellbooks.excelsius_leggings.desc2": "Any fall damage that would be taken is nullified",
-    "item.cataclysm_spellbooks.excelsius_boots.desc": "Jump Boost",
+    "item.cataclysm_spellbooks.excelsius_boots.desc": "Dual Boosters",
+    "item.cataclysm_spellbooks.excelsius_boots.desc_shift": "Press Shift Key to see more details",
     "item.cataclysm_spellbooks.excelsius_boots.desc2": "Press %s to get a jump boost, igniting nearby entities on fire",
+    "item.cataclysm_spellbooks.excelsius_boots.desc3": "Press %s when crouching to go into hover mode",
+    "item.cataclysm_spellbooks.excelsius_boots.desc4": "Press %s while flying to combust the air around you, igniting entities on fire",
 
     "item.cataclysm_spellbooks.engineer_hood": "Engineer's Hood",
     "item.cataclysm_spellbooks.engineer_suit": "Engineer's Suit",
@@ -167,10 +170,14 @@
     "item.cataclysm_spellbooks.leviathans_blessing": "Leviathan's Blessing",
     "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
     "item.cataclysm_spellbooks.burst_sheath": "Burst Sheath",
-    "item.cataclysm_spellbooks.burst_sheath.desc": "Provides unique effects to spellcasting",
+    "item.cataclysm_spellbooks.burst_sheath.desc": "Deal double damage to entities with a 15 second cooldown",
 
     "item.cataclysm_spellbooks.abyssal_upgrade_orb": "Abyssal Upgrade Orb",
     "item.cataclysm_spellbooks.technomancy_upgrade_orb": "Technomancy Upgrade Orb",
+
+
+    "display.cataclysm_spellbooks.hover_disabled": "Hover Mode: Disabled",
+    "display.cataclysm_spellbooks.hover_enabled": "Hover Mode: Enabled",
 
 
     "spell.cataclysm_spellbooks.void_beam": "Abyssal Beam",

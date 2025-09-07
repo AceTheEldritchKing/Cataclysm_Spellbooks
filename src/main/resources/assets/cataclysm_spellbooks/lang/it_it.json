@@ -1,0 +1,488 @@
+{
+    "cs_items_tab": "Cataclysm: Spellbooks",
+    "creative_tab.cataclysm_spellbooks.items": "Cataclysm: Spellbooks",
+
+    "attribute.cataclysm_spellbooks.abyssal_magic_resist": "Resistenza Magica Abissale",
+    "attribute.cataclysm_spellbooks.abyssal_spell_power": "Potere Magico Abissale",
+
+    "attribute.cataclysm_spellbooks.technomancy_magic_resist": "Resistenza Magica Tecnomantica",
+    "attribute.cataclysm_spellbooks.technomancy_spell_power": "Potere Magico Tecnomantico",
+
+
+    "effect.cataclysm_spellbooks.abyssal_predator_effect": "Predatore Abissale",
+    "effect.cataclysm_spellbooks.abyssal_predator_effect.description": "Aumenta velocità, velocità di nuoto e danno inflitto in acqua o sotto la pioggia.",
+    "effect.cataclysm_spellbooks.incapacitated_effect": "Incapacità",
+    "effect.cataclysm_spellbooks.incapacitated_effect.description": "Il giocatore non può muovere la testa e si muove più lentamente.",
+    "effect.cataclysm_spellbooks.abyssal_gnawer_timer": "Predatore Abissale Evocato",
+    "effect.cataclysm_spellbooks.abyssal_gnawer_timer.description": "Durata della permanenza di un Predatore Abissale evocato nel mondo.",
+    "effect.cataclysm_spellbooks.wrathful_effect": "Ira",
+    "effect.cataclysm_spellbooks.wrathful_effect.description": "Il giocatore è pieno di ira, aumentando il danno di ogni colpo.",
+    "effect.cataclysm_spellbooks.crab_timer": "Granchio Ametista Evocato",
+    "effect.cataclysm_spellbooks.crab_timer.description": "Durata della permanenza di un Granchio Ametista evocato nel mondo.",
+    "effect.cataclysm_spellbooks.shutdown_effect": "Arresto",
+    "effect.cataclysm_spellbooks.shutdown_effect.description": "Il giocatore non può usare oggetti o attaccare e subisce danni nel processo.",
+    "effect.cataclysm_spellbooks.rewired_effect": "Ricollegato",
+    "effect.cataclysm_spellbooks.rewired_effect.description": "Aumenta danno e velocità di movimento ma riduce armatura e robustezza dell'armatura.",
+    "effect.cataclysm_spellbooks.hardware_update_effect": "Hardware Aggiornato",
+    "effect.cataclysm_spellbooks.hardware_update_effect.description": "Aumenta danno e armatura.",
+    "effect.cataclysm_spellbooks.software_update_effect": "Software Aggiornato",
+    "effect.cataclysm_spellbooks.software_update_effect.description": "Aumenta velocità e riduce il tempo di recupero degli incantesimi.",
+    "effect.cataclysm_spellbooks.intrusion_defense_system_software": "Software IDS",
+    "effect.cataclysm_spellbooks.intrusion_defense_system_software.description": "Riduce il danno da proiettile e impedisce che le evocazioni vengano neutralizzate.",
+    "effect.cataclysm_spellbooks.disabled_effect": "Hardware Disabilitato",
+    "effect.cataclysm_spellbooks.disabled_effect.description": "Blocca qualsiasi forma di guarigione.",
+    "effect.cataclysm_spellbooks.mana_overcharged_effect": "Mana Sovraccaricato",
+    "effect.cataclysm_spellbooks.mana_overcharged_effect.description": "Aumenta mana e potenza degli incantesimi di Tecnomanzia.",
+    "effect.cataclysm_spellbooks.spell_res_overcharged_effect": "Resistenza Sovraccaricata",
+    "effect.cataclysm_spellbooks.spell_res_overcharged_effect.description": "Aumenta resistenza agli incantesimi e potenza degli incantesimi di Tecnomanzia.",
+    "effect.cataclysm_spellbooks.cooldown_overcharged_effect": "Recupero Sovraccaricato",
+    "effect.cataclysm_spellbooks.cooldown_overcharged_effect.description": "Riduce il tempo di recupero degli incantesimi e aumenta la potenza della Tecnomanzia.",
+    "effect.cataclysm_spellbooks.base_overcharged_effect": "Sovraccarico",
+    "effect.cataclysm_spellbooks.base_overcharged_effect.description": "Aumenta la potenza degli incantesimi di Tecnomanzia.",
+    "effect.cataclysm_spellbooks.sniper": "Occhio da Cecchino",
+    "effect.cataclysm_spellbooks.sniper.description": "Il danno dei proiettili è raddoppiato.",
+    "effect.cataclysm_spellbooks.hemophilia": "Emofilia",
+    "effect.cataclysm_spellbooks.hemophilia.description": "Il danno subito aumenta di 2,5 volte.",
+    "effect.cataclysm_spellbooks.ignited_timer": "Rinforzi Infiammati Evocati",
+    "effect.cataclysm_spellbooks.ignited_timer.description": "Durata della permanenza di un'entità Infiammata evocata nel mondo.",
+    "effect.cataclysm_spellbooks.koboldiator_timer": "Koboldiator Evocato",
+    "effect.cataclysm_spellbooks.koboldiator_timer.description": "Durata della permanenza di un Koboldiator evocato nel mondo.",
+    "effect.cataclysm_spellbooks.koboleton_timer": "Koboleton Evocato",
+    "effect.cataclysm_spellbooks.koboleton_timer.description": "Durata della permanenza di un Koboleton evocato nel mondo.",
+    "effect.cataclysm_spellbooks.draugur_timer": "Esercito di Draugur Evocato",
+    "effect.cataclysm_spellbooks.draugur_timer.description": "Durata della permanenza dell'esercito di Draugur evocato nel mondo.",
+    "effect.cataclysm_spellbooks.watcher_timer": "Osservatore Evocato",
+    "effect.cataclysm_spellbooks.watcher_timer.description": "Durata della permanenza di un Watcher o DoS Swarmer evocato nel mondo.",
+    "effect.cataclysm_spellbooks.prowler_timer": "Predatore Evocato",
+    "effect.cataclysm_spellbooks.prowler_timer.description": "Durata della permanenza di un Prowler evocato nel mondo.",
+    "effect.cataclysm_spellbooks.coral_golem_timer": "Golem di Corallo Evocato",
+    "effect.cataclysm_spellbooks.coral_golem_timer.description": "Durata della permanenza di un Golem di Corallo evocato nel mondo.",
+    "effect.cataclysm_spellbooks.coralssus_timer": "Coralssus Evocato",
+    "effect.cataclysm_spellbooks.coralssus_timer.description": "Durata della permanenza di un Coralssus evocato nel mondo.",
+    "effect.cataclysm_spellbooks.remnant_timer": "Rimasuglio Fantasma",
+    "effect.cataclysm_spellbooks.remnant_timer.description": "Durata della permanenza di un Rimasuglio Fantasma evocato nel mondo.",
+
+
+    "school.cataclysm_spellbooks.abyssal": "Abissale",
+    "school.cataclysm_spellbooks.technomancy": "Technomanzia",
+
+
+    "item.cataclysm_spellbooks.abyss_spell_book": "Libro di R'lyeh",
+    "item.cataclysm_spellbooks.desert_spell_book": "Libro del Deserto",
+    "item.cataclysm_spellbooks.ignis_spell_book": "Libro di Ignis",
+    "item.cataclysm_spellbooks.codex_of_malice_spell_book": "Codex della Malizia",
+    "item.cataclysm_spellbooks.disc_driver": "Libro dell'Araldo",
+    "item.cataclysm_spellbooks.disc_driver_description": "Sblocca gli incantesimi dell'Araldo quando equipaggiato",
+
+    "item.cataclysm_spellbooks.bloom_stone_staff": "Bastone di Pietrafiorita",
+    "item.cataclysm_spellbooks.coral_staff": "Bastone Corallino",
+    "item.cataclysm_spellbooks.fake_wudjets_staff": "Falso Bastone di Wadjet",
+    "item.cataclysm_spellbooks.void_staff": "Bastone del Vuoto",
+    "item.cataclysm_spellbooks.spirit_sunderer": "Spaccatore di Spiriti",
+    "item.cataclysm_spellbooks.gauntlet_of_power": "Ordalìa",
+    "item.cataclysm_spellbooks.gauntlet_of_gattling": "Soggiogatore",
+    "item.cataclysm_spellbooks.engineers_power_glove": "Guanto dell’Ingegnere Potenziato",
+    "item.cataclysm_spellbooks.soul_brazier": "Braciere delle Anime",
+    "item.cataclysm_spellbooks.the_nightstalker": "Predatore Notturno",
+    "item.cataclysm_spellbooks.the_berserker": "Berserker",
+    "item.cataclysm_spellbooks.the_combuster": "Ardente",
+
+    "item.cataclysm_spellbooks.monstrous_flamberge": "Flamberga Mostruosa",
+
+    "item.cataclysm_spellbooks.abyssal_rune": "Runa Abissale",
+    "item.cataclysm_spellbooks.technomancy_rune": "Runa della Tecnomanzia",
+    "item.cataclysm_spellbooks.mechanical_scrap": "Rottame Meccanico",
+    "item.cataclysm_spellbooks.excel_upgrade_mana": "Potenziamento Excelsius: Mana",
+    "item.cataclysm_spellbooks.excel_upgrade_resistence": "Potenziamento Excelsius: Resistenza Magica",
+    "item.cataclysm_spellbooks.excel_upgrade_cooldown": "Potenziamento Excelsius: Recupero",
+    "item.cataclysm_spellbooks.burning_knowledge_fragment": "Frammento di Conoscenza Ardente",
+    "item.cataclysm_spellbooks.burning_manuscript": "Manoscritto Ardente",
+    "item.cataclysm_spellbooks.burning_manuscript_description": "Se presente nell’inventario, sblocca tutti gli incantesimi di Ignis",
+    "item.cataclysm_spellbooks.frozen_knowledge_fragment": "Frammento di Conoscenza Gelida",
+    "item.cataclysm_spellbooks.frozen_tablet": "Tavoletta Gelida",
+    "item.cataclysm_spellbooks.frozen_tablet_description": "Se presente nell’inventario, sblocca tutti gli incantesimi di Maledictus",
+    "item.cataclysm_spellbooks.strange_disc": "Disco Strano",
+    "item.cataclysm_spellbooks.strange_disc_description": "Se presente nell’inventario, sblocca tutti gli incantesimi dell’Araldo",
+
+    "item.cataclysm_spellbooks.ignis_helmet": "Cappello del Mago Ignis",
+    "item.cataclysm_spellbooks.ignis_chestplate": "Vesti del Mago Ignis",
+    "item.cataclysm_spellbooks.ignis_chestplate_elytra": "Vesti Alate di Ignis",
+    "item.cataclysm_spellbooks.ignis_leggings": "Gambiere del Mago Ignis",
+    "item.cataclysm_spellbooks.ignis_boots": "Stivali del Mago Ignis",
+
+    "item.cataclysm_spellbooks.abyssal_warlock_helmet": "Cappuccio dello Stregone Abissale",
+    "item.cataclysm_spellbooks.abyssal_warlock_mask": "Maschera dello Stregone Abissale",
+    "item.cataclysm_spellbooks.abyssal_warlock_chestplate": "Vesti dello Stregone Abissale",
+    "item.cataclysm_spellbooks.abyssal_warlock_leggings": "Gambiere dello Stregone Abissale",
+    "item.cataclysm_spellbooks.abyssal_warlock_boots": "Stivali dello Stregone Abissale",
+
+    "item.cataclysm_spellbooks.cursium_mage_circlet": "Diadema del Mago in Cursium",
+    "item.cataclysm_spellbooks.cursium_mage_chestplate": "Corazza del Mago in Cursium",
+    "item.cataclysm_spellbooks.cursium_mage_elytra": "Corazza Alata del Mago in Cursium",
+    "item.cataclysm_spellbooks.cursium_mage_skirt": "Gonna del Mago in Cursium",
+    "item.cataclysm_spellbooks.cursium_mage_boots": "Stivali del Mago in Cursium",
+    "item.cataclysm_spellbooks.cursium_chestplate.desc4": "Può essere combinata con le Elitre",
+
+    "item.cataclysm_spellbooks.pharaoh_helmet": "Copricapo Sacro del Faraone",
+    "item.cataclysm_spellbooks.pharaoh_chestplate": "Usbergo Sacro del Faraone",
+    "item.cataclysm_spellbooks.pharaoh_leggings": "Gonna Sacra del Faraone",
+    "item.cataclysm_spellbooks.pharaoh_greaves": "Stivali Sacri del Faraone",
+
+    "item.cataclysm_spellbooks.bloom_stone_hat": "Cappello di Pietrafiorita",
+    "item.cataclysm_spellbooks.bloom_stone_chestplate": "Corazza di Pietrafiorita",
+    "item.cataclysm_spellbooks.bloom_stone_skirt": "Gonna di Pietrafiorita",
+    "item.cataclysm_spellbooks.bloom_stone_greaves": "Stivali di Pietrafiorita",
+
+    "item.cataclysm_spellbooks.monstrous_wizard_hat": "Cappello da Mago Mostruoso",
+
+    "item.cataclysm_spellbooks.excelsius_speed_visors": "Visiera della Velocità Excelsius",
+    "item.cataclysm_spellbooks.excelsius_speed_chestplate": "Corazza della Velocità Excelsius",
+    "item.cataclysm_spellbooks.excelsius_power_visors": "Visiera della Potenza Excelsius",
+    "item.cataclysm_spellbooks.excelsius_power_chestplate": "Corazza della Potenza Excelsius",
+    "item.cataclysm_spellbooks.excelsius_resist_visors": "Visiera dell’Oppressore Excelsius",
+    "item.cataclysm_spellbooks.excelsius_resist_chestplate": "Corazza dell’Oppressore Excelsius",
+    "item.cataclysm_spellbooks.excelsius_leggings": "Gambali a Propulsione Excelsius",
+    "item.cataclysm_spellbooks.excelsius_greaves": "Stivali a Propulsione Excelsius",
+
+    "item.cataclysm_spellbooks.excelsius_helmet.desc": "Mirino a Ricerca",
+    "item.cataclysm_spellbooks.excelsius_helmet.desc2": "Premi %s per conferire alle entità vicine l'effetto Guidato e raddoppiare il danno dei tuoi proiettili",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc": "Volo Infinito",
+    "item.cataclysm_spellbooks.excelsius_chestplate.desc2": "Permette di volare con l’elytra senza limiti di carburante o potenziamenti",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc": "Immunità alle cadute",
+    "item.cataclysm_spellbooks.excelsius_leggings.desc2": "Qualsiasi danno da caduta viene annullato",
+    "item.cataclysm_spellbooks.excelsius_boots.desc": "Potere del Salto",
+    "item.cataclysm_spellbooks.excelsius_boots.desc2": "Premi %s per ottenere un potenziamento al salto, incendiando le entità vicine",
+
+    "item.cataclysm_spellbooks.engineer_hood": "Cappuccio dell’Ingegnere",
+    "item.cataclysm_spellbooks.engineer_suit": "Tuta dell’Ingegnere",
+    "item.cataclysm_spellbooks.engineer_leggings": "Pantaloni dell’Ingegnere",
+    "item.cataclysm_spellbooks.engineer_boots": "Stivali dell’Ingegnere",
+
+    "item.cataclysm_spellbooks.leviathans_blessing": "Benedizione del Leviatano",
+    "item.cataclysm_spellbooks.leviathans_blessing.desc": "Garantisce l'immunità agli effetti abissali",
+
+    "item.cataclysm_spellbooks.abyssal_upgrade_orb": "Sfera di Potenziamento Abissale",
+    "item.cataclysm_spellbooks.technomancy_upgrade_orb": "Sfera di Potenziamento Tecnomantica",
+
+    "spell.cataclysm_spellbooks.void_beam": "Raggio Abissale",
+    "spell.cataclysm_spellbooks.void_beam.guide": "Lancia un raggio abissale verso il bersaglio scelto",
+
+    "spell.cataclysm_spellbooks.void_rune": "Evoca: Runa del Vuoto",
+    "spell.cataclysm_spellbooks.void_rune.guide": "Lancia una runa del vuoto verso il bersaglio scelto",
+
+    "spell.cataclysm_spellbooks.dimensional_rift": "Fenditura Dimensionale",
+    "spell.cataclysm_spellbooks.dimensional_rift.guide": "Evoca una fenditura dimensionale",
+
+    "spell.cataclysm_spellbooks.abyssal_slash": "Lacerazione Abissale",
+    "spell.cataclysm_spellbooks.abyssal_slash.guide": "Colpisci il bersaglio infliggendo danno da mischia",
+
+    "spell.cataclysm_spellbooks.abyssal_blast": "Esplosione Abissale",
+    "spell.cataclysm_spellbooks.abyssal_blast.guide": "Scatena un’esplosione devastante che danneggia blocchi e infligge bruciatura abissale",
+
+    "spell.cataclysm_spellbooks.abyssal_predator": "Predatore Abissale",
+    "spell.cataclysm_spellbooks.abyssal_predator.guide": "Aumenta velocità di nuoto, danno e velocità d’attacco. Infliggi più danno sott’acqua",
+
+    "spell.cataclysm_spellbooks.depth_charge": "Carica di Profondità",
+    "spell.cataclysm_spellbooks.depth_charge.guide": "Evoca mine di profondità intorno a te",
+
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer": "Evoca: Predatori Abissali",
+    "spell.cataclysm_spellbooks.conjure_abyssal_gnawer.guide": "Evoca una scuola di Predatori Abissali da un’altra dimensione per assisterti",
+
+    "spell.cataclysm_spellbooks.tidal_grab": "Lacerazione Tentacolare",
+    "spell.cataclysm_spellbooks.tidal_grab.guide": "Scaglia un tentacolo dalla tua mano per danneggiare i bersagli",
+
+    "spell.cataclysm_spellbooks.infernal_strike": "Colpo Infernale",
+    "spell.cataclysm_spellbooks.infernal_strike.guide": "Lancia un mini-Inceneritore verso il bersaglio, infliggendo il marchio ardente",
+
+    "spell.cataclysm_spellbooks.incineration": "Incenerimento",
+    "spell.cataclysm_spellbooks.incineration.guide": "Evoca colpi di fiamma in linea retta davanti a te",
+
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement": "Rinforzi Incendiati",
+    "spell.cataclysm_spellbooks.conjure_ignited_reinforcement.guide": "Evoca Spiriti e Berserker Incendiati a tuo supporto",
+
+    "spell.cataclysm_spellbooks.ashen_breath": "Respiro Ceneroso",
+    "spell.cataclysm_spellbooks.ashen_breath.guide": "Soffia respiro di cenere sui nemici",
+
+    "spell.cataclysm_spellbooks.bone_storm": "Tempesta di Ossa",
+    "spell.cataclysm_spellbooks.bone_storm.guide": "Scatena una tempesta di ossa rotanti. Più alta è la velocità, maggiore la diffusione",
+
+    "spell.cataclysm_spellbooks.piercing_bone": "Osso Perforante",
+    "spell.cataclysm_spellbooks.piercing_bone.guide": "Lancia un osso ardente verso il bersaglio, seguito da un piccolo scoppio di 3 ossa",
+
+    "spell.cataclysm_spellbooks.hellish_blade": "Lama Infernale",
+    "spell.cataclysm_spellbooks.hellish_blade.guide": "Evoca una replica dell’Inceneritore sopra il bersaglio, stordendolo e infliggendo il marchio ardente",
+
+    "spell.cataclysm_spellbooks.abyss_fireball": "Corusco Abissale",
+    "spell.cataclysm_spellbooks.abyss_fireball.guide": "Evoca una pioggia di palle di fuoco rimbalzanti che cambiano in base alla tua salute, infliggendo il marchio ardente",
+
+    "spell.cataclysm_spellbooks.amethyst_puncture": "Pungiglione d’Ametista",
+    "spell.cataclysm_spellbooks.amethyst_puncture.guide": "Scaglia un cluster di ametista verso il bersaglio",
+
+    "spell.cataclysm_spellbooks.gravity_storm": "Tempesta di Gravità",
+    "spell.cataclysm_spellbooks.gravity_storm.guide": "Evoca un vortice del vuoto dove punti lo sguardo, devastando i nemici",
+
+    "spell.cataclysm_spellbooks.void_bulwark": "Baluardo del Vuoto",
+    "spell.cataclysm_spellbooks.void_bulwark.guide": "Evoca rune del vuoto intorno a te per danneggiare chi ti attacca",
+
+    "spell.cataclysm_spellbooks.gravitation_pull": "Trazione Gravitazionale",
+    "spell.cataclysm_spellbooks.gravitation_pull.guide": "Attira le entità verso di te manipolando la gravità circostante",
+
+    "spell.cataclysm_spellbooks.sandstorm": "Tempesta di Sabbia",
+    "spell.cataclysm_spellbooks.sandstorm.guide": "Evoca tempeste di sabbia che ti circondano",
+
+    "spell.cataclysm_spellbooks.desert_winds": "Venti del Deserto",
+    "spell.cataclysm_spellbooks.desert_winds.guide": "Evoca una piccola tempesta di sabbia che danneggia i nemici di fronte a te",
+
+    "spell.cataclysm_spellbooks.monolith_crash": "Crollo dei Monoliti",
+    "spell.cataclysm_spellbooks.monolith_crash.guide": "Evoca monoliti che precipitano intorno a te e ai nemici",
+
+    "spell.cataclysm_spellbooks.malevolent_battlefield": "Campo Malefico",
+    "spell.cataclysm_spellbooks.malevolent_battlefield.guide": "Evoca Alabarde Fantasma intorno a te, infliggendo danni massicci",
+
+    "spell.cataclysm_spellbooks.forgone_rage": "Rabbia Trascurata",
+    "spell.cataclysm_spellbooks.forgone_rage.guide": "Aumenta il tuo danno mentre attacchi. Alla fine della rabbia, sei indebolito",
+
+    "spell.cataclysm_spellbooks.conjure_koboldiator": "Evoca: Koboldiator",
+    "spell.cataclysm_spellbooks.conjure_koboldiator.guide": "Evoca il potente Koboldiator a tuo supporto",
+
+    "spell.cataclysm_spellbooks.pilfer": "Saccheggio",
+    "spell.cataclysm_spellbooks.pilfer.guide": "Ruba l’oggetto che il bersaglio impugna",
+
+    "spell.cataclysm_spellbooks.summon_koboleton": "Evoca: Koboleton",
+    "spell.cataclysm_spellbooks.summon_koboleton.guide": "Evoca un gruppo di Koboleton a combattere al tuo fianco",
+
+    "spell.cataclysm_spellbooks.cursed_rush": "Corsa Maledetta",
+    "spell.cataclysm_spellbooks.cursed_rush.guide": "Scatena una corsa nella direzione in cui guardi, evocando Alabarde Fantasma lungo il percorso",
+
+    "spell.cataclysm_spellbooks.conjure_thralls": "Evoca: Sgherri Non Morti",
+    "spell.cataclysm_spellbooks.conjure_thralls.guide": "Evoca un gruppo di draugur non morti al tuo fianco",
+
+    "spell.cataclysm_spellbooks.tectonic_tremble": "Tremito Tettonico",
+    "spell.cataclysm_spellbooks.tectonic_tremble.guide": "Scuoti la terra, incendiando e respingendo i nemici",
+
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab": "Evoca: Granchio d’Ametista",
+    "spell.cataclysm_spellbooks.conjure_amethyst_crab.guide": "Evoca il leggendario Granchio d’Ametista al tuo fianco",
+
+    "spell.cataclysm_spellbooks.laserbolt": "Raggio Laser",
+    "spell.cataclysm_spellbooks.laserbolt.guide": "Mira a un’entità e spara un piccolo raggio laser",
+
+    "spell.cataclysm_spellbooks.atomic_laser": "Laser Atomico",
+    "spell.cataclysm_spellbooks.atomic_laser.guide": "Spara un laser devastante nella direzione in cui guardi, immobilizzandoti",
+
+    "spell.cataclysm_spellbooks.emp_blast": "EMP",
+    "spell.cataclysm_spellbooks.emp_blast.guide": "Emetti un impulso EMP che stordisce i nemici vicini",
+
+    "spell.cataclysm_spellbooks.lock_on": "Blocco Bersaglio",
+    "spell.cataclysm_spellbooks.lock_on.guide": "Seleziona un bersaglio, mostrando un mirino sopra la sua testa e stordendolo brevemente",
+
+    "spell.cataclysm_spellbooks.construct_watchers": "Costruisci: Watchers",
+    "spell.cataclysm_spellbooks.construct_watchers.guide": "Evoca un gruppo di Watchers a tuo supporto",
+
+    "spell.cataclysm_spellbooks.construct_prowler": "Costruisci: Prowler",
+    "spell.cataclysm_spellbooks.construct_prowler.guide": "Evoca un Prowler a tuo supporto",
+
+    "spell.cataclysm_spellbooks.ddos": "Denial of Service Distribuito",
+    "spell.cataclysm_spellbooks.ddos.guide": "Disattiva servizi intorno a te, annullando evocazioni e magie vicine",
+
+    "spell.cataclysm_spellbooks.dos_swarm": "Sciame DoS",
+    "spell.cataclysm_spellbooks.dos_swarm.guide": "Evoca Watchers che attaccano i nemici vicini, annullando magie e esplodendo all’impatto",
+
+    "spell.cataclysm_spellbooks.shutdown": "Spegnimento",
+    "spell.cataclysm_spellbooks.shutdown.guide": "Blocca i processi del bersaglio, impedendo attacchi e uso di oggetti",
+
+    "spell.cataclysm_spellbooks.rewire": "Riconfigurazione",
+    "spell.cataclysm_spellbooks.rewire.guide": "Riconfigura le capacità dei tuoi evocati, aumentando velocità e danno, riducendo però armatura e resistenza",
+
+    "spell.cataclysm_spellbooks.hardware_update": "Aggiornamento Hardware",
+    "spell.cataclysm_spellbooks.hardware_update.guide": "Aggiorna i tuoi componenti interni con nuovo hardware, aumentando armatura e danno d’attacco. Non si cumula con Carica, Rapidità o Aggiornamento Software",
+
+    "spell.cataclysm_spellbooks.software_update": "Aggiornamento Software",
+    "spell.cataclysm_spellbooks.software_update.guide": "Aggiorna i tuoi sistemi con nuovo software, aumentando la velocità e riducendo il cooldown degli incantesimi. Non si cumula con Carica, Rapidità o Aggiornamento Hardware",
+
+    "spell.cataclysm_spellbooks.missile_launch": "Pioggia di Missili",
+    "spell.cataclysm_spellbooks.missile_launch.guide": "Seleziona un bersaglio e lancia una raffica di missili con ricerca automatica",
+
+    "spell.cataclysm_spellbooks.aerial_assault": "Assalto Aereo",
+    "spell.cataclysm_spellbooks.aerial_assault.guide": "Scatena un assalto aereo di missili intorno a te",
+
+    "spell.cataclysm_spellbooks.intrusion_prevention_system": "Sistema Anti-Intrusione",
+    "spell.cataclysm_spellbooks.intrusion_prevention_system.guide": "Proteggi te stesso e i tuoi evocati vicini con IPS, prevenendo danni da proiettile e contro-incantesimi",
+
+    "spell.cataclysm_spellbooks.overcharged": "Sovraccarico",
+    "spell.cataclysm_spellbooks.overcharged.guide": "Sovraccarica i tuoi sistemi, potenziando le tue capacità oltre i limiti normali. Interagisce in modo unico con alcuni oggetti",
+
+    "spell.cataclysm_spellbooks.parting_shot": "Colpo Finale",
+    "spell.cataclysm_spellbooks.parting_shot.guide": "Carica la tua arma, scatenando due potenti raggi che infliggono Wither al contatto",
+
+    "spell.cataclysm_spellbooks.surveillance_drone": "Costrutto: Drone di Sorveglianza",
+    "spell.cataclysm_spellbooks.surveillance_drone.guide": "Evoca un drone sopra i tuoi evocati, curando te e i tuoi alleati vicini",
+
+    "spell.cataclysm_spellbooks.flash_bang": "Granata Stordente",
+    "spell.cataclysm_spellbooks.flash_bang.guide": "Lancia una granata non letale, accecando i nemici vicini",
+
+    "spell.cataclysm_spellbooks.disabling_swipe": "Colpo Paralizzante",
+    "spell.cataclysm_spellbooks.disabling_swipe.guide": "Colpisci l’hardware del bersaglio, impedendo brevemente qualsiasi cura in arrivo",
+
+    "spell.cataclysm_spellbooks.gear_shift": "Cambio Marcia",
+    "spell.cataclysm_spellbooks.gear_shift.guide": "In piedi, scatta in avanti. Accovacciato, scatta verso l’alto",
+
+    "spell.cataclysm_spellbooks.reboot": "Riavvio",
+    "spell.cataclysm_spellbooks.reboot.guide": "Riavvia i tuoi sistemi, curando te stesso e gli alleati vicini",
+
+    "spell.cataclysm_spellbooks.phantasmal_blade": "Lama Fantasmale",
+    "spell.cataclysm_spellbooks.phantasmal_blade.guide": "Sbatti la tua arma a terra, scatenando lame fantasma intorno a te",
+
+    "spell.cataclysm_spellbooks.comet_shower": "Pioggia di Comete",
+    "spell.cataclysm_spellbooks.comet_shower.guide": "Scatena bombe infuocate da te, creando getti di fuoco ovunque cadano",
+
+    "spell.cataclysm_spellbooks.meteor_spew": "Sputo di Meteore",
+    "spell.cataclysm_spellbooks.meteor_spew.guide": "Lancia blocchi di roccia e lava fusi nella direzione in cui guardi, generando lava all’impatto",
+
+    "spell.cataclysm_spellbooks.conjure_coral_golem": "Evoca: Golem di Corallo",
+    "spell.cataclysm_spellbooks.conjure_coral_golem.guide": "Evoca un gruppo di golem di corallo a tuo fianco",
+
+    "spell.cataclysm_spellbooks.conjure_coralssus": "Evoca: Coralssus",
+    "spell.cataclysm_spellbooks.conjure_coralssus.guide": "Evoca un Coralssus da cavalcare e combattere al tuo fianco",
+
+    "spell.cataclysm_spellbooks.thoths_witness": "Testimone di Thoth",
+    "spell.cataclysm_spellbooks.thoths_witness.guide": "Con la benedizione di Thoth, evoca brevemente lo spirito dell’Antico Rimasuglio a tuo fianco",
+
+    "spell.cataclysm_spellbooks.pharaohs_wrath": "Ira del Faraone",
+    "spell.cataclysm_spellbooks.pharaohs_wrath.guide": "Riempi te stesso di rabbia ardente, aumentando danno e potere degli incantesimi quando subisci colpi. Sei indebolito alla fine dell’ira",
+
+    "spell.cataclysm_spellbooks.hemorrhaging_impact": "Impeto Emorragico",
+    "spell.cataclysm_spellbooks.hemorrhaging_impact.guide": "Carica la tua arma, scatenando una potente lancia di sangue e diversi aghi. La lancia infligge Emofilia e recuperi il 75% del danno come guarigione",
+
+    "spell.cataclysm_spellbooks.scorched_earth": "Terra Bruciata",
+    "spell.cataclysm_spellbooks.scorched_earth.guide": "Carica la tua arma, scatenando una raffica di proiettili fusi. Ogni proiettile lascia un’area che infligge danni da fuoco intensi",
+
+    "spell.cataclysm_spellbooks.cryopiercer": "Criofendente",
+    "spell.cataclysm_spellbooks.cryopiercer.guide": "Carica la tua arma, scatenando una raffica di proiettili congelati. All’impatto con un’entità, la intrappolano nel ghiaccio",
+
+
+    "ui.cataclysm_spellbooks.void_beam": "Evoca un raggio abissale simile ai warlock Deepling",
+    "ui.cataclysm_spellbooks.void_rune": "Evoca una runa del vuoto nella posizione del bersaglio",
+    "ui.cataclysm_spellbooks.dimensional_rift_spell.lifespan": "Evoca una fessura dimensionale della durata di %d secondi",
+    "ui.cataclysm_spellbooks.gnawer_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.range": "Portata %d per lanciare l'incantesimo",
+    "ui.cataclysm_spellbooks.incinerator_damage": "Infligge %d se l'Inceneritore è impugnato nella mano principale",
+    "ui.cataclysm_spellbooks.incineration_duration": "Dura %d secondi",
+    "ui.cataclysm_spellbooks.ignited_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.bone_speed_1": "Velocità del proiettile: %d",
+    "ui.cataclysm_spellbooks.bone_speed_2": "Velocità del proiettile: %d",
+    "ui.cataclysm_spellbooks.bone_speed_3": "Velocità del proiettile: %d",
+    "ui.cataclysm_spellbooks.blazing_bone_speed": "Velocità del proiettile: %d",
+    "ui.cataclysm_spellbooks.fireball_details": "Sotto metà salute la palla di fuoco diventa fuoco dell’anima, sotto il 30% diventa palla di fuoco abissale",
+    "ui.cataclysm_spellbooks.recast_count": "Può essere lanciato %d volte consecutivamente prima del cooldown",
+    "ui.cataclysm_spellbooks.amethyst_speed": "Lancia cluster di ametista a velocità %d",
+    "ui.cataclysm_spellbooks.gravity_storm.lifespan": "Evoca un vortice del vuoto della durata di %d secondi",
+    "ui.cataclysm_spellbooks.difference": "Influisce sulle entità a velocità %d",
+    "ui.cataclysm_spellbooks.gravitation": "In piedi attira le entità, accovacciati le respinge",
+    "ui.cataclysm_spellbooks.sandstorm.lifespan": "Evoca una tempesta di sabbia della durata di %d secondi",
+    "ui.cataclysm_spellbooks.sandstorm_amount": "Evoca %d tempeste di sabbia intorno all’utente",
+    "ui.cataclysm_spellbooks.windmill_rings": "%d cerchi",
+    "ui.cataclysm_spellbooks.windmill_amount": "%d monoliti per cerchio",
+    "ui.cataclysm_spellbooks.halberd_rings": "%d cerchi",
+    "ui.cataclysm_spellbooks.halberd_amount": "%d alabarde per cerchio",
+    "ui.cataclysm_spellbooks.soul_render_damage": "Infligge %d se Divisore di Spiriti è impugnato nella mano principale",
+    "ui.cataclysm_spellbooks.forgone_rage_strikes": "Ogni colpo consecutivo aumenta il danno del 20%, fino a un massimo di quattro",
+    "ui.cataclysm_spellbooks.pilfer_priority": "Priorità agli oggetti in off-hand rispetto alla main-hand da rubare",
+    "ui.cataclysm_spellbooks.koboleton_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.koboldiator_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.thrall_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.halberd_rush": "Evoca Alabarde nella posizione iniziale e occasionalmente nella posizione finale",
+    "ui.cataclysm_spellbooks.maledictus_armory_bonus": "Infligge %d se Divisore di Spiriti o Annientatore è impugnato nella mano principale",
+    "ui.cataclysm_spellbooks.crab_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.underwater_damage_bonus": "Infligge danno bonus sott’acqua o sotto la pioggia",
+    "ui.cataclysm_spellbooks.watcher_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.prowler_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.forward_acceleration": "Accelerazione in avanti: %d",
+    "ui.cataclysm_spellbooks.upward_acceleration": "Accelerazione verso l’alto: %d",
+    "ui.cataclysm_spellbooks.summon_healing": "Cura alleata: %d",
+    "ui.cataclysm_spellbooks.recast_bonus_damage": "Danno aggiuntivo: %d (+1 per ogni rilancio)",
+    "ui.cataclysm_spellbooks.effect_percentage": "%d% Bonus alle statistiche Overcharged",
+    "ui.cataclysm_spellbooks.howitzer_crouching": "Accovacciandosi, evoca Howitzer invece",
+    "ui.cataclysm_spellbooks.phantom_blades": "%d Lame Fantasma",
+    "ui.cataclysm_spellbooks.coral_golem_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.coralssus_count": "%d Evocazioni",
+    "ui.cataclysm_spellbooks.remnant_count": "%d Rimasugli Fantasma",
+    "ui.cataclysm_spellbooks.kings_wrath_strikes": "Ogni colpo consecutivo subito aumenta il danno del 20% e il potere magico del 5%, fino a un massimo di quattro colpi",
+    "ui.cataclysm_spellbooks.thoths_witness_scroll_failure": "Thoth non ti permette di lanciare questo incantesimo da un semplice rotolo",
+    "ui.cataclysm_spellbooks.thoths_witness_armor_failure": "Non possiedi l’armatura richiesta per ricevere il miracolo di Thoth; indossa l’armatura del faraone",
+    "ui.cataclysm_spellbooks.quake_damage": "Danno da terremoto: %d",
+    "ui.cataclysm_spellbooks.needle_damage": "Danno da ago di sangue: %d",
+
+
+    "entity.cataclysm_spellbooks.abyssal_gnawers": "Predatore Abissale",
+    "entity.cataclysm_spellbooks.infernal_blade": "Lama Infernale",
+    "entity.cataclysm_spellbooks.hellish_blade": "Lama Infernale", 
+    "entity.cataclysm_spellbooks.blazing_aoe": "Area Infuocata",
+    "entity.cataclysm_spellbooks.summoned_ignited_revenant": "Spirito Infuocato",
+    "entity.cataclysm_spellbooks.summoned_ignited_berserker": "Berserker Infuocato",
+    "entity.cataclysm_spellbooks.summoned_koboldiator": "Koboldiator Evocato",
+    "entity.cataclysm_spellbooks.summoned_koboleton": "Koboleton Evocato",
+    "entity.cataclysm_spellbooks.summoned_draugur": "Draugur Evocato",
+    "entity.cataclysm_spellbooks.summoned_royal_draugur": "Draugur Reale Evocato",
+    "entity.cataclysm_spellbooks.summoned_elite_draugur": "Draugur d’Élite Evocato",
+    "entity.cataclysm_spellbooks.summoned_aptrgangr": "Aptrgangr Evocato",
+    "entity.cataclysm_spellbooks.summoned_amethyst_crab": "Granchio Ametista Evocato",
+    "entity.cataclysm_spellbooks.extended_laser_beam": "Raggio Laser",
+    "entity.cataclysm_spellbooks.summoned_watcher": "Osservatore Evocato",
+    "entity.cataclysm_spellbooks.summoned_prowler": "Predatore Evocato",
+    "entity.cataclysm_spellbooks.summoned_counterspell_watcher": "Incantesimo Anti-Osservatore Evocato",
+    "entity.cataclysm_spellbooks.parting_shot": "Colpo Finale",
+    "entity.cataclysm_spellbooks.flash_bang": "Granata Stordente",
+    "entity.cataclysm_spellbooks.surveillance_drone": "Drone di Sorveglianza",
+    "entity.cataclysm_spellbooks.disabling_swipe": "Colpo Paralizzante",
+    "entity.cataclysm_spellbooks.no_man_zone_aoe": "Zona Invalicabile",
+    "entity.cataclysm_spellbooks.summoned_coral_golem": "Golem Corallino Evocato",
+    "entity.cataclysm_spellbooks.summoned_coralssus": "Coralssus Evocato",
+    "entity.cataclysm_spellbooks.phantom_ancient_remnant": "Rimasuglio Fantasma",
+    "entity.cataclysm_spellbooks.blood_crystal": "Lancia di Sangue Cristallizzata",
+    "entity.cataclysm_spellbooks.molten_bullet": "Proiettile Fuso",
+    "entity.cataclysm_spellbooks.scorched_earth_aoe": "Terra Bruciata",
+    "entity.cataclysm_spellbooks.frozen_bullet": "Proiettile Ghiacciato",
+    "entity.cataclysm_spellbooks.glacial_block": "Blocco Glaciale",
+
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer": "%1$s è stato dilaniato dai morsi di %2$s",
+    "death.attack.cataclysm_spellbooks.blazing_aoe": "%1$s è stato incenerito nel campo infuocato di %2$s",
+    "death.attack.cataclysm_spellbooks.hellish_blade": "%1$s è stato trafitto dalla lama infernale di %2$s",
+    "death.attack.cataclysm_spellbooks.infernal_strike": "%1$s è stato perforato dalla lama infernale di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_revenant": "%1$s è stato travolto dagli spiriti infuocati di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker": "%1$s è stato falciato dai berserker Infuocati di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_koboldiator": "%1$s è stato schiacciato dal Koboldiator di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_koboleton": "%1$s è stato massacrato dal Koboleton di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_draugur": "%1$s è stato sopraffatto dai Draugur di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_royal_draugur": "%1$s è stato sopraffatto dai Draugur Reali di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_elite_draugur": "%1$s è stato sopraffatto dai Draugur d’Élite di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_aptrgangr": "%1$s è stato spaccato a metà dall’Aptrgangr di %2$s",
+    "death.attack.cataclysm_spellbooks.summoned_amethyst_crab": "%1$s è stato schiacciato tra le chele del Granchio Ametista di %2$s",
+    "death.attack.cataclysm_spellbooks.parting_shot": "%1$s è stato atomizzato dal colpo finale di %2$s",
+    "death.attack.cataclysm_spellbooks.surveillance_drone": "%1$s è stato ucciso dal drone di sorveglianza di %2$s",
+    "death.attack.cataclysm_spellbooks.disabling_swipe": "%1$s ha subito danni al sistema da un colpo paralizzante di %2$s",
+    "death.attack.cataclysm_spellbooks.no_man_zone_aoe": "%1$s è stato annientato nella Zona Invalicabile di %2$s",
+    "death.attack.cataclysm_spellbooks.blood_crystal": "%1$s è stato trafitto dalla lancia di sangue cristallizzato di %2$s",
+    "death.attack.cataclysm_spellbooks.molten_bullet": "%1$s è stato bruciato dal proiettile fuso di %2$s",
+    "death.attack.cataclysm_spellbooks.scorched_earth_aoe": "%1$s è stato incenerito dalla Terra Bruciata di %2$s",
+    "death.attack.cataclysm_spellbooks.frozen_bullet": "%1$s è stato congelato dal proiettile ghiacciato di %2$s",
+    "death.attack.cataclysm_spellbooks.glacial_block": "%1$s è stato congelato dal Blocco Glaciale di %2$s",
+
+    "death.attack.blazing_aoe.item": "%1$s è stato incenerito nel campo infuocato di %2$s usando %3$s",
+    "death.attack.no_man_zone_aoe.item": "%1$s è stato annientato nella Zona Invalicabile di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.scorched_earth_aoe.item": "%1$s è stato incenerito dalla Terra Bruciata di %2$s usando %3$s",
+
+    "death.attack.cataclysm_spellbooks.conjure_abyssal_gnawer.item": "%1$s è stato dilaniato dai morsi di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.hellish_blade.item": "%1$s è stato trafitto dalla lama infernale di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.infernal_strike.item": "%1$s è stato perforato dalla lama infernale di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_revenant.item": "%1$s è stato travolto dagli spiriti infuocati di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_ignited_berserker.item": "%1$s è stato falciato dai berserker infuocati di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.parting_shot.item": "%1$s è stato atomizzato dal colpo finale di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.surveillance_drone.item": "%1$s è stato ucciso dal drone di sorveglianza di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.disabling_swipe.item": "%1$s ha subito danni al sistema da un colpo paralizzante di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.blood_crystal.item": "%1$s è stato trafitto dalla lancia di sangue cristallizzato di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.molten_bullet.item": "%1$s è stato bruciato dal proiettile fuso di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.frozen_bullet.item": "%1$s è stato congelato dal proiettile ghiacciato di %2$s usando %3$s",
+    "death.attack.cataclysm_spellbooks.glacial_block.item": "%1$s è stato congelato dal Blocco Glaciale di %2$s usando %3$s"
+
+}

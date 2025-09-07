@@ -1,6 +1,7 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.github.L_Ender.cataclysm.Cataclysm;
+import com.github.L_Ender.cataclysm.client.particle.RingParticle;
 import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
 import com.github.L_Ender.cataclysm.config.CMConfig;
 import com.github.L_Ender.cataclysm.init.ModKeybind;
@@ -12,8 +13,15 @@ import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -89,8 +97,17 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
             tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_leggings.desc2").withStyle(ChatFormatting.DARK_GREEN));
         }
         if (this.type == Type.BOOTS) {
-            tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc2", ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
+            if (Screen.hasShiftDown())
+            {
+                tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
+                tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc2", ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
+                tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc3", ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
+                tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc4", ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
+            } else
+            {
+                tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
+                tooltip.add(Component.translatable("item.cataclysm_spellbooks.excelsius_boots.desc_shift").withStyle(ChatFormatting.DARK_GREEN));
+            }
         }
     }
 
@@ -100,11 +117,12 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
 
         if (pEntity instanceof Player player)
         {
-            // Flight
+            // Flight - we don't want to do cool fly if we are crouching
             if (
-                    this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_SPEED_CHESTPLATE.get()) && player.isFallFlying() ||
+                    (this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_SPEED_CHESTPLATE.get()) && player.isFallFlying() ||
                     this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()) && player.isFallFlying() ||
-                    this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()) && player.isFallFlying()
+                    this.type == Type.CHESTPLATE && player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()) && player.isFallFlying())
+                    && !player.isCrouching()
             )
             {
                 Vec3 playerMotion = player.getDeltaMovement().add(player.getLookAngle()).normalize();
@@ -260,37 +278,176 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
             if (player != null && !player.getCooldowns().isOnCooldown(ItemRegistries.EXCELSIUS_WARLOCK_BOOTS.get()))
             {
                 // Jump up into the air, burning nearby entities
-                List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(5));
-                for (Entity entities : list)
+
+                // Normal jump boost
+                if (!player.isFallFlying() && !player.isCrouching())
                 {
-                    if (entities instanceof LivingEntity livingEntity)
+                    if (!isHovering())
                     {
-                        livingEntity.setSecondsOnFire(5);
+                        List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(5));
+                        for (Entity entities : list)
+                        {
+                            if (entities instanceof LivingEntity livingEntity)
+                            {
+                                livingEntity.setSecondsOnFire(5);
+                            }
+                        }
+
+                        Vec3 up = player.getLookAngle().multiply(1, 0, 1).normalize().add(0, 1, 0);
+
+                        player.setDeltaMovement(up.x, up.y, up.z);
+
+                        Vec3 vec3 = player.getDeltaMovement();
+
+                        double d0 = player.getX() - vec3.x;
+                        double d1 = player.getY() - vec3.y;
+                        double d2 = player.getZ() - vec3.z;
+                        var count = Mth.clamp((int) (vec3.lengthSqr() * 4), 1, 4);
+                        for (int j = 0; j < count; j++) {
+                            Vec3 random = Utils.getRandomVec3(.25);
+                            var f = j / ((float) count);
+                            var x = Mth.lerp(f, d0, player.getX());
+                            var y = Mth.lerp(f, d1, player.getY());
+                            var z = Mth.lerp(f, d2, player.getZ());
+                            player.level().addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                        }
+
+                        player.level().playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.55F, 1);
+                    } else if (isHovering())
+                    {
+                        List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(5));
+                        for (Entity entities : list)
+                        {
+                            if (entities instanceof LivingEntity livingEntity)
+                            {
+                                livingEntity.setSecondsOnFire(5);
+                            }
+                        }
+
+                        Vec3 up = player.getLookAngle().multiply(0.2, 0, 0.2).normalize().add(0, 0.1, 0);
+
+                        player.setDeltaMovement(up.x, up.y, up.z);
+
+                        Vec3 vec3 = player.getDeltaMovement();
+
+                        double d0 = player.getX() - vec3.x;
+                        double d1 = player.getY() - vec3.y;
+                        double d2 = player.getZ() - vec3.z;
+                        var count = Mth.clamp((int) (vec3.lengthSqr() * 4), 1, 4);
+                        for (int j = 0; j < count; j++) {
+                            Vec3 random = Utils.getRandomVec3(.25);
+                            var f = j / ((float) count);
+                            var x = Mth.lerp(f, d0, player.getX());
+                            var y = Mth.lerp(f, d1, player.getY());
+                            var z = Mth.lerp(f, d2, player.getZ());
+                            player.level().addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                        }
+
+                        player.level().playSound(player, player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.55F, 0.75F);
                     }
                 }
+                // Sonic Burst
+                else if (player.isFallFlying() && !player.isCrouching())
+                {
+                    List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(5));
+                    for (Entity entities : list)
+                    {
+                        if (entities instanceof LivingEntity livingEntity)
+                        {
+                            livingEntity.setSecondsOnFire(15);
+                        }
+                    }
 
-                Vec3 up = player.getLookAngle().multiply(1, 0, 1).normalize().add(0, 1, 0);
+                    // Particles
+                    double x = player.getX();
+                    double y = player.getY() + player.getBbHeight() / 2;
+                    double z = player.getZ();
 
-                player.setDeltaMovement(up.x, up.y, up.z);
+                    float yaw = (float) Math.toRadians(-player.getYRot());
+                    float yaw2 = (float) Math.toRadians(-player.getYRot() + 180);
+                    float pitch = (float) Math.toRadians(-player.getXRot());
 
-                Vec3 vec3 = player.getDeltaMovement();
-                double d0 = player.getX() - vec3.x;
-                double d1 = player.getY() - vec3.y;
-                double d2 = player.getZ() - vec3.z;
-                var count = Mth.clamp((int) (vec3.lengthSqr() * 4), 1, 4);
-                for (int j = 0; j < count; j++) {
-                    Vec3 random = Utils.getRandomVec3(.25);
-                    var f = j / ((float) count);
-                    var x = Mth.lerp(f, d0, player.getX());
-                    var y = Mth.lerp(f, d1, player.getY());
-                    var z = Mth.lerp(f, d2, player.getZ());
-                    player.level().addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
-                    player.level().addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                    player.level().addParticle(new RingParticle.RingData(yaw, pitch, 55, 0.80f, 0.4f, 0.0f, 1.0f, 50f, false, RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), x, y, z, 0, 0, 0);
+                    player.level().addParticle(new RingParticle.RingData(yaw2, pitch, 55, 0.80f, 0.4f, 0.0f, 1.0f, 50f, false, RingParticle.EnumRingBehavior.GROW_THEN_SHRINK), x, y, z, 0, 0, 0);
+
+                    player.level().playSound(player, player.blockPosition(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.PLAYERS, 0.55F, 1);
+                }
+                // Hover
+                else if (!player.isFallFlying())
+                {
+                    if (player.isCrouching())
+                    {
+                        if (player.isNoGravity())
+                        {
+                            // display a message to the player
+                            if (player instanceof ServerPlayer serverPlayer)
+                            {
+                                serverPlayer.connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("display.cataclysm_spellbooks.hover_disabled")
+                                        .withStyle(s -> s.withColor(TextColor.fromRgb(0xF7D245)))));
+                                serverPlayer.level().playSound(null , player.getX() , player.getY() , player.getZ() ,
+                                        SoundEvents.EXPERIENCE_ORB_PICKUP , SoundSource.PLAYERS , 0.5f , 1.1f);
+                            }
+
+                            Vec3 down = player.getLookAngle().multiply(0, 0, 0).normalize().add(0, -0.1, 0);
+
+                            player.setDeltaMovement(down.x, down.y, down.z);
+
+                            player.setNoGravity(false);
+                            setHovering(false);
+                        } else
+                        {
+                            // display a message to the player
+                            if (player instanceof ServerPlayer serverPlayer)
+                            {
+                                serverPlayer.connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("display.cataclysm_spellbooks.hover_enabled")
+                                        .withStyle(s -> s.withColor(TextColor.fromRgb(0xF7D245)))));
+                                serverPlayer.level().playSound(null , player.getX() , player.getY() , player.getZ() ,
+                                        SoundEvents.EXPERIENCE_ORB_PICKUP , SoundSource.PLAYERS , 0.5f , 1.1f);
+                            }
+
+                            player.setNoGravity(true);
+                            setHovering(true);
+
+                            Vec3 up = player.getLookAngle().multiply(0.2, 0, 0.2).normalize().add(0, 0.2, 0);
+
+                            player.setDeltaMovement(up.x, up.y, up.z);
+                        }
+
+                        Vec3 vec3 = player.getDeltaMovement();
+
+                        double d0 = player.getX() - vec3.x;
+                        double d1 = player.getY() - vec3.y;
+                        double d2 = player.getZ() - vec3.z;
+                        var count = Mth.clamp((int) (vec3.lengthSqr() * 2), 1, 2);
+                        for (int j = 0; j < count; j++) {
+                            Vec3 random = Utils.getRandomVec3(.25);
+                            var f = j / ((float) count);
+                            var x = Mth.lerp(f, d0, player.getX());
+                            var y = Mth.lerp(f, d1, player.getY());
+                            var z = Mth.lerp(f, d2, player.getZ());
+                            player.level().addParticle(ParticleTypes.LARGE_SMOKE, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                            player.level().addParticle(ParticleHelper.EMBERS, x - random.x, y + 0.5D - random.y, z - random.z, random.x * .5f, random.y * .5f, random.z * .5f);
+                        }
+                    }
                 }
 
                 // 3 second cooldown, it's just jumping
                 player.getCooldowns().addCooldown(ItemRegistries.EXCELSIUS_WARLOCK_BOOTS.get(), 60);
             }
         }
+    }
+
+    public static boolean hover;
+
+    public boolean isHovering()
+    {
+        return hover;
+    }
+
+    public void setHovering(boolean value)
+    {
+        hover = value;
     }
 }

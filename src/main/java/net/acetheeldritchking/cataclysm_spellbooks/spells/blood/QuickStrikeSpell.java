@@ -50,7 +50,7 @@ public class QuickStrikeSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(CSSchoolRegistry.BLOOD_RESOURCE)
-            .setMaxLevel(6)
+            .setMaxLevel(5)
             .setCooldownSeconds(25)
             .build();
 
