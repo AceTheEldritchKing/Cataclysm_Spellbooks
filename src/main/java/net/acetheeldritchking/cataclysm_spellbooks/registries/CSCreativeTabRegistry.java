@@ -40,6 +40,7 @@ public class CSCreativeTabRegistry {
                         // Curios
                         output.accept(ItemRegistries.LEVIATHANS_BLESSING.get());
                         output.accept(ItemRegistries.BURST_SHEATH.get());
+                        output.accept(ItemRegistries.MECHANICAL_BRACE.get());
                         // Spellbooks
                         output.accept(ItemRegistries.ABYSS_SPELL_BOOK.get());
                         output.accept(ItemRegistries.IGNIS_SPELL_BOOK.get());

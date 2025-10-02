@@ -10,13 +10,14 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistr
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
 
 public class LeviathansBlessingRing extends SimpleDescriptiveCurio {
     public LeviathansBlessingRing() {
-        super(ItemPropertiesHelper.equipment().stacksTo(1), Curios.RING_SLOT);
+        super(ItemPropertiesHelper.equipment().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), Curios.RING_SLOT);
     }
 
     @Override

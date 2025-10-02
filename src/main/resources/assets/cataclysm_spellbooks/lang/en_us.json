@@ -171,6 +171,8 @@
     "item.cataclysm_spellbooks.leviathans_blessing.desc": "Provides immunity to abyssal effects",
     "item.cataclysm_spellbooks.burst_sheath": "Burst Sheath",
     "item.cataclysm_spellbooks.burst_sheath.desc": "Deal double damage to entities with a 15 second cooldown",
+    "item.cataclysm_spellbooks.mechanical_brace": "Mechanical Brace",
+    "item.cataclysm_spellbooks.mechanical_brace.desc": "Increased cooldown reduction and the ability to be imbued with a spell",
 
     "item.cataclysm_spellbooks.abyssal_upgrade_orb": "Abyssal Upgrade Orb",
     "item.cataclysm_spellbooks.technomancy_upgrade_orb": "Technomancy Upgrade Orb",

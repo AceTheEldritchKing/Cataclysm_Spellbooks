@@ -14,6 +14,7 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.BurstSheathCurio;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.LeviathansBlessingRing;
+import net.acetheeldritchking.cataclysm_spellbooks.items.curios.MechanicalBraceCurio;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.BurningManuscriptItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.FrozenTabletItem;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.StrangeDiscItem;
@@ -176,6 +177,9 @@ public class ItemRegistries {
 
     // Burst Sheath
     public static final RegistryObject<CurioBaseItem> BURST_SHEATH = ITEMS.register("burst_sheath", BurstSheathCurio::new);
+
+    // Mechanical Brace
+    public static final RegistryObject<CurioBaseItem> MECHANICAL_BRACE = ITEMS.register("mechanical_brace", MechanicalBraceCurio::new);
 
 
     /**
