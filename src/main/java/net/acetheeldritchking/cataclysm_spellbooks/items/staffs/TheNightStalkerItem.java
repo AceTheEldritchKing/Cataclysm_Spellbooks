@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.staffs;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
+import io.redspace.ironsspellbooks.item.UniqueItem;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import mod.azure.azurelib.AzureLib;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.Level;
 import java.util.Map;
 import java.util.UUID;
 
-public class TheNightStalkerItem extends ImbuableStaffItem {
+public class TheNightStalkerItem extends ImbuableStaffItem implements UniqueItem {
     public final CSItemDispatcher dispatcher;
 
     public TheNightStalkerItem(SpellDataRegistryHolder[] spellDataRegistryHolders) {

@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.staffs;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
+import io.redspace.ironsspellbooks.item.UniqueItem;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
@@ -19,7 +20,7 @@ import net.minecraft.world.level.Level;
 import java.util.Map;
 import java.util.UUID;
 
-public class GauntletOfGattlingItem extends ImbuableStaffItem {
+public class GauntletOfGattlingItem extends ImbuableStaffItem implements UniqueItem {
     public final CSItemDispatcher dispatcher;
 
     public GauntletOfGattlingItem(SpellDataRegistryHolder[] spellDataRegistryHolders) {

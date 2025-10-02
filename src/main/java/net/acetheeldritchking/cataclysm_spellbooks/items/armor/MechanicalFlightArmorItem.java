@@ -19,7 +19,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -37,7 +36,6 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static com.github.L_Ender.cataclysm.entity.projectile.Eye_Of_Dungeon_Entity.lerpRotation;
 
 public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements KeybindUsingArmor {
     public MechanicalFlightArmorItem(CSArmorMaterials materialIn, Type slot, Properties settings) {
@@ -213,7 +211,7 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
             if (
                     player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemRegistries.EXCELSIUS_SPEED_HELMET.get() ||
                     player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemRegistries.EXCELSIUS_POWER_HELMET.get() ||
-                    player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get()
+                    player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemRegistries.EXCELSIUS_RESIST_HELMET.get()
             )
             {
                 if (pLevel.isClientSide())

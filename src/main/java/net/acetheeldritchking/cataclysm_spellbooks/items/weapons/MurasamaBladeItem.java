@@ -4,6 +4,7 @@ import com.github.L_Ender.cataclysm.config.CMConfig;
 import io.redspace.ironsspellbooks.api.item.weapons.MagicSwordItem;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
+import io.redspace.ironsspellbooks.item.UniqueItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.minecraft.ChatFormatting;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class MurasamaBladeItem extends MagicSwordItem {
+public class MurasamaBladeItem extends MagicSwordItem implements UniqueItem {
     public MurasamaBladeItem(SpellDataRegistryHolder[] spellDataRegistryHolders) {
         super(CSWeaponTiers.MURASAMA, CSWeaponTiers.MURASAMA.getAttackDamageBonus(), CSWeaponTiers.MURASAMA.getSpeed(),
                 spellDataRegistryHolders,

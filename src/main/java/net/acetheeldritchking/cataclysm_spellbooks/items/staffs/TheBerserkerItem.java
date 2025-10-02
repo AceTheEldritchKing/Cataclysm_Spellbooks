@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.staffs;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
+import io.redspace.ironsspellbooks.item.UniqueItem;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import mod.azure.azurelib.AzureLib;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.CSItemDispatcher;
@@ -17,7 +18,7 @@ import net.minecraft.world.level.Level;
 import java.util.Map;
 import java.util.UUID;
 
-public class TheBerserkerItem extends ImbuableStaffItem {
+public class TheBerserkerItem extends ImbuableStaffItem implements UniqueItem {
     public final CSItemDispatcher dispatcher;
 
     public TheBerserkerItem(SpellDataRegistryHolder[] spellDataRegistryHolders) {

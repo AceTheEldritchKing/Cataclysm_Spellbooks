@@ -1,7 +1,7 @@
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'net.minecraftforge.gradle' version '6.0.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'org.spongepowered.mixin' version '0.7.+'
 }
@@ -171,7 +171,7 @@ dependencies {
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6906993")
 
     // AzureLib
-    implementation fg.deobf("curse.maven:azurelib-817423:6849107")
+    implementation fg.deobf("curse.maven:azurelib-817423:7056301")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")

@@ -20,6 +20,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -66,6 +67,21 @@ public class CryopiercerSpell extends AbstractSpell {
     @Override
     public CastType getCastType() {
         return CastType.INSTANT;
+    }
+
+    @Override
+    public boolean allowLooting() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeCraftedBy(Player player) {
+        return false;
+    }
+
+    @Override
+    public boolean allowCrafting() {
+        return false;
     }
 
     @Override

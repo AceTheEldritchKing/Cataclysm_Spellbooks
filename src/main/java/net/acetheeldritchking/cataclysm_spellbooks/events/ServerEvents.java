@@ -239,7 +239,7 @@ public class ServerEvents {
                 player.getCapability(PlayerMurasamaComboProvider.PLAYER_MURASAMA_COMBO).ifPresent(murasamaCombo -> {
 
                     murasamaCombo.addMuraCombo(1);
-                    System.out.println("Combo: " + murasamaCombo.getMuraCombo());
+                    //System.out.println("Combo: " + murasamaCombo.getMuraCombo());
 
                     // Make sure we only eval if either is enabled
                     if (murasamaCombo.getMuraCombo() >= 5 && (CSConfig.enableMurasamaLifesteal.get() || CSConfig.enableMurasamaManasteal.get()))
@@ -254,7 +254,7 @@ public class ServerEvents {
 
                             player.heal((float) lifesteal);
 
-                            CataclysmSpellbooks.LOGGER.debug("Healed for: " + lifesteal);
+                            //CataclysmSpellbooks.LOGGER.debug("Healed for: " + lifesteal);
 
                             murasamaCombo.resetMuraCombo();
                         }
@@ -273,7 +273,7 @@ public class ServerEvents {
                             attackerPlayerMagicData.setMana(newMana);
                             Messages.sendToPlayer(new ClientboundSyncMana(attackerPlayerMagicData), serverPlayer);
 
-                            CataclysmSpellbooks.LOGGER.debug("Mana gained for: " + addMana);
+                            //CataclysmSpellbooks.LOGGER.debug("Mana gained for: " + addMana);
 
                             murasamaCombo.resetMuraCombo();
                         }
@@ -687,7 +687,7 @@ public class ServerEvents {
             }
         }
 
-        // King's Wrath
+        // Excelsius Leggings
         if (entity instanceof LivingEntity livingTarget)
         {
             if (!livingTarget.getItemBySlot(EquipmentSlot.LEGS).isEmpty() &&

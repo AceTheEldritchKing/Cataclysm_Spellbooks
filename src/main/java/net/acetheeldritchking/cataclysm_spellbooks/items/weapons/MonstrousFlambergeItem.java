@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.items.weapons;
 import io.redspace.ironsspellbooks.api.item.weapons.MagicSwordItem;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
+import io.redspace.ironsspellbooks.item.UniqueItem;
 import io.redspace.ironsspellbooks.render.SpecialItemRenderer;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.minecraft.client.Minecraft;
@@ -16,7 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class MonstrousFlambergeItem extends MagicSwordItem {
+public class MonstrousFlambergeItem extends MagicSwordItem implements UniqueItem {
     public MonstrousFlambergeItem(SpellDataRegistryHolder[] spellDataRegistryHolders) {
         super(CSWeaponTiers.MONSTROUS_FLAMBERGE, CSWeaponTiers.MONSTROUS_FLAMBERGE.getAttackDamageBonus(), CSWeaponTiers.MONSTROUS_FLAMBERGE.getSpeed(),
                 spellDataRegistryHolders,

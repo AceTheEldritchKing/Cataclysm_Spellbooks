@@ -3,13 +3,11 @@ package net.acetheeldritchking.cataclysm_spellbooks;
 import com.mojang.logging.LogUtils;
 import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
-import mod.azure.azurelib.rewrite.animation.cache.AzIdentityRegistry;
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import mod.azure.azurelib.rewrite.render.item.AzItemRendererRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.items.*;
 import net.acetheeldritchking.cataclysm_spellbooks.events.ServerEvents;
-import net.acetheeldritchking.cataclysm_spellbooks.items.curios.BurstSheathCurio;
 import net.acetheeldritchking.cataclysm_spellbooks.items.curios.SheathCurioItem;
 import net.acetheeldritchking.cataclysm_spellbooks.loot.CSLootModifiers;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.*;
@@ -67,12 +65,12 @@ public class CataclysmSpellbooks
         // Config
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CSConfig.SPEC, "cataclysm_spellbooks_config.toml");
 
-        modEventBus.addListener(this::commonSetup);
+        //modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
+    /*private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
         // Animation Registry
@@ -91,7 +89,7 @@ public class CataclysmSpellbooks
                 ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get(),
                 ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()
         );
-    }
+    }*/
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
