@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "cataclysm_spellbooks:abyssal_magic",
+      "required": false
+    },
+    {
+      "id": "cataclysm_spellbooks:technomancy_magic",
+      "required": false
+    }
+  ]
+}

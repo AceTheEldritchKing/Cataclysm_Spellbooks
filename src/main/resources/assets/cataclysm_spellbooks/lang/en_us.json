@@ -508,5 +508,8 @@
     "death.attack.cataclysm_spellbooks.blood_crystal.item": "%1$s was impaled by %2$s's crystallized blood spear while using %3$s",
     "death.attack.cataclysm_spellbooks.molten_bullet.item": "%1$s was scorched by %2$s's molten bullet using %3$s",
     "death.attack.cataclysm_spellbooks.frozen_bullet.item": "%1$s was frozen to death by %2$s's cryo-bullet using %3$s",
-    "death.attack.cataclysm_spellbooks.glacial_block.item": "%1$s froze to death in %2$s's glacial block while using %3$s"
+    "death.attack.cataclysm_spellbooks.glacial_block.item": "%1$s froze to death in %2$s's glacial block while using %3$s",
+
+    "the_nightwarden_adaptation.damage_type.cataclysm_spellbooks.abyssal_magic": "Abyssal Damage",
+    "the_nightwarden_adaptation.damage_type.cataclysm_spellbooks.technomancy_magic": "Technomancy Damage"
 }
