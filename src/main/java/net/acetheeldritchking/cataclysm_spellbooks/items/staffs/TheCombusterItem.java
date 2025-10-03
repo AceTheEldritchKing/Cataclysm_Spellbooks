@@ -38,12 +38,9 @@ public class TheCombusterItem extends ImbuableStaffItem implements UniqueItem {
         {
             if (entity instanceof Player player)
             {
-                if (!level.isClientSide)
+                if (!level.isClientSide && stack.is(this))
                 {
                     dispatcher.idle(player, stack);
-                } else if (MagicData.getPlayerMagicData(player).isCasting())
-                {
-                    dispatcher.casting(player, stack);
                 }
             }
         }

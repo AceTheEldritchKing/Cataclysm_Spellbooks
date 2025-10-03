@@ -77,7 +77,7 @@ public class CSArmorItem extends ArmorItem {
             {
                 player.getArmorSlots().forEach(wornArmor -> {
                     // Doing this through tags rather than listing everything in an or condition
-                    if (wornArmor != null) {
+                    if (wornArmor != null && wornArmor.is(this)) {
                         //dispatcher.idle(player, wornArmor);
                         if (player.isFallFlying()
                                 && wornArmor.is(CSTags.ARMORS_FOR_FLIGHT)

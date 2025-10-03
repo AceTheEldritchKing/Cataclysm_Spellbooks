@@ -681,7 +681,8 @@ public class ServerEvents {
             if (entity instanceof LivingEntity attacker)
             {
                 FinalRendSpell spell = new FinalRendSpell();
-                if (Objects.equals(ClientMagicData.getSyncedSpellData(attacker).getCastingSpellId(), spell.getSpellId()) && ClientMagicData.getSyncedSpellData(attacker).isCasting())
+                MagicData magicData = new MagicData((ServerPlayer) attacker);
+                if (magicData.getCastingSpellId().equals(spell.getSpellId()))
                 {
                     event.setCanceled(true);
                 }

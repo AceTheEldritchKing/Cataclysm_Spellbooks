@@ -39,12 +39,9 @@ public class GauntletOfGattlingItem extends ImbuableStaffItem implements UniqueI
         {
             if (entity instanceof Player player)
             {
-                if (!level.isClientSide)
+                if (!level.isClientSide && stack.is(this))
                 {
                     dispatcher.idle(player, stack);
-                } else if (MagicData.getPlayerMagicData(player).isCasting())
-                {
-                    dispatcher.casting(player, stack);
                 }
             }
         }
