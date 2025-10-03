@@ -318,6 +318,15 @@ public class CSEntityRegistry {
                             new ResourceLocation(CataclysmSpellbooks.MOD_ID, "final_rend").toString()
                     ));
 
+    // Summoned Clawdian
+    public static final RegistryObject<EntityType<SummonedClawdian>> SUMMONED_CLAWDIAN =
+            ENTITIES.register("summoned_clawdian", () -> EntityType.Builder.<SummonedClawdian>of
+                            (SummonedClawdian::new, MobCategory.MONSTER).
+                    sized(1f, 3f)
+                    .build(
+                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_clawdian").toString()
+                    ));
+
 
     public static void register(IEventBus eventBus)
     {

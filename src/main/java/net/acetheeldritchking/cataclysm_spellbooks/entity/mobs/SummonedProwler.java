@@ -49,7 +49,6 @@ public class SummonedProwler extends The_Prowler_Entity implements MagicSummon {
         this.goalSelector.getAvailableGoals().removeIf(goal ->
                 goal.getGoal() instanceof HurtByTargetGoal || goal.getGoal() instanceof NearestAttackableTargetGoal
         );
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5f, true));
         this.goalSelector.addGoal(3, new GenericFollowOwnerGoal(this, this::getSummoner, 1.0f, 10, 2, false, 50));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F, 1.0F));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Mob.class, 9.0F));

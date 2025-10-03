@@ -37,6 +37,7 @@ public class ClientSetup {
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), Coral_Golem_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CORALSSUS.get(), Coralssus_Renderer::new);
         event.registerEntityRenderer(CSEntityRegistry.PHANTOM_ANCIENT_REMNANT.get(), PhantomAncientRemnantRenderer::new);
+        event.registerEntityRenderer(CSEntityRegistry.SUMMONED_CLAWDIAN.get(), Clawdian_Renderer::new);
 
         event.registerEntityRenderer(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), InfernalBladeRenderer::new);
         event.registerEntityRenderer(CSEntityRegistry.HELLISH_BLADE_PROJECTILE.get(), HellishBladeRenderer::new);

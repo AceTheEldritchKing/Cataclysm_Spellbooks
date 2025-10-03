@@ -64,6 +64,8 @@
     "effect.cataclysm_spellbooks.coralssus_timer.description": "The amount of time a Coralssus remains in the world.",
     "effect.cataclysm_spellbooks.remnant_timer": "Conjured Phantom Remnant Timer",
     "effect.cataclysm_spellbooks.remnant_timer.description": "The amount of time a Phantom Remnant remains in the world.",
+    "effect.cataclysm_spellbooks.clawdian_timer": "Conjured Clawdian Timer",
+    "effect.cataclysm_spellbooks.clawdian_timer.description": "The amount of time a Clawdian remains in the world.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
@@ -383,6 +385,9 @@
     "spell.cataclysm_spellbooks.final_rend": "Final Rend",
     "spell.cataclysm_spellbooks.final_rend.guide": "Charge up a powerful slash obliterating nearby entities caught within. Inflicts Disabled and Severed on hit, and healing you for all damage dealt.",
 
+    "spell.cataclysm_spellbooks.conjure_clawdian": "Conjure: Clawdian",
+    "spell.cataclysm_spellbooks.conjure_clawdian.guide": "Conjure a Clawdian to fight by your side",
+
 
     "ui.cataclysm_spellbooks.void_beam": "Summon an abyssal beam similar to the Deepling warlocks",
     "ui.cataclysm_spellbooks.void_rune": "Summon an void rune at your target's location",
@@ -435,6 +440,7 @@
     "ui.cataclysm_spellbooks.thoths_witness_armor_failure": "You lack the required armory to receive Thoth's miracle; adorn yourself with the pharaoh's armor",
     "ui.cataclysm_spellbooks.quake_damage": "%d Earthquake damage",
     "ui.cataclysm_spellbooks.needle_damage": "%d Blood needle damage",
+    "ui.cataclysm_spellbooks.clawdian_count": "%d Summons",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",
@@ -467,6 +473,7 @@
     "entity.cataclysm_spellbooks.scorched_earth_aoe": "Scorched Earth AoE",
     "entity.cataclysm_spellbooks.frozen_bullet": "Cryo-Bullet",
     "entity.cataclysm_spellbooks.glacial_block": "Glacial Block",
+    "entity.cataclysm_spellbooks.summoned_clawdian": "Clawdian",
 
 
 
@@ -492,6 +499,7 @@
     "death.attack.cataclysm_spellbooks.scorched_earth_aoe": "%1$s was incinerated by %2$s's scorched earth",
     "death.attack.cataclysm_spellbooks.frozen_bullet": "%1$s was frozen to death by %2$s's cryo-bullet",
     "death.attack.cataclysm_spellbooks.glacial_block": "%1$s froze to death in %2$s's glacial block",
+    "death.attack.cataclysm_spellbooks.summoned_clawdian": "%1$s was smashed between %2$s's Clawdian's claws",
 
     "death.attack.blazing_aoe.item": "%1$s was immolated in %2$s's blazing field while using %3$s",
     "death.attack.no_man_zone_aoe.item": "%1$s was reduced to nothing in %2$s's No Man's Zone while using %3$s",
@@ -509,6 +517,7 @@
     "death.attack.cataclysm_spellbooks.molten_bullet.item": "%1$s was scorched by %2$s's molten bullet using %3$s",
     "death.attack.cataclysm_spellbooks.frozen_bullet.item": "%1$s was frozen to death by %2$s's cryo-bullet using %3$s",
     "death.attack.cataclysm_spellbooks.glacial_block.item": "%1$s froze to death in %2$s's glacial block while using %3$s",
+    "death.attack.cataclysm_spellbooks.summoned_clawdian.item": "%1$s was smashed between %2$s's Clawdian's claws while using %3$s",
 
     "the_nightwarden_adaptation.damage_type.cataclysm_spellbooks.abyssal_magic": "Abyssal Damage",
     "the_nightwarden_adaptation.damage_type.cataclysm_spellbooks.technomancy_magic": "Technomancy Damage"

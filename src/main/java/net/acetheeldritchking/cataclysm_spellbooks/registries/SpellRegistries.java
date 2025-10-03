@@ -109,6 +109,18 @@ public class SpellRegistries {
 
     // Tide Turn (Hold a defensive stance, increasing spell resistance and clearing negative effects. After the spell finishes, spell power is increased - Lacerator exclusive)
 
+    // Cyclone (Scylla pushing you back attack)
+
+    // Pacific Perforator
+
+    // Serpents of The Sea
+
+    // Conjure: Clawdian
+    public static final RegistryObject<AbstractSpell> CONJURE_CLAWDIAN = registerSpell(new ConjureClawdianSpell());
+
+    // Rogue Wave
+
+
     /***
      * Blood
      */
@@ -145,6 +157,8 @@ public class SpellRegistries {
      */
     // Steal (Steals target's mainhand item)
     public static final RegistryObject<AbstractSpell> PILFER = registerSpell(new PilferSpell());
+
+    // Parry (Parries attack)
 
 
     /***

@@ -1,5 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.events;
 
+import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.AcropolisMonsters.Clawdian_Entity;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
@@ -25,10 +26,11 @@ public class ModSetup {
         event.put(CSEntityRegistry.SUMMONED_COUNTERSPELL_WATCHER.get(), SummonedCounterspellWatcher.the_watcher().build());
         event.put(CSEntityRegistry.SUMMONED_PROWLER.get(), SummonedProwler.the_prowler().build());
         event.put(CSEntityRegistry.SURVEILLANCE_DRONE.get(), SurveillanceDroneEntity.setAttributes());
-        event.put(CSEntityRegistry.SUMMONED_AMETHYST_CRAB.get(), SummonedAmethystCrab.buildAttributes());
-        event.put(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), SummonedCoralGolem.buildAttributes());
-        event.put(CSEntityRegistry.SUMMONED_CORALSSUS.get(), SummonedCoralssus.buildAttributes());
+        event.put(CSEntityRegistry.SUMMONED_AMETHYST_CRAB.get(), SummonedAmethystCrab.amethyst_crab().build());
+        event.put(CSEntityRegistry.SUMMONED_CORAL_GOLEM.get(), SummonedCoralGolem.coralgolem().build());
+        event.put(CSEntityRegistry.SUMMONED_CORALSSUS.get(), SummonedCoralssus.coralssus().build());
         event.put(CSEntityRegistry.PHANTOM_ANCIENT_REMNANT.get(), PhantomAncientRemnant.maledictus().build());
         event.put(CSEntityRegistry.GLACIAL_BLOCK.get(), GlacialBlockEntity.createLivingAttributes().build());
+        event.put(CSEntityRegistry.SUMMONED_CLAWDIAN.get(), SummonedClawdian.clawdian().build());
     }
 }
