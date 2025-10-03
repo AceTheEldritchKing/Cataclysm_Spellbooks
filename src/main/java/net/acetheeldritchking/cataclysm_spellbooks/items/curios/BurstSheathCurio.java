@@ -93,7 +93,7 @@ public class BurstSheathCurio extends SheathCurioItem {
                 {
                     float baseAmount = event.getAmount();
                     event.setAmount(baseAmount * 2);
-                    CataclysmSpellbooks.LOGGER.debug("Damage: " + event.getAmount());
+                    //CataclysmSpellbooks.LOGGER.debug("Damage: " + event.getAmount());
                 }
             }
         }
