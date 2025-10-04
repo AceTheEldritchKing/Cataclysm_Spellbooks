@@ -104,6 +104,9 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<SummonTimer> CLAWDIAN_TIMER =
             MOB_EFFECTS.register("clawdian_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffea66));
 
+    public static final RegistryObject<MobEffect> IMMUNITY_EFFECT =
+            MOB_EFFECTS.register("immunity_effect", ImmunityPotionEffect::new);
+
     public static void register(IEventBus eventBus)
     {
         MOB_EFFECTS.register(eventBus);

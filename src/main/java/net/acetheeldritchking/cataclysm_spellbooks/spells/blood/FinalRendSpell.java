@@ -16,6 +16,7 @@ import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSoundRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
@@ -24,6 +25,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
@@ -123,6 +125,13 @@ public class FinalRendSpell extends AbstractSpell {
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
         return Optional.of(CSSoundRegistry.ELECTRIC_SWORD_SWING.get());
+    }
+
+    @Override
+    public void onServerPreCast(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
+        entity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.IMMUNITY_EFFECT.get(), getCastTime(spellLevel), 0, false, false, false));
+
+        super.onServerPreCast(level, spellLevel, entity, playerMagicData);
     }
 
     @Override

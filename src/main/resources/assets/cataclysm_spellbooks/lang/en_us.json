@@ -66,6 +66,8 @@
     "effect.cataclysm_spellbooks.remnant_timer.description": "The amount of time a Phantom Remnant remains in the world.",
     "effect.cataclysm_spellbooks.clawdian_timer": "Conjured Clawdian Timer",
     "effect.cataclysm_spellbooks.clawdian_timer.description": "The amount of time a Clawdian remains in the world.",
+    "effect.cataclysm_spellbooks.immunity_effect": "Immunity",
+    "effect.cataclysm_spellbooks.immunity_effect.description": "Makes you immune to damage.",
 
 
     "school.cataclysm_spellbooks.abyssal": "Abyssal",
