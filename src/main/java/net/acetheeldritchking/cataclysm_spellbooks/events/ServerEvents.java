@@ -676,24 +676,14 @@ public class ServerEvents {
         }
 
         // Final Rend Spellcasting
-        if (CSConfig.finalRendDamageImmunity.get())
+        if (entity instanceof LivingEntity livingTarget)
         {
-            if (entity instanceof LivingEntity livingTarget)
+            if (livingTarget.hasEffect(CSPotionEffectRegistry.IMMUNITY_EFFECT.get()))
             {
-                if (livingTarget.hasEffect(CSPotionEffectRegistry.IMMUNITY_EFFECT.get()))
+                if (CSConfig.finalRendDamageImmunity.get())
                 {
                     event.setCanceled(true);
                 }
-                /*if (livingTarget instanceof ServerPlayer serverPlayer)
-                {
-                    FinalRendSpell spell = new FinalRendSpell();
-                    MagicData magicData = new MagicData(serverPlayer);
-
-                    if (magicData.isCasting() && magicData.getCastingSpellId().equals(spell.getSpellId()))
-                    {
-                        event.setCanceled(true);
-                    }
-                }*/
             }
         }
 
