@@ -171,7 +171,7 @@ dependencies {
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6906993")
 
     // AzureLib
-    implementation fg.deobf("curse.maven:azurelib-817423:7056301")
+    implementation fg.deobf("curse.maven:azurelib-817423:7119587")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")

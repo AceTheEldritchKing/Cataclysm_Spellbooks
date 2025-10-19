@@ -1,8 +1,8 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.items;
 
-import mod.azure.azurelib.rewrite.render.item.AzItemRenderer;
-import mod.azure.azurelib.rewrite.render.item.AzItemRendererConfig;
-import mod.azure.azurelib.rewrite.render.layer.AzAutoGlowingLayer;
+import mod.azure.azurelib.render.item.AzItemRenderer;
+import mod.azure.azurelib.render.item.AzItemRendererConfig;
+import mod.azure.azurelib.render.layer.AzAutoGlowingLayer;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.animators.TheBerserkerAnimator;
 import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.animators.TheCombusterAnimator;

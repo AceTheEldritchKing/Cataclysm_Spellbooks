@@ -1,8 +1,8 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators;
 
-import mod.azure.azurelib.rewrite.animation.controller.AzAnimationController;
-import mod.azure.azurelib.rewrite.animation.controller.AzAnimationControllerContainer;
-import mod.azure.azurelib.rewrite.animation.impl.AzItemAnimator;
+import mod.azure.azurelib.animation.controller.AzAnimationController;
+import mod.azure.azurelib.animation.controller.AzAnimationControllerContainer;
+import mod.azure.azurelib.animation.impl.AzItemAnimator;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
