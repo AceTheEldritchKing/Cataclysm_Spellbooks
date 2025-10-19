@@ -1,19 +1,21 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
-import mod.azure.azurelib.rewrite.model.AzBakedModel;
-import mod.azure.azurelib.rewrite.model.AzBone;
-import mod.azure.azurelib.rewrite.render.AzRendererPipeline;
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererPipelineContext;
-import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneContext;
-import mod.azure.azurelib.rewrite.render.armor.bone.AzArmorBoneProvider;
-import mod.azure.azurelib.util.RenderUtils;
+import mod.azure.azurelib.model.AzBakedModel;
+import mod.azure.azurelib.model.AzBone;
+import mod.azure.azurelib.render.AzRendererPipeline;
+import mod.azure.azurelib.render.armor.AzArmorRendererPipelineContext;
+import mod.azure.azurelib.render.armor.bone.AzArmorBoneContext;
+import mod.azure.azurelib.render.armor.bone.AzArmorBoneProvider;
+import mod.azure.azurelib.util.client.RenderUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.UUID;
+
 public class AzArmorLeggingTorsoLayerPipeline extends AzArmorRendererPipelineContext {
-    public AzArmorLeggingTorsoLayerPipeline(AzRendererPipeline<ItemStack> rendererPipeline) {
+    public AzArmorLeggingTorsoLayerPipeline(AzRendererPipeline<UUID, ItemStack> rendererPipeline) {
         super(rendererPipeline);
     }
 

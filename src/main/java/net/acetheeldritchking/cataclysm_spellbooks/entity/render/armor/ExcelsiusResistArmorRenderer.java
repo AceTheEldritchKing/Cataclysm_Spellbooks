@@ -1,8 +1,8 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor;
 
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRenderer;
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererConfig;
-import mod.azure.azurelib.rewrite.render.layer.AzAutoGlowingLayer;
+import mod.azure.azurelib.render.armor.AzArmorRenderer;
+import mod.azure.azurelib.render.armor.AzArmorRendererConfig;
+import mod.azure.azurelib.render.layer.AzAutoGlowingLayer;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.ExcelsiusResistAnimator;
 import net.minecraft.resources.ResourceLocation;
