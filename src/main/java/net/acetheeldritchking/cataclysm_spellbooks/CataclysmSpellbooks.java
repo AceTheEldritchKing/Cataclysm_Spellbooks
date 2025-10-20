@@ -3,6 +3,7 @@ package net.acetheeldritchking.cataclysm_spellbooks;
 import com.mojang.logging.LogUtils;
 import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
+import mod.azure.azurelib.animation.cache.AzIdentityRegistry;
 import mod.azure.azurelib.render.armor.AzArmorRendererRegistry;
 import mod.azure.azurelib.render.item.AzItemRendererRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.render.armor.*;
@@ -70,7 +71,7 @@ public class CataclysmSpellbooks
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    /*private void commonSetup(final FMLCommonSetupEvent event)
+    private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
         // Animation Registry
@@ -89,7 +90,7 @@ public class CataclysmSpellbooks
                 ItemRegistries.EXCELSIUS_RESIST_CHESTPLATE.get(),
                 ItemRegistries.EXCELSIUS_POWER_CHESTPLATE.get()
         );
-    }*/
+    }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
