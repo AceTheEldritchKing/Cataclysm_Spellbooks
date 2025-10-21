@@ -71,7 +71,7 @@ public class CataclysmSpellbooks
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
+    //@SubscribeEvent
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
