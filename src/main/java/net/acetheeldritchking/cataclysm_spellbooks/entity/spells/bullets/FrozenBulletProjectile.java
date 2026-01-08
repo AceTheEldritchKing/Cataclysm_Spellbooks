@@ -2,7 +2,6 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets;
 
 import com.github.L_Ender.cataclysm.client.particle.LightTrailParticle;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
-import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
@@ -35,6 +34,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class FrozenBulletProjectile extends AbstractMagicProjectile implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -110,8 +110,8 @@ public class FrozenBulletProjectile extends AbstractMagicProjectile implements G
     }
 
     @Override
-    public Optional<SoundEvent> getImpactSound() {
-        return Optional.of(SoundRegistry.ICE_IMPACT.get());
+    public Optional<Supplier<SoundEvent>> getImpactSound() {
+        return Optional.of(SoundRegistry.ICE_IMPACT);
     }
 
     @Override

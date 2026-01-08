@@ -29,6 +29,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class BloodCrystalProjectile extends AbstractMagicProjectile implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -45,14 +46,13 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements G
 
     @Override
     public void trailParticles() {
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             double speed = 0.05F;
             double x = Utils.random.nextDouble() * 2 * speed - speed;
             double y = Utils.random.nextDouble() * 2 * speed - speed;
             double z = Utils.random.nextDouble() * 2 * speed - speed;
 
-            this.level().addParticle(ParticleHelper.BLOOD, this.getX() + x, this.getY() + y, this.getZ() + z, x, y ,z);
+            this.level().addParticle(ParticleHelper.BLOOD, this.getX() + x, this.getY() + y, this.getZ() + z, x, y, z);
         }
     }
 
@@ -64,8 +64,7 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements G
     @Override
     public void travel() {
         this.setPos(this.position().add(this.getDeltaMovement()));
-        if (!this.isNoGravity())
-        {
+        if (!this.isNoGravity()) {
             Vec3 vec3 = this.getDeltaMovement();
             this.setDeltaMovement(vec3.x, vec3.y - 0.05000000074505806, vec3.z);
         }
@@ -77,8 +76,8 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements G
     }
 
     @Override
-    public Optional<SoundEvent> getImpactSound() {
-        return Optional.of(SoundRegistry.BLOOD_EXPLOSION.get());
+    public Optional<Supplier<SoundEvent>> getImpactSound() {
+        return Optional.of(SoundRegistry.BLOOD_EXPLOSION);
     }
 
     @Override
@@ -89,8 +88,7 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements G
         // Ignore i-frames
         pResult.getEntity().invulnerableTime = 0;
 
-        if (target instanceof LivingEntity livingTarget)
-        {
+        if (target instanceof LivingEntity livingTarget) {
             livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.HEMOPHILIA_EFFECT.get(), 100, 0, true, true, true));
             livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
         }
@@ -100,31 +98,26 @@ public class BloodCrystalProjectile extends AbstractMagicProjectile implements G
     protected void onHit(HitResult hitresult) {
         super.onHit(hitresult);
 
-        if (hitresult instanceof EntityHitResult entityHitResult)
-        {
+        if (hitresult instanceof EntityHitResult entityHitResult) {
             onHitEntity(entityHitResult);
         }
 
-        if (!this.level().isClientSide)
-        {
+        if (!this.level().isClientSide) {
             float radius = getExplosionRadius();
             var radiusSqr = radius * radius;
             var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
             Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
-            for (Entity entity : entities)
-            {
+            for (Entity entity : entities) {
                 double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
-                {
+                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true)) {
                     double modifier = (1 - distanceToSqr / radiusSqr);
                     float damage = (float) (getDamage() * modifier);
 
                     ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 5.0F, 0.15F, 20, 20);
 
-                    if (entity instanceof LivingEntity livingTarget)
-                    {
+                    if (entity instanceof LivingEntity livingTarget) {
                         livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.HEMOPHILIA_EFFECT.get(), 100, 0, true, true, true));
                     }
 
