@@ -6,7 +6,7 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = '1.2.7-1.20.1'
+version = '1.2.7-1.20.1-fix'
 group = 'net.acetheeldritchking.cataclysm_spellbooks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'cataclysm_spellbooks'
 
@@ -145,8 +145,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.6'
 
     // ISS
-    compileOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
-    runtimeOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
+    compileOnly fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}")
+    runtimeOnly fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}")
 
     // Geckolib
     implementation fg.deobf("curse.maven:geckolib-388172:6658942")
