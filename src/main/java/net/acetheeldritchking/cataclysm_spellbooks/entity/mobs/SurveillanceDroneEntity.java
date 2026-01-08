@@ -2,7 +2,8 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import com.github.L_Ender.cataclysm.client.particle.TrackLightningParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
@@ -35,10 +36,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SurveillanceDroneEntity extends Monster implements MagicSummon, GeoEntity {
+public class SurveillanceDroneEntity extends Monster implements IMagicSummon, GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
-    protected LivingEntity cachedSummoner;
-    protected UUID summonerUUID;
     protected int healingAmount;
 
     public SurveillanceDroneEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
@@ -81,18 +80,10 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, Geo
         return super.isAlliedTo(pEntity) || this.isAlliedHelper(pEntity);
     }
 
-    @Override
-    public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
-    }
-
     public void setSummoner(@Nullable LivingEntity owner)
     {
-        if (owner != null)
-        {
-            this.summonerUUID = owner.getUUID();
-            this.cachedSummoner = owner;
-        }
+        if (owner == null) return;
+        SummonManager.setOwner(this, owner);
     }
 
     @Override
@@ -118,8 +109,9 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, Geo
                                 getX(), getY(), getZ(),
                                 1, 0, 0, 0, 0, false);
                         livingEntity.heal(getHealingAmount());
-                        getSummoner().heal((float) getHealingAmount() / 2);
-
+                        if (getSummoner() instanceof LivingEntity summoner){
+                            summoner.heal((float) getHealingAmount() / 2);
+                        }
                         //System.out.println("Healing: " + getHealingAmount());
                         //System.out.println("Healing for summoner: " + getHealingAmount()/2);
                     }
@@ -147,7 +139,7 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, Geo
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.WATCHER_TIMER.get());
+        this.onRemovedHelper(this);
         super.onRemovedFromWorld();
     }
 
@@ -191,14 +183,12 @@ public class SurveillanceDroneEntity extends Monster implements MagicSummon, Geo
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
         this.healingAmount = pCompound.getInt("Healing");
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
         pCompound.putInt("Healing", this.getHealingAmount());
     }
 }

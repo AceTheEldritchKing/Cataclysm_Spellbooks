@@ -8,6 +8,8 @@ import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedBerserker;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedRevenant;
@@ -67,6 +69,7 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        var castData=new SummonedEntitiesCastData();
         int summonTimer = 20 * 60 * 10;
 
         for (int i = 0; i < spellLevel; i++)
@@ -76,19 +79,14 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnIgnitedNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnIgnitedNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
         }
-
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.IGNITED_TIMER.get(), summonTimer, 0, false, true, true);
-        entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnIgnitedNearby(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnIgnitedNearby(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.IGNITED_TIMER.get(),
-                summonTimer, 0, false, false, false);
         boolean isBerserker = Utils.random.nextDouble() < 0.7f;
 
         SummonedIgnitedRevenant revenantEntity = new SummonedIgnitedRevenant(level, caster);
@@ -102,9 +100,9 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
 
         ignited.moveTo(x, y, z);
 
-        ignited.addEffect(effect);
-
         level.addFreshEntity(ignited);
+
+        SummonManager.initSummon(caster, ignited, summonTimer, castData);
     }
 
 }

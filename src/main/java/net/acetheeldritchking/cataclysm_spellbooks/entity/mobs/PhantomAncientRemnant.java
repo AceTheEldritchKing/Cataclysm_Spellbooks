@@ -3,6 +3,8 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Ancient_Remnant.Ancient_Remnant_Entity;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
@@ -30,9 +32,7 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements MagicSummon {
-    protected LivingEntity cachedSummoner;
-    protected UUID summonerUUID;
+public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements IMagicSummon {
     protected int ticksToLive = 1200;
 
     public PhantomAncientRemnant(EntityType entity, Level world) {
@@ -61,18 +61,10 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
         super.registerGoals();
     }
 
-    @Override
-    public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
-    }
-
     public void setSummoner(@Nullable LivingEntity owner)
     {
-        if (owner != null)
-        {
-            this.summonerUUID = owner.getUUID();
-            this.cachedSummoner = owner;
-        }
+        if (owner == null) return;
+        SummonManager.setOwner(this, owner);
     }
 
     // Attacks and Death
@@ -84,7 +76,7 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.REMNANT_TIMER.get());
+        this.onRemovedHelper(this);
         super.onRemovedFromWorld();
     }
 
@@ -233,14 +225,12 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
         this.ticksToLive = pCompound.getInt("Ticks to live");
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
         pCompound.putInt("Ticks to live", this.ticksToLive);
     }
 }

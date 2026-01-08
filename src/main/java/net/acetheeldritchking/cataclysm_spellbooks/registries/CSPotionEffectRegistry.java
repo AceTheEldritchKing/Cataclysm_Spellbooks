@@ -23,32 +23,11 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> INCAPACITATED_EFFECT =
             MOB_EFFECTS.register("incapacitated_effect", IncapacitatedPotionEffect::new);
 
-    public static final RegistryObject<SummonTimer> ABYSSAL_GNAWER_TIMER =
-            MOB_EFFECTS.register("abyssal_gnawer_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xbea925));
-
-    public static final RegistryObject<SummonTimer> IGNITED_TIMER =
-            MOB_EFFECTS.register("ignited_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16734003));
-
     public static final RegistryObject<MobEffect> WRATHFUL =
             MOB_EFFECTS.register("wrathful_effect", WrathfulPotionEffect::new);
 
-    public static final RegistryObject<SummonTimer> KOBOLDIATOR_TIMER =
-            MOB_EFFECTS.register("koboldiator_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16443474));
-
-    public static final RegistryObject<SummonTimer> KOBOLDETON_TIMER =
-            MOB_EFFECTS.register("koboleton_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 16443474));
-
     public static final RegistryObject<MobEffect> CURSED_FRENZY =
             MOB_EFFECTS.register("cursed_frenzy", CursedFrenzyEffect::new);
-
-    public static final RegistryObject<SummonTimer> DRAUGUR_TIMER =
-            MOB_EFFECTS.register("draugur_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
-
-    public static final RegistryObject<SummonTimer> WATCHER_TIMER =
-            MOB_EFFECTS.register("watcher_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
-
-    public static final RegistryObject<SummonTimer> PROWLER_TIMER =
-            MOB_EFFECTS.register("prowler_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 4583645));
 
     public static final RegistryObject<MobEffect> SHUTDOWN_EFFECT =
             MOB_EFFECTS.register("shutdown_effect", ShutdownPotionEffect::new);
@@ -80,18 +59,6 @@ public class CSPotionEffectRegistry {
     public static final RegistryObject<MobEffect> BASE_OVERCHARGED_EFFECT =
             MOB_EFFECTS.register("base_overcharged_effect", BaseOverchargedPotionEffect::new);
 
-    public static final RegistryObject<SummonTimer> CRAB_TIMER  =
-            MOB_EFFECTS.register("crab_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xfa87fa));
-
-    public static final RegistryObject<SummonTimer> CORAL_GOLEM_TIMER =
-            MOB_EFFECTS.register("coral_golem_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xf5ff76));
-
-    public static final RegistryObject<SummonTimer> CORALSSUS_TIMER =
-            MOB_EFFECTS.register("coralssus_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffea66));
-
-    public static final RegistryObject<SummonTimer> REMNANT_TIMER =
-            MOB_EFFECTS.register("remnant_timer", RemnantTimerPotionEffect::new);
-
     public static final RegistryObject<MobEffect> KINGS_WRATH_EFFECT =
             MOB_EFFECTS.register("kings_wrath", KingsWrathPotionEffect::new);
 
@@ -100,9 +67,6 @@ public class CSPotionEffectRegistry {
 
     public static final RegistryObject<MobEffect> HEMOPHILIA_EFFECT =
             MOB_EFFECTS.register("hemophilia", HemophiliaPotionEffect::new);
-
-    public static final RegistryObject<SummonTimer> CLAWDIAN_TIMER =
-            MOB_EFFECTS.register("clawdian_timer", () -> new SummonTimer(MobEffectCategory.BENEFICIAL, 0xffea66));
 
     public static final RegistryObject<MobEffect> IMMUNITY_EFFECT =
             MOB_EFFECTS.register("immunity_effect", ImmunityPotionEffect::new);

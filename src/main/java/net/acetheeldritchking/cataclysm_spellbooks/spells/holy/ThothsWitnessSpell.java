@@ -10,6 +10,8 @@ import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
@@ -216,10 +218,6 @@ public class ThothsWitnessSpell extends AbstractSpell {
 
         summonPhantomRemnant(randomNearbyX, entity.getY(), randomNearbyZ, entity, level, summonTimer);
 
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.REMNANT_TIMER.get(),
-                summonTimer, 1, false, false, true);
-        entity.addEffect(effect);
-
         MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 6), entity.getX(), entity.getY() + 0.8F, entity.getZ(), 1, 0, 0, 0, 0, true);
         ScreenShake_Entity.ScreenShake(level, entity.position(), 6.0F, 0.15F, 20, 20);
 
@@ -231,9 +229,6 @@ public class ThothsWitnessSpell extends AbstractSpell {
     private void summonPhantomRemnant(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
     {
         int summonTimer2 = 20 * 5;
-
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.REMNANT_TIMER.get(),
-                summonTimer2, 1, false, false, true);
 
         PhantomAncientRemnant ancientRemnant = new PhantomAncientRemnant(level, caster);
 
@@ -259,7 +254,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
 
         level.addFreshEntity(ancientRemnant);
 
-        ancientRemnant.addEffect(effect);
+        SummonManager.initSummon(caster, ancientRemnant, summonTimer2, new SummonedEntitiesCastData());
 
         //System.out.println("Effect?" + ancientRemnant.getActiveEffects());
     }

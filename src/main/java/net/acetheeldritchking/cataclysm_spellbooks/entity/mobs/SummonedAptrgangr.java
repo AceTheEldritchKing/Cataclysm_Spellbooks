@@ -3,11 +3,11 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Draugar.Aptrgangr_Entity;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +15,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -25,10 +24,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SummonedAptrgangr extends Aptrgangr_Entity implements MagicSummon {
-    protected LivingEntity cachedSummoner;
-    protected UUID summonerUUID;
-
+public class SummonedAptrgangr extends Aptrgangr_Entity implements IMagicSummon {
     public SummonedAptrgangr(EntityType entity, Level world) {
         super(entity, world);
     }
@@ -55,18 +51,10 @@ public class SummonedAptrgangr extends Aptrgangr_Entity implements MagicSummon {
         super.registerGoals();
     }
 
-    @Override
-    public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
-    }
-
     public void setSummoner(@Nullable LivingEntity owner)
     {
-        if (owner != null)
-        {
-            this.summonerUUID = owner.getUUID();
-            this.cachedSummoner = owner;
-        }
+        if (owner == null) return;
+        SummonManager.setOwner(this, owner);
     }
 
     // Attacks and Death
@@ -78,7 +66,7 @@ public class SummonedAptrgangr extends Aptrgangr_Entity implements MagicSummon {
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.DRAUGUR_TIMER.get());
+        this.onRemovedHelper(this);
         super.onRemovedFromWorld();
     }
 
@@ -116,18 +104,5 @@ public class SummonedAptrgangr extends Aptrgangr_Entity implements MagicSummon {
         {
             return this.getTeam() == null && entityIn.getTeam() == null;
         }
-    }
-
-    // NBT
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
     }
 }
