@@ -6,19 +6,15 @@ import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
 import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
-import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -29,11 +25,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements IMagicSummon {
-    protected int ticksToLive = 1200;
-
     public PhantomAncientRemnant(EntityType entity, Level world) {
         super(entity, world);
     }
@@ -112,20 +105,6 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements IMa
         else
         {
             return this.getTeam() == null && entityIn.getTeam() == null;
-        }
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-
-        ticksToLive--;
-
-        //System.out.println("Ticks to live: " + ticksToLive);
-
-        if (ticksToLive <= 0)
-        {
-            this.kill();
         }
     }
 
@@ -218,18 +197,5 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements IMa
 
             return super.getDismountLocationForPassenger(pLivingEntity);
         }
-    }
-
-    // NBT
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.ticksToLive = pCompound.getInt("Ticks to live");
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        pCompound.putInt("Ticks to live", this.ticksToLive);
     }
 }

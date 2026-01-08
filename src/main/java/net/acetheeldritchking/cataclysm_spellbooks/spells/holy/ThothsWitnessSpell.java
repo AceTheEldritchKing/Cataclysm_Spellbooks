@@ -16,7 +16,6 @@ import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.PhantomAncientRemnant;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -25,7 +24,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
@@ -228,7 +226,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
 
     private void summonPhantomRemnant(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
     {
-        int summonTimer2 = 20 * 5;
+        int summonTimer2 = 1200;
 
         PhantomAncientRemnant ancientRemnant = new PhantomAncientRemnant(level, caster);
 
