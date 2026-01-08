@@ -2,10 +2,13 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
+import io.redspace.ironsspellbooks.api.spells.CastSource;
+import io.redspace.ironsspellbooks.api.spells.CastType;
+import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.spells.target_area.TargetedAreaEntity;
 import io.redspace.ironsspellbooks.spells.TargetedTargetAreaCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
@@ -102,7 +105,7 @@ public class IntrusionPreventionSystemSpell extends AbstractHarbingerSpell {
 
                 targetEntity.level().getEntitiesOfClass(LivingEntity.class, targetEntity.getBoundingBox().inflate(radius)).forEach((victim) ->
                 {
-                    if (targets.get() < MAX_TARGETS && victim instanceof MagicSummon && victim.distanceToSqr(targetEntity) < radius * radius)
+                    if (targets.get() < MAX_TARGETS && victim instanceof IMagicSummon && victim.distanceToSqr(targetEntity) < radius * radius)
                     {
                         victim.addEffect(new MobEffectInstance(
                                 CSPotionEffectRegistry.IPS_POTION_EFFECT.get(),
