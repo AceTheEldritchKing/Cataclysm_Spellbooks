@@ -4,6 +4,7 @@ import io.redspace.ironsspellbooks.item.armor.UpgradeType;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -13,21 +14,21 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public enum CSUpgradeTypes implements UpgradeType {
-    ABYSSAL_SPELL_POWER("abyssal_power", ItemRegistries.ABYSSAL_UPGRADE_ORB ,CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
-    TECHNOMANCY_SPELL_POWER("technomancy_power", ItemRegistries.TECHNOMANCY_UPGRADE_ORB ,CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
+    ABYSSAL_SPELL_POWER("abyssal_power", ItemRegistries.ABYSSAL_UPGRADE_ORB.getHolder() ,CSAttributeRegistry.ABYSSAL_MAGIC_POWER.getHolder().get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
+    TECHNOMANCY_SPELL_POWER("technomancy_power", ItemRegistries.TECHNOMANCY_UPGRADE_ORB.getHolder() ,CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.getHolder().get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
     ;
 
-    final Attribute attribute;
+    final Holder<Attribute> attribute;
     final AttributeModifier.Operation operation;
     final float amountPerUpgrade;
     final ResourceLocation id;
-    final Optional<Supplier<Item>> containerItem;
+    final Optional<Holder<Item>> containerItem;
 
-    CSUpgradeTypes(String key, Supplier<Item> containerItem, Attribute attribute, AttributeModifier.Operation operation, float amountPerUpgrade) {
+    CSUpgradeTypes(String key, Holder<Item>  containerItem, Holder<Attribute> attribute, AttributeModifier.Operation operation, float amountPerUpgrade) {
         this(key, Optional.of(containerItem), attribute, operation, amountPerUpgrade);
     }
 
-    CSUpgradeTypes(String key, Optional<Supplier<Item>> containerItem, Attribute attribute, AttributeModifier.Operation operation, float amountPerUpgrade) {
+    CSUpgradeTypes(String key, Optional<Holder<Item>> containerItem, Holder<Attribute> attribute, AttributeModifier.Operation operation, float amountPerUpgrade) {
         this.id = CataclysmSpellbooks.id(key);
         this.attribute = attribute;
         this.operation = operation;
@@ -37,7 +38,7 @@ public enum CSUpgradeTypes implements UpgradeType {
     }
 
     @Override
-    public Attribute getAttribute() {
+    public Holder<Attribute> getAttribute() {
         return attribute;
     }
 
@@ -57,7 +58,7 @@ public enum CSUpgradeTypes implements UpgradeType {
     }
 
     @Override
-    public Optional<Supplier<Item>> getContainerItem() {
+    public Optional<Holder<Item>> getContainerItem() {
         return containerItem;
     }
 }
