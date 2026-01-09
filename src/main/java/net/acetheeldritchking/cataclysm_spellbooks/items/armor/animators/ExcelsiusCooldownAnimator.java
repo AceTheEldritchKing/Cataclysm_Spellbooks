@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class ExcelsiusCooldownAnimator extends AzItemAnimator {
-    private static final ResourceLocation ANIMATIONS = new ResourceLocation(
+    private static final ResourceLocation ANIMATIONS = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "animations/item/excelsius_armor_cd.animation.json"
     );

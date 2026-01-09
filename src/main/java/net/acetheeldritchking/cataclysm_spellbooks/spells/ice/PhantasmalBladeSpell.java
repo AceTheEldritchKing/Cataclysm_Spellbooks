@@ -30,7 +30,7 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class PhantasmalBladeSpell extends AbstractMaledictusSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "phantasmal_blade");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "phantasmal_blade");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

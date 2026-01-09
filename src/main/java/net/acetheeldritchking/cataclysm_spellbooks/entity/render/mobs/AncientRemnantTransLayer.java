@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class AncientRemnantTransLayer extends RenderLayer<Ancient_Remnant_Entity, Ancient_Remnant_Rework_Model> {
-    private static final ResourceLocation LAYER_TEXTURES = new ResourceLocation(Cataclysm.MODID, "textures/entity/ancient_remnant/ancient_remnant.png");
+    private static final ResourceLocation LAYER_TEXTURES = ResourceLocation.fromNamespaceAndPath(Cataclysm.MODID, "textures/entity/ancient_remnant/ancient_remnant.png");
 
     public AncientRemnantTransLayer(Ancient_Remnant_Rework_Renderer renderIn) {
         super(renderIn);

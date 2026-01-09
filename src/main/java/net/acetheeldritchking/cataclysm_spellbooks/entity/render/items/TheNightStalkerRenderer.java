@@ -8,12 +8,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.staffs.animators.TheNig
 import net.minecraft.resources.ResourceLocation;
 
 public class TheNightStalkerRenderer extends AzItemRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/the_nightstalker.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/item/the_nightstalker.png"
     );

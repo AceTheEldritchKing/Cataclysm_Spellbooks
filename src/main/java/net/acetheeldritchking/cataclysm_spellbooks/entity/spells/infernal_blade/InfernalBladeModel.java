@@ -8,22 +8,22 @@ public class InfernalBladeModel extends GeoModel<InfernalBladeProjectile> {
 
     @Override
     public ResourceLocation getModelResource(InfernalBladeProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/infernal_blade_small.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/infernal_blade_small.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(InfernalBladeProjectile object) {
         if (object.getIsSoul())
         {
-            return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/infernal_blade_small/infernal_blade_small_soul.png");
+            return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/infernal_blade_small/infernal_blade_small_soul.png");
         } else
         {
-            return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/infernal_blade_small/infernal_blade_small.png");
+            return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/infernal_blade_small/infernal_blade_small.png");
         }
     }
 
     @Override
     public ResourceLocation getAnimationResource(InfernalBladeProjectile animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/infernal_blade_small.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "animations/entity/infernal_blade_small.animation.json");
     }
 }

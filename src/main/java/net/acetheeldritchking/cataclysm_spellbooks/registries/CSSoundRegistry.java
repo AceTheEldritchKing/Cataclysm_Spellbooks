@@ -20,6 +20,6 @@ public class CSSoundRegistry {
     private static RegistryObject<SoundEvent> registerSoundEvent(String name)
     {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent
-                (new ResourceLocation(CataclysmSpellbooks.MOD_ID, name)));
+                (ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, name)));
     }
 }

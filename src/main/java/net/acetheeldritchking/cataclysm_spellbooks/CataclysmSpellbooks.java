@@ -187,6 +187,6 @@ public class CataclysmSpellbooks
     }
 
     public static ResourceLocation id(@NotNull String path) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, path);
     }
 }

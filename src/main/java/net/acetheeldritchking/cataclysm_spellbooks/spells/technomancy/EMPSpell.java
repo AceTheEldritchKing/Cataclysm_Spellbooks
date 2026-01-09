@@ -30,7 +30,7 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class EMPSpell extends AbstractHarbingerSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "emp_blast");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "emp_blast");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

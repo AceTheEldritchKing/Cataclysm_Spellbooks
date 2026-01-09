@@ -7,16 +7,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class MoltenBulletModel extends GeoModel<MoltenBulletProjectile> {
     @Override
     public ResourceLocation getModelResource(MoltenBulletProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/magic_bullet.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/magic_bullet.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(MoltenBulletProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/molten_bullet/molten_bullet.png");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/molten_bullet/molten_bullet.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(MoltenBulletProjectile animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
     }
 }

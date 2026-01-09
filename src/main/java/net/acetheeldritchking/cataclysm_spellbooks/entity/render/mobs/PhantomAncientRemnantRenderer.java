@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class PhantomAncientRemnantRenderer extends Ancient_Remnant_Rework_Renderer {
-    private static final ResourceLocation REMNANT_TEXTURES = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/ancient_remnant/ancient_remnant_rag.png");
+    private static final ResourceLocation REMNANT_TEXTURES = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/ancient_remnant/ancient_remnant_rag.png");
     private final RandomSource rnd = RandomSource.create();
 
     public PhantomAncientRemnantRenderer(EntityRendererProvider.Context renderManagerIn) {

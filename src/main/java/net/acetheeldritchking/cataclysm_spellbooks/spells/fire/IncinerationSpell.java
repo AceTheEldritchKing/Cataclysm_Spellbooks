@@ -26,7 +26,7 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class IncinerationSpell extends AbstractIgnisSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "incineration");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "incineration");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

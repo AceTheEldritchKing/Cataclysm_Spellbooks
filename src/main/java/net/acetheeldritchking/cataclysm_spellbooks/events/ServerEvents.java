@@ -8,13 +8,10 @@ import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
-import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.effect.ChargeEffect;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
 import io.redspace.ironsspellbooks.network.SyncManaPacket;
-import io.redspace.ironsspellbooks.player.ClientMagicData;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
-import io.redspace.ironsspellbooks.setup.Messages;
 import io.redspace.ironsspellbooks.setup.PacketDistributor;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.capabilities.murasama_combo.PlayerMurasamaCombo;
@@ -28,12 +25,10 @@ import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistr
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
-import net.acetheeldritchking.cataclysm_spellbooks.spells.blood.FinalRendSpell;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSConfig;
 import net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -46,7 +41,9 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -57,8 +54,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class ServerEvents {
@@ -651,17 +646,17 @@ public class ServerEvents {
         if (event.getObject() instanceof Player) {
             // Wrath
             if (!event.getObject().getCapability(PlayerWrathProvider.PLAYER_WRATH).isPresent()) {
-                event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "wrath"), new PlayerWrathProvider());
+                event.addCapability(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "wrath"), new PlayerWrathProvider());
             }
 
             // King's Wrath
             if (!event.getObject().getCapability(PlayerKingWrathProvider.PLAYER_KINGS_WRATH).isPresent()) {
-                event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "kings_wrath"), new PlayerKingWrathProvider());
+                event.addCapability(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "kings_wrath"), new PlayerKingWrathProvider());
             }
 
             // Murasama Combo
             if (!event.getObject().getCapability(PlayerMurasamaComboProvider.PLAYER_MURASAMA_COMBO).isPresent()) {
-                event.addCapability(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "murasama_combo"), new PlayerMurasamaComboProvider());
+                event.addCapability(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "murasama_combo"), new PlayerMurasamaComboProvider());
             }
         }
     }

@@ -24,7 +24,7 @@ import java.util.List;
 
 @AutoSpellConfig
 public class BonePierceSpell extends AbstractIgnisSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "piercing_bone");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "piercing_bone");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

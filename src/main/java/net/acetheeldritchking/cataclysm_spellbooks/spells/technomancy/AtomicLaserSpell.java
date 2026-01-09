@@ -27,7 +27,7 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class AtomicLaserSpell extends AbstractHarbingerSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "atomic_laser");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "atomic_laser");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
