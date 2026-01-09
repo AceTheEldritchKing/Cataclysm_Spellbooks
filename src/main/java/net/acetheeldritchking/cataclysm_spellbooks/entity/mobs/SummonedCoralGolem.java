@@ -1,9 +1,9 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 
 import com.github.L_Ender.cataclysm.entity.Deepling.Coral_Golem_Entity;
-import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
@@ -29,10 +29,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummon {
-    protected LivingEntity cachedSummoner;
-    protected UUID summonerUUID;
-
+public class SummonedCoralGolem extends Coral_Golem_Entity implements IMagicSummon {
     public SummonedCoralGolem(EntityType entity, Level world) {
         super(entity, world);
     }
@@ -59,18 +56,10 @@ public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummo
         super.registerGoals();
     }
 
-    @Override
-    public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
-    }
-
     public void setSummoner(@Nullable LivingEntity owner)
     {
-        if (owner != null)
-        {
-            this.summonerUUID = owner.getUUID();
-            this.cachedSummoner = owner;
-        }
+        if (owner == null) return;
+        SummonManager.setOwner(this, owner);
     }
 
     // Attacks and Death
@@ -82,7 +71,7 @@ public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummo
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.CORAL_GOLEM_TIMER.get());
+        this.onRemovedHelper(this);
         super.onRemovedFromWorld();
     }
 
@@ -131,18 +120,5 @@ public class SummonedCoralGolem extends Coral_Golem_Entity implements MagicSummo
                 .add(Attributes.ARMOR, 5)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.8)
                 .build();
-    }
-
-    // NBT
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
     }
 }

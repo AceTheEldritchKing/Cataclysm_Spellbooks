@@ -4,6 +4,8 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedProwler;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -73,6 +75,7 @@ public class ConstructProwlerSpell extends AbstractHarbingerSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        var castData= new SummonedEntitiesCastData();
         int summonTimer = 20 * 60 * 10;
 
         for (int i = 0; i < spellLevel; i++)
@@ -82,20 +85,14 @@ public class ConstructProwlerSpell extends AbstractHarbingerSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnProwler(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnProwler(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
         }
-
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.PROWLER_TIMER.get());
-        entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnProwler(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnProwler(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.PROWLER_TIMER.get(),
-                summonTimer, 0, false, false, false);
-
         SummonedProwler prowler = new SummonedProwler(level, caster);
 
         prowler.finalizeSpawn((ServerLevelAccessor) level,
@@ -104,8 +101,8 @@ public class ConstructProwlerSpell extends AbstractHarbingerSpell {
 
         prowler.moveTo(x, y, z);
 
-        prowler.addEffect(effect);
-
         level.addFreshEntity(prowler);
+
+        SummonManager.initSummon(caster, prowler, summonTimer, castData);
     }
 }

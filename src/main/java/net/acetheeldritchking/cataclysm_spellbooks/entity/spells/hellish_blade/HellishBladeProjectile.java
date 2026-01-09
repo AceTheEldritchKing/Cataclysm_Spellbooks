@@ -31,6 +31,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class HellishBladeProjectile extends AbstractMagicProjectile implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -69,13 +70,13 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements G
     }
 
     @Override
-    public Optional<SoundEvent> getImpactSound() {
-        return Optional.of(ModSounds.IGNIS_IMPACT.get());
+    public Optional<Supplier<SoundEvent>> getImpactSound() {
+        return Optional.of(ModSounds.IGNIS_IMPACT);
     }
 
     @Override
-    protected void doImpactSound(SoundEvent sound) {
-        this.level().playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 1.0f);
+    protected void doImpactSound(Supplier<SoundEvent> sound) {
+        this.level().playSound(null, getX(), getY(), getZ(), sound.get(), SoundSource.NEUTRAL, 1.5f, 1.0f);
     }
 
     @Override

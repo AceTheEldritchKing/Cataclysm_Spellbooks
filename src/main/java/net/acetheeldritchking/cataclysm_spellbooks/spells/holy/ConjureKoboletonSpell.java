@@ -4,6 +4,8 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedKoboleton;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -61,6 +63,7 @@ public class ConjureKoboletonSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        var castData= new SummonedEntitiesCastData();
         int summonTimer = 20 * 60 * 10;
 
         for (int i = 0; i < spellLevel; i++)
@@ -70,21 +73,14 @@ public class ConjureKoboletonSpell extends AbstractSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnKoboleton(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnKoboleton(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
         }
-
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.KOBOLDETON_TIMER.get(),
-                summonTimer, 0, false, false, false);
-        entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnKoboleton(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnKoboleton(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.KOBOLDETON_TIMER.get(),
-                summonTimer, 0, false, false, false);
-
         SummonedKoboleton koboleton = new SummonedKoboleton(level, caster);
 
         koboleton.finalizeSpawn((ServerLevelAccessor) level,
@@ -93,8 +89,8 @@ public class ConjureKoboletonSpell extends AbstractSpell {
 
         koboleton.moveTo(x, y, z);
 
-        koboleton.addEffect(effect);
-
         level.addFreshEntity(koboleton);
+
+        SummonManager.initSummon(caster, koboleton, summonTimer, castData);
     }
 }

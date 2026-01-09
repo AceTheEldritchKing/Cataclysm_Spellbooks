@@ -3,21 +3,18 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Ancient_Remnant.Ancient_Remnant_Entity;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
-import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -28,13 +25,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
-public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements MagicSummon {
-    protected LivingEntity cachedSummoner;
-    protected UUID summonerUUID;
-    protected int ticksToLive = 1200;
-
+public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements IMagicSummon {
     public PhantomAncientRemnant(EntityType entity, Level world) {
         super(entity, world);
     }
@@ -61,18 +53,10 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
         super.registerGoals();
     }
 
-    @Override
-    public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
-    }
-
     public void setSummoner(@Nullable LivingEntity owner)
     {
-        if (owner != null)
-        {
-            this.summonerUUID = owner.getUUID();
-            this.cachedSummoner = owner;
-        }
+        if (owner == null) return;
+        SummonManager.setOwner(this, owner);
     }
 
     // Attacks and Death
@@ -84,7 +68,7 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.REMNANT_TIMER.get());
+        this.onRemovedHelper(this);
         super.onRemovedFromWorld();
     }
 
@@ -121,20 +105,6 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
         else
         {
             return this.getTeam() == null && entityIn.getTeam() == null;
-        }
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-
-        ticksToLive--;
-
-        //System.out.println("Ticks to live: " + ticksToLive);
-
-        if (ticksToLive <= 0)
-        {
-            this.kill();
         }
     }
 
@@ -227,20 +197,5 @@ public class PhantomAncientRemnant extends Ancient_Remnant_Entity implements Mag
 
             return super.getDismountLocationForPassenger(pLivingEntity);
         }
-    }
-
-    // NBT
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
-        this.ticksToLive = pCompound.getInt("Ticks to live");
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
-        pCompound.putInt("Ticks to live", this.ticksToLive);
     }
 }

@@ -134,7 +134,7 @@ public class ScorchedEarthSpell extends AbstractSpell {
 
     @Override
     public SpellDamageSource getDamageSource(Entity projectile, Entity attacker) {
-        return super.getDamageSource(projectile, attacker).setFireTime(25);
+        return super.getDamageSource(projectile, attacker).setFireTicks(25);
     }
 
     private float getDamage(int spellLevel, LivingEntity caster)

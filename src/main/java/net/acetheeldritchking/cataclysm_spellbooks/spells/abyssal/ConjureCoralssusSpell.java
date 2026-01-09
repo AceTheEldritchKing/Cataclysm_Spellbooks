@@ -6,6 +6,8 @@ import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedCoralssus;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -64,6 +66,7 @@ public class ConjureCoralssusSpell extends AbstractAbyssalSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        var castData=new SummonedEntitiesCastData();
         int summonTimer = 20 * 60 * 10;
 
         for (int i = 0; i < spellLevel; i++)
@@ -73,21 +76,14 @@ public class ConjureCoralssusSpell extends AbstractAbyssalSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnCoralssus(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnCoralssus(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
         }
-
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.CORALSSUS_TIMER.get(),
-                summonTimer, 0, false, false, false);
-        entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnCoralssus(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnCoralssus(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.CORALSSUS_TIMER.get(),
-                summonTimer, 0, false, false, false);
-
         SummonedCoralssus coralssus = new SummonedCoralssus(level, caster);
 
         coralssus.finalizeSpawn((ServerLevelAccessor) level,
@@ -96,8 +92,8 @@ public class ConjureCoralssusSpell extends AbstractAbyssalSpell {
 
         coralssus.moveTo(x, y, z);
 
-        coralssus.addEffect(effect);
-
         level.addFreshEntity(coralssus);
+
+        SummonManager.initSummon(caster, coralssus, summonTimer, castData);
     }
 }

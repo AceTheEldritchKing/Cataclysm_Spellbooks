@@ -4,6 +4,8 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedCounterspellWatcher;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedWatcher;
@@ -86,17 +88,11 @@ public class DoSSwarmSpell extends AbstractHarbingerSpell {
             spawnWatcher(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
         }
 
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.WATCHER_TIMER.get());
-        entity.addEffect(effect);
-
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
     private void spawnWatcher(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.WATCHER_TIMER.get(),
-                summonTimer, 0, false, false, false);
-
         SummonedCounterspellWatcher watcher = new SummonedCounterspellWatcher(level, caster);
 
         watcher.finalizeSpawn((ServerLevelAccessor) level,
@@ -105,7 +101,7 @@ public class DoSSwarmSpell extends AbstractHarbingerSpell {
 
         watcher.moveTo(x, y, z);
 
-        watcher.addEffect(effect);
+        SummonManager.initSummon(caster, watcher, summonTimer, new SummonedEntitiesCastData());
 
         level.addFreshEntity(watcher);
     }

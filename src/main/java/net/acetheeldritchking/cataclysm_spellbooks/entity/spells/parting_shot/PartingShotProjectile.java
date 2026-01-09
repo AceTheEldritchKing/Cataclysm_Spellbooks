@@ -38,6 +38,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class PartingShotProjectile extends AbstractMagicProjectile implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -111,7 +112,7 @@ public class PartingShotProjectile extends AbstractMagicProjectile implements Ge
     }
 
     @Override
-    public Optional<SoundEvent> getImpactSound() {
+    public Optional<Supplier<SoundEvent>> getImpactSound() {
         return Optional.empty();
     }
 

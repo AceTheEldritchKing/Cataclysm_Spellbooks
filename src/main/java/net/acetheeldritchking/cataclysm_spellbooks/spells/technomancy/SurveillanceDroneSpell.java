@@ -5,7 +5,7 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SurveillanceDroneEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
@@ -73,7 +73,7 @@ public class SurveillanceDroneSpell extends AbstractSpell {
         {
             LivingEntity target = castTargetingData.getTarget((ServerLevel) level);
 
-            if (target != null && target instanceof MagicSummon)
+            if (target instanceof IMagicSummon)
             {
                 Vec3 spawn = target.position();
 

@@ -3,12 +3,10 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade
 import com.github.L_Ender.cataclysm.init.ModEffect;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.init.ModSounds;
-import com.github.L_Ender.lionfishapi.server.event.AnimationEvent;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -33,6 +31,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class InfernalBladeProjectile extends AbstractMagicProjectile implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -47,8 +46,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
         this.setNoGravity(true);
     }
 
-    public InfernalBladeProjectile(Level level, LivingEntity shooter)
-    {
+    public InfernalBladeProjectile(Level level, LivingEntity shooter) {
         this(CSEntityRegistry.INFERNAL_BLADE_PROJECTILE.get(), level);
         setOwner(shooter);
     }
@@ -56,8 +54,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     @Override
     public void travel() {
         this.setPos(this.position().add(this.getDeltaMovement()));
-        if (!this.isNoGravity())
-        {
+        if (!this.isNoGravity()) {
             Vec3 vec3 = this.getDeltaMovement();
             this.setDeltaMovement(vec3.x, vec3.y - 0.05000000074505806, vec3.z);
         }
@@ -97,13 +94,13 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     }
 
     @Override
-    public Optional<SoundEvent> getImpactSound() {
-        return Optional.of(ModSounds.IGNIS_POKE.get());
+    public Optional<Supplier<SoundEvent>> getImpactSound() {
+        return Optional.of(ModSounds.IGNIS_POKE);
     }
 
     @Override
-    protected void doImpactSound(SoundEvent sound) {
-        this.level().playSound(null, getX(), getY(), getZ(), sound, SoundSource.NEUTRAL, 1.5f, 0.5f);
+    protected void doImpactSound(Supplier<SoundEvent> sound) {
+        this.level().playSound(null, getX(), getY(), getZ(), sound.get(), SoundSource.NEUTRAL, 1.5f, 0.5f);
     }
 
     @Override
@@ -111,8 +108,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
         var target = pResult.getEntity();
         DamageSources.applyDamage(target, damage,
                 SpellRegistries.INFERNAL_STRIKE.get().getDamageSource(this, getOwner()));
-        if (target instanceof LivingEntity livingTarget)
-        {
+        if (target instanceof LivingEntity livingTarget) {
             livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));
         }
         discard();
@@ -124,13 +120,11 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
         discard();
     }
 
-    public boolean getIsSoul()
-    {
+    public boolean getIsSoul() {
         return this.entityData.get(SOUL);
     }
 
-    public void setIsSoul(boolean soul)
-    {
+    public void setIsSoul(boolean soul) {
         this.entityData.set(SOUL, soul);
     }
 
@@ -147,8 +141,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
         return geoCache;
     }
 
-    private PlayState predicate(AnimationState<InfernalBladeProjectile> event)
-    {
+    private PlayState predicate(AnimationState<InfernalBladeProjectile> event) {
         // Sounds pretty cool!
         event.getController().setAnimation(RawAnimation.begin().then("animation.infernal_blade_small.idle", Animation.LoopType.LOOP));
 
@@ -158,6 +151,7 @@ public class InfernalBladeProjectile extends AbstractMagicProjectile implements 
     // NBT
     @Override
     protected void defineSynchedData() {
+        super.defineSynchedData();
         this.entityData.define(SOUL, false);
     }
 

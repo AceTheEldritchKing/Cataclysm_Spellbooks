@@ -7,7 +7,7 @@ import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.effects.potion.RewirePotionEffect;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
@@ -104,7 +104,7 @@ public class RewireSpell extends AbstractSpell {
 
             var targetEntity = targetingData.getTarget((ServerLevel) level);
 
-            if (targetEntity != null && targetEntity instanceof MagicSummon)
+            if (targetEntity instanceof IMagicSummon)
             {
                 targetEntity.addEffect(new MobEffectInstance(CSPotionEffectRegistry.REWIRED_EFFECT.get(),
                         getEffectDuration(spellLevel, entity),

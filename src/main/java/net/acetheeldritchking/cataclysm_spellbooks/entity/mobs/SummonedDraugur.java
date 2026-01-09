@@ -3,7 +3,8 @@ package net.acetheeldritchking.cataclysm_spellbooks.entity.mobs;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Draugar.Draugr_Entity;
 import com.github.L_Ender.cataclysm.init.ModParticle;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.entity.mobs.MagicSummon;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.goals.*;
 import io.redspace.ironsspellbooks.util.OwnerHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSEntityRegistry;
@@ -25,10 +26,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class SummonedDraugur extends Draugr_Entity implements MagicSummon {
-    protected LivingEntity cachedSummoner;
-    protected UUID summonerUUID;
-
+public class SummonedDraugur extends Draugr_Entity implements IMagicSummon {
     public SummonedDraugur(EntityType entity, Level world) {
         super(entity, world);
         xpReward = 0;
@@ -56,18 +54,10 @@ public class SummonedDraugur extends Draugr_Entity implements MagicSummon {
         super.registerGoals();
     }
 
-    @Override
-    public LivingEntity getSummoner() {
-        return OwnerHelper.getAndCacheOwner(this.level(), cachedSummoner, summonerUUID);
-    }
-
     public void setSummoner(@Nullable LivingEntity owner)
     {
-        if (owner != null)
-        {
-            this.summonerUUID = owner.getUUID();
-            this.cachedSummoner = owner;
-        }
+        if (owner == null) return;
+        SummonManager.setOwner(this, owner);
     }
 
     // Attacks and Death
@@ -79,7 +69,7 @@ public class SummonedDraugur extends Draugr_Entity implements MagicSummon {
 
     @Override
     public void onRemovedFromWorld() {
-        this.onRemovedHelper(this, CSPotionEffectRegistry.DRAUGUR_TIMER.get());
+        this.onRemovedHelper(this);
         super.onRemovedFromWorld();
     }
 
@@ -117,18 +107,5 @@ public class SummonedDraugur extends Draugr_Entity implements MagicSummon {
         {
             return this.getTeam() == null && entityIn.getTeam() == null;
         }
-    }
-
-    // NBT
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.summonerUUID = OwnerHelper.deserializeOwner(pCompound);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        OwnerHelper.serializeOwner(pCompound, summonerUUID);
     }
 }

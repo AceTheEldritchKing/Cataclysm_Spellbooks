@@ -5,6 +5,8 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.Utils;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAptrgangr;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedDraugur;
@@ -66,6 +68,7 @@ public class ConjureThrallsSpell extends AbstractMaledictusSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+        var castData= new SummonedEntitiesCastData();
         int summonTimer = 20 * 60 * 10;
 
         for (int i = 0; i < spellLevel; i++)
@@ -75,20 +78,14 @@ public class ConjureThrallsSpell extends AbstractMaledictusSpell {
             double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
             double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
 
-            spawnThrallsNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnThrallsNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
         }
-
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.DRAUGUR_TIMER.get());
-        entity.addEffect(effect);
 
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private void spawnThrallsNearby(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
+    private void spawnThrallsNearby(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
     {
-        MobEffectInstance effect = new MobEffectInstance(CSPotionEffectRegistry.DRAUGUR_TIMER.get(),
-                summonTimer, 0, false, false, false);
-
         boolean isRoyal = Utils.random.nextDouble() < 0.4;
         boolean isElite = Utils.random.nextDouble() < 0.5;
         boolean isAptrgangr = Utils.random.nextDouble() < 0.2;
@@ -114,8 +111,8 @@ public class ConjureThrallsSpell extends AbstractMaledictusSpell {
 
         draugurArmry.moveTo(x, y, z);
 
-        draugurArmry.addEffect(effect);
-
         level.addFreshEntity(draugurArmry);
+
+        SummonManager.initSummon(caster, draugurArmry, summonTimer, castData);
     }
 }

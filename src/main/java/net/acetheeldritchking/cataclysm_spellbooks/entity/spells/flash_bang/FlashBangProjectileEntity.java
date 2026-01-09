@@ -30,6 +30,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class FlashBangProjectileEntity extends AbstractMagicProjectile implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -80,8 +81,8 @@ public class FlashBangProjectileEntity extends AbstractMagicProjectile implement
     }
 
     @Override
-    public Optional<SoundEvent> getImpactSound() {
-        return Optional.of(SoundEvents.GENERIC_EXPLODE);
+    public Optional<Supplier<SoundEvent>> getImpactSound() {
+        return Optional.of(()->SoundEvents.GENERIC_EXPLODE);
     }
 
     @Override
