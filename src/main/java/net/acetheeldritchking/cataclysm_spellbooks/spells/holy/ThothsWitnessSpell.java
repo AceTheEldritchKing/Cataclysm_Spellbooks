@@ -10,13 +10,13 @@ import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
 import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import io.redspace.ironsspellbooks.entity.spells.EarthquakeAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.PhantomAncientRemnant;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.AbstractSummonSpell;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -26,10 +26,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,7 +35,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-public class ThothsWitnessSpell extends AbstractSpell {
+public class ThothsWitnessSpell extends AbstractSummonSpell {
     private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "thoths_witness");
 
     @Override
@@ -53,8 +51,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
             .setCooldownSeconds(600)
             .build();
 
-    public ThothsWitnessSpell()
-    {
+    public ThothsWitnessSpell() {
         this.manaCostPerLevel = 20;
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
@@ -79,17 +76,15 @@ public class ThothsWitnessSpell extends AbstractSpell {
 
     @Override
     public CastResult canBeCastedBy(int spellLevel, CastSource castSource, MagicData playerMagicData, Player player) {
-        if (castSource == CastSource.SCROLL)
-        {
+        if (castSource == CastSource.SCROLL) {
             return new CastResult(CastResult.Type.FAILURE, Component.translatable("ui.cataclysm_spellbooks.thoths_witness_scroll_failure", new Object[]{this.getDisplayName(player)}).withStyle(ChatFormatting.RED));
         }
         if (
                 !player.getItemBySlot(EquipmentSlot.HEAD).is(ItemRegistries.PHARAOH_MAGE_HELMET.get())
-                && !player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.PHARAOH_MAGE_CHESTPLATE.get())
-                && !player.getItemBySlot(EquipmentSlot.LEGS).is(ItemRegistries.PHARAOH_MAGE_LEGGINGS.get())
-                && !player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistries.PHARAOH_MAGE_BOOTS.get())
-        )
-        {
+                        && !player.getItemBySlot(EquipmentSlot.CHEST).is(ItemRegistries.PHARAOH_MAGE_CHESTPLATE.get())
+                        && !player.getItemBySlot(EquipmentSlot.LEGS).is(ItemRegistries.PHARAOH_MAGE_LEGGINGS.get())
+                        && !player.getItemBySlot(EquipmentSlot.FEET).is(ItemRegistries.PHARAOH_MAGE_BOOTS.get())
+        ) {
             return new CastResult(CastResult.Type.FAILURE, Component.translatable("ui.cataclysm_spellbooks.thoths_witness_armor_failure", new Object[]{this.getDisplayName(player)}).withStyle(ChatFormatting.RED));
         }
         return super.canBeCastedBy(spellLevel, castSource, playerMagicData, player);
@@ -160,8 +155,7 @@ public class ThothsWitnessSpell extends AbstractSpell {
         MagicManager.spawnParticles(level, new StormParticle.OrbData(r, g, b, 2.25F + entity.getRandom().nextFloat() * 0.45F, 2.25F + entity.getRandom().nextFloat() * 0.45F, entity.getId()), entity.getX(), entity.getY(), entity.getZ(), 1, 0, 0, 0, 1, true);
         MagicManager.spawnParticles(level, new StormParticle.OrbData(r, g, b, 1.25F + entity.getRandom().nextFloat() * 0.45F, 1.25F + entity.getRandom().nextFloat() * 0.45F, entity.getId()), entity.getX(), entity.getY(), entity.getZ(), 1, 0, 0, 0, 1, true);
 
-        if (entity.tickCount % 10 == 0)
-        {
+        if (entity.tickCount % 10 == 0) {
             // ring 1
             int count = 16;
             float particleRadius = 1.25f;
@@ -205,37 +199,16 @@ public class ThothsWitnessSpell extends AbstractSpell {
     }
 
     @Override
-    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+    protected int onSummoningCast(Level level, int spellLevel, LivingEntity caster, CastSource castSource, MagicData playerMagicData, SummonedEntitiesCastData castData) {
         // Only is around for 45 seconds
         int summonTimer = 1200;
 
-        Vec3 vec = entity.getEyePosition();
+        Vec3 vec = caster.getEyePosition();
 
-        double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 1.5;
-        double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 1.5;
+        double randomNearbyX = vec.x + caster.getRandom().nextGaussian() * 1.5;
+        double randomNearbyZ = vec.z + caster.getRandom().nextGaussian() * 1.5;
 
-        summonPhantomRemnant(randomNearbyX, entity.getY(), randomNearbyZ, entity, level, summonTimer);
-
-        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 6), entity.getX(), entity.getY() + 0.8F, entity.getZ(), 1, 0, 0, 0, 0, true);
-        ScreenShake_Entity.ScreenShake(level, entity.position(), 6.0F, 0.15F, 20, 20);
-
-        //System.out.println("Effect duration: " + effect.getDuration());
-
-        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-    }
-
-    private void summonPhantomRemnant(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
-    {
-        int summonTimer2 = 1200;
-
-        PhantomAncientRemnant ancientRemnant = new PhantomAncientRemnant(level, caster);
-
-        ancientRemnant.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(ancientRemnant.getOnPos()),
-                MobSpawnType.MOB_SUMMONED, null, null);
-
-        ancientRemnant.moveTo(x, y, z);
-
+        var ancientRemnant = spawnHelper(randomNearbyX, caster.getY(), randomNearbyZ, caster, level, summonTimer, castData, () -> new PhantomAncientRemnant(level, caster));
         ancientRemnant.setSleep(false);
 
         // Just for visuals
@@ -247,13 +220,12 @@ public class ThothsWitnessSpell extends AbstractSpell {
         aoe.setDuration(20);
         aoe.setDamage(0);
         aoe.setSlownessAmplifier(0);
-
         level.addFreshEntity(aoe);
 
-        level.addFreshEntity(ancientRemnant);
 
-        SummonManager.initSummon(caster, ancientRemnant, summonTimer2, new SummonedEntitiesCastData());
+        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 6), caster.getX(), caster.getY() + 0.8F, caster.getZ(), 1, 0, 0, 0, 0, true);
+        ScreenShake_Entity.ScreenShake(level, caster.position(), 6.0F, 0.15F, 20, 20);
 
-        //System.out.println("Effect?" + ancientRemnant.getActiveEffects());
+        return summonTimer;
     }
 }

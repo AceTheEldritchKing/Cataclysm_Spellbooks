@@ -8,7 +8,6 @@ import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.api.util.Utils;
-import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
 import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedIgnitedBerserker;
@@ -17,16 +16,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
 @AutoSpellConfig
-public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
+public class ConjureIgnitedReinforcement extends AbstractIgnisSummonSpell {
     private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "conjure_ignited_reinforcement");
 
     @Override
@@ -41,8 +37,7 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
             .setCooldownSeconds(100)
             .build();
 
-    public ConjureIgnitedReinforcement()
-    {
+    public ConjureIgnitedReinforcement() {
         this.manaCostPerLevel = 15;
         this.baseSpellPower = 10;
         this.spellPowerPerLevel = 5;
@@ -66,41 +61,25 @@ public class ConjureIgnitedReinforcement extends AbstractIgnisSpell {
     }
 
     @Override
-    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        var castData=new SummonedEntitiesCastData();
+    protected int onSummoningCast(Level level, int spellLevel, LivingEntity caster, CastSource castSource, MagicData playerMagicData, SummonedEntitiesCastData castData) {
         int summonTimer = 20 * 60 * 10;
 
-        for (int i = 0; i < spellLevel; i++)
-        {
-            Vec3 vec = entity.getEyePosition();
+        for (int i = 0; i < spellLevel; i++) {
+            Vec3 vec = caster.getEyePosition();
 
-            double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
-            double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
+            double randomNearbyX = vec.x + caster.getRandom().nextGaussian() * 3;
+            double randomNearbyZ = vec.z + caster.getRandom().nextGaussian() * 3;
 
-            spawnIgnitedNearby(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
+            spawnHelper(randomNearbyX, vec.y, randomNearbyZ, caster, level, summonTimer, castData, () -> {
+                boolean isBerserker = Utils.random.nextDouble() < 0.7f;
+
+                SummonedIgnitedRevenant revenantEntity = new SummonedIgnitedRevenant(level, caster);
+                SummonedIgnitedBerserker berserkerEntity = new SummonedIgnitedBerserker(level, caster);
+
+                return isBerserker ? berserkerEntity : revenantEntity;
+            });
         }
-
-        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-    }
-
-    private void spawnIgnitedNearby(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
-    {
-        boolean isBerserker = Utils.random.nextDouble() < 0.7f;
-
-        SummonedIgnitedRevenant revenantEntity = new SummonedIgnitedRevenant(level, caster);
-        SummonedIgnitedBerserker berserkerEntity = new SummonedIgnitedBerserker(level, caster);
-
-        Monster ignited = isBerserker ? berserkerEntity : revenantEntity;
-
-        ignited.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(ignited.getOnPos()),
-                MobSpawnType.MOB_SUMMONED, null, null);
-
-        ignited.moveTo(x, y, z);
-
-        level.addFreshEntity(ignited);
-
-        SummonManager.initSummon(caster, ignited, summonTimer, castData);
+        return summonTimer;
     }
 
 }

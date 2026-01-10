@@ -3,25 +3,25 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.nature;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.spells.*;
-import io.redspace.ironsspellbooks.capabilities.magic.*;
+import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
+import io.redspace.ironsspellbooks.api.spells.CastSource;
+import io.redspace.ironsspellbooks.api.spells.CastType;
+import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedAmethystCrab;
+import net.acetheeldritchking.cataclysm_spellbooks.spells.AbstractSummonSpell;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 @AutoSpellConfig
-public class ConjureAmethystCrabSpell extends AbstractSpell {
+public class ConjureAmethystCrabSpell extends AbstractSummonSpell {
     private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "conjure_amethyst_crab");
 
     @Override
@@ -61,35 +61,17 @@ public class ConjureAmethystCrabSpell extends AbstractSpell {
     }
 
     @Override
-    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        var castData=new SummonedEntitiesCastData();
+    protected int onSummoningCast(Level level, int spellLevel, LivingEntity caster, CastSource castSource, MagicData playerMagicData, SummonedEntitiesCastData castData) {
         int summonTimer = 20 * 60 * 10;
 
-        for (int i = 0; i < spellLevel; i++)
-        {
-            Vec3 vec = entity.getEyePosition();
+        for (int i = 0; i < spellLevel; i++) {
+            Vec3 vec = caster.getEyePosition();
 
-            double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
-            double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
+            double randomNearbyX = vec.x + caster.getRandom().nextGaussian() * 3;
+            double randomNearbyZ = vec.z + caster.getRandom().nextGaussian() * 3;
 
-            spawnCrab(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer, castData);
+            spawnHelper(randomNearbyX, vec.y, randomNearbyZ, caster, level, summonTimer, castData, () -> new SummonedAmethystCrab(level, caster));
         }
-
-        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-    }
-
-    private void spawnCrab(double x, double y, double z, LivingEntity caster, Level level, int summonTimer, SummonedEntitiesCastData castData)
-    {
-        SummonedAmethystCrab amethystCrab  = new SummonedAmethystCrab(level, caster);
-
-        amethystCrab.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(amethystCrab.getOnPos()),
-                MobSpawnType.MOB_SUMMONED, null, null);
-
-        amethystCrab.moveTo(x, y, z);
-
-        level.addFreshEntity(amethystCrab);
-
-        SummonManager.initSummon(caster, amethystCrab, summonTimer, castData);
+        return summonTimer;
     }
 }
