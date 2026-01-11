@@ -2,19 +2,19 @@ package net.acetheeldritchking.cataclysm_spellbooks.registries;
 
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.*;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blood_crystal.BloodCrystalProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.FrozenBulletProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets.MoltenBulletProjectile;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.no_man_zone.NoManZoneAoE;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.blazing_aoe.BlazingAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.disabling_swipe.DisablingSwipeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedDeathLaserBeamEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.extended.ExtendedLaserBeamEntity;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.final_rend.FinalRendAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang.FlashBangProjectileEntity;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.glacial_block.GlacialBlockEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.hellish_blade.HellishBladeProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.infernal_blade.InfernalBladeProjectile;
+import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.no_man_zone.NoManZoneAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.parting_shot.PartingShotProjectile;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.quick_strike.QuickStrikeAoE;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.scorched_earth_aoe.ScorchedEarthAoE;
@@ -36,7 +36,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "infernal_blade").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "infernal_blade").toString()
                     ));
 
     // Hellish Blade Projectile
@@ -45,7 +45,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "hellish_blade").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "hellish_blade").toString()
                     ));
 
     // Blazing AoE Entity
@@ -54,7 +54,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "blazing_aoe").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "blazing_aoe").toString()
                     ));
 
     // Summoned Ignited Revenant
@@ -63,7 +63,7 @@ public class CSEntityRegistry {
                             (SummonedIgnitedRevenant::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_ignited_revenant").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_ignited_revenant").toString()
                     ));
 
     // Summoned Ignited Berserker
@@ -72,7 +72,7 @@ public class CSEntityRegistry {
                             (SummonedIgnitedBerserker::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_ignited_berserker").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_ignited_berserker").toString()
                     ));
 
     // Summoned Koboldiator
@@ -81,7 +81,7 @@ public class CSEntityRegistry {
                             (SummonedKoboldiator::new, MobCategory.MONSTER).
                     sized(2.5f, 4.5f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_koboldiator").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_koboldiator").toString()
                     ));
 
     // Summoned Koboleton
@@ -90,7 +90,7 @@ public class CSEntityRegistry {
                             (SummonedKoboleton::new, MobCategory.MONSTER).
                     sized(1f, 2f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_koboleton").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_koboleton").toString()
                     ));
 
     // Summoned Draugur
@@ -99,7 +99,7 @@ public class CSEntityRegistry {
                             (SummonedDraugur::new, MobCategory.MONSTER).
                     sized(1f, 2f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_draugur").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_draugur").toString()
                     ));
 
     // Summoned Royal Draugur
@@ -108,7 +108,7 @@ public class CSEntityRegistry {
                             (SummonedRoyalDraugur::new, MobCategory.MONSTER).
                     sized(1f, 2f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_royal_draugur").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_royal_draugur").toString()
                     ));
 
     // Summoned Elite Draugur
@@ -117,7 +117,7 @@ public class CSEntityRegistry {
                             (SummonedEliteDraugur::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_elite_draugur").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_elite_draugur").toString()
                     ));
 
     // Summoned Aptrgangr
@@ -126,7 +126,7 @@ public class CSEntityRegistry {
                             (SummonedAptrgangr::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_aptrgangr").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_aptrgangr").toString()
                     ));
 
     // Laser Beam
@@ -135,7 +135,7 @@ public class CSEntityRegistry {
                             (ExtendedLaserBeamEntity::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "extended_laser_beam").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "extended_laser_beam").toString()
                     ));
 
     // Death Laser
@@ -144,7 +144,7 @@ public class CSEntityRegistry {
                             (ExtendedDeathLaserBeamEntity::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "extended_death_laser_beam").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "extended_death_laser_beam").toString()
                     ));
 
     // Summoned Watcher
@@ -153,7 +153,7 @@ public class CSEntityRegistry {
                             (SummonedWatcher::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_watcher").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_watcher").toString()
                     ));
 
     // Summoned Prowler
@@ -162,7 +162,7 @@ public class CSEntityRegistry {
                             (SummonedProwler::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_prowler").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_prowler").toString()
                     ));
 
     // Summoned Counterspell Watcher
@@ -171,7 +171,7 @@ public class CSEntityRegistry {
                             (SummonedCounterspellWatcher::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_counterspell_watcher").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_counterspell_watcher").toString()
                     ));
 
     // Parting Shot Projectile
@@ -180,7 +180,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "parting_shot").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "parting_shot").toString()
                     ));
 
     // Parting Shot Projectile
@@ -189,7 +189,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "surveillance_drone").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "surveillance_drone").toString()
                     ));
 
     // Flash Bang Projectile
@@ -198,7 +198,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "flash_bang").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "flash_bang").toString()
                     ));
 
     // Disabling Swipe
@@ -207,7 +207,7 @@ public class CSEntityRegistry {
                     .sized(5f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "disabling_swipe").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "disabling_swipe").toString()
                     ));
 
     // No-Man Zone AoE Entity
@@ -216,7 +216,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "no_man_zone_aoe").toString()
                     ));
 
     // Summoned Amethyst Crab
@@ -225,7 +225,7 @@ public class CSEntityRegistry {
                             (SummonedAmethystCrab::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_amethyst_crab").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_amethyst_crab").toString()
                     ));
 
     // Summoned Coral Golem
@@ -234,7 +234,7 @@ public class CSEntityRegistry {
                             (SummonedCoralGolem::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_coral_golem").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_coral_golem").toString()
                     ));
 
     // Summoned Coralssus
@@ -243,7 +243,7 @@ public class CSEntityRegistry {
                             (SummonedCoralssus::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_coralssus").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_coralssus").toString()
                     ));
 
     // Phantom Ancient Remnant
@@ -252,7 +252,7 @@ public class CSEntityRegistry {
                             (PhantomAncientRemnant::new, MobCategory.MONSTER).
                     sized(5f, 5f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "phantom_ancient_remnant").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "phantom_ancient_remnant").toString()
                     ));
 
     // Blood Crystal
@@ -261,7 +261,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "blood_crystal").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "blood_crystal").toString()
                     ));
 
     // Molten Bullet
@@ -270,7 +270,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "molten_bullet").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "molten_bullet").toString()
                     ));
 
     // Scorched Earth AoE
@@ -279,7 +279,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "scorched_earth_aoe").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "scorched_earth_aoe").toString()
                     ));
 
     // Frozen Bullet
@@ -288,7 +288,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "frozen_bullet").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "frozen_bullet").toString()
                     ));
 
     // Glacial Block
@@ -297,7 +297,7 @@ public class CSEntityRegistry {
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "glacial_block").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "glacial_block").toString()
                     ));
 
     // Quick Strike
@@ -306,7 +306,7 @@ public class CSEntityRegistry {
                     .sized(5f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "quick_strike").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "quick_strike").toString()
                     ));
 
     // Final Rend
@@ -315,7 +315,7 @@ public class CSEntityRegistry {
                     .sized(12f, 1f)
                     .clientTrackingRange(64)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "final_rend").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "final_rend").toString()
                     ));
 
     // Summoned Clawdian
@@ -324,7 +324,7 @@ public class CSEntityRegistry {
                             (SummonedClawdian::new, MobCategory.MONSTER).
                     sized(1f, 3f)
                     .build(
-                            new ResourceLocation(CataclysmSpellbooks.MOD_ID, "summoned_clawdian").toString()
+                            ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "summoned_clawdian").toString()
                     ));
 
 

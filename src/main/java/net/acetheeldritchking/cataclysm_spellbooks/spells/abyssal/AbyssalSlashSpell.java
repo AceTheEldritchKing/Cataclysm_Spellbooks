@@ -35,7 +35,7 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class AbyssalSlashSpell extends AbstractAbyssalSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_slash");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "abyssal_slash");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

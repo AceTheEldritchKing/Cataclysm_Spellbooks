@@ -7,22 +7,22 @@ import software.bernie.geckolib.model.GeoModel;
 public class HellishBladeModel extends GeoModel<HellishBladeProjectile> {
     @Override
     public ResourceLocation getModelResource(HellishBladeProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/hellish_blade.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/hellish_blade.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(HellishBladeProjectile object) {
         if (object.getIsSoul())
         {
-            return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/hellish_blade/hellish_blade_soul.png");
+            return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/hellish_blade/hellish_blade_soul.png");
         } else
         {
-            return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/hellish_blade/hellish_blade.png");
+            return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/hellish_blade/hellish_blade.png");
         }
     }
 
     @Override
     public ResourceLocation getAnimationResource(HellishBladeProjectile animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
     }
 }

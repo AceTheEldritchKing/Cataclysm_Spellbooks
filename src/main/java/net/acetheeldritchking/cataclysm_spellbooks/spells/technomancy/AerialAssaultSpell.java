@@ -25,7 +25,7 @@ import java.util.List;
 
 @AutoSpellConfig
 public class AerialAssaultSpell extends AbstractHarbingerSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "aerial_assault");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "aerial_assault");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

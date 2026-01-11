@@ -12,8 +12,8 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class GlacialBlockRenderLayer extends GeoRenderLayer<GlacialBlockEntity> {
-    private static final ResourceLocation LAYER = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/glacial_block/glacial_block.png");
-    private static final ResourceLocation MODEL = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/glacial_block.geo.json");
+    private static final ResourceLocation LAYER = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/glacial_block/glacial_block.png");
+    private static final ResourceLocation MODEL = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/glacial_block.geo.json");
 
     public GlacialBlockRenderLayer(GeoEntityRenderer renderer) {
         super(renderer);

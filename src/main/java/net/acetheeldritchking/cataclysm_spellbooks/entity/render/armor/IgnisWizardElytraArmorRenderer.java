@@ -8,12 +8,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.IgnisWi
 import net.minecraft.resources.ResourceLocation;
 
 public class IgnisWizardElytraArmorRenderer extends AzArmorRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/ignis_armor_winged.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/models/armor/ignis_armor_winged.png"
     );

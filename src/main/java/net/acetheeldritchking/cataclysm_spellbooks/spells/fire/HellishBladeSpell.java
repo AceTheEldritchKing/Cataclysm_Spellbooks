@@ -31,7 +31,7 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class HellishBladeSpell extends AbstractIgnisSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "hellish_blade");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "hellish_blade");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

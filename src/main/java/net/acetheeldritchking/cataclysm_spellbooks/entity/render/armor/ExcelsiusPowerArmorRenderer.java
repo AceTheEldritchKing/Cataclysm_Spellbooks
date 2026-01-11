@@ -7,20 +7,18 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.ExcelsiusPowerAnimator;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Objects;
-
 public class ExcelsiusPowerArmorRenderer extends AzArmorRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/excelsius_attack.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/models/armor/excelsius_spell_power.png"
     );
 
-    private static final ResourceLocation TEX_CHARGED = new ResourceLocation(
+    private static final ResourceLocation TEX_CHARGED = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/models/armor/excelsius_spell_power_overcharged.png"
     );

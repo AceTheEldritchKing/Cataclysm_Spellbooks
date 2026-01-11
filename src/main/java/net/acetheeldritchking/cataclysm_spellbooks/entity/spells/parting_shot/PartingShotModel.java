@@ -7,16 +7,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class PartingShotModel extends GeoModel<PartingShotProjectile> {
     @Override
     public ResourceLocation getModelResource(PartingShotProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/parting_shot.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/parting_shot.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(PartingShotProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/parting_shot/parting_shot.png");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/parting_shot/parting_shot.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(PartingShotProjectile animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
     }
 }

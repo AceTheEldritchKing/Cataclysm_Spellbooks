@@ -18,7 +18,7 @@ public class SurveillanceDroneRenderer extends GeoEntityRenderer<SurveillanceDro
 
     @Override
     public ResourceLocation getTextureLocation(SurveillanceDroneEntity animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/surveillance_drone/surveillance_drone.png");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/surveillance_drone/surveillance_drone.png");
     }
 
     @Override

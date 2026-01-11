@@ -7,16 +7,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class BloodCrystalModel extends GeoModel<BloodCrystalProjectile> {
     @Override
     public ResourceLocation getModelResource(BloodCrystalProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/blood_spear.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/blood_spear.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(BloodCrystalProjectile object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/blood_spear/blood_spear.png");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/blood_spear/blood_spear.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(BloodCrystalProjectile animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "animations/entity/hellish_blade.animation.json");
     }
 }

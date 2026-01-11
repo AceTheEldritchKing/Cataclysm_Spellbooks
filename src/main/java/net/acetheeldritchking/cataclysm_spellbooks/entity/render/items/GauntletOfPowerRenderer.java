@@ -7,12 +7,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.minecraft.resources.ResourceLocation;
 
 public class GauntletOfPowerRenderer extends AzItemRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/gauntlet_of_power.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/item/gauntlet_of_power.png"
     );

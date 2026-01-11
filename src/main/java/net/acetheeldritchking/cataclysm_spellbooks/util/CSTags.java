@@ -11,14 +11,14 @@ public class CSTags {
      * Items
      */
     // Abyssal School Focus
-    public static final TagKey<Item> ABYSSAL_FOCUS = ItemTags.create(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "abyssal_focus"));
+    public static final TagKey<Item> ABYSSAL_FOCUS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "abyssal_focus"));
 
     // Technomancy School Focus
-    public static final TagKey<Item> TECHNOMANCY_FOCUS = ItemTags.create(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "technomancy_focus"));
+    public static final TagKey<Item> TECHNOMANCY_FOCUS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "technomancy_focus"));
 
     // Armor Items for Idle
-    public static final TagKey<Item> ARMORS_FOR_IDLE = ItemTags.create(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "armors_for_idle"));
+    public static final TagKey<Item> ARMORS_FOR_IDLE = ItemTags.create(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "armors_for_idle"));
 
     // Armor Items for Flight
-    public static final TagKey<Item> ARMORS_FOR_FLIGHT = ItemTags.create(new ResourceLocation(CataclysmSpellbooks.MOD_ID, "armors_for_flight"));
+    public static final TagKey<Item> ARMORS_FOR_FLIGHT = ItemTags.create(ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "armors_for_flight"));
 }

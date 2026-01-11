@@ -3,7 +3,6 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
-import io.redspace.ironsspellbooks.api.util.Utils;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.spells.flash_bang.FlashBangProjectileEntity;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
@@ -17,7 +16,7 @@ import java.util.List;
 
 @AutoSpellConfig
 public class FlashBangSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "flash_bang");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "flash_bang");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

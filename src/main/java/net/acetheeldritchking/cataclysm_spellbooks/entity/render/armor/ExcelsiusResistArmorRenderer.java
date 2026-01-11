@@ -8,12 +8,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.Excelsi
 import net.minecraft.resources.ResourceLocation;
 
 public class ExcelsiusResistArmorRenderer extends AzArmorRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/excelsius_defense.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/models/armor/excelsius_spell_resist.png"
     );

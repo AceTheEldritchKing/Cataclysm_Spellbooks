@@ -4,29 +4,23 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
-import io.redspace.ironsspellbooks.capabilities.magic.SummonManager;
 import io.redspace.ironsspellbooks.capabilities.magic.SummonedEntitiesCastData;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedCounterspellWatcher;
-import net.acetheeldritchking.cataclysm_spellbooks.entity.mobs.SummonedWatcher;
-import net.acetheeldritchking.cataclysm_spellbooks.registries.CSPotionEffectRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.CSSchoolRegistry;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.CSSpellAnimations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
 @AutoSpellConfig
-public class DoSSwarmSpell extends AbstractHarbingerSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "dos_swarm");
+public class DoSSwarmSpell extends AbstractHarbingerSummonSpell {
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "dos_swarm");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -40,8 +34,7 @@ public class DoSSwarmSpell extends AbstractHarbingerSpell {
             .setCooldownSeconds(100)
             .build();
 
-    public DoSSwarmSpell()
-    {
+    public DoSSwarmSpell() {
         this.manaCostPerLevel = 10;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 2;
@@ -75,34 +68,17 @@ public class DoSSwarmSpell extends AbstractHarbingerSpell {
     }
 
     @Override
-    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
+    protected int onSummoningCast(Level level, int spellLevel, LivingEntity caster, CastSource castSource, MagicData playerMagicData, SummonedEntitiesCastData castData) {
         int summonTimer = 20 * 60 * 10;
 
-        for (int i = 0; i < spellLevel; i++)
-        {
-            Vec3 vec = entity.getEyePosition();
+        for (int i = 0; i < spellLevel; i++) {
+            Vec3 vec = caster.getEyePosition();
 
-            double randomNearbyX = vec.x + entity.getRandom().nextGaussian() * 3;
-            double randomNearbyZ = vec.z + entity.getRandom().nextGaussian() * 3;
+            double randomNearbyX = vec.x + caster.getRandom().nextGaussian() * 3;
+            double randomNearbyZ = vec.z + caster.getRandom().nextGaussian() * 3;
 
-            spawnWatcher(randomNearbyX, vec.y, randomNearbyZ, entity, level, summonTimer);
+            spawnHelper(randomNearbyX, vec.y, randomNearbyZ, caster, level, summonTimer, castData, () -> new SummonedCounterspellWatcher(level, caster));
         }
-
-        super.onCast(level, spellLevel, entity, castSource, playerMagicData);
-    }
-
-    private void spawnWatcher(double x, double y, double z, LivingEntity caster, Level level, int summonTimer)
-    {
-        SummonedCounterspellWatcher watcher = new SummonedCounterspellWatcher(level, caster);
-
-        watcher.finalizeSpawn((ServerLevelAccessor) level,
-                level.getCurrentDifficultyAt(watcher.getOnPos()),
-                MobSpawnType.MOB_SUMMONED, null, null);
-
-        watcher.moveTo(x, y, z);
-
-        SummonManager.initSummon(caster, watcher, summonTimer, new SummonedEntitiesCastData());
-
-        level.addFreshEntity(watcher);
+        return summonTimer;
     }
 }

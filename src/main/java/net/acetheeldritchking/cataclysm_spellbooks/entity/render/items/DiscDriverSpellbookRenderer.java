@@ -8,12 +8,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks.animators.Di
 import net.minecraft.resources.ResourceLocation;
 
 public class DiscDriverSpellbookRenderer extends AzItemRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/disc_driver.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/item/spell_books/disc_driver_model.png"
     );

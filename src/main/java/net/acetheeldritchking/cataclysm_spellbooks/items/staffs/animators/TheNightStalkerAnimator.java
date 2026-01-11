@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class TheNightStalkerAnimator extends AzItemAnimator {
-    private static final ResourceLocation ANIMATIONS = new ResourceLocation(
+    private static final ResourceLocation ANIMATIONS = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "animations/item/gauntlet_of_gattling.animation.json"
     );

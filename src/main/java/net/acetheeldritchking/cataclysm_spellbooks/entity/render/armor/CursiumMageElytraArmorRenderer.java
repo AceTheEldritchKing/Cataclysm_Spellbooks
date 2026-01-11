@@ -8,12 +8,12 @@ import net.acetheeldritchking.cataclysm_spellbooks.items.armor.animators.Cursium
 import net.minecraft.resources.ResourceLocation;
 
 public class CursiumMageElytraArmorRenderer extends AzArmorRenderer {
-    private static final ResourceLocation GEO = new ResourceLocation(
+    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "geo/cursium_mage_elytra.geo.json"
     );
 
-    private static final ResourceLocation TEX = new ResourceLocation(
+    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
             CataclysmSpellbooks.MOD_ID,
             "textures/models/armor/cursium_mage_armor_elytra.png"
     );

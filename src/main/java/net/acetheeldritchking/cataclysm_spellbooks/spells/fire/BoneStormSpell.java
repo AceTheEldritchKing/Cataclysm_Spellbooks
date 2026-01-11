@@ -22,7 +22,7 @@ import java.util.List;
 
 @AutoSpellConfig
 public class BoneStormSpell extends AbstractIgnisSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "bone_storm");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "bone_storm");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

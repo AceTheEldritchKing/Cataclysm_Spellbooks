@@ -22,7 +22,7 @@ import java.util.List;
 
 @AutoSpellConfig
 public class VoidRuneBulwarkSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "void_bulwark");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "void_bulwark");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

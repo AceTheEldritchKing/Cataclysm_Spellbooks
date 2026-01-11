@@ -7,16 +7,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class SurveillanceDroneModel extends GeoModel<SurveillanceDroneEntity> {
     @Override
     public ResourceLocation getModelResource(SurveillanceDroneEntity object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "geo/surveillance_drone.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "geo/surveillance_drone.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(SurveillanceDroneEntity object) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "textures/entity/surveillance_drone/surveillance_drone.png");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "textures/entity/surveillance_drone/surveillance_drone.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(SurveillanceDroneEntity animatable) {
-        return new ResourceLocation(CataclysmSpellbooks.MOD_ID, "animations/entity/surveillance_drone.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "animations/entity/surveillance_drone.animation.json");
     }
 }

@@ -1,7 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
 import com.github.L_Ender.cataclysm.entity.projectile.Wither_Homing_Missile_Entity;
-import com.github.L_Ender.cataclysm.init.ModEntities;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
@@ -29,7 +28,7 @@ import java.util.Timer;
 
 @AutoSpellConfig
 public class MissileLaunchSpell extends AbstractSpell {
-    private final ResourceLocation spellId = new ResourceLocation(CataclysmSpellbooks.MOD_ID, "missile_launch");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "missile_launch");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
