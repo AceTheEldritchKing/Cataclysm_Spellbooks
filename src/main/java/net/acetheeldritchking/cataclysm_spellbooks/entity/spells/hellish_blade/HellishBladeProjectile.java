@@ -46,8 +46,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements G
         this.setNoGravity(true);
     }
 
-    public HellishBladeProjectile(Level level, LivingEntity shooter)
-    {
+    public HellishBladeProjectile(Level level, LivingEntity shooter) {
         this(CSEntityRegistry.HELLISH_BLADE_PROJECTILE.get(), level);
         setOwner(shooter);
     }
@@ -84,13 +83,11 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements G
         var target = pResult.getEntity();
         DamageSources.applyDamage(target, damage,
                 SpellRegistries.HELLISH_BLADE.get().getDamageSource(this, getOwner()));
-        if (target instanceof LivingEntity livingTarget)
-        {
+        if (target instanceof LivingEntity livingTarget) {
             livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTBLAZING_BRAND.get(), 100, 0));
             livingTarget.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 60, 0));
 
-            if (livingTarget instanceof Player playerTarget)
-            {
+            if (livingTarget instanceof Player playerTarget) {
                 // Disable shield if blocking
                 playerTarget.disableShield(true);
             }
@@ -108,10 +105,8 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements G
         discard();
     }
 
-    public void createAoEField(Vec3 location)
-    {
-        if (!this.level().isClientSide)
-        {
+    public void createAoEField(Vec3 location) {
+        if (!this.level().isClientSide) {
             BlazingAoE aoE = new BlazingAoE(this.level());
             aoE.setOwner(getOwner());
             aoE.setDuration(100);
@@ -123,13 +118,11 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements G
         }
     }
 
-    public boolean getIsSoul()
-    {
+    public boolean getIsSoul() {
         return this.entityData.get(SOUL);
     }
 
-    public void setIsSoul(boolean soul)
-    {
+    public void setIsSoul(boolean soul) {
         this.entityData.set(SOUL, soul);
     }
 
@@ -147,6 +140,7 @@ public class HellishBladeProjectile extends AbstractMagicProjectile implements G
     // NBT
     @Override
     protected void defineSynchedData() {
+        super.defineSynchedData();
         this.entityData.define(SOUL, false);
     }
 
