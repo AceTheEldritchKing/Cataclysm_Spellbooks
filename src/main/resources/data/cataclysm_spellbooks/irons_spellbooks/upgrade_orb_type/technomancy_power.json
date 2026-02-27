@@ -1,0 +1,9 @@
+{
+  "amount": 0.05,
+  "attribute": "cataclysm_spellbooks:technomancy_spell_power",
+  "containerItem": {
+    "count": 1,
+    "id": "cataclysm_spellbooks:technomancy_upgrade_orb"
+  },
+  "operation": "MULTIPLY_BASE"
+}

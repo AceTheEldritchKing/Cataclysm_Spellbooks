@@ -2,6 +2,7 @@ package net.acetheeldritchking.cataclysm_spellbooks.spells.technomancy;
 
 import net.acetheeldritchking.cataclysm_spellbooks.registries.ItemRegistries;
 import net.acetheeldritchking.cataclysm_spellbooks.spells.AbstractSummonSpell;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -9,6 +10,11 @@ import static net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils.hasCurio;
 import static net.acetheeldritchking.cataclysm_spellbooks.util.CSUtils.isValidUnlockItemInInventory;
 
 public abstract class AbstractHarbingerSummonSpell extends AbstractSummonSpell {
+    @Override
+    public Component getLockedMessage() {
+        return Component.translatable("ui.cataclysm_spellbooks.harbinger_unlearned");
+    }
+
     @Override
     public boolean allowLooting() {
         return false;

@@ -5,10 +5,13 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
 import io.redspace.ironsspellbooks.item.curios.CurioBaseItem;
 import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
+import io.redspace.ironsspellbooks.item.weapons.AttributeContainer;
 import io.redspace.ironsspellbooks.item.weapons.StaffItem;
+import io.redspace.ironsspellbooks.registries.UpgradeOrbTypeRegistry;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.acetheeldritchking.cataclysm_spellbooks.CataclysmSpellbooks;
 import net.acetheeldritchking.cataclysm_spellbooks.items.armor.*;
@@ -48,12 +51,11 @@ public class ItemRegistries {
     // Abyss Spellbook
     public static final RegistryObject<Item> ABYSS_SPELL_BOOK = ITEMS.register
             ("abyss_spell_book", () ->
-            {
-                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-                builder.put(CSAttributeRegistry.ABYSSAL_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
-                return new SimpleAttributeSpellBook(12, SpellRarity.LEGENDARY, builder.build(), ItemPropertiesHelper.equipment().fireResistant().stacksTo(1));
-            });
+                    new SpellBook(12, ItemPropertiesHelper.equipment().fireResistant().stacksTo(1))
+                            .withSpellbookAttributes(
+                                    new AttributeContainer(CSAttributeRegistry.ABYSSAL_MAGIC_POWER, .30F, AttributeModifier.Operation.MULTIPLY_TOTAL),
+                                    new AttributeContainer(AttributeRegistry.MAX_MANA, 300, AttributeModifier.Operation.ADDITION)
+                            ));
 
     // Desert Spellbook - Dropped by ancient remnant
     public static final RegistryObject<Item> DESERT_SPELL_BOOK = ITEMS.register
@@ -62,33 +64,19 @@ public class ItemRegistries {
     // Ignis Spellbook
     public static final RegistryObject<Item> IGNIS_SPELL_BOOK = ITEMS.register
             ("ignis_spell_book", () ->
-            {
-                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-                builder.put(AttributeRegistry.FIRE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
-                return new SimpleAttributeSpellBook(12, SpellRarity.LEGENDARY, builder.build(), ItemPropertiesHelper.equipment().fireResistant().stacksTo(1));
-            });
+                    new SpellBook(12, ItemPropertiesHelper.equipment().fireResistant().stacksTo(1))
+                            .withSpellbookAttributes(
+                                    new AttributeContainer(AttributeRegistry.FIRE_SPELL_POWER, .30F, AttributeModifier.Operation.MULTIPLY_TOTAL),
+                                    new AttributeContainer(AttributeRegistry.MAX_MANA, 300, AttributeModifier.Operation.ADDITION)
+                            ));
 
     // Codex of Malice
     public static final RegistryObject<Item> CODEX_OF_MALICE = ITEMS.register
-            ("codex_of_malice_spell_book", () ->
-            {
-                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-                builder.put(AttributeRegistry.ICE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
-                // Yeah, this is weird, I know
-                return new CodexOfMaliceSpellBook(builder.build());
-            });
+            ("codex_of_malice_spell_book", CodexOfMaliceSpellBook::new);
 
     // Disc Driver
     public static final RegistryObject<Item> DISC_DRIVER = ITEMS.register
-            ("disc_driver", () ->
-            {
-                ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-                builder.put(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 0.30, AttributeModifier.Operation.MULTIPLY_TOTAL));
-                builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon Modifier", 300, AttributeModifier.Operation.ADDITION));
-                return new DiscDriverSpellbook(builder.build());
-            });
+            ("disc_driver", DiscDriverSpellbook::new);
 
 
     /***
@@ -243,11 +231,11 @@ public class ItemRegistries {
      */
     // Abyssal Upgrade Orb
     public static final RegistryObject<Item> ABYSSAL_UPGRADE_ORB = ITEMS.register("abyssal_upgrade_orb",
-            () -> new UpgradeOrbItem(CSUpgradeTypes.ABYSSAL_SPELL_POWER, ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON)));
+            () -> new UpgradeOrbItem(ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON), CSUpgradeOrbTypeRegistry.ABYSSAL_SPELL_POWER));
 
     // Technomancy Upgrade Orb
     public static final RegistryObject<Item> TECHNOMANCY_UPGRADE_ORB = ITEMS.register("technomancy_upgrade_orb",
-            () -> new UpgradeOrbItem(CSUpgradeTypes.TECHNOMANCY_SPELL_POWER, ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON)));
+            () -> new UpgradeOrbItem(ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON), CSUpgradeOrbTypeRegistry.TECHNOMANCY_SPELL_POWER));
 
 
     /***

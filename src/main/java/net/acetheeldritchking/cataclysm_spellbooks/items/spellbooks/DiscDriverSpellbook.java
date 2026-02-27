@@ -1,11 +1,14 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.spellbooks;
 
 import com.google.common.collect.Multimap;
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
-import io.redspace.ironsspellbooks.item.spell_books.SimpleAttributeSpellBook;
+import io.redspace.ironsspellbooks.item.SpellBook;
+import io.redspace.ironsspellbooks.item.weapons.AttributeContainer;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import mod.azure.azurelib.AzureLib;
 import net.acetheeldritchking.cataclysm_spellbooks.items.custom.CSItemDispatcher;
+import net.acetheeldritchking.cataclysm_spellbooks.registries.CSAttributeRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -19,11 +22,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DiscDriverSpellbook extends SimpleAttributeSpellBook {
+public class DiscDriverSpellbook extends SpellBook {
     public final CSItemDispatcher dispatcher;
 
-    public DiscDriverSpellbook(Multimap<Attribute, AttributeModifier> defaultModifiers) {
-        super(12, SpellRarity.LEGENDARY, defaultModifiers, ItemPropertiesHelper.equipment().fireResistant().stacksTo(1));
+    public DiscDriverSpellbook() {
+        //super(12, SpellRarity.LEGENDARY, defaultModifiers, ItemPropertiesHelper.equipment().fireResistant().stacksTo(1));
+        super(15, ItemPropertiesHelper.equipment().fireResistant().stacksTo(1));
+        withSpellbookAttributes(
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 300, AttributeModifier.Operation.ADDITION),
+                new AttributeContainer(CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER, 0.30F, AttributeModifier.Operation.MULTIPLY_BASE)
+        );
         this.dispatcher = new CSItemDispatcher();
     }
 

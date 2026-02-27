@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
 import io.redspace.ironsspellbooks.item.UniqueSpellBook;
+import io.redspace.ironsspellbooks.item.weapons.AttributeContainer;
 import net.acetheeldritchking.cataclysm_spellbooks.registries.SpellRegistries;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -13,21 +14,17 @@ import java.util.UUID;
 
 public class DesertSpellBook extends UniqueSpellBook {
     public DesertSpellBook() {
-        super(SpellRarity.EPIC, SpellDataRegistryHolder.of(
+        super(SpellDataRegistryHolder.of(
                 new SpellDataRegistryHolder(SpellRegistries.MONOLITH_CRASH, 5),
                 new SpellDataRegistryHolder(SpellRegistries.DESERT_WINDS, 3),
                 new SpellDataRegistryHolder(SpellRegistries.SANDSTORM, 3),
                 new SpellDataRegistryHolder(SpellRegistries.THOTHS_WITNESS, 1),
                 new SpellDataRegistryHolder(SpellRegistries.PHARAOHS_WRATH, 3)
-        ), 5, () -> {
-            ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-            // Nature Spell Power
-            builder.put(AttributeRegistry.NATURE_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 0.20D, AttributeModifier.Operation.MULTIPLY_BASE));
-            // Holy Spell Power
-            builder.put(AttributeRegistry.HOLY_SPELL_POWER.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 0.20D, AttributeModifier.Operation.MULTIPLY_BASE));
-            // Mana
-            builder.put(AttributeRegistry.MAX_MANA.get(), new AttributeModifier(UUID.fromString("58a54c84-1aae-4cf6-83c8-d85d32807e31"), "Weapon modifier", 300, AttributeModifier.Operation.ADDITION));
-            return builder.build();
-        });
+        ), 7);
+        withSpellbookAttributes(
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 300, AttributeModifier.Operation.ADDITION),
+                new AttributeContainer(AttributeRegistry.NATURE_SPELL_POWER, 0.30F, AttributeModifier.Operation.MULTIPLY_BASE),
+                new AttributeContainer(AttributeRegistry.HOLY_SPELL_POWER, 0.20F, AttributeModifier.Operation.MULTIPLY_BASE)
+        );
     }
 }

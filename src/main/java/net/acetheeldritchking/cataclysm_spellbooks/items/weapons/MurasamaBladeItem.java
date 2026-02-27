@@ -36,16 +36,9 @@ public class MurasamaBladeItem extends MagicSwordItem implements UniqueItem {
         tooltip.add(Component.translatable("item.cataclysm_spellbooks.murasama_blade.desc").withStyle(ChatFormatting.DARK_RED).withStyle(ChatFormatting.ITALIC));
     }
 
-    // Durability - We don't want this breaking, now do we?
+    // Durability
     @Override
-    public void setDamage(ItemStack stack, int damage) {
-        if (CMConfig.Armor_Infinity_Durability)
-        {
-            super.setDamage(stack, 0);
-        }
-        else
-        {
-            super.setDamage(stack, damage);
-        }
+    public boolean isDamageable(ItemStack stack) {
+        return false;
     }
 }

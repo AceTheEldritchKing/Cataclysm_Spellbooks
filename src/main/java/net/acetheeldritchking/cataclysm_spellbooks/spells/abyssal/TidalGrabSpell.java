@@ -9,7 +9,6 @@ import com.github.L_Ender.cataclysm.init.ModItems;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import io.redspace.ironsspellbooks.api.spells.CastType;
 import io.redspace.ironsspellbooks.api.spells.SpellRarity;
@@ -35,7 +34,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-@AutoSpellConfig
 public class TidalGrabSpell extends AbstractAbyssalSpell {
     private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(CataclysmSpellbooks.MOD_ID, "tidal_grab");
 
@@ -60,6 +58,11 @@ public class TidalGrabSpell extends AbstractAbyssalSpell {
         this.spellPowerPerLevel = 5;
         this.castTime = 100;
         this.baseManaCost = 10;
+    }
+
+    @Override
+    public Component getLockedMessage() {
+        return Component.translatable("ui.cataclysm_spellbooks.tentacle_laceration_unlearned");
     }
 
     @Override

@@ -107,12 +107,15 @@
     "item.cataclysm_spellbooks.burning_knowledge_fragment": "Burning Knowledge Fragment",
     "item.cataclysm_spellbooks.burning_manuscript": "Burning Manuscript",
     "item.cataclysm_spellbooks.burning_manuscript_description": "When in inventory, unlocks all Ignis spells",
+    "item.cataclysm_spellbooks.burning_manuscript_description_2": "In the spellforge, have this item in your inventory and you may craft the Ignis spells",
     "item.cataclysm_spellbooks.frozen_knowledge_fragment": "Frozen Knowledge Fragment",
     "item.cataclysm_spellbooks.frozen_tablet": "Frozen Tablet",
     "item.cataclysm_spellbooks.frozen_tablet_description": "When in inventory, unlocks all Maledictus spells",
+    "item.cataclysm_spellbooks.frozen_tablet_description_2": "In the spellforge, have this item in your inventory and you may craft the Maledictus spells",
     "item.cataclysm_spellbooks.strange_disc": "Strange Disc",
     "item.cataclysm_spellbooks.strange_disc_description": "When in inventory, unlocks all Harbinger spells",
     "item.cataclysm_spellbooks.mechanical_weapon_parts": "Mechanical Weapon Parts",
+    "item.cataclysm_spellbooks.more_details": "Press [SHIFT] for more details",
 
     "item.cataclysm_spellbooks.ignis_helmet": "Ignis Mage Hat",
     "item.cataclysm_spellbooks.ignis_chestplate": "Ignis Mage Robes",
@@ -443,6 +446,10 @@
     "ui.cataclysm_spellbooks.quake_damage": "%d Earthquake damage",
     "ui.cataclysm_spellbooks.needle_damage": "%d Blood needle damage",
     "ui.cataclysm_spellbooks.clawdian_count": "%d Summons",
+    "ui.cataclysm_spellbooks.ignis_unlearned": "Requires Burning Manuscript in the inventory to unlock",
+    "ui.cataclysm_spellbooks.maledictus_unlearned": "Requires Frozen Tablet in the inventory to unlock",
+    "ui.cataclysm_spellbooks.harbinger_unlearned": "Requires Strange Disc in the inventory or Disc Driver equipped to unlock",
+    "ui.cataclysm_spellbooks.tentacle_laceration_unlearned": "Requires Tidal Claw held in main hand unlock",
 
 
     "entity.cataclysm_spellbooks.abyssal_gnawers": "Abyssal Gnawer",

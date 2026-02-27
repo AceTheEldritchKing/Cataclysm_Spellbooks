@@ -20,17 +20,10 @@ public class IgnisWizardElytraArmorItem extends ImbuableCataclysmArmor {
         super(CSArmorMaterials.IGNITIUM_WIZARD_ARMOR, slot, settings);
     }
 
-    // Ignis Wizard Armor should have durability compat with Cataclysm?
+    // Durability
     @Override
-    public void setDamage(ItemStack stack, int damage) {
-        if (CMConfig.Armor_Infinity_Durability)
-        {
-            super.setDamage(stack, 0);
-        }
-        else
-        {
-            super.setDamage(stack, damage);
-        }
+    public boolean isDamageable(ItemStack stack) {
+        return false;
     }
 
     // Using the same stuff as Cataclysm for tooltips

@@ -44,15 +44,8 @@ public class MechanicalFlightArmorItem extends ImbuableCataclysmArmor implements
 
     // Durability
     @Override
-    public void setDamage(ItemStack stack, int damage) {
-        if (CMConfig.Armor_Infinity_Durability)
-        {
-            super.setDamage(stack, 0);
-        }
-        else
-        {
-            super.setDamage(stack, damage);
-        }
+    public boolean isDamageable(ItemStack stack) {
+        return false;
     }
 
     // Elytra
