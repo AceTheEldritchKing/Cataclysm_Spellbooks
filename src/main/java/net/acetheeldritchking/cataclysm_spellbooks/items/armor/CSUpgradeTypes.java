@@ -11,54 +11,59 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public enum CSUpgradeTypes implements UpgradeType {
-    ABYSSAL_SPELL_POWER("abyssal_power", ItemRegistries.ABYSSAL_UPGRADE_ORB.getHolder() ,CSAttributeRegistry.ABYSSAL_MAGIC_POWER.getHolder().get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
-    TECHNOMANCY_SPELL_POWER("technomancy_power", ItemRegistries.TECHNOMANCY_UPGRADE_ORB.getHolder() ,CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.getHolder().get(), AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
-    ;
+	ABYSSAL_SPELL_POWER("abyssal_power", ItemRegistries.ABYSSAL_UPGRADE_ORB.getHolder(),
+			CSAttributeRegistry.ABYSSAL_MAGIC_POWER.getHolder().get(),
+			AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
+	TECHNOMANCY_SPELL_POWER("technomancy_power", ItemRegistries.TECHNOMANCY_UPGRADE_ORB.getHolder(),
+			CSAttributeRegistry.TECHNOMANCY_MAGIC_POWER.getHolder().get(),
+			AttributeModifier.Operation.MULTIPLY_BASE, 0.05f),
+			;
 
-    final Holder<Attribute> attribute;
-    final AttributeModifier.Operation operation;
-    final float amountPerUpgrade;
-    final ResourceLocation id;
-    final Optional<Holder<Item>> containerItem;
+	final Holder<Attribute> attribute;
+	final AttributeModifier.Operation operation;
+	final float amountPerUpgrade;
+	final ResourceLocation id;
+	final Optional<Holder<Item>> containerItem;
 
-    CSUpgradeTypes(String key, Holder<Item>  containerItem, Holder<Attribute> attribute, AttributeModifier.Operation operation, float amountPerUpgrade) {
-        this(key, Optional.of(containerItem), attribute, operation, amountPerUpgrade);
-    }
+	CSUpgradeTypes(String key, Holder<Item> containerItem, Holder<Attribute> attribute,
+			AttributeModifier.Operation operation, float amountPerUpgrade) {
+		this(key, Optional.of(containerItem), attribute, operation, amountPerUpgrade);
+	}
 
-    CSUpgradeTypes(String key, Optional<Holder<Item>> containerItem, Holder<Attribute> attribute, AttributeModifier.Operation operation, float amountPerUpgrade) {
-        this.id = CataclysmSpellbooks.id(key);
-        this.attribute = attribute;
-        this.operation = operation;
-        this.amountPerUpgrade = amountPerUpgrade;
-        this.containerItem = containerItem;
-        UpgradeType.registerUpgrade(this);
-    }
+	CSUpgradeTypes(String key, Optional<Holder<Item>> containerItem, Holder<Attribute> attribute,
+			AttributeModifier.Operation operation, float amountPerUpgrade) {
+		this.id = CataclysmSpellbooks.id(key);
+		this.attribute = attribute;
+		this.operation = operation;
+		this.amountPerUpgrade = amountPerUpgrade;
+		this.containerItem = containerItem;
+		UpgradeType.registerUpgrade(this);
+	}
 
-    @Override
-    public Holder<Attribute> getAttribute() {
-        return attribute;
-    }
+	@Override
+	public Holder<Attribute> getAttribute() {
+		return attribute;
+	}
 
-    @Override
-    public AttributeModifier.Operation getOperation() {
-        return operation;
-    }
+	@Override
+	public AttributeModifier.Operation getOperation() {
+		return operation;
+	}
 
-    @Override
-    public float getAmountPerUpgrade() {
-        return amountPerUpgrade;
-    }
+	@Override
+	public float getAmountPerUpgrade() {
+		return amountPerUpgrade;
+	}
 
-    @Override
-    public ResourceLocation getId() {
-        return id;
-    }
+	@Override
+	public ResourceLocation getId() {
+		return id;
+	}
 
-    @Override
-    public Optional<Holder<Item>> getContainerItem() {
-        return containerItem;
-    }
+	@Override
+	public Optional<Holder<Item>> getContainerItem() {
+		return containerItem;
+	}
 }

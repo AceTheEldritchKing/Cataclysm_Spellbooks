@@ -1,7 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.items.armor;
 
 import com.github.L_Ender.cataclysm.Cataclysm;
-import com.github.L_Ender.cataclysm.config.CMConfig;
 import com.github.L_Ender.cataclysm.init.ModKeybind;
 import com.github.L_Ender.cataclysm.items.KeybindUsingArmor;
 import com.github.L_Ender.cataclysm.message.MessageArmorKey;
@@ -23,104 +22,116 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class CursiumMageArmorItem extends ImbuableCataclysmArmor implements KeybindUsingArmor {
-    public CursiumMageArmorItem(Type slot, Properties settings) {
-        super(CSArmorMaterials.CURSIUM_WARLOCK_ARMOR, slot, settings);
-    }
+	public CursiumMageArmorItem(Type slot, Properties settings) {
+		super(CSArmorMaterials.CURSIUM_WARLOCK_ARMOR, slot, settings);
+	}
 
-    // Durability
-    @Override
-    public boolean isDamageable(ItemStack stack) {
-        return false;
-    }
+	// Durability
+	@Override
+	public boolean isDamageable(ItemStack stack) {
+		return false;
+	}
 
-    @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (this.type == Type.HELMET) {
-            tooltip.add(Component.translatable("item.cataclysm.cursium_helmet.desc").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm.cursium_helmet.desc2", ModKeybind.HELMET_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
-        }
-        if (this.type == Type.CHESTPLATE) {
-            tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc2").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc3").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm_spellbooks.cursium_chestplate.desc4").withStyle(ChatFormatting.DARK_GREEN));
-        }
-        if (this.type == Type.LEGGINGS) {
-            tooltip.add(Component.translatable("item.cataclysm.cursium_leggings.desc").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm.cursium_leggings.desc2").withStyle(ChatFormatting.DARK_GREEN));
-        }
-        if (this.type == Type.BOOTS) {
-            tooltip.add(Component.translatable("item.cataclysm.cursium_boots.desc").withStyle(ChatFormatting.DARK_GREEN));
-            tooltip.add(Component.translatable("item.cataclysm.cursium_boots.desc2",ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage()).withStyle(ChatFormatting.DARK_GREEN));
-        }
-    }
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip,
+			TooltipFlag flagIn) {
+		if (this.type == Type.HELMET) {
+			tooltip.add(Component.translatable("item.cataclysm.cursium_helmet.desc")
+					.withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.add(Component
+					.translatable("item.cataclysm.cursium_helmet.desc2",
+							ModKeybind.HELMET_KEY_ABILITY.getTranslatedKeyMessage())
+					.withStyle(ChatFormatting.DARK_GREEN));
+		}
+		if (this.type == Type.CHESTPLATE) {
+			tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc")
+					.withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc2")
+					.withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.add(Component.translatable("item.cataclysm.cursium_chestplate.desc3")
+					.withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.add(Component.translatable("item.cataclysm_spellbooks.cursium_chestplate.desc4")
+					.withStyle(ChatFormatting.DARK_GREEN));
+		}
+		if (this.type == Type.LEGGINGS) {
+			tooltip.add(Component.translatable("item.cataclysm.cursium_leggings.desc")
+					.withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.add(Component.translatable("item.cataclysm.cursium_leggings.desc2")
+					.withStyle(ChatFormatting.DARK_GREEN));
+		}
+		if (this.type == Type.BOOTS) {
+			tooltip.add(Component.translatable("item.cataclysm.cursium_boots.desc")
+					.withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.add(Component
+					.translatable("item.cataclysm.cursium_boots.desc2",
+							ModKeybind.BOOTS_KEY_ABILITY.getTranslatedKeyMessage())
+					.withStyle(ChatFormatting.DARK_GREEN));
+		}
+	}
 
-    @Override
-    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
+	@Override
+	public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
+		super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
 
-        if (pEntity instanceof Player player)
-        {
-            if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemRegistries.CURSIUM_MAGE_HELMET.get())
-            {
-                if (pLevel.isClientSide())
-                {
-                    if (Cataclysm.PROXY.getClientSidePlayer() == pEntity && Cataclysm.PROXY.isKeyDown(5))
-                    {
-                        Cataclysm.sendMSGToServer(new MessageArmorKey(EquipmentSlot.HEAD.ordinal(), player.getId(), 5));
-                        onKeyPacket(player, pStack, 5);
-                    }
-                }
-            }
-            if (player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemRegistries.CURSIUM_MAGE_BOOTS.get())
-            {
-                if (pLevel.isClientSide())
-                {
-                    if (Cataclysm.PROXY.getClientSidePlayer() == pEntity && Cataclysm.PROXY.isKeyDown(7))
-                    {
-                        Cataclysm.sendMSGToServer(new MessageArmorKey(EquipmentSlot.FEET.ordinal(), player.getId(), 7));
-                        onKeyPacket(player, pStack, 7);
-                    }
-                }
-            }
-        }
-    }
+		if (pEntity instanceof Player player) {
+			if (player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ItemRegistries.CURSIUM_MAGE_HELMET
+					.get()) {
+				if (pLevel.isClientSide()) {
+					if (Cataclysm.PROXY.getClientSidePlayer() == pEntity
+							&& Cataclysm.PROXY.isKeyDown(5)) {
+						Cataclysm.sendMSGToServer(new MessageArmorKey(
+								EquipmentSlot.HEAD.ordinal(), player.getId(), 5));
+						onKeyPacket(player, pStack, 5);
+					}
+				}
+			}
+			if (player.getItemBySlot(EquipmentSlot.FEET).getItem() == ItemRegistries.CURSIUM_MAGE_BOOTS
+					.get()) {
+				if (pLevel.isClientSide()) {
+					if (Cataclysm.PROXY.getClientSidePlayer() == pEntity
+							&& Cataclysm.PROXY.isKeyDown(7)) {
+						Cataclysm.sendMSGToServer(new MessageArmorKey(
+								EquipmentSlot.FEET.ordinal(), player.getId(), 7));
+						onKeyPacket(player, pStack, 7);
+					}
+				}
+			}
+		}
+	}
 
-    // Keybind stuff
-    @Override
-    public void onKeyPacket(Player player, ItemStack itemStack, int i) {
-        if (i == 5)
-        {
-            if (player != null && !player.getCooldowns().isOnCooldown(ItemRegistries.CURSIUM_MAGE_HELMET.get()))
-            {
-                boolean flag = false;
-                List<Entity> list = player.level().getEntities(player, player.getBoundingBox().inflate(24));
-                for (Entity entities : list)
-                {
-                    if (entities instanceof LivingEntity livingEntity)
-                    {
-                        flag = true;
-                        livingEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 160));
-                    }
-                }
+	// Keybind stuff
+	@Override
+	public void onKeyPacket(Player player, ItemStack itemStack, int i) {
+		if (i == 5) {
+			if (player != null && !player.getCooldowns()
+					.isOnCooldown(ItemRegistries.CURSIUM_MAGE_HELMET.get())) {
+				boolean flag = false;
+				List<Entity> list = player.level().getEntities(player,
+						player.getBoundingBox().inflate(24));
+				for (Entity entities : list) {
+					if (entities instanceof LivingEntity livingEntity) {
+						flag = true;
+						livingEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 160));
+					}
+				}
 
-                if (flag)
-                {
-                    player.getCooldowns().addCooldown(ItemRegistries.CURSIUM_MAGE_HELMET.get(), 200);
-                }
-            }
-        }
-        if (i == 7)
-        {
-            if (player != null && !player.getCooldowns().isOnCooldown(ItemRegistries.CURSIUM_MAGE_BOOTS.get()))
-            {
-                float speed = -1.8F;
-                float yaw = (float) Math.toRadians(player.getYRot() + 90);
-                Vec3 vec3 = player.getDeltaMovement().add(speed * Math.cos(yaw), 0, speed * Math.sin(yaw));
+				if (flag) {
+					player.getCooldowns().addCooldown(ItemRegistries.CURSIUM_MAGE_HELMET.get(),
+							200);
+				}
+			}
+		}
+		if (i == 7) {
+			if (player != null && !player.getCooldowns()
+					.isOnCooldown(ItemRegistries.CURSIUM_MAGE_BOOTS.get())) {
+				float speed = -1.8F;
+				float yaw = (float) Math.toRadians(player.getYRot() + 90);
+				Vec3 vec3 = player.getDeltaMovement().add(speed * Math.cos(yaw), 0,
+						speed * Math.sin(yaw));
 
-                player.setDeltaMovement(vec3.x, 0.4, vec3.z);
-                player.getCooldowns().addCooldown(ItemRegistries.CURSIUM_MAGE_BOOTS.get(), 200);
-            }
-        }
-    }
+				player.setDeltaMovement(vec3.x, 0.4, vec3.z);
+				player.getCooldowns().addCooldown(ItemRegistries.CURSIUM_MAGE_BOOTS.get(), 200);
+			}
+		}
+	}
 }

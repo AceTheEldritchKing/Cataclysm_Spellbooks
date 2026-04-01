@@ -1,6 +1,6 @@
 package net.acetheeldritchking.cataclysm_spellbooks.entity.spells.bullets;
 
-import com.github.L_Ender.cataclysm.client.particle.LightTrailParticle;
+import com.github.L_Ender.cataclysm.client.particle.Options.LightTrailParticleOptions;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
@@ -37,172 +37,174 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class FrozenBulletProjectile extends AbstractMagicProjectile implements GeoEntity {
-    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
-    public double prevDeltaMovementX;
-    public double prevDeltaMovementY;
-    public double prevDeltaMovementZ;
+	private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+	public double prevDeltaMovementX;
+	public double prevDeltaMovementY;
+	public double prevDeltaMovementZ;
 
-    public FrozenBulletProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-    }
+	public FrozenBulletProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+		super(pEntityType, pLevel);
+	}
 
-    public FrozenBulletProjectile(Level level, LivingEntity shooter) {
-        this(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), level);
-        setOwner(shooter);
-    }
+	public FrozenBulletProjectile(Level level, LivingEntity shooter) {
+		this(CSEntityRegistry.FROZEN_BULLET_PROJECTILE.get(), level);
+		setOwner(shooter);
+	}
 
-    @Override
-    public void trailParticles() {
-        for (int i = 0; i < 5; i++)
-        {
-            double x = getX() + (1.5F * (this.random.nextFloat() - 0.5F));
-            double y = getY() + (1.5F * (this.random.nextFloat() - 0.5F));
-            double z = getZ() + (1.5F * (this.random.nextFloat() - 0.5F));
+	@Override
+	public void trailParticles() {
+		for (int i = 0; i < 5; i++) {
+			double x = getX() + (1.5F * (this.random.nextFloat() - 0.5F));
+			double y = getY() + (1.5F * (this.random.nextFloat() - 0.5F));
+			double z = getZ() + (1.5F * (this.random.nextFloat() - 0.5F));
 
-            this.level().addParticle(ParticleTypes.SNOWFLAKE, x, y, z, -getDeltaMovement().x, -getDeltaMovement().y, -getDeltaMovement().z);
-        }
-    }
+			this.level().addParticle(ParticleTypes.SNOWFLAKE, x, y, z, -getDeltaMovement().x,
+					-getDeltaMovement().y, -getDeltaMovement().z);
+		}
+	}
 
-    @Override
-    public void impactParticles(double x, double y, double z) {
-        MagicManager.spawnParticles(this.level(), ParticleTypes.SNOWFLAKE, x, y, z, 10, .1, .1, .1, .18, true);
-    }
+	@Override
+	public void impactParticles(double x, double y, double z) {
+		MagicManager.spawnParticles(this.level(), ParticleTypes.SNOWFLAKE, x, y, z, 10, .1, .1, .1, .18, true);
+	}
 
-    @Override
-    public void travel() {
-        this.setPos(this.position().add(this.getDeltaMovement()));
-        if (!this.isNoGravity())
-        {
-            Vec3 vec3 = this.getDeltaMovement();
-            this.setDeltaMovement(vec3.x, vec3.y - 0.05000000074505806, vec3.z);
-        }
-    }
+	@Override
+	public void travel() {
+		this.setPos(this.position().add(this.getDeltaMovement()));
+		if (!this.isNoGravity()) {
+			Vec3 vec3 = this.getDeltaMovement();
+			this.setDeltaMovement(vec3.x, vec3.y - 0.05000000074505806, vec3.z);
+		}
+	}
 
-    @Override
-    public void tick() {
-        this.prevDeltaMovementX = getDeltaMovement().x;
-        this.prevDeltaMovementY = getDeltaMovement().y;
-        this.prevDeltaMovementZ = getDeltaMovement().z;
+	@Override
+	public void tick() {
+		this.prevDeltaMovementX = getDeltaMovement().x;
+		this.prevDeltaMovementY = getDeltaMovement().y;
+		this.prevDeltaMovementZ = getDeltaMovement().z;
 
-        setYRot(-((float) Mth.atan2(getDeltaMovement().x, getDeltaMovement().z)) * (180F / (float)Math.PI));
+		setYRot(-((float) Mth.atan2(getDeltaMovement().x, getDeltaMovement().z)) * (180F / (float) Math.PI));
 
-        if (this.level().isClientSide)
-        {
-            double x = getX() + 1.5F * (this.random.nextFloat() - 0.5F);
-            double y = getY() + 1.5F * (this.random.nextFloat() - 0.5F);
-            double z = getZ() + 1.5F * (this.random.nextFloat() - 0.5F);
+		if (this.level().isClientSide) {
+			double x = getX() + 1.5F * (this.random.nextFloat() - 0.5F);
+			double y = getY() + 1.5F * (this.random.nextFloat() - 0.5F);
+			double z = getZ() + 1.5F * (this.random.nextFloat() - 0.5F);
 
-            float random = 0.04F;
+			float random = 0.04F;
 
-            float r = 181/255F + this.random.nextFloat() * random * 1.5F;
-            float g = 236/255F + this.random.nextFloat() * random;
-            float b = 248/255F + this.random.nextFloat() * random;
+			float r = 181 / 255F + this.random.nextFloat() * random * 1.5F;
+			float g = 236 / 255F + this.random.nextFloat() * random;
+			float b = 248 / 255F + this.random.nextFloat() * random;
 
-            this.level().addParticle(new LightTrailParticle.OrbData(r, g, b, 0.1F, this.getBbHeight()/2, this.getId()), x, y, z, 0, 0, 0);
-        }
+			this.level().addParticle(new LightTrailParticleOptions(r, g, b, 0.1F, this.getBbHeight() / 2,
+					this.getId()), x, y, z, 0, 0, 0);
+		}
 
-        super.tick();
-    }
+		super.tick();
+	}
 
-    @Override
-    public float getSpeed() {
-        return 0.45F;
-    }
+	@Override
+	public float getSpeed() {
+		return 0.45F;
+	}
 
-    @Override
-    public Optional<Supplier<SoundEvent>> getImpactSound() {
-        return Optional.of(SoundRegistry.ICE_IMPACT);
-    }
+	@Override
+	public Optional<Supplier<SoundEvent>> getImpactSound() {
+		return Optional.of(SoundRegistry.ICE_IMPACT);
+	}
 
-    @Override
-    protected void onHitEntity(EntityHitResult pResult) {
-        var target = pResult.getEntity();
-        DamageSources.applyDamage(target, damage,
-                SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
-        // Ignore i-frames
-        pResult.getEntity().invulnerableTime = 0;
+	@Override
+	protected void onHitEntity(EntityHitResult pResult) {
+		var target = pResult.getEntity();
+		DamageSources.applyDamage(target, damage,
+				SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
+		// Ignore i-frames
+		pResult.getEntity().invulnerableTime = 0;
 
-        Vec3 spawn = target.position();
+		Vec3 spawn = target.position();
 
-        GlacialBlockEntity glacialBlock = new GlacialBlockEntity(this.level(), (LivingEntity) this.getOwner());
+		GlacialBlockEntity glacialBlock = new GlacialBlockEntity(this.level(), (LivingEntity) this.getOwner());
 
-        if (target instanceof LivingEntity livingTarget)
-        {
-            livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100, 0, true, true, true));
-            livingTarget.addEffect(new MobEffectInstance(MobEffectRegistry.CHILLED.get(), 100, 1, true, true, true));
+		if (target instanceof LivingEntity livingTarget) {
+			livingTarget.addEffect(new MobEffectInstance(CSPotionEffectRegistry.DISABLED_EFFECT.get(), 100,
+					0, true, true, true));
+			livingTarget.addEffect(new MobEffectInstance(MobEffectRegistry.CHILLED.get(), 100, 1, true,
+					true, true));
 
-            // This should prevent double ice blocks from happening
-            if (!livingTarget.isPassenger())
-            {
-                glacialBlock.setDuration(15 * 20);
-                glacialBlock.setTarget(livingTarget);
-                glacialBlock.moveTo(spawn);
-                this.level().addFreshEntity(glacialBlock);
-                target.stopRiding();
-                target.startRiding(glacialBlock, true);
-            }
-        }
+			// This should prevent double ice blocks from happening
+			if (!livingTarget.isPassenger()) {
+				glacialBlock.setDuration(15 * 20);
+				glacialBlock.setTarget(livingTarget);
+				glacialBlock.moveTo(spawn);
+				this.level().addFreshEntity(glacialBlock);
+				target.stopRiding();
+				target.startRiding(glacialBlock, true);
+			}
+		}
 
-        discard();
-    }
+		discard();
+	}
 
-    @Override
-    protected void onHitBlock(BlockHitResult pResult) {
-        discard();
-    }
+	@Override
+	protected void onHitBlock(BlockHitResult pResult) {
+		discard();
+	}
 
-    @Override
-    protected void onHit(HitResult hitresult) {
-        super.onHit(hitresult);
+	@Override
+	protected void onHit(HitResult hitresult) {
+		super.onHit(hitresult);
 
-        if (!this.level().isClientSide)
-        {
-            float radius = getExplosionRadius();
-            var radiusSqr = radius * radius;
-            var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
-            Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(), this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
+		if (!this.level().isClientSide) {
+			float radius = getExplosionRadius();
+			var radiusSqr = radius * radius;
+			var entities = this.level().getEntities(this, this.getBoundingBox().inflate(radius));
+			Vec3 losPoint = Utils.raycastForBlock(this.level(), this.position(),
+					this.position().add(0, 2, 0), ClipContext.Fluid.NONE).getLocation();
 
-            for (Entity entity : entities)
-            {
-                double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
+			for (Entity entity : entities) {
+				double distanceToSqr = entity.distanceToSqr(hitresult.getLocation());
 
-                if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(this.level(), losPoint, entity.getBoundingBox().getCenter(), true))
-                {
-                    double modifier = (1 - distanceToSqr / radiusSqr);
-                    float damage = (float) (getDamage() * modifier);
+				if (distanceToSqr < radiusSqr && canHitEntity(entity) && Utils.hasLineOfSight(
+						this.level(), losPoint, entity.getBoundingBox().getCenter(), true)) {
+					double modifier = (1 - distanceToSqr / radiusSqr);
+					float damage = (float) (getDamage() * modifier);
 
-                    ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 2.0F, 0.15F, 20, 20);
+					ScreenShake_Entity.ScreenShake(this.level(), entity.position(), 2.0F, 0.15F, 20,
+							20);
 
-                    DamageSources.applyDamage(entity, damage, SpellRegistries.CRYOPIERCER.get().getDamageSource(this, getOwner()));
+					DamageSources.applyDamage(entity, damage, SpellRegistries.CRYOPIERCER.get()
+							.getDamageSource(this, getOwner()));
 
-                    if (entity instanceof LivingEntity livingEntity)
-                    {
-                        livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.CHILLED.get(), 100, 1, true, true, true));
-                    }
-                }
-            }
+					if (entity instanceof LivingEntity livingEntity) {
+						livingEntity.addEffect(
+								new MobEffectInstance(MobEffectRegistry.CHILLED.get(),
+										100, 1, true, true, true));
+					}
+				}
+			}
 
-            MagicManager.spawnParticles(this.level(), new BlastwaveParticleOptions(SchoolRegistry.ICE.get().getTargetingColor(), this.getExplosionRadius() * 2),
-                    getX(), getY(), getZ(),
-                    1, 0, 0, 0, 0, false);
+			MagicManager.spawnParticles(this.level(),
+					new BlastwaveParticleOptions(SchoolRegistry.ICE.get().getTargetingColor(),
+							this.getExplosionRadius() * 2),
+					getX(), getY(), getZ(),
+					1, 0, 0, 0, 0, false);
 
-            if (hitresult instanceof EntityHitResult entityHitResult)
-            {
-                onHitEntity(entityHitResult);
-            }
+			if (hitresult instanceof EntityHitResult entityHitResult) {
+				onHitEntity(entityHitResult);
+			}
 
-            discard();
-        }
-    }
+			discard();
+		}
+	}
 
-    // Geckolib
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        //
-    }
+	// Geckolib
+	@Override
+	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+		//
+	}
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return geoCache;
-    }
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return geoCache;
+	}
 }
